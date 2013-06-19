@@ -62,26 +62,53 @@ int32_t exml::EXmlElement::Parse(const etk::UString& _data, int32_t _pos, bool _
 				// TODO : an error occured ...
 				return;
 			}
-			if (_data[iii+1] == '?') {
+			// find the end of the balise : 
+			int32_t endPos = iii;
+			for (int32_t jjj=iii+1; jjj<_data.Size(); jjj++) {
+				if(_data[jjj] == ">") {
+					endPos = jjj;
+					break;
+				}
+			}
+			if (endPos == iii) {
+				// TODO : an error occured ...
+				return;
+			}
+			int32_t sizeElement = endPos-iii;
+			if(    sizeElement>2
+			    && _data[iii+1] == '?'
+			    && _data[endPos-1] == '?') {
 				// find declaration
 				
-				// TODO : search end of declaration ...
+				// TODO : ...
+				
+				iii = endPos
 				continue;
 			}
-			if(_data[iii+1] == '!') {
-				if(    iii+3>=_data.Size()
-				    || _data[iii+2] != '-'
-				    || _data[iii+3] != '-') {
-					
-					// TODO : an error occured ...
-					return;
-				}
+			if(    sizeElement>5
+			    && _data[iii+1] == '!'
+			    && _data[iii+2] == '-'
+			    && _data[iii+3] == '-'
+			    && _data[endPos-2] == '-'
+			    && _data[endPos-1] == '-') {
 				// find comment
+				// TODO : Change the end parsing ...
 				
-				// TODO : search end of comment ...
+				
+				// TODO : ...
+				
+				iii = endPos
 				continue;
 			}
 			// find a normal node ...
+			// TODO : ...
+			for (int32_t jjj=iii+1; jjj<_data.Size(); jjj++) {
+				if(_data[jjj] == ">") {
+					// we find the end ...
+					iii = jjj;
+					break;
+				}
+			}
 		} else {
 			// might to be data text ...
 		}
