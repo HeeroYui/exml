@@ -11,6 +11,7 @@
 
 #include <etk/types.h>
 #include <etk/UString.h>
+#include <etk/math/Vector2D.h>
 
 namespace exml
 {
@@ -18,7 +19,7 @@ namespace exml
 		typeNode, //!< might be an error ...
 		typeDocument, //!< all the file main access
 		typeDeclaration, //!< <?xml ... ?>
-		typeAttibute, //!< the <Element ATTRIBUTE="ATTRIBUTE_VALUE" />
+		typeAttribute, //!< the <Element ATTRIBUTE="ATTRIBUTE_VALUE" />
 		typeElement,  //!< the <XXX> ... </XXX>
 		typeComment, //!< comment node : <!--   -->
 		typeText, //!< <XXX> InsideText </XXX>
@@ -29,11 +30,11 @@ namespace exml
 		public:
 			EXmlNode(void) { };
 			virtual ~EXmlNode(void) { };
-		protected:
+		public:
 			/**
 			 * Parse the sub nodes and current nodes ...
 			 */
-			virtual int32_t Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos) = 0;
+			virtual bool Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos, int32_t& findLen) = 0;
 		protected:
 			etk::UString m_name;
 		public:
@@ -48,4 +49,6 @@ namespace exml
 			virtual nodeType_te GetType(void) { return typeNode; };
 	};
 };
+
+#endif
 

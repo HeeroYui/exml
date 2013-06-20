@@ -11,6 +11,7 @@
 
 #include <exml/EXmlNode.h>
 #include <etk/Vector.h>
+#include <exml/EXmlAttribute.h>
 
 namespace exml
 {
@@ -32,8 +33,8 @@ namespace exml
 			int32_t SizeAttribute(void) const { return m_listSub.Size(); };
 			EXmlAttribute* GetAttribute(int32_t _id);
 			void AppendAttribute(EXmlAttribute* _node);
-		protected:
-			virtual int32_t Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos);
+		public:
+			virtual bool Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos, int32_t& findLen);
 	};
 };
 

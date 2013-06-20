@@ -10,32 +10,32 @@
 
 
 exml::EXmlDocument::EXmlDocument(void) : 
-	m_charset(unicode::EDN_CHARSET_UNKNOW),
+	m_charset(unicode::EDN_CHARSET_UTF8),
 	m_caseSensitive(false)
 {
 	
 }
 
-bool Parse(const etk::UString& _data)
+bool exml::EXmlDocument::Parse(const etk::UString& _data)
 {
 	// came from char ==> force in utf8 ...
 	m_charset = unicode::EDN_CHARSET_UTF8;
 	ivec2 filePos(1,1);
-	int32_t ret = Parse(_data, 0, m_caseSensitive, filePos);
+	int32_t ret = exml::EXmlElement::Parse(_data, 0, m_caseSensitive, filePos);
 	return false;
 }
 
-bool Generate(etk::UString& _data)
+bool exml::EXmlDocument::Generate(etk::UString& _data)
 {
 	return false;
 }
 
-bool Load(const etk::UString& _file)
+bool exml::EXmlDocument::Load(const etk::UString& _file)
 {
 	return false;
 }
 
-bool Store(const etk::UString& _file)
+bool exml::EXmlDocument::Store(const etk::UString& _file)
 {
 	return false;
 }

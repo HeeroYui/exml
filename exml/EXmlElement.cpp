@@ -7,9 +7,10 @@
  */
 
 #include <exml/EXmlElement.h>
+#include <exml/debug.h>
 
 
-EXmlNode* exml::EXmlElement::GetSub(int32_t _id)
+exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id)
 {
 	if (_id <0 || _id>m_listSub.Size()) {
 		return NULL;
@@ -17,7 +18,7 @@ EXmlNode* exml::EXmlElement::GetSub(int32_t _id)
 	return m_listSub[_id];
 }
 
-void exml::EXmlElement::AppendSub(EXmlNode* _node)
+void exml::EXmlElement::AppendSub(exml::EXmlNode* _node)
 {
 	if (_node == NULL) {
 		EXML_ERROR("Try to set an empty node");
@@ -32,14 +33,14 @@ void exml::EXmlElement::AppendSub(EXmlNode* _node)
 	m_listSub.PushBack(_node);
 }
 
-EXmlAttribute* exml::EXmlElement::GetAttribute(int32_t _id)
+exml::EXmlAttribute* exml::EXmlElement::GetAttribute(int32_t _id)
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
 }
-void exml::EXmlElement::AppendAttribute(EXmlAttribute* _node)
+void exml::EXmlElement::AppendAttribute(exml::EXmlAttribute* _node)
 {
 	if (_node == NULL) {
 		EXML_ERROR("Try to set an empty node");
@@ -54,25 +55,25 @@ void exml::EXmlElement::AppendAttribute(EXmlAttribute* _node)
 	m_listAttribute.PushBack(_node);
 }
 
-int32_t exml::EXmlElement::Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::EXmlElement::Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos, int32_t& findLen)
 {
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		if (_data[iii] == "<") {
+		if (_data[iii] == '<') {
 			if (iii+1>=_data.Size()) {
 				// TODO : an error occured ...
-				return;
+				return iii;
 			}
 			// find the end of the balise : 
 			int32_t endPos = iii;
 			for (int32_t jjj=iii+1; jjj<_data.Size(); jjj++) {
-				if(_data[jjj] == ">") {
+				if(_data[jjj] == '>') {
 					endPos = jjj;
 					break;
 				}
 			}
 			if (endPos == iii) {
 				// TODO : an error occured ...
-				return;
+				return iii;
 			}
 			int32_t sizeElement = endPos-iii;
 			if(    sizeElement>2
@@ -82,7 +83,7 @@ int32_t exml::EXmlElement::Parse(const etk::UString& _data, int32_t _pos, bool _
 				
 				// TODO : ...
 				
-				iii = endPos
+				iii = endPos;
 				continue;
 			}
 			if(    sizeElement>5
@@ -97,13 +98,13 @@ int32_t exml::EXmlElement::Parse(const etk::UString& _data, int32_t _pos, bool _
 				
 				// TODO : ...
 				
-				iii = endPos
+				iii = endPos;
 				continue;
 			}
 			// find a normal node ...
 			// TODO : ...
 			for (int32_t jjj=iii+1; jjj<_data.Size(); jjj++) {
-				if(_data[jjj] == ">") {
+				if(_data[jjj] == '>') {
 					// we find the end ...
 					iii = jjj;
 					break;
@@ -111,12 +112,19 @@ int32_t exml::EXmlElement::Parse(const etk::UString& _data, int32_t _pos, bool _
 			}
 		} else {
 			// might to be data text ...
+			if(    _data[iii] == ' '
+			    && _data[iii] == '\t'
+			    && _data[iii] == '\n'
+			    && _data[iii] == '\r') {
+				// empty spaces ==> nothing to do ....
+			} else {
+				// find data ==> parse it...
+			}
 		}
 	}
+	return _pos;
 }
 
-
-#endif
 
 
 

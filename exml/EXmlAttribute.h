@@ -14,12 +14,12 @@
 
 namespace exml
 {
-	class EXmlElement : public EXmlNode
+	class EXmlAttribute : public EXmlNode
 	{
 		public:
-			EXmlElement(void) { };
-			virtual ~EXmlElement(void) { };
-			virtual nodeType_te GetType(void) { return typeAttribute; };
+			EXmlAttribute(void) { };
+			virtual ~EXmlAttribute(void) { };
+			virtual nodeType_te GetType(void) { return exml::typeAttribute; };
 	};
 };
 
