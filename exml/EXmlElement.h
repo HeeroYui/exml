@@ -21,20 +21,23 @@ namespace exml
 			EXmlElement(void) { };
 			virtual ~EXmlElement(void) { };
 			virtual nodeType_te GetType(void) { return typeElement; };
-		private:
-			etk::Vector<EXmlNode*> m_listSub;
+		protected:
+			etk::Vector<exml::EXmlNode*> m_listSub;
 		public:
 			int32_t SizeSub(void) const { return m_listSub.Size(); };
 			EXmlNode* GetSub(int32_t _id);
 			void AppendSub(EXmlNode* _node);
-		private:
-			etk::Vector<EXmlAttribute*> m_listAttribute;
+		protected:
+			etk::Vector<exml::EXmlAttribute*> m_listAttribute;
 		public:
 			int32_t SizeAttribute(void) const { return m_listSub.Size(); };
 			EXmlAttribute* GetAttribute(int32_t _id);
 			void AppendAttribute(EXmlAttribute* _node);
 		public:
-			virtual bool Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos, int32_t& findLen);
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Generate(etk::UString& _data, int32_t _indent);
+		protected:
+			bool SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode=false);
 	};
 };
 

@@ -20,6 +20,8 @@ namespace exml
 			EXmlAttribute(void) { };
 			virtual ~EXmlAttribute(void) { };
 			virtual nodeType_te GetType(void) { return exml::typeAttribute; };
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Generate(etk::UString& _data, int32_t _indent);
 	};
 };
 

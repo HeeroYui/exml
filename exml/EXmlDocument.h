@@ -61,6 +61,9 @@ namespace exml
 			 */
 			bool Store(const etk::UString& _file);
 			
+			void Display(void);
+			bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			bool Generate(etk::UString& _data, int32_t _indent);
 	};
 };
 

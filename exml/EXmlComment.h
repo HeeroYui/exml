@@ -14,12 +14,14 @@
 
 namespace exml
 {
-	class EXmlElement : public EXmlNode
+	class EXmlComment : public EXmlNode
 	{
 		public:
-			EXmlElement(void) { };
-			virtual ~EXmlElement(void) { };
+			EXmlComment(void) { };
+			virtual ~EXmlComment(void) { };
 			virtual nodeType_te GetType(void) { return typeAttribute; };
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Generate(etk::UString& _data, int32_t _indent);
 	};
 };
 

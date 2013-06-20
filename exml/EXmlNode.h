@@ -30,11 +30,14 @@ namespace exml
 		public:
 			EXmlNode(void) { };
 			virtual ~EXmlNode(void) { };
+		protected:
+			void AddIndent(etk::UString& _data, int32_t _indent);
 		public:
 			/**
 			 * Parse the sub nodes and current nodes ...
 			 */
-			virtual bool Parse(const etk::UString& _data, int32_t _pos, bool _caseSensitive, ivec2& _filePos, int32_t& findLen) = 0;
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos) = 0;
+			virtual bool Generate(etk::UString& _data, int32_t _indent) { return true; };
 		protected:
 			etk::UString m_name;
 		public:
@@ -47,6 +50,10 @@ namespace exml
 			virtual const etk::UString& GetValue(void) { return m_value; };
 		public:
 			virtual nodeType_te GetType(void) { return typeNode; };
+		protected:
+			void DrawElementParsed(const etk::UniChar& _val, const ivec2& _firstChar);
+			bool CheckAvaillable(const etk::UniChar& _val, bool _firstChar);
+			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos);
 	};
 };
 

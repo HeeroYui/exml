@@ -20,6 +20,9 @@ namespace exml
 			EXmlDeclaration(void) { };
 			virtual ~EXmlDeclaration(void) { };
 			virtual nodeType_te GetType(void) { return typeAttribute; };
+			virtual bool Generate(etk::UString& _data, int32_t _indent);
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			
 	};
 };
 
