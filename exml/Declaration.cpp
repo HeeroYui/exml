@@ -6,10 +6,10 @@
  * @license BSD v3 (see license file)
  */
 
-#include <exml/EXmlDeclaration.h>
+#include <exml/Declaration.h>
 #include <exml/debug.h>
 
-bool exml::EXmlDeclaration::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Declaration::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<?";
@@ -24,13 +24,15 @@ bool exml::EXmlDeclaration::Generate(etk::UString& _data, int32_t _indent) const
 	return true;
 }
 
-bool exml::EXmlDeclaration::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_DEBUG("start parse : 'declaration'");
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+1<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
-		DrawElementParsed(_data[iii], _filePos);
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if (_data[iii] == '\n') {
 			_filePos.setValue(1, _filePos.y()+1);
 			continue;
@@ -46,7 +48,7 @@ bool exml::EXmlDeclaration::Parse(const etk::UString& _data, int32_t& _pos, bool
 			// find end of value:
 			m_value = _data.Extract(_pos, iii-1);
 			EXML_DEBUG(" find declaration '" << m_value << "'");
-			_pos = iii;
+			_pos = iii+1;
 			return true;
 		}
 	}

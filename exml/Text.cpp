@@ -6,16 +6,16 @@
  * @license BSD v3 (see license file)
  */
 
-#include <exml/EXmlText.h>
+#include <exml/Text.h>
 #include <exml/debug.h>
 
-bool exml::EXmlText::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Text::Generate(etk::UString& _data, int32_t _indent) const
 {
 	_data += m_value;
 	return true;
 }
 
-int32_t exml::EXmlText::CountLines(void) const
+int32_t exml::Text::CountLines(void) const
 {
 	int32_t count = 1;
 	for (int32_t iii=0; iii<m_value.Size(); iii++) {
@@ -26,13 +26,15 @@ int32_t exml::EXmlText::CountLines(void) const
 	return count;
 }
 
-bool exml::EXmlText::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_DEBUG("start parse : 'text'");
 	// search end of the comment :
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
-		DrawElementParsed(_data[iii], _filePos);
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if (_data[iii] == '\n') {
 			_filePos.setValue(0, _filePos.y()+1);
 			continue;
@@ -63,13 +65,15 @@ bool exml::EXmlText::Parse(const etk::UString& _data, int32_t& _pos, bool _caseS
 	return false;
 }
 
-bool exml::EXmlTextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::TextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_DEBUG("start parse : 'text::CDATA'");
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+2<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
-		DrawElementParsed(_data[iii], _filePos);
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if (_data[iii] == '\n') {
 			_filePos.setValue(1, _filePos.y()+1);
 			continue;

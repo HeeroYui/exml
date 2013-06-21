@@ -9,7 +9,7 @@ def Create(target):
 	
 	# add the file to compile:
 	myModule.AddSrcFile([
-		'exml/EXmlTest.cpp'])
+		'exml/test.cpp'])
 	
 	myModule.AddModuleDepend('exml')
 	

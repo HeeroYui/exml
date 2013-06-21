@@ -9,8 +9,8 @@
 #ifndef __ETK_XML_TEST_H__
 #define __ETK_XML_TEST_H__
 
-#include <exml/EXmlNode.h>
-#include <exml/EXmlDocument.h>
+#include <exml/Node.h>
+#include <exml/Document.h>
 
 namespace exml
 {

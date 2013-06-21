@@ -9,21 +9,21 @@
 #ifndef __ETK_XML_DECLARATION_H__
 #define __ETK_XML_DECLARATION_H__
 
-#include <exml/EXmlNode.h>
+#include <exml/Node.h>
 #include <etk/Vector.h>
 
 namespace exml
 {
-	class EXmlDeclaration : public EXmlNode
+	class Declaration : public exml::Node
 	{
 		public:
-			EXmlDeclaration(void) { };
-			virtual ~EXmlDeclaration(void) { };
+			Declaration(void) { };
+			virtual ~Declaration(void) { };
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
-			virtual operator exml::EXmlDeclaration* () { return this; };
-			virtual operator const exml::EXmlDeclaration* () const { return this; };
+			virtual operator exml::Declaration* () { return this; };
+			virtual operator const exml::Declaration* () const { return this; };
 	};
 };
 

@@ -6,26 +6,27 @@
  * @license BSD v3 (see license file)
  */
 
-#include <exml/EXmlNode.h>
+#include <exml/Node.h>
 #include <exml/debug.h>
 
 
-exml::EXmlNode::EXmlNode(const etk::UString& _value) :
+exml::Node::Node(const etk::UString& _value) :
 	m_pos(0,0),
 	m_value(_value)
 {
 	
 }
 
-void exml::EXmlNode::AddIndent(etk::UString& _data, int32_t _indent) const
+void exml::Node::AddIndent(etk::UString& _data, int32_t _indent) const
 {
 	for (int32_t iii=0; iii<_indent; iii++) {
 		_data+="\t";
 	}
 }
 
-void exml::EXmlNode::DrawElementParsed(const etk::UniChar& _val, const ivec2& _filePos) const
+void exml::Node::DrawElementParsed(const etk::UniChar& _val, const ivec2& _filePos) const
 {
+	EXML_CRITICAL("lkjlkj");
 	if (_val=='\n') {
 		EXML_DEBUG(_filePos << " Parse '\\n'");
 	} else if (_val=='\t') {
@@ -37,7 +38,7 @@ void exml::EXmlNode::DrawElementParsed(const etk::UniChar& _val, const ivec2& _f
 
 
 // !"#$%&'()*+,/;<=>?@[\]^`{|}~ ou une espace et ne peut pas commencer par -. ou un chiffre.
-bool exml::EXmlNode::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const
+bool exml::Node::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const
 {
 	if(    _val == '!'
 	    || _val == '"'
@@ -84,7 +85,7 @@ bool exml::EXmlNode::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) 
 	return true;
 }
 
-int32_t exml::EXmlNode::CountWhiteChar(const etk::UString& _data, int32_t _pos) const
+int32_t exml::Node::CountWhiteChar(const etk::UString& _data, int32_t _pos) const
 {
 	int32_t white=0;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {

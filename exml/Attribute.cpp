@@ -6,25 +6,27 @@
  * @license BSD v3 (see license file)
  */
 
-#include <exml/EXmlAttribute.h>
+#include <exml/Attribute.h>
 #include <exml/debug.h>
 
-exml::EXmlAttribute::EXmlAttribute(const etk::UString& _name, const etk::UString& _value) :
-	exml::EXmlNode(_value),
+exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value) :
+	exml::Node(_value),
 	m_name(_name)
 {
 	
 }
 
 
-bool exml::EXmlAttribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_DEBUG("start parse : 'attribute'");
 	// search end of the comment :
 	int32_t lastElementName = _pos;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
-		DrawElementParsed(_data[iii], _filePos);
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if (_data[iii] == '\n') {
 			_filePos.setValue(1, _filePos.y()+1);
 			EXML_ERROR("unexpected '\\n' in an attribute parsing");
@@ -56,7 +58,9 @@ bool exml::EXmlAttribute::Parse(const etk::UString& _data, int32_t& _pos, bool _
 		int32_t lastAttributePos = lastElementName+3;
 		for (int32_t iii=lastElementName+2; iii<_data.Size(); iii++) {
 			_filePos += ivec2(1,0);
-			DrawElementParsed(_data[iii], _filePos);
+			#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+				DrawElementParsed(_data[iii], _filePos);
+			#endif
 			if (_data[iii] == '\n') {
 				_filePos.setValue(1, _filePos.y()+1);
 				EXML_ERROR("unexpected '\\n' in an attribute parsing");
@@ -77,7 +81,9 @@ bool exml::EXmlAttribute::Parse(const etk::UString& _data, int32_t& _pos, bool _
 	int32_t lastAttributePos = lastElementName+3;
 	for (int32_t iii=lastElementName+3; iii<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
-		DrawElementParsed(_data[iii], _filePos);
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if (_data[iii] == '\n') {
 			_filePos.setValue(1, _filePos.y()+1);
 			EXML_ERROR("unexpected '\\n' in an attribute parsing");
@@ -91,11 +97,11 @@ bool exml::EXmlAttribute::Parse(const etk::UString& _data, int32_t& _pos, bool _
 	}
 	m_value = _data.Extract(lastElementName+3, lastAttributePos+1);
 	
-	_pos = lastAttributePos+1;
+	_pos = lastAttributePos;
 	return true;
 }
 
-bool exml::EXmlAttribute::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Attribute::Generate(etk::UString& _data, int32_t _indent) const
 {
 	_data += " ";
 	_data += m_name;

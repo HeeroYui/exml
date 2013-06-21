@@ -9,7 +9,7 @@
 #ifndef __ETK_XML_H__
 #define __ETK_XML_H__
 
-#include <exml/EXmlDocument.h>
+#include <exml/Document.h>
 
 #endif
 

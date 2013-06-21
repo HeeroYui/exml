@@ -9,17 +9,17 @@
 #ifndef __ETK_XML_DOCUMENT_H__
 #define __ETK_XML_DOCUMENT_H__
 
-#include <exml/EXmlElement.h>
+#include <exml/Element.h>
 #include <etk/unicode.h>
 #include <etk/Vector.h>
 
 namespace exml
 {
-	class EXmlDocument : exml::EXmlElement
+	class Document : public exml::Element
 	{
 		public:
-			EXmlDocument(void);
-			virtual ~EXmlDocument(void) { };
+			Document(void);
+			virtual ~Document(void) { };
 			virtual nodeType_te GetType(void) const { return typeDocument; };
 		private:
 			unicode::charset_te m_charset;
@@ -64,8 +64,8 @@ namespace exml
 			void Display(void);
 			bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			bool Generate(etk::UString& _data, int32_t _indent) const;
-			virtual operator exml::EXmlDocument* () { return this; };
-			virtual operator const exml::EXmlDocument* () const { return this; };
+			virtual operator exml::Document* () { return this; };
+			virtual operator const exml::Document* () const { return this; };
 	};
 };
 

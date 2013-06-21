@@ -15,12 +15,13 @@
 
 namespace exml
 {
-	class EXmlDocument;
-	class EXmlAttribute;
-	class EXmlComment;
-	class EXmlDeclaration;
-	class EXmlElement;
-	class EXmlText;
+	//#define ENABLE_DISPLAY_PARSED_ELEMENT
+	class Document;
+	class Attribute;
+	class Comment;
+	class Declaration;
+	class Element;
+	class Text;
 	
 	typedef enum {
 		typeNode, //!< might be an error ...
@@ -32,12 +33,12 @@ namespace exml
 		typeText, //!< <XXX> InsideText </XXX>
 	} nodeType_te;
 	
-	class EXmlNode
+	class Node
 	{
 		public:
-			EXmlNode(void) : m_pos(0,0) { };
-			EXmlNode(const etk::UString& _value);
-			virtual ~EXmlNode(void) { };
+			Node(void) : m_pos(0,0) { };
+			Node(const etk::UString& _value);
+			virtual ~Node(void) { };
 		protected:
 			void AddIndent(etk::UString& _data, int32_t _indent) const;
 		public:
@@ -62,18 +63,18 @@ namespace exml
 			bool CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const;
 			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos) const;
 		public:
-			virtual operator exml::EXmlDocument* () { return NULL; };
-			virtual operator const exml::EXmlDocument* () const { return NULL; };
-			virtual operator exml::EXmlAttribute* () { return NULL; };
-			virtual operator const exml::EXmlAttribute* () const { return NULL; };
-			virtual operator exml::EXmlComment* () { return NULL; };
-			virtual operator const exml::EXmlComment* () const { return NULL; };
-			virtual operator exml::EXmlDeclaration* () { return NULL; };
-			virtual operator const exml::EXmlDeclaration* () const { return NULL; };
-			virtual operator exml::EXmlElement* () { return NULL; };
-			virtual operator const exml::EXmlElement* () const { return NULL; };
-			virtual operator exml::EXmlText* () { return NULL; };
-			virtual operator const exml::EXmlText* () const{ return NULL; };
+			virtual operator exml::Document* () { return NULL; };
+			virtual operator const exml::Document* () const { return NULL; };
+			virtual operator exml::Attribute* () { return NULL; };
+			virtual operator const exml::Attribute* () const { return NULL; };
+			virtual operator exml::Comment* () { return NULL; };
+			virtual operator const exml::Comment* () const { return NULL; };
+			virtual operator exml::Declaration* () { return NULL; };
+			virtual operator const exml::Declaration* () const { return NULL; };
+			virtual operator exml::Element* () { return NULL; };
+			virtual operator const exml::Element* () const { return NULL; };
+			virtual operator exml::Text* () { return NULL; };
+			virtual operator const exml::Text* () const{ return NULL; };
 			
 			bool IsDocument(void) const { return GetType()==exml::typeDocument; };
 			bool IsAttribute(void) const { return GetType()==exml::typeAttribute; };

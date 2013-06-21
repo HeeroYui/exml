@@ -6,15 +6,15 @@
  * @license BSD v3 (see license file)
  */
 
-#include <exml/EXmlElement.h>
+#include <exml/Element.h>
 #include <exml/debug.h>
-#include <exml/EXmlText.h>
-#include <exml/EXmlComment.h>
-#include <exml/EXmlAttribute.h>
-#include <exml/EXmlDeclaration.h>
+#include <exml/Text.h>
+#include <exml/Comment.h>
+#include <exml/Attribute.h>
+#include <exml/Declaration.h>
 
 
-exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id)
+exml::Node* exml::Element::Get(int32_t _id)
 {
 	if (_id <0 || _id>m_listSub.Size()) {
 		return NULL;
@@ -22,7 +22,7 @@ exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id)
 	return m_listSub[_id];
 }
 
-const exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id) const
+const exml::Node* exml::Element::Get(int32_t _id) const
 {
 	if (_id <0 || _id>m_listSub.Size()) {
 		return NULL;
@@ -30,7 +30,7 @@ const exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id) const
 	return m_listSub[_id];
 }
 
-void exml::EXmlElement::AppendSub(exml::EXmlNode* _node)
+void exml::Element::Append(exml::Node* _node)
 {
 	if (_node == NULL) {
 		EXML_ERROR("Try to set an empty node");
@@ -45,7 +45,7 @@ void exml::EXmlElement::AppendSub(exml::EXmlNode* _node)
 	m_listSub.PushBack(_node);
 }
 
-exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name)
+exml::Node* exml::Element::GetNamed(const etk::UString& _name)
 {
 	if (_name.Size()==0) {
 		return NULL;
@@ -59,7 +59,7 @@ exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name)
 	}
 	return NULL;
 }
-const exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name) const
+const exml::Node* exml::Element::GetNamed(const etk::UString& _name) const
 {
 	if (_name.Size()==0) {
 		return NULL;
@@ -74,21 +74,21 @@ const exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name) cons
 	return NULL;
 }
 
-exml::EXmlAttribute* exml::EXmlElement::GetAttr(int32_t _id)
+exml::Attribute* exml::Element::GetAttr(int32_t _id)
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
 }
-const exml::EXmlAttribute* exml::EXmlElement::GetAttr(int32_t _id) const
+const exml::Attribute* exml::Element::GetAttr(int32_t _id) const
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
 }
-void exml::EXmlElement::AppendAttribute(exml::EXmlAttribute* _node)
+void exml::Element::AppendAttribute(exml::Attribute* _node)
 {
 	if (_node == NULL) {
 		EXML_ERROR("Try to set an empty node");
@@ -103,7 +103,7 @@ void exml::EXmlElement::AppendAttribute(exml::EXmlAttribute* _node)
 	m_listAttribute.PushBack(_node);
 }
 
-const etk::UString& exml::EXmlElement::GetAttribute(const etk::UString& _name) const
+const etk::UString& exml::Element::GetAttribute(const etk::UString& _name) const
 {
 	static const etk::UString errorReturn("");
 	if (_name.Size()==0) {
@@ -118,7 +118,7 @@ const etk::UString& exml::EXmlElement::GetAttribute(const etk::UString& _name) c
 	return errorReturn;
 }
 
-bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Element::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<";
@@ -133,7 +133,7 @@ bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent) const
 		if(    m_listSub.Size()==1
 		    && m_listSub[0] != NULL
 		    && m_listSub[0]->GetType() == exml::typeText
-		    && static_cast<exml::EXmlText*>(m_listSub[0])->CountLines()==1) {
+		    && static_cast<exml::Text*>(m_listSub[0])->CountLines()==1) {
 			_data += ">";
 			m_listSub[0]->Generate(_data,0);
 		} else {
@@ -156,12 +156,14 @@ bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent) const
 }
 
 
-bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode)
+bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode)
 {
 	EXML_DEBUG(" start subParse ... " << _pos << " " << _filePos);
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
-		DrawElementParsed(_data[iii], _filePos);
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if (_data[iii] == '<') {
 			int32_t white = CountWhiteChar(_data, iii+1);
 			if (iii+white+1>=_data.Size()) {
@@ -177,7 +179,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 			}
 			if(_data[iii+white+1] == '?') {
 				// Find declaration balise
-				exml::EXmlDeclaration* declaration = new exml::EXmlDeclaration();
+				exml::Declaration* declaration = new exml::Declaration();
 				if (NULL==declaration) {
 					EXML_ERROR(_filePos << " Allocation error ...");
 					return false;
@@ -188,6 +190,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 					delete(declaration);
 					return false;
 				}
+				iii = _pos;
 				m_listSub.PushBack(declaration);
 				continue;
 			}
@@ -207,7 +210,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 						return false;
 					}
 					// find comment:
-					exml::EXmlComment* comment = new exml::EXmlComment();
+					exml::Comment* comment = new exml::Comment();
 					if (NULL==comment) {
 						EXML_ERROR(_filePos << " Allocation error ...");
 						return false;
@@ -235,7 +238,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 						return false;
 					}
 					// find text:
-					exml::EXmlTextCDATA* text = new exml::EXmlTextCDATA();
+					exml::TextCDATA* text = new exml::TextCDATA();
 					if (NULL==text) {
 						EXML_ERROR(_filePos << " Allocation error ...");
 						return false;
@@ -273,7 +276,9 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 					// find > element ... 
 					for (int32_t jjj=endPosName+1; jjj<_data.Size(); jjj++) {
 						_filePos += ivec2(1,0);
-						DrawElementParsed(_data[jjj], _filePos);
+						#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+							DrawElementParsed(_data[jjj], _filePos);
+						#endif
 						if (_data[jjj] == '\n') {
 							_filePos.setValue(0, _filePos.y()+1);
 							continue;
@@ -309,7 +314,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 				etk::UString tmpname = _data.Extract(iii+white+1, endPosName+1);
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
-				exml::EXmlElement* element = new exml::EXmlElement();
+				exml::Element* element = new exml::Element();
 				if (NULL==element) {
 					EXML_ERROR(_filePos << " Allocation error ...");
 					return false;
@@ -342,7 +347,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 				
 			} else {
 				// find data ==> parse it...
-				exml::EXmlText* text = new exml::EXmlText();
+				exml::Text* text = new exml::Text();
 				if (NULL==text) {
 					EXML_ERROR(_filePos << " Allocation error ...");
 					return false;
@@ -361,7 +366,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 	return false;
 }
 
-bool exml::EXmlElement::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_DEBUG("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
@@ -372,11 +377,13 @@ bool exml::EXmlElement::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 		if (_data[iii] == '\n') {
 			_filePos.setValue(1, _filePos.y()+1);
 		}
-		EXML_DEBUG("parse : '" << _data[iii] << "'");
+		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
+			DrawElementParsed(_data[iii], _filePos);
+		#endif
 		if(_data[iii] == '>') {
 			// we find the end ...
 			_pos = iii+1;
-			return exml::EXmlElement::SubParse(_data, _pos, _caseSensitive, _filePos, false);
+			return exml::Element::SubParse(_data, _pos, _caseSensitive, _filePos, false);
 		}
 		if (_data[iii] == '/') {
 			// standalone node or error...
@@ -394,7 +401,7 @@ bool exml::EXmlElement::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 		}
 		if (true == CheckAvaillable(_data[iii], true)) {
 			// we find an attibute ==> create a new and parse it :
-			exml::EXmlAttribute* attribute = new exml::EXmlAttribute();
+			exml::Attribute* attribute = new exml::Attribute();
 			if (NULL==attribute) {
 				EXML_ERROR(_filePos << " Allocation error ...");
 				return false;

@@ -6,14 +6,14 @@
  * @license BSD v3 (see license file)
  */
 
-#include <exml/EXmlTest.h>
+#include <exml/test.h>
 #include <etk/Debug.h>
 #include <exml/debug.h>
 
 int main(int argc, const char *argv[])
 {
 	GeneralDebugSetLevel(etk::LOG_LEVEL_VERBOSE);
-	exml::EXmlDocument doc;
+	exml::Document doc;
 	etk::UString testString = ""
 		"<   	 		 exemple\n   	>\n"
 		"	<ex2 ploppp-plpl:erer=\"dfsdfsdfsdf\" lkmjmlk=\"156235\" sdfsdf=456321     />\n"

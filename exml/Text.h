@@ -9,28 +9,28 @@
 #ifndef __ETK_XML_TEXT_H__
 #define __ETK_XML_TEXT_H__
 
-#include <exml/EXmlNode.h>
+#include <exml/Node.h>
 #include <etk/Vector.h>
 
 namespace exml
 {
-	class EXmlText : public EXmlNode
+	class Text : public Node
 	{
 		public:
-			EXmlText(void) { };
-			virtual ~EXmlText(void) { };
+			Text(void) { };
+			virtual ~Text(void) { };
 			virtual nodeType_te GetType(void) const { return typeText; };
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			int32_t CountLines(void) const;
-			virtual operator exml::EXmlText* () { return this; };
-			virtual operator const exml::EXmlText* () const { return this; };
+			virtual operator exml::Text* () { return this; };
+			virtual operator const exml::Text* () const { return this; };
 	};
-	class EXmlTextCDATA : public EXmlText
+	class TextCDATA : public Text
 	{
 		public:
-			EXmlTextCDATA(void) { };
-			virtual ~EXmlTextCDATA(void) { };
+			TextCDATA(void) { };
+			virtual ~TextCDATA(void) { };
 			virtual nodeType_te GetType(void) { return typeText; };
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 	};

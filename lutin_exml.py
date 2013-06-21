@@ -9,13 +9,13 @@ def Create(target):
 	
 	myModule.AddSrcFile([
 		'exml/debug.cpp',
-		'exml/EXmlAttribute.cpp',
-		'exml/EXmlComment.cpp',
-		'exml/EXmlDeclaration.cpp',
-		'exml/EXmlDocument.cpp',
-		'exml/EXmlElement.cpp',
-		'exml/EXmlNode.cpp',
-		'exml/EXmlText.cpp'])
+		'exml/Attribute.cpp',
+		'exml/Comment.cpp',
+		'exml/Declaration.cpp',
+		'exml/Document.cpp',
+		'exml/Element.cpp',
+		'exml/Node.cpp',
+		'exml/Text.cpp'])
 	
 	myModule.AddExportPath(lutinTools.GetCurrentPath(__file__))
 	
