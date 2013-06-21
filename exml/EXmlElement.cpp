@@ -37,6 +37,21 @@ void exml::EXmlElement::AppendSub(exml::EXmlNode* _node)
 	m_listSub.PushBack(_node);
 }
 
+exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name)
+{
+	if (_name.Size()==0) {
+		return NULL;
+	}
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if(    NULL != m_listSub[iii]
+		    && m_listSub[iii]->GetType() == exml::typeElement
+		    && m_listSub[iii]->GetValue() == _name) {
+			return m_listSub[iii];
+		}
+	}
+	return NULL;
+}
+
 exml::EXmlAttribute* exml::EXmlElement::GetAttribute(int32_t _id)
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
@@ -59,6 +74,20 @@ void exml::EXmlElement::AppendAttribute(exml::EXmlAttribute* _node)
 	m_listAttribute.PushBack(_node);
 }
 
+const etk::UString& exml::EXmlElement::GetAttribute(const etk::UString& _name)
+{
+	static const etk::Ustring errorReturn("");
+	if (_name.Size()==0) {
+		return errorReturn;
+	}
+	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
+		if(    NULL != m_listAttribute[iii]
+		    && m_listAttribute[iii]->GetName() == _name) {
+			return m_listAttribute[iii]->GetValue();
+		}
+	}
+	return errorReturn;
+}
 
 bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent)
 {
@@ -210,7 +239,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 					}
 				}
 				etk::UString tmpname = _data.Extract(iii+white+2, endPosName+1);
-				if( tmpname == m_name) {
+				if( tmpname == m_value) {
 					// find end of node :
 					// find > element ... 
 					for (int32_t jjj=endPosName+1; jjj<_data.Size(); jjj++) {
@@ -256,7 +285,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 					EXML_ERROR(_filePos << " Allocation error ...");
 					return false;
 				}
-				element->SetName(tmpname);
+				element->SetValue(tmpname);
 				_pos = endPosName+1;
 				_filePos += ivec2(endPosName,0);
 				if (false==element->Parse(_data, _pos, _caseSensitive, _filePos)) {
@@ -269,8 +298,6 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 				
 				continue;
 			}
-			
-			
 		} else {
 			if (_data[iii] == '>') {
 				EXML_ERROR(_filePos << " find elemement '>' ==> no reason to be here ...");

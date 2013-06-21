@@ -9,6 +9,14 @@
 #include <exml/EXmlAttribute.h>
 #include <exml/debug.h>
 
+exml::EXmlAttribute::EXmlAttribute(const etk::UString& _name, const etk::UString& _value) :
+	exml::EXmlNode(_value),
+	m_name(_name)
+{
+	
+}
+
+
 bool exml::EXmlAttribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_DEBUG("start parse : 'attribute'");

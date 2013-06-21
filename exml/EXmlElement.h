@@ -19,6 +19,7 @@ namespace exml
 	{
 		public:
 			EXmlElement(void) { };
+			EXmlElement(const etk::UString& _value) : exml::EXmlNode(_value) { };
 			virtual ~EXmlElement(void) { };
 			virtual nodeType_te GetType(void) { return typeElement; };
 		protected:
@@ -38,6 +39,8 @@ namespace exml
 			virtual bool Generate(etk::UString& _data, int32_t _indent);
 		protected:
 			bool SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode=false);
+			
+			const etk::UString& GetAttribute(const etk::UString& _name);
 	};
 };
 

@@ -15,6 +15,13 @@
 
 namespace exml
 {
+	class EXmlDocument;
+	class EXmlAttribute;
+	class EXmlComment;
+	class EXmlDeclaration;
+	class EXmlElement;
+	class EXmlText;
+	
 	typedef enum {
 		typeNode, //!< might be an error ...
 		typeDocument, //!< all the file main access
@@ -29,6 +36,7 @@ namespace exml
 	{
 		public:
 			EXmlNode(void) { };
+			EXmlNode(const etk::UString& _value);
 			virtual ~EXmlNode(void) { };
 		protected:
 			void AddIndent(etk::UString& _data, int32_t _indent);
@@ -38,11 +46,6 @@ namespace exml
 			 */
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos) = 0;
 			virtual bool Generate(etk::UString& _data, int32_t _indent) { return true; };
-		protected:
-			etk::UString m_name;
-		public:
-			virtual void SetName(etk::UString _name) { m_name = _name; };
-			virtual const etk::UString& GetName(void) { return m_name; };
 		protected:
 			etk::UString m_value;
 		public:
@@ -54,6 +57,20 @@ namespace exml
 			void DrawElementParsed(const etk::UniChar& _val, const ivec2& _firstChar);
 			bool CheckAvaillable(const etk::UniChar& _val, bool _firstChar);
 			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos);
+		public:
+			exml::EXmlDocument* ToDocument(void);
+			exml::EXmlAttribute* ToAttribute(void);
+			exml::EXmlComment* ToComment(void);
+			exml::EXmlDeclaration* ToDeclaration(void);
+			exml::EXmlElement* ToElement(void);
+			exml::EXmlText* ToText(void);
+			
+			bool IsDocument(void) { return GetType()==exml::typeDocument; };
+			bool IsAttribute(void) { return GetType()==exml::typeAttribute; };
+			bool IsComment(void) { return GetType()==exml::typeComment; };
+			bool IsDeclaration(void) { return GetType()==exml::typeDeclaration; };
+			bool IsElement(void) { return GetType()==exml::typeElement; };
+			bool IsText(void) { return GetType()==exml::typeText; };
 	};
 };
 
