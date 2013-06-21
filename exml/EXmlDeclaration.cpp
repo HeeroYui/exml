@@ -9,15 +9,17 @@
 #include <exml/EXmlDeclaration.h>
 #include <exml/debug.h>
 
-bool exml::EXmlDeclaration::Generate(etk::UString& _data, int32_t _indent)
+bool exml::EXmlDeclaration::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<?";
-	_data += m_name;
+	_data += m_value;
+	/*
 	if (m_value.Size()!=0) {
 		_data += " ";
 		_data += m_value;
 	}
+	*/
 	_data += "?>\n";
 	return true;
 }

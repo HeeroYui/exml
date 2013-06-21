@@ -22,6 +22,14 @@ exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id)
 	return m_listSub[_id];
 }
 
+const exml::EXmlNode* exml::EXmlElement::GetSub(int32_t _id) const
+{
+	if (_id <0 || _id>m_listSub.Size()) {
+		return NULL;
+	}
+	return m_listSub[_id];
+}
+
 void exml::EXmlElement::AppendSub(exml::EXmlNode* _node)
 {
 	if (_node == NULL) {
@@ -51,8 +59,29 @@ exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name)
 	}
 	return NULL;
 }
+const exml::EXmlNode* exml::EXmlElement::GetNode(const etk::UString& _name) const
+{
+	if (_name.Size()==0) {
+		return NULL;
+	}
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if(    NULL != m_listSub[iii]
+		    && m_listSub[iii]->GetType() == exml::typeElement
+		    && m_listSub[iii]->GetValue() == _name) {
+			return m_listSub[iii];
+		}
+	}
+	return NULL;
+}
 
-exml::EXmlAttribute* exml::EXmlElement::GetAttribute(int32_t _id)
+exml::EXmlAttribute* exml::EXmlElement::GetAttr(int32_t _id)
+{
+	if (_id <0 || _id>m_listAttribute.Size()) {
+		return NULL;
+	}
+	return m_listAttribute[_id];
+}
+const exml::EXmlAttribute* exml::EXmlElement::GetAttr(int32_t _id) const
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
 		return NULL;
@@ -74,9 +103,9 @@ void exml::EXmlElement::AppendAttribute(exml::EXmlAttribute* _node)
 	m_listAttribute.PushBack(_node);
 }
 
-const etk::UString& exml::EXmlElement::GetAttribute(const etk::UString& _name)
+const etk::UString& exml::EXmlElement::GetAttribute(const etk::UString& _name) const
 {
-	static const etk::Ustring errorReturn("");
+	static const etk::UString errorReturn("");
 	if (_name.Size()==0) {
 		return errorReturn;
 	}
@@ -89,11 +118,11 @@ const etk::UString& exml::EXmlElement::GetAttribute(const etk::UString& _name)
 	return errorReturn;
 }
 
-bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent)
+bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<";
-	_data += m_name;
+	_data += m_value;
 	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			m_listAttribute[iii]->Generate(_data, _indent);
@@ -118,7 +147,7 @@ bool exml::EXmlElement::Generate(etk::UString& _data, int32_t _indent)
 			AddIndent(_data, _indent);
 		}
 		_data += "</";
-		_data += m_name;
+		_data += m_value;
 		_data += ">\n";
 	} else {
 		_data += "/>\n";
@@ -255,7 +284,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 						}
 					}
 				} else {
-					EXML_ERROR(_filePos << " ==> end node error : '" << tmpname << "' != '" << m_name << "'");
+					EXML_ERROR(_filePos << " ==> end node error : '" << tmpname << "' != '" << m_value << "'");
 					return false;
 				}
 			}
@@ -334,7 +363,7 @@ bool exml::EXmlElement::SubParse(const etk::UString& _data, int32_t& _pos, bool 
 
 bool exml::EXmlElement::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'element' named='" << m_name << "'");
+	EXML_DEBUG("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
 	
 	// find a normal node ...

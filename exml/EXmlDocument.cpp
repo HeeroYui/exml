@@ -18,7 +18,7 @@ exml::EXmlDocument::EXmlDocument(void) :
 }
 
 
-bool exml::EXmlDocument::Generate(etk::UString& _data, int32_t _indent)
+bool exml::EXmlDocument::Generate(etk::UString& _data, int32_t _indent) const
 {
 	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
 		if (NULL!=m_listSub[iii]) {

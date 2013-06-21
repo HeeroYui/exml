@@ -35,7 +35,7 @@ bool exml::EXmlComment::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 	return false;
 }
 
-bool exml::EXmlComment::Generate(etk::UString& _data, int32_t _indent)
+bool exml::EXmlComment::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<!--";

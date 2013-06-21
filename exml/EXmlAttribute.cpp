@@ -95,7 +95,7 @@ bool exml::EXmlAttribute::Parse(const etk::UString& _data, int32_t& _pos, bool _
 	return true;
 }
 
-bool exml::EXmlAttribute::Generate(etk::UString& _data, int32_t _indent)
+bool exml::EXmlAttribute::Generate(etk::UString& _data, int32_t _indent) const
 {
 	_data += " ";
 	_data += m_name;

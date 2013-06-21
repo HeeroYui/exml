@@ -9,13 +9,13 @@
 #include <exml/EXmlText.h>
 #include <exml/debug.h>
 
-bool exml::EXmlText::Generate(etk::UString& _data, int32_t _indent)
+bool exml::EXmlText::Generate(etk::UString& _data, int32_t _indent) const
 {
 	_data += m_value;
 	return true;
 }
 
-int32_t exml::EXmlText::CountLines(void)
+int32_t exml::EXmlText::CountLines(void) const
 {
 	int32_t count = 1;
 	for (int32_t iii=0; iii<m_value.Size(); iii++) {

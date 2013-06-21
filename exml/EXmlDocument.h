@@ -20,17 +20,17 @@ namespace exml
 		public:
 			EXmlDocument(void);
 			virtual ~EXmlDocument(void) { };
-			virtual nodeType_te GetType(void) { return typeDocument; };
+			virtual nodeType_te GetType(void) const { return typeDocument; };
 		private:
 			unicode::charset_te m_charset;
 		public:
 			virtual void SetCharset(unicode::charset_te _charset) { m_charset = _charset; };
-			virtual unicode::charset_te GetCharset(void) { return m_charset; };
+			virtual unicode::charset_te GetCharset(void) const { return m_charset; };
 		private:
 			bool m_caseSensitive;
 		public:
 			virtual void SetCaseSensitive(bool _val) { m_caseSensitive = _val; };
-			virtual bool GetCaseSensitive(void) { return m_caseSensitive; };
+			virtual bool GetCaseSensitive(void) const { return m_caseSensitive; };
 		public:
 			/**
 			 * @brief Parse a string that contain an XML
@@ -63,7 +63,9 @@ namespace exml
 			
 			void Display(void);
 			bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
-			bool Generate(etk::UString& _data, int32_t _indent);
+			bool Generate(etk::UString& _data, int32_t _indent) const;
+			virtual operator exml::EXmlDocument* () { return this; };
+			virtual operator const exml::EXmlDocument* () const { return this; };
 	};
 };
 

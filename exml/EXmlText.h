@@ -19,10 +19,12 @@ namespace exml
 		public:
 			EXmlText(void) { };
 			virtual ~EXmlText(void) { };
-			virtual nodeType_te GetType(void) { return typeText; };
+			virtual nodeType_te GetType(void) const { return typeText; };
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
-			virtual bool Generate(etk::UString& _data, int32_t _indent);
-			int32_t CountLines(void);
+			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
+			int32_t CountLines(void) const;
+			virtual operator exml::EXmlText* () { return this; };
+			virtual operator const exml::EXmlText* () const { return this; };
 	};
 	class EXmlTextCDATA : public EXmlText
 	{

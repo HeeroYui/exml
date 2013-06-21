@@ -11,19 +11,20 @@
 
 
 exml::EXmlNode::EXmlNode(const etk::UString& _value) :
+	m_pos(0,0),
 	m_value(_value)
 {
 	
 }
 
-void exml::EXmlNode::AddIndent(etk::UString& _data, int32_t _indent)
+void exml::EXmlNode::AddIndent(etk::UString& _data, int32_t _indent) const
 {
 	for (int32_t iii=0; iii<_indent; iii++) {
 		_data+="\t";
 	}
 }
 
-void exml::EXmlNode::DrawElementParsed(const etk::UniChar& _val, const ivec2& _filePos)
+void exml::EXmlNode::DrawElementParsed(const etk::UniChar& _val, const ivec2& _filePos) const
 {
 	if (_val=='\n') {
 		EXML_DEBUG(_filePos << " Parse '\\n'");
@@ -36,7 +37,7 @@ void exml::EXmlNode::DrawElementParsed(const etk::UniChar& _val, const ivec2& _f
 
 
 // !"#$%&'()*+,/;<=>?@[\]^`{|}~ ou une espace et ne peut pas commencer par -. ou un chiffre.
-bool exml::EXmlNode::CheckAvaillable(const etk::UniChar& _val, bool _firstChar)
+bool exml::EXmlNode::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const
 {
 	if(    _val == '!'
 	    || _val == '"'
@@ -83,7 +84,7 @@ bool exml::EXmlNode::CheckAvaillable(const etk::UniChar& _val, bool _firstChar)
 	return true;
 }
 
-int32_t exml::EXmlNode::CountWhiteChar(const etk::UString& _data, int32_t _pos)
+int32_t exml::EXmlNode::CountWhiteChar(const etk::UString& _data, int32_t _pos) const
 {
 	int32_t white=0;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
@@ -98,63 +99,4 @@ int32_t exml::EXmlNode::CountWhiteChar(const etk::UString& _data, int32_t _pos)
 	}
 	return white;
 }
-
-
-			bool IsDocument(void) { return GetType()==exml::typeDocument; };
-			bool IsAttribute(void) { return GetType()==exml::typeAttribute; };
-			bool IsComment(void) { return GetType()==exml::typeComment; };
-			bool IsDeclaration(void) { return GetType()==exml::typeDeclaration; };
-			bool IsElement(void) { return GetType()==exml::typeElement; };
-			bool IsText(void) { return GetType()==exml::typeText; };
-
-
-exml::EXmlDocument* exml::EXmlNode::ToDocument(void)
-{
-	if (GetType()==exml::typeDocument) {
-		return static_cast<exml::*>(*this);
-	}
-	return NULL;
-}
-
-exml::EXmlAttribute* exml::EXmlNode::ToAttribute(void)
-{
-	if (GetType()==exml::typeDocument) {
-		return static_cast<exml::EXmlAttribute*>(*this);
-	}
-	return NULL;
-}
-
-exml::EXmlComment* exml::EXmlNode::ToComment(void)
-{
-	if (GetType()==exml::typeDocument) {
-		return static_cast<exml::EXmlComment*>(*this);
-	}
-	return NULL;
-}
-
-exml::EXmlDeclaration* exml::EXmlNode::ToDeclaration(void)
-{
-	if (GetType()==exml::typeDocument) {
-		return static_cast<exml::EXmlDeclaration*>(*this);
-	}
-	return NULL;
-}
-
-exml::EXmlElement* exml::EXmlNode::ToElement(void)
-{
-	if (GetType()==exml::typeDocument) {
-		return static_cast<exml::EXmlElement*>(*this);
-	}
-	return NULL;
-}
-
-exml::EXmlText* exml::EXmlNode::ToText(void)
-{
-	if (GetType()==exml::typeDocument) {
-		return static_cast<exml::EXmlText*>(*this);
-	}
-	return NULL;
-}
-
-
 
