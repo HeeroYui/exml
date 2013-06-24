@@ -97,6 +97,8 @@ bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _case
 	}
 	m_value = _data.Extract(lastElementName+3, lastAttributePos+1);
 	
+	EXML_DEBUG("attribute : " << m_name << "=\"" << m_value << "\"");
+	
 	_pos = lastAttributePos;
 	return true;
 }
