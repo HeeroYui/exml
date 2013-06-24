@@ -18,6 +18,7 @@ namespace exml
 	{
 		public:
 			Declaration(void) { };
+			Declaration(const etk::UString& _version, const etk::UString& _format, const etk::UString& _validation) { };
 			virtual ~Declaration(void) { };
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;

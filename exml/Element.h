@@ -39,6 +39,9 @@ namespace exml
 			Attribute* GetAttr(int32_t _id);
 			const Attribute* GetAttr(int32_t _id) const;
 			const etk::UString& GetAttribute(const etk::UString& _name) const;
+			void SetAttribute(const etk::UString& _name, const etk::UString& _value);
+		public:
+			etk::UString GetText(void);
 		public:
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;

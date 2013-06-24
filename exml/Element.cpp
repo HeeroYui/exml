@@ -81,6 +81,7 @@ exml::Attribute* exml::Element::GetAttr(int32_t _id)
 	}
 	return m_listAttribute[_id];
 }
+
 const exml::Attribute* exml::Element::GetAttr(int32_t _id) const
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
@@ -88,6 +89,7 @@ const exml::Attribute* exml::Element::GetAttr(int32_t _id) const
 	}
 	return m_listAttribute[_id];
 }
+
 void exml::Element::AppendAttribute(exml::Attribute* _node)
 {
 	if (_node == NULL) {
@@ -117,6 +119,37 @@ const etk::UString& exml::Element::GetAttribute(const etk::UString& _name) const
 	}
 	return errorReturn;
 }
+
+void exml::Element::SetAttribute(const etk::UString& _name, const etk::UString& _value)
+{
+	// check if attribute already det :
+	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
+		if(    NULL != m_listAttribute[iii]
+		    && m_listAttribute[iii]->GetName() == _name) {
+			// update the value :
+			m_listAttribute[iii]->SetValue(_value);
+			return;
+		}
+	}
+	exml::Attribute* attr = new exml::Attribute(_name, _value);
+	if (NULL==attr) {
+		EXML_ERROR("memory allocation error...");
+	}
+	m_listAttribute.PushBack(attr);
+}
+
+etk::UString exml::Element::GetText(void)
+{
+	// TODO : Add more capabilities ...
+	etk::UString res;
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if (NULL!=m_listSub[iii]) {
+			m_listSub[iii]->Generate(res, 0);
+		}
+	}
+	return res;
+}
+
 
 bool exml::Element::Generate(etk::UString& _data, int32_t _indent) const
 {
