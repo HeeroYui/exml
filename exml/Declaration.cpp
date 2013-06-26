@@ -9,6 +9,9 @@
 #include <exml/Declaration.h>
 #include <exml/debug.h>
 
+#undef __class__
+#define __class__	"Declaration"
+
 bool exml::Declaration::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
@@ -26,7 +29,8 @@ bool exml::Declaration::Generate(etk::UString& _data, int32_t _indent) const
 
 bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'declaration'");
+	EXML_VERBOSE("start parse : 'declaration'");
+	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+1<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);

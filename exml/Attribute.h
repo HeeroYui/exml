@@ -28,8 +28,8 @@ namespace exml
 		public:
 			virtual void SetName(etk::UString _name) { m_name = _name; };
 			virtual const etk::UString& GetName(void) const { return m_name; };
-			virtual operator exml::Attribute* () { return this; };
-			virtual operator const exml::Attribute* () const { return this; };
+			virtual exml::Attribute* ToAttribute(void) { return this; };
+			virtual const exml::Attribute* ToAttribute(void) const { return this; };
 	};
 };
 

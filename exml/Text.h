@@ -23,8 +23,8 @@ namespace exml
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			int32_t CountLines(void) const;
-			virtual operator exml::Text* () { return this; };
-			virtual operator const exml::Text* () const { return this; };
+			virtual exml::Text* ToText(void) { return this; };
+			virtual const exml::Text* ToText(void) const{ return this; };
 	};
 	class TextCDATA : public Text
 	{

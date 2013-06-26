@@ -9,6 +9,9 @@
 #include <exml/Text.h>
 #include <exml/debug.h>
 
+#undef __class__
+#define __class__	"Text"
+
 bool exml::Text::Generate(etk::UString& _data, int32_t _indent) const
 {
 	_data += m_value;
@@ -28,7 +31,8 @@ int32_t exml::Text::CountLines(void) const
 
 bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'text'");
+	EXML_VERBOSE("start parse : 'text'");
+	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
@@ -55,19 +59,21 @@ bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensi
 			}
 			// find end of value:
 			m_value = _data.Extract(_pos, newEnd);
-			EXML_DEBUG(" find text '" << m_value << "'");
+			EXML_VERBOSE(" find text '" << m_value << "'");
 			_pos = iii-1;
 			return true;
 		}
 	}
 	_pos = _data.Size();
 	EXML_ERROR("Text got end of file without finding end node");
+	EXML_ERROR(" Data : " << _data);
 	return false;
 }
 
 bool exml::TextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'text::CDATA'");
+	EXML_VERBOSE("start parse : 'text::CDATA'");
+	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+2<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
@@ -82,8 +88,8 @@ bool exml::TextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _case
 		    && _data[iii+1] == ']'
 		    && _data[iii+2] == '>') {
 			// find end of value:
-			m_value = _data.Extract(_pos, iii-1);
-			EXML_DEBUG(" find text CDATA '" << m_value << "'");
+			m_value = _data.Extract(_pos, iii);
+			EXML_VERBOSE(" find text CDATA '" << m_value << "'");
 			_pos = iii+2;
 			return true;
 		}

@@ -24,6 +24,7 @@ namespace exml
 	class Text;
 	
 	typedef enum {
+		typeUnknow, //!< might be an error ...
 		typeNode, //!< might be an error ...
 		typeDocument, //!< all the file main access
 		typeDeclaration, //!< <?xml ... ?>
@@ -47,7 +48,7 @@ namespace exml
 			 */
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos) = 0;
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const { return true; };
-		private:
+		protected:
 			ivec2 m_pos; // position in the readed file
 		public:
 			const ivec2& Pos(void) { return m_pos; };
@@ -63,18 +64,18 @@ namespace exml
 			bool CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const;
 			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos) const;
 		public:
-			virtual operator exml::Document* () { return NULL; };
-			virtual operator const exml::Document* () const { return NULL; };
-			virtual operator exml::Attribute* () { return NULL; };
-			virtual operator const exml::Attribute* () const { return NULL; };
-			virtual operator exml::Comment* () { return NULL; };
-			virtual operator const exml::Comment* () const { return NULL; };
-			virtual operator exml::Declaration* () { return NULL; };
-			virtual operator const exml::Declaration* () const { return NULL; };
-			virtual operator exml::Element* () { return NULL; };
-			virtual operator const exml::Element* () const { return NULL; };
-			virtual operator exml::Text* () { return NULL; };
-			virtual operator const exml::Text* () const{ return NULL; };
+			virtual exml::Document* ToDocument(void) { return NULL; };
+			virtual const exml::Document* ToDocument(void) const { return NULL; };
+			virtual exml::Attribute* ToAttribute(void) { return NULL; };
+			virtual const exml::Attribute* ToAttribute(void) const { return NULL; };
+			virtual exml::Comment* ToComment(void) { return NULL; };
+			virtual const exml::Comment* ToComment(void) const { return NULL; };
+			virtual exml::Declaration* ToDeclaration(void) { return NULL; };
+			virtual const exml::Declaration* ToDeclaration(void) const { return NULL; };
+			virtual exml::Element* ToElement(void) { return NULL; };
+			virtual const exml::Element* ToElement(void) const { return NULL; };
+			virtual exml::Text* ToText(void) { return NULL; };
+			virtual const exml::Text* ToText(void) const{ return NULL; };
 			
 			bool IsDocument(void) const { return GetType()==exml::typeDocument; };
 			bool IsAttribute(void) const { return GetType()==exml::typeAttribute; };

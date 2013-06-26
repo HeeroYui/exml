@@ -10,6 +10,9 @@
 #include <etk/Debug.h>
 #include <exml/debug.h>
 
+#undef __class__
+#define __class__	"test"
+
 int main(int argc, const char *argv[])
 {
 	GeneralDebugSetLevel(etk::LOG_LEVEL_VERBOSE);

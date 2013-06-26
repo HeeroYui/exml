@@ -64,8 +64,8 @@ namespace exml
 			void Display(void);
 			bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			bool Generate(etk::UString& _data, int32_t _indent) const;
-			virtual operator exml::Document* () { return this; };
-			virtual operator const exml::Document* () const { return this; };
+			virtual exml::Document* ToDocument(void) { return this; };
+			virtual const exml::Document* ToDocument(void) const { return this; };
 	};
 };
 

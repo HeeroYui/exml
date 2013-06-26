@@ -23,8 +23,8 @@ namespace exml
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
-			virtual operator exml::Declaration* () { return this; };
-			virtual operator const exml::Declaration* () const { return this; };
+			virtual exml::Declaration* ToDeclaration(void) { return this; };
+			virtual const exml::Declaration* ToDeclaration(void) const { return this; };
 	};
 };
 

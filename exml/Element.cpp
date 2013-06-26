@@ -13,8 +13,35 @@
 #include <exml/Attribute.h>
 #include <exml/Declaration.h>
 
+#undef __class__
+#define __class__	"Element"
 
-exml::Node* exml::Element::Get(int32_t _id)
+exml::nodeType_te exml::Element::GetType(int32_t _id)
+{
+	exml::Node* tmpp = GetNode(_id);
+	if (NULL==tmpp) {
+		return exml::typeUnknow;
+	}
+	return tmpp->GetType();
+}
+const exml::nodeType_te exml::Element::GetType(int32_t _id) const
+{
+	const exml::Node* tmpp = GetNode(_id);
+	if (NULL==tmpp) {
+		return exml::typeUnknow;
+	}
+	return tmpp->GetType();
+}
+
+
+exml::Node* exml::Element::GetNode(int32_t _id)
+{
+	if (_id <0 || _id>m_listSub.Size()) {
+		return NULL;
+	}
+	return m_listSub[_id];
+}
+const exml::Node* exml::Element::GetNode(int32_t _id) const
 {
 	if (_id <0 || _id>m_listSub.Size()) {
 		return NULL;
@@ -22,12 +49,58 @@ exml::Node* exml::Element::Get(int32_t _id)
 	return m_listSub[_id];
 }
 
-const exml::Node* exml::Element::Get(int32_t _id) const
+
+exml::Element* exml::Element::GetElement(int32_t _id)
 {
-	if (_id <0 || _id>m_listSub.Size()) {
+	exml::Node* tmpp = GetNode(_id);
+	if (NULL==tmpp) {
 		return NULL;
 	}
-	return m_listSub[_id];
+	return tmpp->ToElement();
+}
+const exml::Element* exml::Element::GetElement(int32_t _id) const
+{
+	const exml::Node* tmpp = GetNode(_id);
+	if (NULL==tmpp) {
+		return NULL;
+	}
+	return tmpp->ToElement();
+}
+
+
+exml::Element* exml::Element::GetNamed(const etk::UString& _name)
+{
+	if (_name.Size()==0) {
+		return NULL;
+	}
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if(    NULL != m_listSub[iii]
+		    && m_listSub[iii]->GetType() == exml::typeElement
+		    && m_listSub[iii]->GetValue() == _name) {
+			if (NULL==m_listSub[iii]) {
+				return NULL;
+			}
+			return m_listSub[iii]->ToElement();
+		}
+	}
+	return NULL;
+}
+const exml::Element* exml::Element::GetNamed(const etk::UString& _name) const
+{
+	if (_name.Size()==0) {
+		return NULL;
+	}
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if(    NULL != m_listSub[iii]
+		    && m_listSub[iii]->GetType() == exml::typeElement
+		    && m_listSub[iii]->GetValue() == _name) {
+			if (NULL==m_listSub[iii]) {
+				return NULL;
+			}
+			return m_listSub[iii]->ToElement();
+		}
+	}
+	return NULL;
 }
 
 void exml::Element::Append(exml::Node* _node)
@@ -43,35 +116,6 @@ void exml::Element::Append(exml::Node* _node)
 		}
 	}
 	m_listSub.PushBack(_node);
-}
-
-exml::Node* exml::Element::GetNamed(const etk::UString& _name)
-{
-	if (_name.Size()==0) {
-		return NULL;
-	}
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
-		if(    NULL != m_listSub[iii]
-		    && m_listSub[iii]->GetType() == exml::typeElement
-		    && m_listSub[iii]->GetValue() == _name) {
-			return m_listSub[iii];
-		}
-	}
-	return NULL;
-}
-const exml::Node* exml::Element::GetNamed(const etk::UString& _name) const
-{
-	if (_name.Size()==0) {
-		return NULL;
-	}
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
-		if(    NULL != m_listSub[iii]
-		    && m_listSub[iii]->GetType() == exml::typeElement
-		    && m_listSub[iii]->GetValue() == _name) {
-			return m_listSub[iii];
-		}
-	}
-	return NULL;
 }
 
 exml::Attribute* exml::Element::GetAttr(int32_t _id)
@@ -191,7 +235,8 @@ bool exml::Element::Generate(etk::UString& _data, int32_t _indent) const
 
 bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode)
 {
-	EXML_DEBUG(" start subParse ... " << _pos << " " << _filePos);
+	EXML_VERBOSE(" start subParse ... " << _pos << " " << _filePos);
+	m_pos = _filePos;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
@@ -319,6 +364,11 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 						if(_data[jjj] == '>') {
 							_pos = jjj;
 							return true;
+						} else if(    _data[jjj] != '\r'
+						           && _data[jjj] != ' '
+						           && _data[jjj] != '\t') {
+							EXML_ERROR(_filePos << " ==> end node error : have data inside end node other than [ \\n\\t\\r] " << m_value << "'");
+							return false;
 						}
 					}
 				} else {
@@ -401,7 +451,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 
 bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'element' named='" << m_value << "'");
+	EXML_VERBOSE("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
 	
 	// find a normal node ...
@@ -453,10 +503,4 @@ bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSe
 	
 	return false;
 }
-
-
-
-
-
-
 

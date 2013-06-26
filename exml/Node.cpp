@@ -9,6 +9,8 @@
 #include <exml/Node.h>
 #include <exml/debug.h>
 
+#undef __class__
+#define __class__	"Node"
 
 exml::Node::Node(const etk::UString& _value) :
 	m_pos(0,0),

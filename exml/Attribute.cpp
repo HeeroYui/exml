@@ -9,6 +9,9 @@
 #include <exml/Attribute.h>
 #include <exml/debug.h>
 
+#undef __class__
+#define __class__	"Attribute"
+
 exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value) :
 	exml::Node(_value),
 	m_name(_name)
@@ -19,7 +22,8 @@ exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value
 
 bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'attribute'");
+	EXML_VERBOSE("start parse : 'attribute'");
+	m_pos = _filePos;
 	// search end of the comment :
 	int32_t lastElementName = _pos;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
@@ -97,7 +101,7 @@ bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _case
 	}
 	m_value = _data.Extract(lastElementName+3, lastAttributePos+1);
 	
-	EXML_DEBUG("attribute : " << m_name << "=\"" << m_value << "\"");
+	EXML_VERBOSE("attribute : " << m_name << "=\"" << m_value << "\"");
 	
 	_pos = lastAttributePos;
 	return true;

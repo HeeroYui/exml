@@ -9,9 +9,13 @@
 #include <exml/Comment.h>
 #include <exml/debug.h>
 
+#undef __class__
+#define __class__	"Comment"
+
 bool exml::Comment::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'comment'");
+	EXML_VERBOSE("start parse : 'comment'");
+	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+2<_data.Size(); iii++) {
 		_filePos += ivec2(1,0);
@@ -27,7 +31,7 @@ bool exml::Comment::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSe
 		    && _data[iii+2] == '>') {
 			// find end of value:
 			m_value = _data.Extract(_pos, iii-1);
-			EXML_DEBUG(" find comment '" << m_value << "'");
+			EXML_VERBOSE(" find comment '" << m_value << "'");
 			_pos = iii+2;
 			return true;
 		}

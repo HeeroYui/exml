@@ -10,6 +10,8 @@
 #include <exml/debug.h>
 #include <etk/os/FSNode.h>
 
+#undef __class__
+#define __class__	"Document"
 
 exml::Document::Document(void) : 
 	m_charset(unicode::EDN_CHARSET_UTF8),
@@ -32,7 +34,8 @@ bool exml::Document::Generate(etk::UString& _data, int32_t _indent) const
 
 bool exml::Document::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
-	EXML_DEBUG("start parse : 'document'");
+	EXML_VERBOSE("start parse : 'document'");
+	m_pos = _filePos;
 	// in this case : no main node ...
 	SubParse(_data, _pos, _caseSensitive, _filePos, true);
 	return true;
@@ -41,7 +44,7 @@ bool exml::Document::Parse(const etk::UString& _data, int32_t& _pos, bool _caseS
 
 bool exml::Document::Parse(const etk::UString& _data)
 {
-	EXML_DEBUG("Start parsing document (type: string) size=" << _data.Size());
+	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.Size());
 	// came from char ==> force in utf8 ...
 	m_charset = unicode::EDN_CHARSET_UTF8;
 	ivec2 filePos(0,1);
@@ -57,7 +60,7 @@ bool exml::Document::Generate(etk::UString& _data)
 bool exml::Document::Load(const etk::UString& _file)
 {
 	// Start loading the XML : 
-	EXML_DEBUG("open file (xml) \"" << _file << "\"");
+	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
 	etk::FSNode tmpFile(_file);
 	if (false == tmpFile.Exist()) {
 		EXML_ERROR("File Does not exist : " << _file);
@@ -91,7 +94,7 @@ bool exml::Document::Load(const etk::UString& _file)
 	delete(fileBuffer);
 	// parse the data :
 	bool ret = Parse(tmpDataUnicode);
-	Display();
+	//Display();
 	if (0==Size()) {
 		EXML_CRITICAL("lkjlkj");
 	}

@@ -27,10 +27,15 @@ namespace exml
 		public:
 			int32_t Size(void) const { return m_listSub.Size(); };
 			void Append(Node* _node);
-			Node* Get(int32_t _id);
-			const Node* Get(int32_t _id) const;
-			Node* GetNamed(const etk::UString& _name);
-			const Node* GetNamed(const etk::UString& _name) const;
+			
+			      nodeType_te GetType(int32_t _id);
+			const nodeType_te GetType(int32_t _id) const;
+			      Node* GetNode(int32_t _id);
+			const Node* GetNode(int32_t _id) const;
+			      Element* GetElement(int32_t _id);
+			const Element* GetElement(int32_t _id) const;
+			      Element* GetNamed(const etk::UString& _name);
+			const Element* GetNamed(const etk::UString& _name) const;
 		protected:
 			etk::Vector<exml::Attribute*> m_listAttribute;
 		public:
@@ -47,8 +52,8 @@ namespace exml
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 		protected:
 			bool SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode=false);
-			virtual operator exml::Element* () { return this; };
-			virtual operator const exml::Element* () const { return this; };
+			virtual exml::Element* ToElement(void) { return this; };
+			virtual const exml::Element* ToElement(void) const { return this; };
 	};
 };
 
