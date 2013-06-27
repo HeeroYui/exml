@@ -9,16 +9,16 @@
 #ifndef __ETK_XML_DECLARATION_H__
 #define __ETK_XML_DECLARATION_H__
 
-#include <exml/Node.h>
-#include <etk/Vector.h>
+#include <exml/AttributeList.h>
 
 namespace exml
 {
-	class Declaration : public exml::Node
+	class Declaration : public exml::AttributeList
 	{
 		public:
 			Declaration(void) { };
-			Declaration(const etk::UString& _version, const etk::UString& _format, const etk::UString& _validation) { };
+			// for xml generic declaration
+			Declaration(const etk::UString& _version, unicode::charset_te _format, const etk::UString& _standalone);
 			virtual ~Declaration(void) { };
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;

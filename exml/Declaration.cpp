@@ -12,17 +12,36 @@
 #undef __class__
 #define __class__	"Declaration"
 
+/* basic declaration have 3 attributes:
+	version
+	encoding
+	standalone
+	<?xml version="1.0" encoding="UTF-8" ?>
+*/
+
+exml::Declaration::Declaration(const etk::UString& _version, unicode::charset_te _format, const etk::UString& _standalone)
+{
+	m_value = "xml";
+	if (_version.Size()!=0) {
+		SetAttribute("version", _version);
+	}
+	if (_format!=unicode::EDN_CHARSET_UTF8) {
+		SetAttribute("encoding", "UTF-8");
+	} else {
+		EXML_ERROR("Actually does not supported other charset than UTF8");
+		SetAttribute("encoding", "UTF-8");
+	}
+	if (_standalone.Size()!=0) {
+		SetAttribute("standalone", _standalone);
+	}
+}
+
 bool exml::Declaration::Generate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<?";
 	_data += m_value;
-	/*
-	if (m_value.Size()!=0) {
-		_data += " ";
-		_data += m_value;
-	}
-	*/
+	exml::AttributeList::Generate(_data, _indent);
 	_data += "?>\n";
 	return true;
 }

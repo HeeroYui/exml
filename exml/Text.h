@@ -18,6 +18,7 @@ namespace exml
 	{
 		public:
 			Text(void) { };
+			Text(const etk::UString& _data) { m_value=_data; };
 			virtual ~Text(void) { };
 			virtual nodeType_te GetType(void) const { return typeText; };
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);

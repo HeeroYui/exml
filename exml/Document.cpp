@@ -54,7 +54,8 @@ bool exml::Document::Parse(const etk::UString& _data)
 
 bool exml::Document::Generate(etk::UString& _data)
 {
-	return false;
+	_data = "";
+	return Generate(_data,0);
 }
 
 bool exml::Document::Load(const etk::UString& _file)
@@ -72,7 +73,7 @@ bool exml::Document::Load(const etk::UString& _file)
 		return false;
 	}
 	if (false == tmpFile.FileOpenRead()) {
-		EXML_ERROR("Can not open the file : " << _file);
+		EXML_ERROR("Can not open (r) the file : " << _file);
 		return false;
 	}
 	// allocate data
@@ -103,7 +104,24 @@ bool exml::Document::Load(const etk::UString& _file)
 
 bool exml::Document::Store(const etk::UString& _file)
 {
-	return false;
+	etk::UString createData;
+	if (false == Generate(createData)) {
+		EXML_ERROR("Error while creating the XML : " << _file);
+		return false;
+	}
+	etk::FSNode tmpFile(_file);
+	if (false == tmpFile.FileOpenWrite()) {
+		EXML_ERROR("Can not open (w) the file : " << _file);
+		return false;
+	}
+	etk::Char endTable = createData.c_str();
+	if (tmpFile.FileWrite(endTable, sizeof(char), endTable.Size()) != endTable.Size()) {
+		EXML_ERROR("Error while writing output XML file : " << _file);
+		tmpFile.FileClose();
+		return false;
+	}
+	tmpFile.FileClose();
+	return true;
 }
 
 void exml::Document::Display(void)

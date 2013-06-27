@@ -10,6 +10,7 @@ def Create(target):
 	myModule.AddSrcFile([
 		'exml/debug.cpp',
 		'exml/Attribute.cpp',
+		'exml/AttributeList.cpp',
 		'exml/Comment.cpp',
 		'exml/Declaration.cpp',
 		'exml/Document.cpp',

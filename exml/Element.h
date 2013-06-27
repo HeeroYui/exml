@@ -11,15 +11,15 @@
 
 #include <exml/Node.h>
 #include <etk/Vector.h>
-#include <exml/Attribute.h>
+#include <exml/AttributeList.h>
 
 namespace exml
 {
-	class Element : public Node
+	class Element : public AttributeList
 	{
 		public:
 			Element(void) { };
-			Element(const etk::UString& _value) : exml::Node(_value) { };
+			Element(const etk::UString& _value) { m_value = _value; };
 			virtual ~Element(void) { };
 			virtual nodeType_te GetType(void) const { return typeElement; };
 		protected:
@@ -36,15 +36,6 @@ namespace exml
 			const Element* GetElement(int32_t _id) const;
 			      Element* GetNamed(const etk::UString& _name);
 			const Element* GetNamed(const etk::UString& _name) const;
-		protected:
-			etk::Vector<exml::Attribute*> m_listAttribute;
-		public:
-			int32_t SizeAttribute(void) const { return m_listSub.Size(); };
-			void AppendAttribute(Attribute* _node);
-			Attribute* GetAttr(int32_t _id);
-			const Attribute* GetAttr(int32_t _id) const;
-			const etk::UString& GetAttribute(const etk::UString& _name) const;
-			void SetAttribute(const etk::UString& _name, const etk::UString& _value);
 		public:
 			etk::UString GetText(void);
 		public:
