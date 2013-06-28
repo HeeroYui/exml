@@ -18,18 +18,39 @@ namespace exml
 	class Document : public exml::Element
 	{
 		public:
+			/**
+			 * @brief Constructor
+			 */
 			Document(void);
+			/**
+			 * @brief Destructor
+			 */
 			virtual ~Document(void) { };
-			virtual nodeType_te GetType(void) const { return typeDocument; };
 		private:
 			unicode::charset_te m_charset;
 		public:
+			/**
+			 * @brief Get the current charset of the Parsing
+			 * @param[in] _charset The new charset
+			 */
 			virtual void SetCharset(unicode::charset_te _charset) { m_charset = _charset; };
+			/**
+			 * @brief Get the current charset of the Parsing
+			 * @return The current charset
+			 */
 			virtual unicode::charset_te GetCharset(void) const { return m_charset; };
 		private:
-			bool m_caseSensitive;
+			bool m_caseSensitive; // check the case sensitive of the nodes and attribute
 		public:
+			/**
+			 * @brief Enable or diasable the case sensitive (must be done before the call of parsing)
+			 * @param[in] _val true if enable; false else.
+			 */
 			virtual void SetCaseSensitive(bool _val) { m_caseSensitive = _val; };
+			/**
+			 * @brief Get the status of case sensitive mode.
+			 * @return true if case sensitive is active
+			 */
 			virtual bool GetCaseSensitive(void) const { return m_caseSensitive; };
 		public:
 			/**
@@ -60,8 +81,12 @@ namespace exml
 			 * @return true : Parsing is OK
 			 */
 			bool Store(const etk::UString& _file);
-			
+			/**
+			 * @brief Display the Document on console
+			 */
 			void Display(void);
+		public: // herited function:
+			virtual nodeType_te GetType(void) const { return typeDocument; };
 			bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Document* ToDocument(void) { return this; };

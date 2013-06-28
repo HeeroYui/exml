@@ -16,6 +16,20 @@
 #undef __class__
 #define __class__	"Element"
 
+
+exml::Element::~Element(void)
+{
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if (NULL!=m_listSub[iii]) {
+			delete(m_listSub[iii]);
+			m_listSub[iii]=NULL;
+		}
+	}
+	m_listSub.Clear();
+}
+
+
+
 exml::nodeType_te exml::Element::GetType(int32_t _id)
 {
 	exml::Node* tmpp = GetNode(_id);
@@ -109,9 +123,13 @@ void exml::Element::Append(exml::Node* _node)
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
+	if (_node->GetType()==exml::typeAttribute) {
+		AppendAttribute(_node->ToAttribute());
+		return;
+	}
 	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
 		if (m_listSub[iii] == _node) {
-			EXML_ERROR("Try to add a node that is already added befor !!!");
+			EXML_ERROR("Try to add a node that is already added before !!!");
 			return;
 		}
 	}
@@ -188,12 +206,33 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				return false;
 			}
 			if(_data[iii+white+1] == '?') {
+				if( false == CheckAvaillable(_data[iii+white+2], true) ) {
+					EXML_ERROR(_filePos << " find unavaillable name in the Declaration node...");
+					_pos = iii+white+1;
+					return false;
+				}
+				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
+				int32_t endPosName = iii+white+1;
+				// Generate element name ...
+				for (int32_t jjj=iii+white+2; jjj<_data.Size(); jjj++) {
+					if(true == CheckAvaillable(_data[jjj], false) ) {
+						// we find the end ...
+						endPosName = jjj;
+					} else {
+						break;
+					}
+				}
+				etk::UString tmpname = _data.Extract(iii+white+1, endPosName+1);
+				if (true==_caseSensitive) {
+					tmpname.Lower();
+				}
 				// Find declaration balise
 				exml::Declaration* declaration = new exml::Declaration();
 				if (NULL==declaration) {
 					EXML_ERROR(_filePos << " Allocation error ...");
 					return false;
 				}
+				declaration->SetValue(tmpname);
 				_pos = iii+white+2;
 				_filePos += ivec2(3+white,0);
 				if (false==declaration->Parse(_data, _pos, _caseSensitive, _filePos)) {
@@ -281,6 +320,9 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 					}
 				}
 				etk::UString tmpname = _data.Extract(iii+white+2, endPosName+1);
+				if (true==_caseSensitive) {
+					tmpname.Lower();
+				}
 				if( tmpname == m_value) {
 					// find end of node :
 					// find > element ... 
@@ -327,6 +369,9 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 					}
 				}
 				etk::UString tmpname = _data.Extract(iii+white+1, endPosName+1);
+				if (true==_caseSensitive) {
+					tmpname.Lower();
+				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
 				exml::Element* element = new exml::Element();
@@ -347,6 +392,9 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				
 				continue;
 			}
+			// here we have an error : 
+			EXML_ERROR(_filePos << " find an ununderstanding element : '" << _data[iii+white+1] << "'");
+			return false;
 		} else {
 			if (_data[iii] == '>') {
 				EXML_ERROR(_filePos << " find elemement '>' ==> no reason to be here ...");
@@ -378,7 +426,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 			}
 		}
 	}
-	return false;
+	return true;
 }
 
 bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
@@ -403,15 +451,16 @@ bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSe
 		if (_data[iii] == '/') {
 			// standalone node or error...
 			if (iii+1>=_data.Size()) {
-				EXML_ERROR(" find end of files ... ==> bad case");
+				EXML_ERROR(_filePos << " find end of files ... ==> bad case");
 				return false;
 			}
+			// TODO : Can have white spaces ....
 			if (_data[iii+1] == '>') {
 				_pos = iii+1;
 				return true;
 			}
 			// error
-			EXML_ERROR("find / without > char ...");
+			EXML_ERROR(_filePos << "find / without > char ...");
 			return false;
 		}
 		if (true == CheckAvaillable(_data[iii], true)) {
@@ -430,9 +479,24 @@ bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSe
 			m_listAttribute.PushBack(attribute);
 			continue;
 		}
-		// TODO : Else ==> if not white ==> create an error ...
+		if (false==_data[iii].IsWhiteChar()) {
+			EXML_ERROR(_filePos << " find an unknow element : '" << _data[iii] << "'");
+			return false;
+		}
 	}
-	
-	return false;
+	return true;
 }
+
+void exml::Element::Clear(void)
+{
+	exml::AttributeList::Clear();
+	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+		if (NULL!=m_listSub[iii]) {
+			delete(m_listSub[iii]);
+			m_listSub[iii]=NULL;
+		}
+	}
+	m_listSub.Clear();
+}
+
 

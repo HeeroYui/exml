@@ -37,14 +37,14 @@ bool exml::Document::Parse(const etk::UString& _data, int32_t& _pos, bool _caseS
 	EXML_VERBOSE("start parse : 'document'");
 	m_pos = _filePos;
 	// in this case : no main node ...
-	SubParse(_data, _pos, _caseSensitive, _filePos, true);
-	return true;
+	return SubParse(_data, _pos, _caseSensitive, _filePos, true);
 }
 
 
 bool exml::Document::Parse(const etk::UString& _data)
 {
 	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.Size());
+	Clear();
 	// came from char ==> force in utf8 ...
 	m_charset = unicode::EDN_CHARSET_UTF8;
 	ivec2 filePos(0,1);
@@ -62,6 +62,7 @@ bool exml::Document::Load(const etk::UString& _file)
 {
 	// Start loading the XML : 
 	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
+	Clear();
 	etk::FSNode tmpFile(_file);
 	if (false == tmpFile.Exist()) {
 		EXML_ERROR("File Does not exist : " << _file);

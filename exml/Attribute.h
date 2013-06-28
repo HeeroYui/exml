@@ -17,19 +17,40 @@ namespace exml
 	class Attribute : public Node
 	{
 		public:
+			/**
+			 * @brief Constructor
+			 */
 			Attribute(void) { };
+			/**
+			 * @brief Constructor
+			 * @param[in] _name Name of the attribute.
+			 * @param[in] _value Value of the attribute.
+			 */
 			Attribute(const etk::UString& _name, const etk::UString& _value);
+			/**
+			 * @brief Destructor
+			 */
 			virtual ~Attribute(void) { };
-			virtual nodeType_te GetType(void) const { return exml::typeAttribute; };
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
-			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 		protected:
 			etk::UString m_name;
 		public:
+			/**
+			 * @brief Set the name of the attribute
+			 * @param[in] _name New name of the attribute
+			 */
 			virtual void SetName(etk::UString _name) { m_name = _name; };
+			/**
+			 * @brief Get the current name of the Attribute
+			 * @return String of the attribute
+			 */
 			virtual const etk::UString& GetName(void) const { return m_name; };
+		public: // herited function:
+			virtual nodeType_te GetType(void) const { return exml::typeAttribute; };
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Attribute* ToAttribute(void) { return this; };
 			virtual const exml::Attribute* ToAttribute(void) const { return this; };
+			virtual void Clear(void);
 	};
 };
 

@@ -19,7 +19,7 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-exml::Declaration::Declaration(const etk::UString& _version, unicode::charset_te _format, const etk::UString& _standalone)
+exml::Declaration::Declaration(const etk::UString& _version, unicode::charset_te _format, bool _standalone)
 {
 	m_value = "xml";
 	if (_version.Size()!=0) {
@@ -31,8 +31,10 @@ exml::Declaration::Declaration(const etk::UString& _version, unicode::charset_te
 		EXML_ERROR("Actually does not supported other charset than UTF8");
 		SetAttribute("encoding", "UTF-8");
 	}
-	if (_standalone.Size()!=0) {
-		SetAttribute("standalone", _standalone);
+	if (_standalone==true) {
+		SetAttribute("standalone", "true");
+	} else {
+		SetAttribute("standalone", "true");
 	}
 }
 
@@ -73,6 +75,22 @@ bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 			EXML_DEBUG(" find declaration '" << m_value << "'");
 			_pos = iii+1;
 			return true;
+		}
+		if (true == CheckAvaillable(_data[iii], true)) {
+			// we find an attibute ==> create a new and parse it :
+			exml::Attribute* attribute = new exml::Attribute();
+			if (NULL==attribute) {
+				EXML_ERROR(_filePos << " Allocation error ...");
+				return false;
+			}
+			_pos = iii;
+			if (false==attribute->Parse(_data, _pos, _caseSensitive, _filePos)) {
+				delete(attribute);
+				return false;
+			}
+			iii = _pos;
+			m_listAttribute.PushBack(attribute);
+			continue;
 		}
 	}
 	_pos = _data.Size();

@@ -17,8 +17,20 @@ namespace exml
 	class Comment : public Node
 	{
 		public:
+			/**
+			 * @brief Constructor
+			 */
 			Comment(void) { };
+			/**
+			 * @brief Constructor
+			 * @param[in] _value comment value
+			 */
+			Comment(const etk::UString& _value) : exml::Node(_value) { };
+			/**
+			 * @brief Destructor
+			 */
 			virtual ~Comment(void) { };
+		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
 			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;

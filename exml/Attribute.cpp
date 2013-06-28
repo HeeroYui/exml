@@ -19,7 +19,6 @@ exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value
 	
 }
 
-
 bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
 {
 	EXML_VERBOSE("start parse : 'attribute'");
@@ -43,7 +42,9 @@ bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _case
 		}
 	}
 	m_name = _data.Extract(_pos, lastElementName+1);
-	
+	if (true==_caseSensitive) {
+		m_name.Lower();
+	}
 	if (lastElementName+1>=_data.Size()) {
 		EXML_ERROR(" parse an xml end with an attribute parsing...");
 		return false;
@@ -116,3 +117,11 @@ bool exml::Attribute::Generate(etk::UString& _data, int32_t _indent) const
 	_data += "\"";
 	return true;
 }
+
+
+
+void exml::Attribute::Clear(void)
+{
+	m_name="";
+}
+

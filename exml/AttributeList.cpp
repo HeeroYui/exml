@@ -12,6 +12,17 @@
 #undef __class__
 #define __class__	"AttributeList"
 
+exml::AttributeList::~AttributeList(void)
+{
+	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
+		if (NULL!=m_listAttribute[iii]) {
+			delete(m_listAttribute[iii]);
+			m_listAttribute[iii]=NULL;
+		}
+	}
+	m_listAttribute.Clear();
+}
+
 exml::Attribute* exml::AttributeList::GetAttr(int32_t _id)
 {
 	if (_id <0 || _id>m_listAttribute.Size()) {
@@ -28,19 +39,19 @@ const exml::Attribute* exml::AttributeList::GetAttr(int32_t _id) const
 	return m_listAttribute[_id];
 }
 
-void exml::AttributeList::AppendAttribute(exml::Attribute* _node)
+void exml::AttributeList::AppendAttribute(exml::Attribute* _attr)
 {
-	if (_node == NULL) {
+	if (_attr == NULL) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
 	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
-		if (m_listAttribute[iii] == _node) {
+		if (m_listAttribute[iii] == _attr) {
 			EXML_ERROR("Try to add a node that is already added befor !!!");
 			return;
 		}
 	}
-	m_listAttribute.PushBack(_node);
+	m_listAttribute.PushBack(_attr);
 }
 
 const etk::UString& exml::AttributeList::GetAttribute(const etk::UString& _name) const
@@ -56,6 +67,20 @@ const etk::UString& exml::AttributeList::GetAttribute(const etk::UString& _name)
 		}
 	}
 	return errorReturn;
+}
+
+bool exml::AttributeList::ExistAttribute(const etk::UString& _name) const
+{
+	if (_name.Size()==0) {
+		return false;
+	}
+	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
+		if(    NULL != m_listAttribute[iii]
+		    && m_listAttribute[iii]->GetName() == _name) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void exml::AttributeList::SetAttribute(const etk::UString& _name, const etk::UString& _value)
@@ -85,3 +110,17 @@ bool exml::AttributeList::Generate(etk::UString& _data, int32_t _indent) const
 	}
 	return true;
 }
+
+void exml::AttributeList::Clear(void)
+{
+	exml::Node::Clear();
+	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
+		if (NULL!=m_listAttribute[iii]) {
+			delete(m_listAttribute[iii]);
+			m_listAttribute[iii]=NULL;
+		}
+	}
+	m_listAttribute.Clear();
+}
+
+

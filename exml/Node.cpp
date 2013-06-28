@@ -16,7 +16,7 @@ exml::Node::Node(const etk::UString& _value) :
 	m_pos(0,0),
 	m_value(_value)
 {
-	
+	// nothing to do.
 }
 
 void exml::Node::AddIndent(etk::UString& _data, int32_t _indent) const
@@ -38,8 +38,6 @@ void exml::Node::DrawElementParsed(const etk::UniChar& _val, const ivec2& _fileP
 	}
 }
 
-
-// !"#$%&'()*+,/;<=>?@[\]^`{|}~ ou une espace et ne peut pas commencer par -. ou un chiffre.
 bool exml::Node::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const
 {
 	if(    _val == '!'
@@ -87,14 +85,12 @@ bool exml::Node::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) cons
 	return true;
 }
 
+
 int32_t exml::Node::CountWhiteChar(const etk::UString& _data, int32_t _pos) const
 {
 	int32_t white=0;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		if(    _data[iii] == ' '
-		    || _data[iii] == '\t'
-		    || _data[iii] == '\n'
-		    || _data[iii] == '\r') {
+		if(true == _data[iii].IsWhiteChar()) {
 			white++;
 		} else {
 			break;
@@ -103,3 +99,8 @@ int32_t exml::Node::CountWhiteChar(const etk::UString& _data, int32_t _pos) cons
 	return white;
 }
 
+void exml::Node::Clear(void)
+{
+	m_value="";
+	m_pos.setValue(0,0);
+}

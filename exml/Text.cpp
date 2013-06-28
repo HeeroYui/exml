@@ -48,10 +48,7 @@ bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensi
 			// search whitespace :
 			int32_t newEnd=iii;
 			for( int32_t jjj=iii-1; jjj>_pos; jjj--) {
-				if(    _data[jjj] == ' '
-				    || _data[jjj] == '\n'
-				    || _data[jjj] == '\r'
-				    || _data[jjj] == '\t') {
+				if(true==_data[jjj].IsWhiteChar()) {
 					newEnd = jjj;
 				} else {
 					break;
