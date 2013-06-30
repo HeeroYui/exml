@@ -46,7 +46,7 @@ namespace exml
 			virtual const etk::UString& GetName(void) const { return m_name; };
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return exml::typeAttribute; };
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Attribute* ToAttribute(void) { return this; };
 			virtual const exml::Attribute* ToAttribute(void) const { return this; };

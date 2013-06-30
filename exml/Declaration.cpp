@@ -8,6 +8,7 @@
 
 #include <exml/Declaration.h>
 #include <exml/debug.h>
+#include <exml/Document.h>
 
 #undef __class__
 #define __class__	"Declaration"
@@ -19,9 +20,9 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-exml::Declaration::Declaration(const etk::UString& _version, unicode::charset_te _format, bool _standalone)
+exml::DeclarationXML::DeclarationXML(const etk::UString& _version, unicode::charset_te _format, bool _standalone) :
+	exml::Declaration("xml")
 {
-	m_value = "xml";
 	if (_version.Size()!=0) {
 		SetAttribute("version", _version);
 	}
@@ -48,31 +49,28 @@ bool exml::Declaration::Generate(etk::UString& _data, int32_t _indent) const
 	return true;
 }
 
-bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
-	EXML_VERBOSE("start parse : 'declaration'");
+	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+1<_data.Size(); iii++) {
-		_filePos += ivec2(1,0);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			DrawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_data[iii] == '\n') {
-			_filePos.setValue(1, _filePos.y()+1);
+		if (_filePos.Check(_data[iii])==true) {
 			continue;
 		}
 		if(    _data[iii] == '>'
 		    || _data[iii] == '<') {
 			// an error occured : 
-			EXML_ERROR(_filePos << " find '>' or '<'  instead of '?>'");
+			CREATE_ERROR(_doc, _data, _pos, _filePos, " find '>' or '<'  instead of '?>'");
 			return false;
 		}
 		if(    _data[iii] == '?'
 		    && _data[iii+1] == '>') {
-			// find end of value:
-			m_value = _data.Extract(_pos, iii-1);
-			EXML_DEBUG(" find declaration '" << m_value << "'");
+			++_filePos;
+			// find end of declaration:
 			_pos = iii+1;
 			return true;
 		}
@@ -80,11 +78,11 @@ bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 			// we find an attibute ==> create a new and parse it :
 			exml::Attribute* attribute = new exml::Attribute();
 			if (NULL==attribute) {
-				EXML_ERROR(_filePos << " Allocation error ...");
+				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");
 				return false;
 			}
 			_pos = iii;
-			if (false==attribute->Parse(_data, _pos, _caseSensitive, _filePos)) {
+			if (false==attribute->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 				delete(attribute);
 				return false;
 			}
@@ -93,8 +91,8 @@ bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 			continue;
 		}
 	}
+	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
 	_pos = _data.Size();
-	EXML_ERROR("Text got end of file without finding end node");
 	return false;
 }
 

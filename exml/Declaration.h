@@ -21,13 +21,10 @@ namespace exml
 			 */
 			Declaration(void) { };
 			/**
-			 * @brief Constructor for the generic declaration : <?xml version="" format="UTF-8"?>
-			 * @param[in] _version Xml version.
-			 * @param[in] _format charset of the XML
-			 * @param[in] _standalone this document is standalone
+			 * @brief Constructor
+			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
-			// for xml generic declaration
-			Declaration(const etk::UString& _version, unicode::charset_te _format=unicode::EDN_CHARSET_UTF8, bool _standalone=true);
+			Declaration(const etk::UString& _name) : exml::AttributeList(_name) { };
 			/**
 			 * @brief Destructor
 			 */
@@ -35,9 +32,24 @@ namespace exml
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual exml::Declaration* ToDeclaration(void) { return this; };
 			virtual const exml::Declaration* ToDeclaration(void) const { return this; };
+	};
+	class DeclarationXML : public exml::Declaration
+	{
+		public:
+			/**
+			 * @brief Constructor for the generic declaration : <?xml version="" format="UTF-8"?>
+			 * @param[in] _version Xml version.
+			 * @param[in] _format charset of the XML
+			 * @param[in] _standalone this document is standalone
+			 */
+			DeclarationXML(const etk::UString& _version, unicode::charset_te _format=unicode::EDN_CHARSET_UTF8, bool _standalone=true);
+			/**
+			 * @brief Destructor
+			 */
+			virtual ~DeclarationXML(void) { };
 	};
 };
 

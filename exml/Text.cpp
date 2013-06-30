@@ -8,6 +8,7 @@
 
 #include <exml/Text.h>
 #include <exml/debug.h>
+#include <exml/Document.h>
 
 #undef __class__
 #define __class__	"Text"
@@ -29,18 +30,16 @@ int32_t exml::Text::CountLines(void) const
 	return count;
 }
 
-bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'text'");
 	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		_filePos += ivec2(1,0);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			DrawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_data[iii] == '\n') {
-			_filePos.setValue(0, _filePos.y()+1);
+		if (_filePos.Check(_data[iii]) == true) {
 			continue;
 		}
 		if(    _data[iii] == '>'
@@ -61,38 +60,36 @@ bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensi
 			return true;
 		}
 	}
+	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
 	_pos = _data.Size();
-	EXML_ERROR("Text got end of file without finding end node");
-	EXML_ERROR(" Data : " << _data);
 	return false;
 }
 
-bool exml::TextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::TextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'text::CDATA'");
 	m_pos = _filePos;
 	// search end of the comment :
 	for (int32_t iii=_pos; iii+2<_data.Size(); iii++) {
-		_filePos += ivec2(1,0);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			DrawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_data[iii] == '\n') {
-			_filePos.setValue(1, _filePos.y()+1);
+		if (_filePos.Check(_data[iii]) == true) {
 			continue;
 		}
 		if(    _data[iii] == ']'
 		    && _data[iii+1] == ']'
 		    && _data[iii+2] == '>') {
 			// find end of value:
+			_filePos += 2;
 			m_value = _data.Extract(_pos, iii);
 			EXML_VERBOSE(" find text CDATA '" << m_value << "'");
 			_pos = iii+2;
 			return true;
 		}
 	}
+	CREATE_ERROR(_doc, _data, _pos, _filePos, "text CDATA got end of file without finding end node");
 	_pos = _data.Size();
-	EXML_ERROR("text CDATA got end of file without finding end node");
 	return false;
 }
 

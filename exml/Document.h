@@ -85,15 +85,38 @@ namespace exml
 			 * @brief Display the Document on console
 			 */
 			void Display(void);
+		private:
+			bool m_writeErrorWhenDetexted;
+			etk::UString m_comment;
+			etk::UString m_Line;
+			exml::filePos m_filePos;
+		public:
+			void DisplayErrorWhenDetected(void) { m_writeErrorWhenDetexted=true; };
+			void NotDisplayErrorWhenDetected(void) { m_writeErrorWhenDetexted=false; };
+			
+			void CreateError(const etk::UString& _data, int32_t _pos, const exml::filePos& _filePos, const etk::UString& _comment);
+			void DisplayError(void);
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeDocument; };
-			bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
 			bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Document* ToDocument(void) { return this; };
 			virtual const exml::Document* ToDocument(void) const { return this; };
 	};
 };
 
+/*
+#define CREATE_ERROR(doc,data,pos,filePos,comment) \
+	EXML_ERROR( (pos) << " " << (comment) << "\n" \
+	           << (data).ExtractLine((pos)) << "\n" \
+	           << CreatePosPointer((filePos).GetCol()) )
+*/
+#define CREATE_ERROR(doc,data,pos,filePos,comment) \
+	do { \
+		EXML_ERROR(comment); \
+		(doc).CreateError((data),(pos),(filePos),(comment)); \
+	} while (0)
+
+//__LINE__, __class__, __func__
 
 #endif
 

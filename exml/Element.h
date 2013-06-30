@@ -78,10 +78,10 @@ namespace exml
 			 */
 			etk::UString GetText(void);
 		protected:
-			bool SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos, bool _mainNode=false);
+			bool SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeElement; };
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos);
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Element* ToElement(void) { return this; };
 			virtual const exml::Element* ToElement(void) const { return this; };

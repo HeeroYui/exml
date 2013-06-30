@@ -38,6 +38,9 @@ void Init(void)
 	testCheck check;
 	
 	// ======================================================
+	check.Set("test exml::Element", -2, "");
+	l_list.PushBack(check);
+	// ======================================================
 	reference = "<exemple/>\n";
 	check.Set(reference,
 	          -1,
@@ -97,9 +100,116 @@ void Init(void)
 	          1,
 	          "<exemple-->\n");
 	l_list.PushBack(check);
-	// ------------------------------------------------------
+	check.Set("<exemple/>\n",
+	          1,
+	          "<exemple>\n</exemple sdfgsdfg>\n");
+	l_list.PushBack(check);
 	// ======================================================
-	check.Set("", -2, "");
+	check.Set("test element exml::Attribute ", -2, "");
+	l_list.PushBack(check);
+	// ======================================================
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr=\"plop\"/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr=plop/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"234345@3452345_.'\"/>\n",
+	          -1,
+	          "<elementtt attr=234345@3452345_.'     />\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr   =\"plop\"/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr=    \"plop\"/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr\n=\n\"plop\"/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr=plop/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"plop\"/>\n",
+	          -1,
+	          "<elementtt attr    \n  =   \n\t plop/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"\"/>\n",
+	          -1,
+	          "<elementtt attr=\"\"/>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<elementtt attr=\"\"/>\n",
+	          -1,
+	          "<elementtt attr=/>\n");
+	l_list.PushBack(check);
+	// ======================================================
+	check.Set("test exml::Declaration", -2, "");
+	l_list.PushBack(check);
+	// ======================================================
+	check.Set("<?testDeclaration?>\n",
+	          -1,
+	          "<?testDeclaration?>\n");
+	l_list.PushBack(check);
+	// ======================================================
+	check.Set("test Declaration exml::Attribute", -2, "");
+	l_list.PushBack(check);
+	// ======================================================
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr=\"plop\"?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr=plop?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"234345@3452345_.'\"?>\n",
+	          -1,
+	          "<?xml attr=234345@3452345_.'     ?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr   =\"plop\"?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr=    \"plop\"?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr\n=\n\"plop\"?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr=plop?>\n");
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("<?xml attr=\"plop\"?>\n",
+	          -1,
+	          "<?xml attr    \n  =   \n\t plop?>\n");
+	l_list.PushBack(check);
+	// ======================================================
+	check.Set("test exml::Comment", -2, "");
 	l_list.PushBack(check);
 	// ======================================================
 	check.Set("<!--exemple-->\n",
@@ -142,7 +252,7 @@ void Init(void)
 	          "<!-- <.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>	-->\n");
 	l_list.PushBack(check);
 	// ======================================================
-	check.Set("", -2, "");
+	check.Set("test all", -2, "");
 	l_list.PushBack(check);
 	// ======================================================
 	reference= "<exemple>\n"
@@ -157,7 +267,17 @@ void Init(void)
 	       "		Text example ...\n"
 	       "	</ex2>\n"
 	       "</exemple>\n";
-	check.Set(reference, 1, input);
+	check.Set(reference, -1, input);
+	l_list.PushBack(check);
+	// ------------------------------------------------------
+	check.Set("", 1,
+	       "<   	 		 exemple\n   	>\n"
+	       "	<ex2 ploppp-plpl:erer=\"dfsdfsdfsdf\" lkmjmlk=\"156235\" sdfsdf=456321     />\n"
+	       "	<exlkjl-_dsfg./>    >\n"
+	       "	<ex2>\n"
+	       "		Text example ...\n"
+	       "	</ex2>\n"
+	       "</exemple>\n");
 	l_list.PushBack(check);
 }
 
@@ -173,7 +293,9 @@ int main(int argc, const char *argv[])
 		if (l_list[iii].m_errorPos==-2) {
 			countSeparator++;
 			sectionID = 0;
-			EXML_INFO("-----------------------------------------------------------------------------------");
+			EXML_INFO("-------------------------------------------------------------");
+			EXML_INFO("-- " << l_list[iii].m_ref);
+			EXML_INFO("-------------------------------------------------------------");
 			continue;
 		}
 		sectionID++;

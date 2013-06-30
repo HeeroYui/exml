@@ -16,6 +16,17 @@
 namespace exml
 {
 	//#define ENABLE_DISPLAY_PARSED_ELEMENT
+	//#define ENABLE_CRITICAL_WHEN_ERROR
+	#if 1
+		#define EXML_PARSE_ELEMENT EXML_VERBOSE
+	#else
+		#define EXML_PARSE_ELEMENT EXML_DEBUG
+	#endif
+	#if 1
+		#define EXML_PARSE_ATTRIBUTE EXML_VERBOSE
+	#else
+		#define EXML_PARSE_ATTRIBUTE EXML_DEBUG
+	#endif
 	class Document;
 	class Attribute;
 	class Comment;
@@ -33,6 +44,63 @@ namespace exml
 		typeComment, //!< comment node : <!--   -->
 		typeText, //!< <XXX> InsideText </XXX>
 	} nodeType_te;
+	
+	class filePos
+	{
+		private:
+			int32_t m_col;
+			int32_t m_line;
+		public:
+			filePos(void) : m_col(0),m_line(0) { };
+			filePos(int32_t _line, int32_t _col) : m_col(_col),m_line(_line) { };
+			~filePos(void) { };
+			filePos& operator ++(void) { m_col++; return *this; };
+			filePos& operator --(void) { m_col--; if(m_col<0) { m_col=0; return *this; } };
+			const filePos& operator +=(const filePos& _obj)
+			{
+				if (_obj.m_line==0) {
+					m_col += _obj.m_col;
+				} else {
+					m_col = _obj.m_col;
+					m_line += _obj.m_line;
+				}
+				return *this;
+			};
+			const filePos& operator +=(int32_t _col)
+			{
+				m_col += _col;
+				return *this;
+			};
+			const filePos& operator= (const filePos& _obj )
+			{
+				m_col = _obj.m_col;
+				m_line = _obj.m_line;
+				return *this;
+			}
+			void NewLine(void) { m_col=0; m_line++; };
+			bool Check(const etk::UniChar& _val)
+			{
+				m_col++;
+				if (_val=='\n') {
+					NewLine();
+					return true;
+				}
+				return false;
+			}
+			void Set(int32_t _line, int32_t _col)
+			{
+				m_col = _col;
+				m_line = _line;
+			}
+			void Clear(void)
+			{
+				m_col = 0;
+				m_line = 0;
+			}
+			int32_t GetCol(void) const { return m_col; };
+			int32_t GetLine(void) const { return m_line; };
+	};
+	etk::CCout& operator <<(etk::CCout& _os, const filePos& _obj);
 	
 	class Node
 	{
@@ -59,7 +127,7 @@ namespace exml
 			 * @param[in,out] file parsing position (line x col x)
 			 * @return false if an error occured.
 			 */
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos) = 0;
+			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
 			/**
 			 * @brief Generate a string with the tree of the xml
 			 * @param[in,out] _data string where to add the elements
@@ -68,12 +136,12 @@ namespace exml
 			 */
 			virtual bool Generate(etk::UString& _data, int32_t _indent) const { return true; };
 		protected:
-			ivec2 m_pos; //!< position in the readed file ==> not correct when the file is generated
+			exml::filePos m_pos; //!< position in the readed file ==> not correct when the file is generated
 		public:
 			/**
 			 * @brief Get the current position where the element is in the file
 			 */
-			const ivec2& GetPos(void) { return m_pos; };
+			const exml::filePos& GetPos(void) { return m_pos; };
 		protected:
 			etk::UString m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
 		public:
@@ -105,7 +173,7 @@ namespace exml
 			 * @param[in] _val Char that is parsed.
 			 * @param[in] _filePos Position of the char in the file.
 			 */
-			void DrawElementParsed(const etk::UniChar& _val, const ivec2& _filePos) const;
+			void DrawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const;
 			/**
 			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \n\t\r and for first char : not -.0123456789).
 			 * @param[in] _val Value to check the conformity.
@@ -116,9 +184,10 @@ namespace exml
 			 * @brief count the number of white char in the string from the specify position (stop at the first element that is not a white char)
 			 * @param[in] _data Data to parse.
 			 * @param[in] _pos Start position in the string.
+			 * @param[out] _filePos new poistion of te file to add.
 			 * @return number of white element.
 			 */
-			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos) const;
+			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const;
 		public:
 			/**
 			 * @brief Cast the element in a Document if it is possible.

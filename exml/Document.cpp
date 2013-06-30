@@ -15,7 +15,11 @@
 
 exml::Document::Document(void) : 
 	m_charset(unicode::EDN_CHARSET_UTF8),
-	m_caseSensitive(false)
+	m_caseSensitive(false),
+	m_writeErrorWhenDetexted(true),
+	m_comment(""),
+	m_Line(""),
+	m_filePos(0,0)
 {
 	
 }
@@ -31,25 +35,16 @@ bool exml::Document::Generate(etk::UString& _data, int32_t _indent) const
 	return true;
 }
 
-
-bool exml::Document::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
-{
-	EXML_VERBOSE("start parse : 'document'");
-	m_pos = _filePos;
-	// in this case : no main node ...
-	return SubParse(_data, _pos, _caseSensitive, _filePos, true);
-}
-
-
 bool exml::Document::Parse(const etk::UString& _data)
 {
 	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.Size());
 	Clear();
 	// came from char ==> force in utf8 ...
 	m_charset = unicode::EDN_CHARSET_UTF8;
-	ivec2 filePos(0,1);
+	exml::filePos filePos(1,0);
+	m_pos = filePos;
 	int32_t parsePos = 0;
-	return Parse(_data, parsePos, m_caseSensitive, filePos);
+	return SubParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
 }
 
 bool exml::Document::Generate(etk::UString& _data)
@@ -97,9 +92,6 @@ bool exml::Document::Load(const etk::UString& _file)
 	// parse the data :
 	bool ret = Parse(tmpDataUnicode);
 	//Display();
-	if (0==Size()) {
-		EXML_CRITICAL("lkjlkj");
-	}
 	return ret;
 }
 
@@ -130,5 +122,47 @@ void exml::Document::Display(void)
 	etk::UString tmpp;
 	Generate(tmpp, 0);
 	EXML_INFO("Generated XML : \n" << tmpp);
+}
+
+etk::UString CreatePosPointer(const etk::UString& _line, int32_t _pos)
+{
+	etk::UString out;
+	int32_t iii;
+	for (iii=0; iii<_pos && iii<_line.Size(); iii++) {
+		if (_line[iii] == '\t') {
+			out += "\t";
+		} else {
+			out += " ";
+		}
+	}
+	for (; iii<_pos; iii++) {
+		out += " ";
+	}
+	out += "^";
+	return out;
+}
+
+void exml::Document::DisplayError(void)
+{
+	if (m_comment.Size()==0) {
+		EXML_ERROR("No error detected ???");
+		return;
+	}
+	EXML_ERROR(m_filePos << " " << m_comment << "\n"
+	           << m_Line << "\n"
+	           << CreatePosPointer(m_Line, m_filePos.GetCol()) );
+	#ifdef ENABLE_CRITICAL_WHEN_ERROR
+		EXML_CRITICAL("detect error");
+	#endif
+}
+
+void exml::Document::CreateError(const etk::UString& _data, int32_t _pos, const exml::filePos& _filePos, const etk::UString& _comment)
+{
+	m_comment = _comment;
+	m_Line = _data.ExtractLine(_pos);
+	m_filePos = _filePos;
+	if (true==m_writeErrorWhenDetexted) {
+		DisplayError();
+	}
 }
 

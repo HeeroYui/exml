@@ -8,6 +8,7 @@
 
 #include <exml/Attribute.h>
 #include <exml/debug.h>
+#include <exml/Document.h>
 
 #undef __class__
 #define __class__	"Attribute"
@@ -19,22 +20,17 @@ exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value
 	
 }
 
-bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, ivec2& _filePos)
+bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
 	// search end of the comment :
 	int32_t lastElementName = _pos;
 	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		_filePos += ivec2(1,0);
+		_filePos.Check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			DrawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_data[iii] == '\n') {
-			_filePos.setValue(1, _filePos.y()+1);
-			EXML_ERROR("unexpected '\\n' in an attribute parsing");
-			return false;
-		}
 		if (true==CheckAvaillable(_data[iii], false) ) {
 			lastElementName = iii;
 		} else {
@@ -45,64 +41,68 @@ bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _case
 	if (true==_caseSensitive) {
 		m_name.Lower();
 	}
-	if (lastElementName+1>=_data.Size()) {
-		EXML_ERROR(" parse an xml end with an attribute parsing...");
+	// count white space :
+	exml::filePos tmpPos;
+	int32_t white = CountWhiteChar(_data, lastElementName+1, tmpPos);
+	_filePos += tmpPos;
+	if (lastElementName+white+1>=_data.Size()) {
+		CREATE_ERROR(_doc, _data, lastElementName+white+1, _filePos, " parse an xml end with an attribute parsing...");
 		return false;
 	}
-	if (_data[lastElementName+1] != '=') {
-		EXML_ERROR(" error attribute parsing ==> missing '=' ...");
+	if (_data[lastElementName+white+1] != '=') {
+		CREATE_ERROR(_doc, _data, lastElementName+white+1, _filePos, " error attribute parsing ==> missing '=' ...");
 		return false;
 	}
-	if (lastElementName+2>=_data.Size()) {
-		EXML_ERROR(" parse an xml end with an attribute parsing...");
+	white += CountWhiteChar(_data, lastElementName+white+2, tmpPos);
+	_filePos += tmpPos;
+	
+	if (lastElementName+white+2>=_data.Size()) {
+		CREATE_ERROR(_doc, _data, lastElementName+white+2, _filePos, " parse an xml end with an attribute parsing...");
 		return false;
 	}
-	if (_data[lastElementName+2] != '"') {
+	if (_data[lastElementName+white+2] != '"') {
 		// parse with no element " ==> direct value separate with space ...
-		_filePos += ivec2(2,0);
-		int32_t lastAttributePos = lastElementName+3;
-		for (int32_t iii=lastElementName+2; iii<_data.Size(); iii++) {
-			_filePos += ivec2(1,0);
+		++_filePos;
+		int32_t lastAttributePos = lastElementName+white+2;
+		for (int32_t iii=lastElementName+white+2; iii<_data.Size(); iii++) {
 			#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 				DrawElementParsed(_data[iii], _filePos);
 			#endif
-			if (_data[iii] == '\n') {
-				_filePos.setValue(1, _filePos.y()+1);
-				EXML_ERROR("unexpected '\\n' in an attribute parsing");
+			if (_filePos.Check(_data[iii])==true) {
+				CREATE_ERROR(_doc, _data, iii, _filePos, "unexpected '\\n' in an attribute parsing");
 				return false;
 			}
-			if (_data[iii]!=' ') {
-				lastAttributePos = iii;
+			if(    _data[iii]!=' '
+			    && _data[iii]!='/'
+			    && _data[iii]!='?'
+			    && _data[iii]!='>') {
+				lastAttributePos = iii+1;
 			} else {
 				break;
 			}
 		}
-		m_value = _data.Extract(lastElementName+2, lastAttributePos+1);
+		m_value = _data.Extract(lastElementName+white+2, lastAttributePos);
 		
-		_pos = lastAttributePos+1;
+		EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
+		
+		_pos = lastAttributePos-1;
 		return true;
 	}
-	_filePos += ivec2(2,0);
-	int32_t lastAttributePos = lastElementName+3;
-	for (int32_t iii=lastElementName+3; iii<_data.Size(); iii++) {
-		_filePos += ivec2(1,0);
+	int32_t lastAttributePos = lastElementName+white+3;
+	for (int32_t iii=lastElementName+white+3; iii<_data.Size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			DrawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_data[iii] == '\n') {
-			_filePos.setValue(1, _filePos.y()+1);
-			EXML_ERROR("unexpected '\\n' in an attribute parsing");
-			return false;
-		}
-		if (_data[iii]!='"') {
-			lastAttributePos = iii;
+		_filePos.Check(_data[iii]);
+		if(_data[iii]!='"') {
+			lastAttributePos = iii+1;
 		} else {
 			break;
 		}
 	}
-	m_value = _data.Extract(lastElementName+3, lastAttributePos+1);
+	m_value = _data.Extract(lastElementName+white+3, lastAttributePos);
 	
-	EXML_VERBOSE("attribute : " << m_name << "=\"" << m_value << "\"");
+	EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 	
 	_pos = lastAttributePos;
 	return true;
