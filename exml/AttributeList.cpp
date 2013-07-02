@@ -101,11 +101,11 @@ void exml::AttributeList::SetAttribute(const etk::UString& _name, const etk::USt
 	m_listAttribute.PushBack(attr);
 }
 
-bool exml::AttributeList::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::AttributeList::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	for (int32_t iii=0; iii<m_listAttribute.Size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
-			m_listAttribute[iii]->Generate(_data, _indent);
+			m_listAttribute[iii]->IGenerate(_data, _indent);
 		}
 	}
 	return true;

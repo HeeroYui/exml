@@ -20,7 +20,7 @@ exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value
 	
 }
 
-bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Attribute::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
@@ -108,7 +108,7 @@ bool exml::Attribute::Parse(const etk::UString& _data, int32_t& _pos, bool _case
 	return true;
 }
 
-bool exml::Attribute::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Attribute::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	_data += " ";
 	_data += m_name;

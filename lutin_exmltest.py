@@ -5,13 +5,13 @@ import datetime
 
 def Create(target):
 	# module name is 'edn' and type binary.
-	myModule = lutinModule.module(__file__, 'exmltest', 'PACKAGE')
+	myModule = lutinModule.module(__file__, 'exmltest', 'BINARY')
 	
 	# add the file to compile:
 	myModule.AddSrcFile([
 		'exml/test.cpp'])
 	
-	myModule.AddModuleDepend('exml')
+	myModule.AddModuleDepend(['exml'])
 	
 	now = datetime.datetime.now()
 	versionID=str(now.year-2012)+"."+str(now.month)+"."+str(now.day)

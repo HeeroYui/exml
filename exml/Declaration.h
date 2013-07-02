@@ -31,8 +31,8 @@ namespace exml
 			virtual ~Declaration(void) { };
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeAttribute; };
-			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual exml::Declaration* ToDeclaration(void) { return this; };
 			virtual const exml::Declaration* ToDeclaration(void) const { return this; };
 	};

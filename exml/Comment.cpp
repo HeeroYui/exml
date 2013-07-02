@@ -13,7 +13,7 @@
 #undef __class__
 #define __class__	"Comment"
 
-bool exml::Comment::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Comment::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'comment'");
 	m_pos = _filePos;
@@ -53,7 +53,7 @@ bool exml::Comment::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSe
 	return false;
 }
 
-bool exml::Comment::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Comment::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<!--";

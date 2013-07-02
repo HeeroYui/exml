@@ -39,17 +39,17 @@ exml::DeclarationXML::DeclarationXML(const etk::UString& _version, unicode::char
 	}
 }
 
-bool exml::Declaration::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Declaration::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<?";
 	_data += m_value;
-	exml::AttributeList::Generate(_data, _indent);
+	exml::AttributeList::IGenerate(_data, _indent);
 	_data += "?>\n";
 	return true;
 }
 
-bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Declaration::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
@@ -82,7 +82,7 @@ bool exml::Declaration::Parse(const etk::UString& _data, int32_t& _pos, bool _ca
 				return false;
 			}
 			_pos = iii;
-			if (false==attribute->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+			if (false==attribute->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 				delete(attribute);
 				return false;
 			}

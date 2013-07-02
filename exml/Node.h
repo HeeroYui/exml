@@ -55,7 +55,7 @@ namespace exml
 			filePos(int32_t _line, int32_t _col) : m_col(_col),m_line(_line) { };
 			~filePos(void) { };
 			filePos& operator ++(void) { m_col++; return *this; };
-			filePos& operator --(void) { m_col--; if(m_col<0) { m_col=0; return *this; } };
+			filePos& operator --(void) { m_col--; if(m_col<0) { m_col=0;} return *this; };
 			const filePos& operator +=(const filePos& _obj)
 			{
 				if (_obj.m_line==0) {
@@ -127,14 +127,14 @@ namespace exml
 			 * @param[in,out] file parsing position (line x col x)
 			 * @return false if an error occured.
 			 */
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
+			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
 			/**
 			 * @brief Generate a string with the tree of the xml
 			 * @param[in,out] _data string where to add the elements
 			 * @param[in] current indentation of the file
 			 * @return false if an error occured.
 			 */
-			virtual bool Generate(etk::UString& _data, int32_t _indent) const { return true; };
+			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const { return true; };
 		protected:
 			exml::filePos m_pos; //!< position in the readed file ==> not correct when the file is generated
 		public:

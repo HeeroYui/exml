@@ -37,8 +37,8 @@ namespace exml
 			int32_t CountLines(void) const;
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeText; };
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool Generate(etk::UString& _data, int32_t _indent) const;
+			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Text* ToText(void) { return this; };
 			virtual const exml::Text* ToText(void) const{ return this; };
 	};
@@ -54,7 +54,7 @@ namespace exml
 			 */
 			virtual ~TextCDATA(void) { };
 		public: // herited function:
-			virtual bool Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 	};
 };
 

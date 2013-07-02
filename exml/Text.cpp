@@ -13,7 +13,7 @@
 #undef __class__
 #define __class__	"Text"
 
-bool exml::Text::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Text::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	_data += m_value;
 	return true;
@@ -30,7 +30,7 @@ int32_t exml::Text::CountLines(void) const
 	return count;
 }
 
-bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Text::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'text'");
 	m_pos = _filePos;
@@ -65,7 +65,7 @@ bool exml::Text::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensi
 	return false;
 }
 
-bool exml::TextCDATA::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::TextCDATA::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'text::CDATA'");
 	m_pos = _filePos;

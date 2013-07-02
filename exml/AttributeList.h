@@ -70,7 +70,7 @@ namespace exml
 			 */
 			void SetAttribute(const etk::UString& _name, const etk::UString& _value);
 		public: // herited function:
-			bool Generate(etk::UString& _data, int32_t _indent) const;
+			bool IGenerate(etk::UString& _data, int32_t _indent) const;
 			virtual void Clear(void);
 	};
 };

@@ -98,7 +98,7 @@ namespace exml
 			void DisplayError(void);
 		public: // herited function:
 			virtual nodeType_te GetType(void) const { return typeDocument; };
-			bool Generate(etk::UString& _data, int32_t _indent) const;
+			bool IGenerate(etk::UString& _data, int32_t _indent) const;
 			virtual exml::Document* ToDocument(void) { return this; };
 			virtual const exml::Document* ToDocument(void) const { return this; };
 	};

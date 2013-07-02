@@ -25,11 +25,11 @@ exml::Document::Document(void) :
 }
 
 
-bool exml::Document::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Document::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
-			m_listSub[iii]->Generate(_data, _indent);
+			m_listSub[iii]->IGenerate(_data, _indent);
 		}
 	}
 	return true;
@@ -50,7 +50,7 @@ bool exml::Document::Parse(const etk::UString& _data)
 bool exml::Document::Generate(etk::UString& _data)
 {
 	_data = "";
-	return Generate(_data,0);
+	return IGenerate(_data,0);
 }
 
 bool exml::Document::Load(const etk::UString& _file)
@@ -120,7 +120,7 @@ bool exml::Document::Store(const etk::UString& _file)
 void exml::Document::Display(void)
 {
 	etk::UString tmpp;
-	Generate(tmpp, 0);
+	IGenerate(tmpp, 0);
 	EXML_INFO("Generated XML : \n" << tmpp);
 }
 

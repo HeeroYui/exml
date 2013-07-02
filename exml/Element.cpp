@@ -143,19 +143,19 @@ etk::UString exml::Element::GetText(void)
 	etk::UString res;
 	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
-			m_listSub[iii]->Generate(res, 0);
+			m_listSub[iii]->IGenerate(res, 0);
 		}
 	}
 	return res;
 }
 
 
-bool exml::Element::Generate(etk::UString& _data, int32_t _indent) const
+bool exml::Element::IGenerate(etk::UString& _data, int32_t _indent) const
 {
 	AddIndent(_data, _indent);
 	_data += "<";
 	_data += m_value;
-	exml::AttributeList::Generate(_data, _indent);
+	exml::AttributeList::IGenerate(_data, _indent);
 	
 	if (m_listSub.Size()>0) {
 		if(    m_listSub.Size()==1
@@ -163,13 +163,13 @@ bool exml::Element::Generate(etk::UString& _data, int32_t _indent) const
 		    && m_listSub[0]->GetType() == exml::typeText
 		    && static_cast<exml::Text*>(m_listSub[0])->CountLines()==1) {
 			_data += ">";
-			m_listSub[0]->Generate(_data,0);
+			m_listSub[0]->IGenerate(_data,0);
 		} else {
 			_data += ">\n";
 			
 			for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
 				if (NULL!=m_listSub[iii]) {
-					m_listSub[iii]->Generate(_data, _indent+1);
+					m_listSub[iii]->IGenerate(_data, _indent+1);
 				}
 			}
 			AddIndent(_data, _indent);
@@ -240,7 +240,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				}
 				_filePos += tmpPos;
 				_pos = endPosName+1;
-				if (false==declaration->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+				if (false==declaration->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 					delete(declaration);
 					return false;
 				}
@@ -274,7 +274,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 					}
 					_pos = iii+white+4;
 					_filePos += tmpPos;
-					if (false==comment->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+					if (false==comment->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 						delete(comment);
 						return false;
 					}
@@ -304,7 +304,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 					}
 					_pos = iii+9+white;
 					_filePos += tmpPos;
-					if (false==text->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+					if (false==text->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 						delete(text);
 						return false;
 					}
@@ -395,7 +395,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				}
 				_pos = endPosName+1;
 				_filePos += tmpPos;
-				if (false==element->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+				if (false==element->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 					delete(element);
 					return false;
 				}
@@ -427,7 +427,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				}
 				_pos = iii;
 				_filePos += tmpPos;
-				if (false==text->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+				if (false==text->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 					delete(text);
 					return false;
 				}
@@ -443,7 +443,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 	return false;
 }
 
-bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Element::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_PARSE_ELEMENT("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
@@ -482,7 +482,7 @@ bool exml::Element::Parse(const etk::UString& _data, int32_t& _pos, bool _caseSe
 				return false;
 			}
 			_pos = iii;
-			if (false==attribute->Parse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+			if (false==attribute->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 				delete(attribute);
 				return false;
 			}
