@@ -26,9 +26,6 @@ def Create(target):
 	myModule.pkgSet("DESCRIPTION", "E_xml tester soft")
 	myModule.pkgSet("NAME", "exml_tester")
 	
-	myModule.pkgAddRight("WRITE_EXTERNAL_STORAGE")
-	myModule.pkgAddRight("SET_ORIENTATION")
-	
 	# add the currrent module at the 
 	return myModule
 
