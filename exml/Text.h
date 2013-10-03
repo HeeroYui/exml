@@ -12,10 +12,8 @@
 #include <exml/Node.h>
 #include <etk/Vector.h>
 
-namespace exml
-{
-	class Text : public Node
-	{
+namespace exml {
+	class Text : public Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -31,19 +29,18 @@ namespace exml
 			 */
 			virtual ~Text(void) { };
 			/**
-			 * @brief Count the number of line in the current text
+			 * @brief count the number of line in the current text
 			 * @return The number of lines
 			 */
-			int32_t CountLines(void) const;
+			int32_t countLines(void) const;
 		public: // herited function:
-			virtual nodeType_te GetType(void) const { return typeText; };
-			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual exml::Text* ToText(void) { return this; };
-			virtual const exml::Text* ToText(void) const{ return this; };
+			virtual nodeType_te getType(void) const { return typeText; };
+			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual exml::Text* toText(void) { return this; };
+			virtual const exml::Text* toText(void) const{ return this; };
 	};
-	class TextCDATA : public Text
-	{
+	class TextCDATA : public Text {
 		public:
 			/**
 			 * @brief Constructor
@@ -54,7 +51,7 @@ namespace exml
 			 */
 			virtual ~TextCDATA(void) { };
 		public: // herited function:
-			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 	};
 };
 

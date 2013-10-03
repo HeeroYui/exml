@@ -10,46 +10,41 @@
 #include <exml/debug.h>
 
 #undef __class__
-#define __class__	"Node"
+#define __class__ "Node"
 
 
-etk::CCout& exml::operator <<(etk::CCout& _os, const exml::filePos& _obj)
-{
+etk::CCout& exml::operator <<(etk::CCout& _os, const exml::filePos& _obj) {
 	_os << "(l=";
-	_os << _obj.GetLine();
+	_os << _obj.getLine();
 	_os << ",c=";
-	_os << _obj.GetCol();
+	_os << _obj.getCol();
 	_os << ")";
 	return _os;
 }
 
 exml::Node::Node(const etk::UString& _value) :
-	m_pos(0,0),
-	m_value(_value)
-{
+    m_pos(0,0),
+    m_value(_value) {
 	// nothing to do.
 }
 
-void exml::Node::AddIndent(etk::UString& _data, int32_t _indent) const
-{
+void exml::Node::addIndent(etk::UString& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<_indent; iii++) {
 		_data+="\t";
 	}
 }
 
-void exml::Node::DrawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const
-{
-	if (_val=='\n') {
-		EXML_DEBUG(_filePos << " Parse '\\n'");
-	} else if (_val=='\t') {
-		EXML_DEBUG(_filePos << " Parse '\\t'");
+void exml::Node::drawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const {
+	if (_val == '\n') {
+		EXML_DEBUG(_filePos << " parse '\\n'");
+	} else if (_val == '\t') {
+		EXML_DEBUG(_filePos << " parse '\\t'");
 	} else {
-		EXML_DEBUG(_filePos << " Parse '" << _val << "'");
+		EXML_DEBUG(_filePos << " parse '" << _val << "'");
 	}
 }
 
-bool exml::Node::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const
-{
+bool exml::Node::checkAvaillable(const etk::UniChar& _val, bool _firstChar) const {
 	if(    _val == '!'
 	    || _val == '"'
 	    || _val == '#'
@@ -96,13 +91,12 @@ bool exml::Node::CheckAvaillable(const etk::UniChar& _val, bool _firstChar) cons
 }
 
 
-int32_t exml::Node::CountWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const
-{
-	_filePos.Clear();
+int32_t exml::Node::countWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const {
+	_filePos.clear();
 	int32_t white=0;
-	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		_filePos.Check(_data[iii]);
-		if(true == _data[iii].IsWhiteChar()) {
+	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+		_filePos.check(_data[iii]);
+		if(true == _data[iii].isWhiteChar()) {
 			white++;
 		} else {
 			break;
@@ -112,8 +106,7 @@ int32_t exml::Node::CountWhiteChar(const etk::UString& _data, int32_t _pos, exml
 	return white;
 }
 
-void exml::Node::Clear(void)
-{
+void exml::Node::clear(void) {
 	m_value="";
-	m_pos.Clear();
+	m_pos.clear();
 }

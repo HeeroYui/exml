@@ -25,50 +25,50 @@ exml::Document::Document(void) :
 }
 
 
-bool exml::Document::IGenerate(etk::UString& _data, int32_t _indent) const
+bool exml::Document::iGenerate(etk::UString& _data, int32_t _indent) const
 {
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
-			m_listSub[iii]->IGenerate(_data, _indent);
+			m_listSub[iii]->iGenerate(_data, _indent);
 		}
 	}
 	return true;
 }
 
-bool exml::Document::Parse(const etk::UString& _data)
+bool exml::Document::parse(const etk::UString& _data)
 {
-	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.Size());
-	Clear();
-	// came from char ==> force in utf8 ...
+	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.size());
+	clear();
+	// came from char  == > force in utf8 ...
 	m_charset = unicode::EDN_CHARSET_UTF8;
 	exml::filePos filePos(1,0);
 	m_pos = filePos;
 	int32_t parsePos = 0;
-	return SubParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
+	return subParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
 }
 
-bool exml::Document::Generate(etk::UString& _data)
+bool exml::Document::generate(etk::UString& _data)
 {
 	_data = "";
-	return IGenerate(_data,0);
+	return iGenerate(_data,0);
 }
 
-bool exml::Document::Load(const etk::UString& _file)
+bool exml::Document::load(const etk::UString& _file)
 {
 	// Start loading the XML : 
 	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
-	Clear();
+	clear();
 	etk::FSNode tmpFile(_file);
-	if (false == tmpFile.Exist()) {
+	if (false == tmpFile.exist()) {
 		EXML_ERROR("File Does not exist : " << _file);
 		return false;
 	}
-	int64_t fileSize = tmpFile.FileSize();
-	if (0==fileSize) {
+	int64_t fileSize = tmpFile.fileSize();
+	if (0 == fileSize) {
 		EXML_ERROR("This file is empty : " << _file);
 		return false;
 	}
-	if (false == tmpFile.FileOpenRead()) {
+	if (false == tmpFile.fileOpenRead()) {
 		EXML_ERROR("Can not open (r) the file : " << _file);
 		return false;
 	}
@@ -81,54 +81,54 @@ bool exml::Document::Load(const etk::UString& _file)
 	// TODO :  change this ... get the charset from the Declaration element ...
 	memset(fileBuffer, 0, (fileSize+5)*sizeof(char));
 	// load data from the file :
-	tmpFile.FileRead(fileBuffer, 1, fileSize);
+	tmpFile.fileRead(fileBuffer, 1, fileSize);
 	// close the file:
-	tmpFile.FileClose();
+	tmpFile.fileClose();
 	
 	// convert in UTF8 :
 	etk::UString tmpDataUnicode(fileBuffer, unicode::EDN_CHARSET_UTF8);
 	// remove temporary buffer:
 	delete(fileBuffer);
 	// parse the data :
-	bool ret = Parse(tmpDataUnicode);
+	bool ret = parse(tmpDataUnicode);
 	//Display();
 	return ret;
 }
 
-bool exml::Document::Store(const etk::UString& _file)
+bool exml::Document::store(const etk::UString& _file)
 {
 	etk::UString createData;
-	if (false == Generate(createData)) {
+	if (false == generate(createData)) {
 		EXML_ERROR("Error while creating the XML : " << _file);
 		return false;
 	}
 	etk::FSNode tmpFile(_file);
-	if (false == tmpFile.FileOpenWrite()) {
+	if (false == tmpFile.fileOpenWrite()) {
 		EXML_ERROR("Can not open (w) the file : " << _file);
 		return false;
 	}
 	etk::Char endTable = createData.c_str();
-	if (tmpFile.FileWrite(endTable, sizeof(char), endTable.Size()) != endTable.Size()) {
+	if (tmpFile.fileWrite(endTable, sizeof(char), endTable.size()) != endTable.size()) {
 		EXML_ERROR("Error while writing output XML file : " << _file);
-		tmpFile.FileClose();
+		tmpFile.fileClose();
 		return false;
 	}
-	tmpFile.FileClose();
+	tmpFile.fileClose();
 	return true;
 }
 
-void exml::Document::Display(void)
+void exml::Document::display(void)
 {
 	etk::UString tmpp;
-	IGenerate(tmpp, 0);
+	iGenerate(tmpp, 0);
 	EXML_INFO("Generated XML : \n" << tmpp);
 }
 
-etk::UString CreatePosPointer(const etk::UString& _line, int32_t _pos)
+etk::UString createPosPointer(const etk::UString& _line, int32_t _pos)
 {
 	etk::UString out;
 	int32_t iii;
-	for (iii=0; iii<_pos && iii<_line.Size(); iii++) {
+	for (iii=0; iii<_pos && iii<_line.size(); iii++) {
 		if (_line[iii] == '\t') {
 			out += "\t";
 		} else {
@@ -142,27 +142,27 @@ etk::UString CreatePosPointer(const etk::UString& _line, int32_t _pos)
 	return out;
 }
 
-void exml::Document::DisplayError(void)
+void exml::Document::displayError(void)
 {
-	if (m_comment.Size()==0) {
+	if (m_comment.size() == 0) {
 		EXML_ERROR("No error detected ???");
 		return;
 	}
 	EXML_ERROR(m_filePos << " " << m_comment << "\n"
 	           << m_Line << "\n"
-	           << CreatePosPointer(m_Line, m_filePos.GetCol()) );
+	           << createPosPointer(m_Line, m_filePos.getCol()) );
 	#ifdef ENABLE_CRITICAL_WHEN_ERROR
 		EXML_CRITICAL("detect error");
 	#endif
 }
 
-void exml::Document::CreateError(const etk::UString& _data, int32_t _pos, const exml::filePos& _filePos, const etk::UString& _comment)
+void exml::Document::createError(const etk::UString& _data, int32_t _pos, const exml::filePos& _filePos, const etk::UString& _comment)
 {
 	m_comment = _comment;
-	m_Line = _data.ExtractLine(_pos);
+	m_Line = _data.extractLine(_pos);
 	m_filePos = _filePos;
-	if (true==m_writeErrorWhenDetexted) {
-		DisplayError();
+	if (true == m_writeErrorWhenDetexted) {
+		displayError();
 	}
 }
 

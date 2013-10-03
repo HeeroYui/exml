@@ -12,9 +12,8 @@
 #include <exml/Node.h>
 #include <exml/Document.h>
 
-namespace exml
-{
-	bool Test(void);
+namespace exml {
+	bool test(void);
 };
 
 

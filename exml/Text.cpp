@@ -13,16 +13,14 @@
 #undef __class__
 #define __class__	"Text"
 
-bool exml::Text::IGenerate(etk::UString& _data, int32_t _indent) const
-{
+bool exml::Text::iGenerate(etk::UString& _data, int32_t _indent) const {
 	_data += m_value;
 	return true;
 }
 
-int32_t exml::Text::CountLines(void) const
-{
+int32_t exml::Text::countLines(void) const {
 	int32_t count = 1;
-	for (int32_t iii=0; iii<m_value.Size(); iii++) {
+	for (int32_t iii=0; iii<m_value.size(); iii++) {
 		if(m_value[iii] == '\n') {
 			count++;
 		}
@@ -30,16 +28,15 @@ int32_t exml::Text::CountLines(void) const
 	return count;
 }
 
-bool exml::Text::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
-{
+bool exml::Text::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'text'");
 	m_pos = _filePos;
 	// search end of the comment :
-	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
+	for (int32_t iii=_pos; iii<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
-			DrawElementParsed(_data[iii], _filePos);
+			drawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_filePos.Check(_data[iii]) == true) {
+		if (_filePos.check(_data[iii]) == true) {
 			continue;
 		}
 		if(    _data[iii] == '>'
@@ -47,34 +44,33 @@ bool exml::Text::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSens
 			// search whitespace :
 			int32_t newEnd=iii;
 			for( int32_t jjj=iii-1; jjj>_pos; jjj--) {
-				if(true==_data[jjj].IsWhiteChar()) {
+				if(true == _data[jjj].isWhiteChar()) {
 					newEnd = jjj;
 				} else {
 					break;
 				}
 			}
 			// find end of value:
-			m_value = _data.Extract(_pos, newEnd);
+			m_value = _data.extract(_pos, newEnd);
 			EXML_VERBOSE(" find text '" << m_value << "'");
 			_pos = iii-1;
 			return true;
 		}
 	}
 	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
-	_pos = _data.Size();
+	_pos = _data.size();
 	return false;
 }
 
-bool exml::TextCDATA::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
-{
+bool exml::TextCDATA::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'text::CDATA'");
 	m_pos = _filePos;
 	// search end of the comment :
-	for (int32_t iii=_pos; iii+2<_data.Size(); iii++) {
+	for (int32_t iii=_pos; iii+2<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
-			DrawElementParsed(_data[iii], _filePos);
+			drawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_filePos.Check(_data[iii]) == true) {
+		if (_filePos.check(_data[iii]) == true) {
 			continue;
 		}
 		if(    _data[iii] == ']'
@@ -82,14 +78,14 @@ bool exml::TextCDATA::IParse(const etk::UString& _data, int32_t& _pos, bool _cas
 		    && _data[iii+2] == '>') {
 			// find end of value:
 			_filePos += 2;
-			m_value = _data.Extract(_pos, iii);
+			m_value = _data.extract(_pos, iii);
 			EXML_VERBOSE(" find text CDATA '" << m_value << "'");
 			_pos = iii+2;
 			return true;
 		}
 	}
 	CREATE_ERROR(_doc, _data, _pos, _filePos, "text CDATA got end of file without finding end node");
-	_pos = _data.Size();
+	_pos = _data.size();
 	return false;
 }
 

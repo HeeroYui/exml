@@ -35,57 +35,57 @@ namespace exml
 			etk::Vector<exml::Node*> m_listSub;
 		public:
 			/**
-			 * @brief Get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).
+			 * @brief get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).
 			 * @return a number >=0.
 			 */
-			int32_t Size(void) const { return m_listSub.Size(); };
+			int32_t size(void) const { return m_listSub.size(); };
 			/**
-			 * @brief Add a node at the element (not exml::Attribute (move in the attribute automaticly).
+			 * @brief add a node at the element (not exml::Attribute (move in the attribute automaticly).
 			 * @param[in] _node Pointer of the node to add.
 			 */
-			void Append(Node* _node);
+			void append(Node* _node);
 			/**
-			 * @brief Get the type of the element id.
+			 * @brief get the type of the element id.
 			 * @param[in] _id Id of the element.
 			 * @return the Current type of the element or exml::typeUnknow.
 			 */
-			      nodeType_te GetType(int32_t _id);
-			const nodeType_te GetType(int32_t _id) const;
+			      nodeType_te getType(int32_t _id);
+			const nodeType_te getType(int32_t _id) const;
 			/**
-			 * @brief Get the Node pointer of the element id.
+			 * @brief get the Node pointer of the element id.
 			 * @param[in] _id Id of the element.
 			 * @return Pointer on node.
 			 */
-			      Node* GetNode(int32_t _id);
-			const Node* GetNode(int32_t _id) const;
+			      Node* getNode(int32_t _id);
+			const Node* getNode(int32_t _id) const;
 			/**
-			 * @brief Get the element casted in Element (if the node is not an element return NULL).
+			 * @brief get the element casted in Element (if the node is not an element return NULL).
 			 * @param[in] _id Id of the element.
 			 * @return Pointer on the element or NULL.
 			 */
-			      Element* GetElement(int32_t _id);
-			const Element* GetElement(int32_t _id) const;
+			      Element* getElement(int32_t _id);
+			const Element* getElement(int32_t _id) const;
 			/**
-			 * @brief Get an element with his name (work only with exml::Element)
+			 * @brief get an element with his name (work only with exml::Element)
 			 * @param[in] _name Name of the element that is requested
 			 * @return Pointer on the element or NULL.
 			 */
-			      Element* GetNamed(const etk::UString& _name);
-			const Element* GetNamed(const etk::UString& _name) const;
+			      Element* getNamed(const etk::UString& _name);
+			const Element* getNamed(const etk::UString& _name) const;
 			/**
-			 * @brief Get the internal data of the element (if the element has some sub node thay are converted in xml string ==> like this it is not needed to use <![CDATA[...]]>
+			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 			 * @return the curent data string.
 			 */
-			etk::UString GetText(void);
+			etk::UString getText(void);
 		protected:
-			bool SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
+			bool subParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
 		public: // herited function:
-			virtual nodeType_te GetType(void) const { return typeElement; };
-			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual exml::Element* ToElement(void) { return this; };
-			virtual const exml::Element* ToElement(void) const { return this; };
-			virtual void Clear(void);
+			virtual nodeType_te getType(void) const { return typeElement; };
+			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual exml::Element* toElement(void) { return this; };
+			virtual const exml::Element* toElement(void) const { return this; };
+			virtual void clear(void);
 	};
 };
 

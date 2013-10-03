@@ -56,9 +56,8 @@ namespace exml
 			~filePos(void) { };
 			filePos& operator ++(void) { m_col++; return *this; };
 			filePos& operator --(void) { m_col--; if(m_col<0) { m_col=0;} return *this; };
-			const filePos& operator +=(const filePos& _obj)
-			{
-				if (_obj.m_line==0) {
+			const filePos& operator +=(const filePos& _obj) {
+				if (_obj.m_line == 0) {
 					m_col += _obj.m_col;
 				} else {
 					m_col = _obj.m_col;
@@ -66,39 +65,34 @@ namespace exml
 				}
 				return *this;
 			};
-			const filePos& operator +=(int32_t _col)
-			{
+			const filePos& operator +=(int32_t _col) {
 				m_col += _col;
 				return *this;
 			};
-			const filePos& operator= (const filePos& _obj )
-			{
+			const filePos& operator= (const filePos& _obj ) {
 				m_col = _obj.m_col;
 				m_line = _obj.m_line;
 				return *this;
 			}
-			void NewLine(void) { m_col=0; m_line++; };
-			bool Check(const etk::UniChar& _val)
-			{
+			void newLine(void) { m_col=0; m_line++; };
+			bool check(const etk::UniChar& _val) {
 				m_col++;
-				if (_val=='\n') {
-					NewLine();
+				if (_val == '\n') {
+					newLine();
 					return true;
 				}
 				return false;
 			}
-			void Set(int32_t _line, int32_t _col)
-			{
+			void set(int32_t _line, int32_t _col) {
 				m_col = _col;
 				m_line = _line;
 			}
-			void Clear(void)
-			{
+			void clear(void) {
 				m_col = 0;
 				m_line = 0;
 			}
-			int32_t GetCol(void) const { return m_col; };
-			int32_t GetLine(void) const { return m_line; };
+			int32_t getCol(void) const { return m_col; };
+			int32_t getLine(void) const { return m_line; };
 	};
 	etk::CCout& operator <<(etk::CCout& _os, const filePos& _obj);
 	
@@ -120,66 +114,66 @@ namespace exml
 			virtual ~Node(void) { };
 		public:
 			/**
-			 * @brief Parse the Current node [pure VIRUAL]
+			 * @brief parse the Current node [pure VIRUAL]
 			 * @param[in] _data data string to parse.
 			 * @param[in,out] _pos position in the string to start parse, return the position end of parsing.
 			 * @param[in] _caseSensitive Request a parsion of element that is not case sensitive (all element is in low case)
 			 * @param[in,out] file parsing position (line x col x)
 			 * @return false if an error occured.
 			 */
-			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
+			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
 			/**
-			 * @brief Generate a string with the tree of the xml
+			 * @brief generate a string with the tree of the xml
 			 * @param[in,out] _data string where to add the elements
 			 * @param[in] current indentation of the file
 			 * @return false if an error occured.
 			 */
-			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const { return true; };
+			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const { return true; };
 		protected:
-			exml::filePos m_pos; //!< position in the readed file ==> not correct when the file is generated
+			exml::filePos m_pos; //!< position in the readed file  == > not correct when the file is generated
 		public:
 			/**
-			 * @brief Get the current position where the element is in the file
+			 * @brief get the current position where the element is in the file
 			 */
-			const exml::filePos& GetPos(void) { return m_pos; };
+			const exml::filePos& getPos(void) { return m_pos; };
 		protected:
 			etk::UString m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
 		public:
 			/**
-			 * @brief Set the value of the node.
+			 * @brief set the value of the node.
 			 * @param[in] _value New value of the node.
 			 */
-			virtual void SetValue(etk::UString _value) { m_value = _value; };
+			virtual void setValue(etk::UString _value) { m_value = _value; };
 			/**
-			 * @brief Get the current element Value.
+			 * @brief get the current element Value.
 			 * @return the reference of the string value.
 			 */
-			virtual const etk::UString& GetValue(void) const { return m_value; };
+			virtual const etk::UString& getValue(void) const { return m_value; };
 		public:
 			/**
-			 * @brief Get the node type.
+			 * @brief get the node type.
 			 * @return the type of the Node.
 			 */
-			virtual nodeType_te GetType(void) const { return typeNode; };
+			virtual nodeType_te getType(void) const { return typeNode; };
 		protected:
 			/**
-			 * @brief Add indentation of the string input.
+			 * @brief add indentation of the string input.
 			 * @param[in,out] _data String where the indentation is done.
 			 * @param[in] _indent Number of tab to add at the string.
 			 */
-			void AddIndent(etk::UString& _data, int32_t _indent) const;
+			void addIndent(etk::UString& _data, int32_t _indent) const;
 			/**
 			 * @brief Display the cuurent element that is curently parse.
 			 * @param[in] _val Char that is parsed.
 			 * @param[in] _filePos Position of the char in the file.
 			 */
-			void DrawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const;
+			void drawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const;
 			/**
 			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \n\t\r and for first char : not -.0123456789).
 			 * @param[in] _val Value to check the conformity.
 			 * @param[in] _firstChar True if the element check is the first char.
 			 */
-			bool CheckAvaillable(const etk::UniChar& _val, bool _firstChar) const;
+			bool checkAvaillable(const etk::UniChar& _val, bool _firstChar) const;
 			/**
 			 * @brief count the number of white char in the string from the specify position (stop at the first element that is not a white char)
 			 * @param[in] _data Data to parse.
@@ -187,80 +181,80 @@ namespace exml
 			 * @param[out] _filePos new poistion of te file to add.
 			 * @return number of white element.
 			 */
-			int32_t CountWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const;
+			int32_t countWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const;
 		public:
 			/**
 			 * @brief Cast the element in a Document if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Document* ToDocument(void) { return NULL; };
-			virtual const exml::Document* ToDocument(void) const { return NULL; };
+			virtual exml::Document* toDocument(void) { return NULL; };
+			virtual const exml::Document* toDocument(void) const { return NULL; };
 			/**
 			 * @brief Cast the element in a Attribute if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Attribute* ToAttribute(void) { return NULL; };
-			virtual const exml::Attribute* ToAttribute(void) const { return NULL; };
+			virtual exml::Attribute* toAttribute(void) { return NULL; };
+			virtual const exml::Attribute* toAttribute(void) const { return NULL; };
 			/**
 			 * @brief Cast the element in a Comment if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Comment* ToComment(void) { return NULL; };
-			virtual const exml::Comment* ToComment(void) const { return NULL; };
+			virtual exml::Comment* toComment(void) { return NULL; };
+			virtual const exml::Comment* toComment(void) const { return NULL; };
 			/**
 			 * @brief Cast the element in a Declaration if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Declaration* ToDeclaration(void) { return NULL; };
-			virtual const exml::Declaration* ToDeclaration(void) const { return NULL; };
+			virtual exml::Declaration* toDeclaration(void) { return NULL; };
+			virtual const exml::Declaration* toDeclaration(void) const { return NULL; };
 			/**
 			 * @brief Cast the element in a Element if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Element* ToElement(void) { return NULL; };
-			virtual const exml::Element* ToElement(void) const { return NULL; };
+			virtual exml::Element* toElement(void) { return NULL; };
+			virtual const exml::Element* toElement(void) const { return NULL; };
 			/**
 			 * @brief Cast the element in a Text if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Text* ToText(void) { return NULL; };
-			virtual const exml::Text* ToText(void) const{ return NULL; };
+			virtual exml::Text* toText(void) { return NULL; };
+			virtual const exml::Text* toText(void) const{ return NULL; };
 			
 			/**
-			 * @brief Check if the node is a exml::Document
+			 * @brief check if the node is a exml::Document
 			 * @return true if the node is a exml::Document
 			 */
-			bool IsDocument(void) const { return GetType()==exml::typeDocument; };
+			bool isDocument(void) const { return getType() == exml::typeDocument; };
 			/**
-			 * @brief Check if the node is a exml::Attribute
+			 * @brief check if the node is a exml::Attribute
 			 * @return true if the node is a exml::Attribute
 			 */
-			bool IsAttribute(void) const { return GetType()==exml::typeAttribute; };
+			bool isAttribute(void) const { return getType() == exml::typeAttribute; };
 			/**
-			 * @brief Check if the node is a exml::Comment
+			 * @brief check if the node is a exml::Comment
 			 * @return true if the node is a exml::Comment
 			 */
-			bool IsComment(void) const { return GetType()==exml::typeComment; };
+			bool isComment(void) const { return getType() == exml::typeComment; };
 			/**
-			 * @brief Check if the node is a exml::Declaration
+			 * @brief check if the node is a exml::Declaration
 			 * @return true if the node is a exml::Declaration
 			 */
-			bool IsDeclaration(void) const { return GetType()==exml::typeDeclaration; };
+			bool isDeclaration(void) const { return getType() == exml::typeDeclaration; };
 			/**
-			 * @brief Check if the node is a exml::Element
+			 * @brief check if the node is a exml::Element
 			 * @return true if the node is a exml::Element
 			 */
-			bool IsElement(void) const { return GetType()==exml::typeElement; };
+			bool isElement(void) const { return getType() == exml::typeElement; };
 			/**
-			 * @brief Check if the node is a exml::Text
+			 * @brief check if the node is a exml::Text
 			 * @return true if the node is a exml::Text
 			 */
-			bool IsText(void) const { return GetType()==exml::typeText; };
+			bool isText(void) const { return getType() == exml::typeText; };
 			
 			/**
-			 * @brief Clear the Node
+			 * @brief clear the Node
 			 */
-			virtual void Clear(void);
+			virtual void clear(void);
 	};
 };
 

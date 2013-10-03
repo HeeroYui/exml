@@ -23,42 +23,42 @@
 exml::DeclarationXML::DeclarationXML(const etk::UString& _version, unicode::charset_te _format, bool _standalone) :
 	exml::Declaration("xml")
 {
-	if (_version.Size()!=0) {
-		SetAttribute("version", _version);
+	if (_version.size()!=0) {
+		setAttribute("version", _version);
 	}
 	if (_format!=unicode::EDN_CHARSET_UTF8) {
-		SetAttribute("encoding", "UTF-8");
+		setAttribute("encoding", "UTF-8");
 	} else {
 		EXML_ERROR("Actually does not supported other charset than UTF8");
-		SetAttribute("encoding", "UTF-8");
+		setAttribute("encoding", "UTF-8");
 	}
-	if (_standalone==true) {
-		SetAttribute("standalone", "true");
+	if (_standalone == true) {
+		setAttribute("standalone", "true");
 	} else {
-		SetAttribute("standalone", "true");
+		setAttribute("standalone", "true");
 	}
 }
 
-bool exml::Declaration::IGenerate(etk::UString& _data, int32_t _indent) const
+bool exml::Declaration::iGenerate(etk::UString& _data, int32_t _indent) const
 {
-	AddIndent(_data, _indent);
+	addIndent(_data, _indent);
 	_data += "<?";
 	_data += m_value;
-	exml::AttributeList::IGenerate(_data, _indent);
+	exml::AttributeList::iGenerate(_data, _indent);
 	_data += "?>\n";
 	return true;
 }
 
-bool exml::Declaration::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Declaration::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :
-	for (int32_t iii=_pos; iii+1<_data.Size(); iii++) {
+	for (int32_t iii=_pos; iii+1<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
-			DrawElementParsed(_data[iii], _filePos);
+		 drawElementParsed(_data[iii], _filePos);
 		#endif
-		if (_filePos.Check(_data[iii])==true) {
+		if (_filePos.check(_data[iii]) == true) {
 			continue;
 		}
 		if(    _data[iii] == '>'
@@ -74,25 +74,25 @@ bool exml::Declaration::IParse(const etk::UString& _data, int32_t& _pos, bool _c
 			_pos = iii+1;
 			return true;
 		}
-		if (true == CheckAvaillable(_data[iii], true)) {
-			// we find an attibute ==> create a new and parse it :
+		if (true == checkAvaillable(_data[iii], true)) {
+			// we find an attibute  == > create a new and parse it :
 			exml::Attribute* attribute = new exml::Attribute();
-			if (NULL==attribute) {
+			if (NULL == attribute) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");
 				return false;
 			}
 			_pos = iii;
-			if (false==attribute->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+			if (false == attribute->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 				delete(attribute);
 				return false;
 			}
 			iii = _pos;
-			m_listAttribute.PushBack(attribute);
+			m_listAttribute.pushBack(attribute);
 			continue;
 		}
 	}
 	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
-	_pos = _data.Size();
+	_pos = _data.size();
 	return false;
 }
 

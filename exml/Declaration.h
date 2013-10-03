@@ -30,11 +30,11 @@ namespace exml
 			 */
 			virtual ~Declaration(void) { };
 		public: // herited function:
-			virtual nodeType_te GetType(void) const { return typeAttribute; };
-			virtual bool IGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual bool IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual exml::Declaration* ToDeclaration(void) { return this; };
-			virtual const exml::Declaration* ToDeclaration(void) const { return this; };
+			virtual nodeType_te getType(void) const { return typeAttribute; };
+			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual exml::Declaration* toDeclaration(void) { return this; };
+			virtual const exml::Declaration* toDeclaration(void) const { return this; };
 	};
 	class DeclarationXML : public exml::Declaration
 	{

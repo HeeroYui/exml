@@ -18,161 +18,155 @@
 #define __class__	"Element"
 
 
-exml::Element::~Element(void)
-{
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+exml::Element::~Element(void) {
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			delete(m_listSub[iii]);
 			m_listSub[iii]=NULL;
 		}
 	}
-	m_listSub.Clear();
+	m_listSub.clear();
 }
 
-
-
-exml::nodeType_te exml::Element::GetType(int32_t _id)
-{
-	exml::Node* tmpp = GetNode(_id);
-	if (NULL==tmpp) {
+exml::nodeType_te exml::Element::getType(int32_t _id) {
+	exml::Node* tmpp = getNode(_id);
+	if (NULL == tmpp) {
 		return exml::typeUnknow;
 	}
-	return tmpp->GetType();
+	return tmpp->getType();
 }
-const exml::nodeType_te exml::Element::GetType(int32_t _id) const
-{
-	const exml::Node* tmpp = GetNode(_id);
-	if (NULL==tmpp) {
+const exml::nodeType_te exml::Element::getType(int32_t _id) const {
+	const exml::Node* tmpp = getNode(_id);
+	if (NULL == tmpp) {
 		return exml::typeUnknow;
 	}
-	return tmpp->GetType();
+	return tmpp->getType();
 }
 
-
-exml::Node* exml::Element::GetNode(int32_t _id)
-{
-	if (_id <0 || _id>m_listSub.Size()) {
+exml::Node* exml::Element::getNode(int32_t _id) {
+	if (_id <0 || _id>m_listSub.size()) {
 		return NULL;
 	}
 	return m_listSub[_id];
 }
-const exml::Node* exml::Element::GetNode(int32_t _id) const
+
+const exml::Node* exml::Element::getNode(int32_t _id) const
 {
-	if (_id <0 || _id>m_listSub.Size()) {
+	if (_id <0 || _id>m_listSub.size()) {
 		return NULL;
 	}
 	return m_listSub[_id];
 }
 
 
-exml::Element* exml::Element::GetElement(int32_t _id)
+exml::Element* exml::Element::getElement(int32_t _id)
 {
-	exml::Node* tmpp = GetNode(_id);
-	if (NULL==tmpp) {
+	exml::Node* tmpp = getNode(_id);
+	if (NULL == tmpp) {
 		return NULL;
 	}
-	return tmpp->ToElement();
+	return tmpp->toElement();
 }
-const exml::Element* exml::Element::GetElement(int32_t _id) const
+const exml::Element* exml::Element::getElement(int32_t _id) const
 {
-	const exml::Node* tmpp = GetNode(_id);
-	if (NULL==tmpp) {
+	const exml::Node* tmpp = getNode(_id);
+	if (NULL == tmpp) {
 		return NULL;
 	}
-	return tmpp->ToElement();
+	return tmpp->toElement();
 }
 
 
-exml::Element* exml::Element::GetNamed(const etk::UString& _name)
+exml::Element* exml::Element::getNamed(const etk::UString& _name)
 {
-	if (_name.Size()==0) {
+	if (_name.size() == 0) {
 		return NULL;
 	}
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    NULL != m_listSub[iii]
-		    && m_listSub[iii]->GetType() == exml::typeElement
-		    && m_listSub[iii]->GetValue() == _name) {
-			if (NULL==m_listSub[iii]) {
+		    && m_listSub[iii]->getType() == exml::typeElement
+		    && m_listSub[iii]->getValue() == _name) {
+			if (NULL == m_listSub[iii]) {
 				return NULL;
 			}
-			return m_listSub[iii]->ToElement();
+			return m_listSub[iii]->toElement();
 		}
 	}
 	return NULL;
 }
-const exml::Element* exml::Element::GetNamed(const etk::UString& _name) const
+const exml::Element* exml::Element::getNamed(const etk::UString& _name) const
 {
-	if (_name.Size()==0) {
+	if (_name.size() == 0) {
 		return NULL;
 	}
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    NULL != m_listSub[iii]
-		    && m_listSub[iii]->GetType() == exml::typeElement
-		    && m_listSub[iii]->GetValue() == _name) {
-			if (NULL==m_listSub[iii]) {
+		    && m_listSub[iii]->getType() == exml::typeElement
+		    && m_listSub[iii]->getValue() == _name) {
+			if (NULL == m_listSub[iii]) {
 				return NULL;
 			}
-			return m_listSub[iii]->ToElement();
+			return m_listSub[iii]->toElement();
 		}
 	}
 	return NULL;
 }
 
-void exml::Element::Append(exml::Node* _node)
+void exml::Element::append(exml::Node* _node)
 {
 	if (_node == NULL) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
-	if (_node->GetType()==exml::typeAttribute) {
-		AppendAttribute(_node->ToAttribute());
+	if (_node->getType() == exml::typeAttribute) {
+		appendAttribute(_node->toAttribute());
 		return;
 	}
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (m_listSub[iii] == _node) {
 			EXML_ERROR("Try to add a node that is already added before !!!");
 			return;
 		}
 	}
-	m_listSub.PushBack(_node);
+	m_listSub.pushBack(_node);
 }
 
-etk::UString exml::Element::GetText(void)
+etk::UString exml::Element::getText(void)
 {
-	// TODO : Add more capabilities ...
+	// TODO : add more capabilities ...
 	etk::UString res;
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
-			m_listSub[iii]->IGenerate(res, 0);
+			m_listSub[iii]->iGenerate(res, 0);
 		}
 	}
 	return res;
 }
 
 
-bool exml::Element::IGenerate(etk::UString& _data, int32_t _indent) const
+bool exml::Element::iGenerate(etk::UString& _data, int32_t _indent) const
 {
-	AddIndent(_data, _indent);
+	addIndent(_data, _indent);
 	_data += "<";
 	_data += m_value;
-	exml::AttributeList::IGenerate(_data, _indent);
+	exml::AttributeList::iGenerate(_data, _indent);
 	
-	if (m_listSub.Size()>0) {
-		if(    m_listSub.Size()==1
+	if (m_listSub.size()>0) {
+		if(    m_listSub.size() == 1
 		    && m_listSub[0] != NULL
-		    && m_listSub[0]->GetType() == exml::typeText
-		    && static_cast<exml::Text*>(m_listSub[0])->CountLines()==1) {
+		    && m_listSub[0]->getType() == exml::typeText
+		    && static_cast<exml::Text*>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
-			m_listSub[0]->IGenerate(_data,0);
+			m_listSub[0]->iGenerate(_data,0);
 		} else {
 			_data += ">\n";
 			
-			for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+			for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 				if (NULL!=m_listSub[iii]) {
-					m_listSub[iii]->IGenerate(_data, _indent+1);
+					m_listSub[iii]->iGenerate(_data, _indent+1);
 				}
 			}
-			AddIndent(_data, _indent);
+			addIndent(_data, _indent);
 		}
 		_data += "</";
 		_data += m_value;
@@ -184,20 +178,20 @@ bool exml::Element::IGenerate(etk::UString& _data, int32_t _indent) const
 }
 
 
-bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode)
+bool exml::Element::subParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode)
 {
 	EXML_PARSE_ELEMENT(" start subParse ... " << _pos << " " << _filePos);
-	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		_filePos.Check(_data[iii]);
+	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+		_filePos.check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
-			DrawElementParsed(_data[iii], _filePos);
+			drawElementParsed(_data[iii], _filePos);
 		#endif
 		exml::filePos tmpPos;
 		if (_data[iii] == '<') {
-			int32_t white = CountWhiteChar(_data, iii+1, tmpPos);
-			if (iii+white+1>=_data.Size()) {
+			int32_t white = countWhiteChar(_data, iii+1, tmpPos);
+			if (iii+white+1>=_data.size()) {
 				_filePos+=tmpPos;
-				CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<' char ==> invalide XML");
+				CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<' char  == > invalide XML");
 				_pos = iii+white;
 				return false;
 			}
@@ -211,79 +205,79 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 			if(_data[iii+white+1] == '?') {
 				++tmpPos;
 				// TODO : white space ...
-				if( false == CheckAvaillable(_data[iii+white+2], true) ) {
+				if( false == checkAvaillable(_data[iii+white+2], true) ) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Find unavaillable name in the Declaration node...");
 					_pos = iii+white+1;
 					return false;
 				}
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
 				int32_t endPosName = iii+white+1;
-				// Generate element name ...
-				for (int32_t jjj=iii+white+2; jjj<_data.Size(); jjj++) {
-					if(true == CheckAvaillable(_data[jjj], false) ) {
+				// generate element name ...
+				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
+					if(true == checkAvaillable(_data[jjj], false) ) {
 						// we find the end ...
 						endPosName = jjj;
 					} else {
 						break;
 					}
-					tmpPos.Check(_data[jjj]);
+					tmpPos.check(_data[jjj]);
 				}
-				etk::UString tmpname = _data.Extract(iii+white+2, endPosName+1);
-				if (true==_caseSensitive) {
-					tmpname.Lower();
+				etk::UString tmpname = _data.extract(iii+white+2, endPosName+1);
+				if (true == _caseSensitive) {
+					tmpname.lower();
 				}
 				// Find declaration balise
 				exml::Declaration* declaration = new exml::Declaration(tmpname);
-				if (NULL==declaration) {
+				if (NULL == declaration) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation Error...");
 					return false;
 				}
 				_filePos += tmpPos;
 				_pos = endPosName+1;
-				if (false==declaration->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+				if (false == declaration->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 					delete(declaration);
 					return false;
 				}
 				iii = _pos;
-				m_listSub.PushBack(declaration);
+				m_listSub.pushBack(declaration);
 				continue;
 			}
 			if(_data[iii+white+1] == '!') {
 				++tmpPos;
 				// Find special block element
-				if (iii+white+2>=_data.Size()) {
-					CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<!' chars ==> invalide XML");
+				if (iii+white+2>=_data.size()) {
+					CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<!' chars  == > invalide XML");
 					return false;
 				}
 				if(_data[iii+white+2] == '-') {
 					++tmpPos;
-					if (iii+white+3>=_data.Size()) {
-						CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<!-' chars ==> invalide XML");
+					if (iii+white+3>=_data.size()) {
+						CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<!-' chars  == > invalide XML");
 						return false;
 					}
 					if(_data[iii+white+3] != '-') {
-						CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("Element parse with '<!-") + _data[iii+3] + "' chars ==> invalide XML");
+						CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("Element parse with '<!-") + _data[iii+3] + "' chars  == > invalide XML");
 						return false;
 					}
 					++tmpPos;
 					// find comment:
 					exml::Comment* comment = new exml::Comment();
-					if (NULL==comment) {
+					if (NULL == comment) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
 					}
 					_pos = iii+white+4;
 					_filePos += tmpPos;
-					if (false==comment->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+					if (false == comment->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 						delete(comment);
 						return false;
 					}
 					iii = _pos;
-					m_listSub.PushBack(comment);
+					m_listSub.pushBack(comment);
 				} else if (_data[iii+white+2] == '[') {
 					++tmpPos;
-					if (iii+white+8>=_data.Size()) {
-						CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<![' chars ==> invalide XML");
+					if (iii+white+8>=_data.size()) {
+						CREATE_ERROR(_doc, _data, _pos, _filePos, "End file with '<![' chars  == > invalide XML");
 						return false;
 					}
 					if(    _data[iii+white+3] != 'C'
@@ -292,26 +286,26 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 					    || _data[iii+white+6] != 'T'
 					    || _data[iii+white+7] != 'A'
 					    || _data[iii+white+8] != '[') {
-						CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("Element parse with '<![") + _data[iii+white+3] + _data[iii+white+4] + _data[iii+white+5] + _data[iii+white+6] + _data[iii+white+7] + _data[iii+white+8] + "' chars ==> invalide XML");
+						CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("Element parse with '<![") + _data[iii+white+3] + _data[iii+white+4] + _data[iii+white+5] + _data[iii+white+6] + _data[iii+white+7] + _data[iii+white+8] + "' chars  == > invalide XML");
 						return false;
 					}
 					tmpPos+=6;
 					// find text:
 					exml::TextCDATA* text = new exml::TextCDATA();
-					if (NULL==text) {
+					if (NULL == text) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
 					}
 					_pos = iii+9+white;
 					_filePos += tmpPos;
-					if (false==text->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+					if (false == text->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 						delete(text);
 						return false;
 					}
 					iii = _pos;
-					m_listSub.PushBack(text);
+					m_listSub.pushBack(text);
 				} else {
-					CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("End file with '<!") + _data[iii+white+2] + "' chars ==> invalide XML");
+					CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("End file with '<!") + _data[iii+white+2] + "' chars  == > invalide XML");
 					return false;
 				}
 				
@@ -321,28 +315,28 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				++tmpPos;
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
 				int32_t endPosName = iii+white+1;
-				// Generate element name ...
-				for (int32_t jjj=iii+white+2; jjj<_data.Size(); jjj++) {
-					if(true == CheckAvaillable(_data[jjj], false) ) {
+				// generate element name ...
+				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
+					if(true == checkAvaillable(_data[jjj], false) ) {
 						// we find the end ...
 						endPosName = jjj;
 					} else {
 						break;
 					}
-					tmpPos.Check(_data[jjj]);
+					tmpPos.check(_data[jjj]);
 				}
-				etk::UString tmpname = _data.Extract(iii+white+2, endPosName+1);
-				if (true==_caseSensitive) {
-					tmpname.Lower();
+				etk::UString tmpname = _data.extract(iii+white+2, endPosName+1);
+				if (true == _caseSensitive) {
+					tmpname.lower();
 				}
 				if( tmpname == m_value) {
 					// find end of node :
 					// find > element ... 
-					for (int32_t jjj=endPosName+1; jjj<_data.Size(); jjj++) {
+					for (int32_t jjj=endPosName+1; jjj<_data.size(); jjj++) {
 						#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
-							DrawElementParsed(_data[jjj], _filePos);
+							drawElementParsed(_data[jjj], _filePos);
 						#endif
-						if (true==tmpPos.Check(_data[jjj])) {
+						if (true == tmpPos.check(_data[jjj])) {
 							continue;
 						}
 						if(_data[jjj] == '>') {
@@ -363,44 +357,44 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				}
 			}
 			if (_data[iii+white+1] == '>') {
-				// end of something ==> this is really bad
-				CREATE_ERROR(_doc, _data, _pos, _filePos, "Find '>' chars ==> invalide XML");
+				// end of something  == > this is really bad
+				CREATE_ERROR(_doc, _data, _pos, _filePos, "Find '>' chars  == > invalide XML");
 				return false;
 			}
 			
-			if( true == CheckAvaillable(_data[iii+white+1], true) ) {
+			if( true == checkAvaillable(_data[iii+white+1], true) ) {
 				++tmpPos;
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
 				int32_t endPosName = iii+white+1;
-				// Generate element name ...
-				for (int32_t jjj=iii+white+2; jjj<_data.Size(); jjj++) {
-					if(true == CheckAvaillable(_data[jjj], false) ) {
+				// generate element name ...
+				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
+					if(true == checkAvaillable(_data[jjj], false) ) {
 						// we find the end ...
 						endPosName = jjj;
 					} else {
 						break;
 					}
-					tmpPos.Check(_data[jjj]);
+					tmpPos.check(_data[jjj]);
 				}
-				etk::UString tmpname = _data.Extract(iii+white+1, endPosName+1);
-				if (true==_caseSensitive) {
-					tmpname.Lower();
+				etk::UString tmpname = _data.extract(iii+white+1, endPosName+1);
+				if (true == _caseSensitive) {
+					tmpname.lower();
 				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
 				exml::Element* element = new exml::Element(tmpname);
-				if (NULL==element) {
+				if (NULL == element) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
 				}
 				_pos = endPosName+1;
 				_filePos += tmpPos;
-				if (false==element->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+				if (false == element->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 					delete(element);
 					return false;
 				}
 				iii = _pos;
-				m_listSub.PushBack(element);
+				m_listSub.pushBack(element);
 				continue;
 			}
 			_filePos+=tmpPos;
@@ -409,7 +403,7 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 			return false;
 		} else {
 			if (_data[iii] == '>') {
-				CREATE_ERROR(_doc, _data, _pos, _filePos, "Find elemement '>' ==> no reason to be here ...");
+				CREATE_ERROR(_doc, _data, _pos, _filePos, "Find elemement '>'  == > no reason to be here ...");
 				return false;
 			}
 			// might to be data text ...
@@ -417,22 +411,22 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 			    || _data[iii] == ' '
 			    || _data[iii] == '\t'
 			    || _data[iii] == '\r') {
-				// empty spaces ==> nothing to do ....
+				// empty spaces  == > nothing to do ....
 			} else {
-				// find data ==> parse it...
+				// find data  == > parse it...
 				exml::Text* text = new exml::Text();
-				if (NULL==text) {
+				if (NULL == text) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
 				}
 				_pos = iii;
 				_filePos += tmpPos;
-				if (false==text->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+				if (false == text->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 					delete(text);
 					return false;
 				}
 				iii = _pos;
-				m_listSub.PushBack(text);
+				m_listSub.pushBack(text);
 			}
 		}
 	}
@@ -443,26 +437,26 @@ bool exml::Element::SubParse(const etk::UString& _data, int32_t& _pos, bool _cas
 	return false;
 }
 
-bool exml::Element::IParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
+bool exml::Element::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
 {
 	EXML_PARSE_ELEMENT("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
 	m_pos=_filePos;
 	// find a normal node ...
-	for (int32_t iii=_pos; iii<_data.Size(); iii++) {
-		_filePos.Check(_data[iii]);
+	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+		_filePos.check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
-			DrawElementParsed(_data[iii], _filePos);
+		 drawElementParsed(_data[iii], _filePos);
 		#endif
 		if(_data[iii] == '>') {
 			// we find the end ...
 			_pos = iii+1;
-			return exml::Element::SubParse(_data, _pos, _caseSensitive, _filePos, _doc, false);
+			return exml::Element::subParse(_data, _pos, _caseSensitive, _filePos, _doc, false);
 		}
 		if (_data[iii] == '/') {
 			// standalone node or error...
-			if (iii+1>=_data.Size()) {
-				CREATE_ERROR(_doc, _data, _pos, _filePos, "Find end of files ... ==> bad case");
+			if (iii+1>=_data.size()) {
+				CREATE_ERROR(_doc, _data, _pos, _filePos, "Find end of files ...  == > bad case");
 				return false;
 			}
 			// TODO : Can have white spaces ....
@@ -474,41 +468,41 @@ bool exml::Element::IParse(const etk::UString& _data, int32_t& _pos, bool _caseS
 			CREATE_ERROR(_doc, _data, _pos, _filePos, "Find / without > char ...");
 			return false;
 		}
-		if (true == CheckAvaillable(_data[iii], true)) {
-			// we find an attibute ==> create a new and parse it :
+		if (true == checkAvaillable(_data[iii], true)) {
+			// we find an attibute  == > create a new and parse it :
 			exml::Attribute* attribute = new exml::Attribute();
-			if (NULL==attribute) {
+			if (NULL == attribute) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 				return false;
 			}
 			_pos = iii;
-			if (false==attribute->IParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
+			if (false == attribute->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
 				delete(attribute);
 				return false;
 			}
 			iii = _pos;
-			m_listAttribute.PushBack(attribute);
+			m_listAttribute.pushBack(attribute);
 			continue;
 		}
-		if (false==_data[iii].IsWhiteChar()) {
+		if (false == _data[iii].isWhiteChar()) {
 			CREATE_ERROR(_doc, _data, iii, _filePos, etk::UString("Find an unknow element : '") + _data[iii] + "'");
 			return false;
 		}
 	}
-	CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("Unexpecting end of parsing exml::Element : '") + m_value + "' ==> check if the '/>' is set or the end of element");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, etk::UString("Unexpecting end of parsing exml::Element : '") + m_value + "'  == > check if the '/>' is set or the end of element");
 	return false;
 }
 
-void exml::Element::Clear(void)
+void exml::Element::clear(void)
 {
-	exml::AttributeList::Clear();
-	for (int32_t iii=0; iii<m_listSub.Size(); iii++) {
+	exml::AttributeList::clear();
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			delete(m_listSub[iii]);
 			m_listSub[iii]=NULL;
 		}
 	}
-	m_listSub.Clear();
+	m_listSub.clear();
 }
 
 

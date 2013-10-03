@@ -12,7 +12,7 @@
 #include <exml/debug.h>
 
 #undef __class__
-#define __class__	"test"
+#define __class__ "test"
 
 class testCheck
 {
@@ -21,7 +21,7 @@ class testCheck
 		etk::UString m_input;
 		int32_t m_errorPos; // -1 : no error , 1 : parsing error, 2 generation error, 3 comparaison error ????
 		testCheck(void) {};
-		void Set(const etk::UString& _ref, int32_t _pos, const etk::UString& _input)
+		void set(const etk::UString& _ref, int32_t _pos, const etk::UString& _input)
 		{
 			m_ref = _ref;
 			m_input = _input;
@@ -31,230 +31,230 @@ class testCheck
 
 etk::Vector<testCheck> l_list;
 
-void Init(void)
+void init(void)
 {
 	etk::UString reference;
 	etk::UString input;
 	testCheck check;
 	
-	// ======================================================
-	check.Set("test exml::Element", -2, "");
-	l_list.PushBack(check);
-	// ======================================================
+	//  == ====================================================
+	check.set("test exml::Element", -2, "");
+	l_list.pushBack(check);
+	//  == ====================================================
 	reference = "<exemple/>\n";
-	check.Set(reference,
+	check.set(reference,
 	          -1,
 	          "<exemple/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          -1,
 	          "<    \t\r   exemple/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          -1,
 	          "<    \t\r   exemple    \t\r\r\r\n   		 		 \t\t />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<       exemple   <  >\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<       exemple   / />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<       exemple   ?  />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<       exemple   *  />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<  .     exemple   <  />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<!       exemple   < />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<!-       exemple   <  />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set(reference,
+	check.set(reference,
 	          1,
 	          "<       exemple   < />\n");
-	l_list.PushBack(check);
-	check.Set("<exemple--/>\n",
+	l_list.pushBack(check);
+	check.set("<exemple--/>\n",
 	          1,
 	          "<exemple-->\n");
-	l_list.PushBack(check);
-	check.Set("<exemple/>\n",
+	l_list.pushBack(check);
+	check.set("<exemple/>\n",
 	          1,
 	          "<exemple>\n</exemple sdfgsdfg>\n");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("test element exml::Attribute ", -2, "");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("test element exml::Attribute ", -2, "");
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=\"plop\"/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=plop/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"234345@3452345_.'\"/>\n",
+	check.set("<elementtt attr=\"234345@3452345_.'\"/>\n",
 	          -1,
 	          "<elementtt attr=234345@3452345_.'     />\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr   =\"plop\"/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=    \"plop\"/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr\n=\n\"plop\"/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=plop/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"plop\"/>\n",
+	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr    \n  =   \n\t plop/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"\"/>\n",
+	check.set("<elementtt attr=\"\"/>\n",
 	          -1,
 	          "<elementtt attr=\"\"/>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<elementtt attr=\"\"/>\n",
+	check.set("<elementtt attr=\"\"/>\n",
 	          -1,
 	          "<elementtt attr=/>\n");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("test exml::Declaration", -2, "");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("<?testDeclaration?>\n",
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("test exml::Declaration", -2, "");
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("<?testDeclaration?>\n",
 	          -1,
 	          "<?testDeclaration?>\n");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("test Declaration exml::Attribute", -2, "");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("<?xml attr=\"plop\"?>\n",
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("test Declaration exml::Attribute", -2, "");
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=\"plop\"?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"plop\"?>\n",
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=plop?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"234345@3452345_.'\"?>\n",
+	check.set("<?xml attr=\"234345@3452345_.'\"?>\n",
 	          -1,
 	          "<?xml attr=234345@3452345_.'     ?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"plop\"?>\n",
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr   =\"plop\"?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"plop\"?>\n",
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=    \"plop\"?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"plop\"?>\n",
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr\n=\n\"plop\"?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"plop\"?>\n",
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=plop?>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<?xml attr=\"plop\"?>\n",
+	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr    \n  =   \n\t plop?>\n");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("test exml::Comment", -2, "");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("<!--exemple-->\n",
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("test exml::Comment", -2, "");
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("<!--exemple-->\n",
 	          -1,
 	          "<!--exemple-->\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!--exemple-->\n",
+	check.set("<!--exemple-->\n",
 	          -1,
 	          "<!--   \t \t\t exemple          \n\n\n\t-->\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!---- exemple-->\n",
+	check.set("<!---- exemple-->\n",
 	          -1,
 	          "<!--   -- exemple -->\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!--> exemple-->\n",
+	check.set("<!--> exemple-->\n",
 	          -1,
 	          "<!--> exemple -->\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!--exemple-->\n",
+	check.set("<!--exemple-->\n",
 	          1,
 	          "<!--   ---> exemple -->\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!--exemple-->\n",
+	check.set("<!--exemple-->\n",
 	          1,
 	          "<!-- ssdfgdfg  >\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!---->\n",
+	check.set("<!---->\n",
 	          -1,
 	          "<!---->\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("<!--<.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>-->\n",
+	check.set("<!--<.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>-->\n",
 	          -1,
 	          "<!-- <.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>	-->\n");
-	l_list.PushBack(check);
-	// ======================================================
-	check.Set("test all", -2, "");
-	l_list.PushBack(check);
-	// ======================================================
+	l_list.pushBack(check);
+	//  == ====================================================
+	check.set("test all", -2, "");
+	l_list.pushBack(check);
+	//  == ====================================================
 	reference= "<exemple>\n"
 	           "	<ex2 ploppp-plpl:erer=\"dfsdfsdfsdf\" lkmjmlk=\"156235\" sdfsdf=\"456321\"/>\n"
 	           "	<exlkjl-_dsfg./>\n"
@@ -267,10 +267,10 @@ void Init(void)
 	       "		Text example ...\n"
 	       "	</ex2>\n"
 	       "</exemple>\n";
-	check.Set(reference, -1, input);
-	l_list.PushBack(check);
+	check.set(reference, -1, input);
+	l_list.pushBack(check);
 	// ------------------------------------------------------
-	check.Set("", 1,
+	check.set("", 1,
 	       "<   	 		 exemple\n   	>\n"
 	       "	<ex2 ploppp-plpl:erer=\"dfsdfsdfsdf\" lkmjmlk=\"156235\" sdfsdf=456321     />\n"
 	       "	<exlkjl-_dsfg./>    >\n"
@@ -278,19 +278,19 @@ void Init(void)
 	       "		Text example ...\n"
 	       "	</ex2>\n"
 	       "</exemple>\n");
-	l_list.PushBack(check);
+	l_list.pushBack(check);
 }
 
 int main(int argc, const char *argv[])
 {
-	GeneralDebugSetLevel(etk::LOG_LEVEL_VERBOSE);
+	debug::setGeneralLevel(etk::LOG_LEVEL_VERBOSE);
 	Init();
 	int32_t countError = 0;
 	int32_t countSeparator = 0;
 	int32_t sectionID = 0;
-	for (int32_t iii=0 ; iii<l_list.Size() ; iii++) {
+	for (int32_t iii=0 ; iii<l_list.size() ; iii++) {
 		int32_t jjj= iii-countSeparator+1;
-		if (l_list[iii].m_errorPos==-2) {
+		if (l_list[iii].m_errorPos == -2) {
 			countSeparator++;
 			sectionID = 0;
 			EXML_INFO("-------------------------------------------------------------");
@@ -302,8 +302,8 @@ int main(int argc, const char *argv[])
 		exml::Document doc;
 		etk::UString out("");
 		//EXML_DEBUG("parse : \n" << l_list[iii].m_input);
-		if (false==doc.Parse(l_list[iii].m_input)) {
-			if (l_list[iii].m_errorPos==1) {
+		if (false == doc.parse(l_list[iii].m_input)) {
+			if (l_list[iii].m_errorPos == 1) {
 				EXML_INFO("[TEST] " << sectionID << ":" << jjj << " {  OK  } Parsing in error (correct result)");
 			} else {
 				EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR } Parsing might be OK");
@@ -312,30 +312,30 @@ int main(int argc, const char *argv[])
 			}
 			continue;
 		}
-		if (l_list[iii].m_errorPos==1) {
+		if (l_list[iii].m_errorPos == 1) {
 			EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR } Parsing might be in error ...");
 			EXML_ERROR("parse : \n" << l_list[iii].m_input);
-			doc.Display();
+			doc.display();
 			countError++;
 			continue;
 		}
-		if (false == doc.Generate(out)) {
-			if (l_list[iii].m_errorPos==2) {
+		if (false == doc.generate(out)) {
+			if (l_list[iii].m_errorPos == 2) {
 				EXML_INFO("[TEST] " << sectionID << ":" << jjj << " {  OK  } generate in error (correct result)");
 			} else {
-				EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR } Generate output might be OK");
+				EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR } generate output might be OK");
 				EXML_ERROR("generate : \n" << out);
 				countError++;
 			}
 			continue;
 		}
-		if (l_list[iii].m_errorPos==2) {
+		if (l_list[iii].m_errorPos == 2) {
 			EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR } Generating might be in error ...");
 			countError++;
 			continue;
 		}
 		if (l_list[iii].m_ref != out) {
-			if (l_list[iii].m_errorPos==3) {
+			if (l_list[iii].m_errorPos == 3) {
 				EXML_INFO("[TEST] " << sectionID << ":" << jjj << " {  OK  } Result in error (normal case)");
 			} else {
 				EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR } different output");
@@ -345,7 +345,7 @@ int main(int argc, const char *argv[])
 			}
 			continue;
 		}
-		if (l_list[iii].m_errorPos==3) {
+		if (l_list[iii].m_errorPos == 3) {
 			EXML_ERROR("[TEST] " << sectionID << ":" << jjj << " {ERROR} checking result might be in error...");
 			EXML_ERROR("generate : \n" << out);
 			EXML_ERROR("reference : \n" << l_list[iii].m_ref);
@@ -355,9 +355,9 @@ int main(int argc, const char *argv[])
 		EXML_INFO("[TEST] " << sectionID << ":" << jjj << " {  OK  }");
 	}
 	if (countError>0) {
-		EXML_ERROR("[TEST] produce " << countError << " error on " << l_list.Size()-countSeparator << " test");
+		EXML_ERROR("[TEST] produce " << countError << " error on " << l_list.size()-countSeparator << " test");
 	} else {
-		EXML_INFO("[TEST] produce " << countError << " error on " << l_list.Size()-countSeparator << " test");
+		EXML_INFO("[TEST] produce " << countError << " error on " << l_list.size()-countSeparator << " test");
 	}
 	return 0;
 }
