@@ -284,7 +284,7 @@ void init(void)
 int main(int argc, const char *argv[])
 {
 	debug::setGeneralLevel(etk::LOG_LEVEL_VERBOSE);
-	Init();
+	init();
 	int32_t countError = 0;
 	int32_t countSeparator = 0;
 	int32_t sectionID = 0;
