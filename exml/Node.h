@@ -75,7 +75,7 @@ namespace exml
 				return *this;
 			}
 			void newLine(void) { m_col=0; m_line++; };
-			bool check(const etk::UniChar& _val) {
+			bool check(const etk::UChar& _val) {
 				m_col++;
 				if (_val == '\n') {
 					newLine();
@@ -167,13 +167,13 @@ namespace exml
 			 * @param[in] _val Char that is parsed.
 			 * @param[in] _filePos Position of the char in the file.
 			 */
-			void drawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const;
+			void drawElementParsed(const etk::UChar& _val, const exml::filePos& _filePos) const;
 			/**
 			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \n\t\r and for first char : not -.0123456789).
 			 * @param[in] _val Value to check the conformity.
 			 * @param[in] _firstChar True if the element check is the first char.
 			 */
-			bool checkAvaillable(const etk::UniChar& _val, bool _firstChar) const;
+			bool checkAvaillable(const etk::UChar& _val, bool _firstChar) const;
 			/**
 			 * @brief count the number of white char in the string from the specify position (stop at the first element that is not a white char)
 			 * @param[in] _data Data to parse.

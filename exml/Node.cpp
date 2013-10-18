@@ -34,7 +34,7 @@ void exml::Node::addIndent(etk::UString& _data, int32_t _indent) const {
 	}
 }
 
-void exml::Node::drawElementParsed(const etk::UniChar& _val, const exml::filePos& _filePos) const {
+void exml::Node::drawElementParsed(const etk::UChar& _val, const exml::filePos& _filePos) const {
 	if (_val == '\n') {
 		EXML_DEBUG(_filePos << " parse '\\n'");
 	} else if (_val == '\t') {
@@ -44,7 +44,7 @@ void exml::Node::drawElementParsed(const etk::UniChar& _val, const exml::filePos
 	}
 }
 
-bool exml::Node::checkAvaillable(const etk::UniChar& _val, bool _firstChar) const {
+bool exml::Node::checkAvaillable(const etk::UChar& _val, bool _firstChar) const {
 	if(    _val == '!'
 	    || _val == '"'
 	    || _val == '#'
