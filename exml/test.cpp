@@ -7,7 +7,7 @@
  */
 
 #include <exml/test.h>
-#include <etk/Debug.h>
+#include <exml/debug.h>
 #include <etk/Vector.h>
 #include <exml/debug.h>
 
