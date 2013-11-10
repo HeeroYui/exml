@@ -12,10 +12,8 @@
 #include <exml/Node.h>
 #include <etk/Vector.h>
 
-namespace exml
-{
-	class Attribute : public Node
-	{
+namespace exml {
+	class Attribute : public Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -38,18 +36,28 @@ namespace exml
 			 * @brief set the name of the attribute
 			 * @param[in] _name New name of the attribute
 			 */
-			virtual void setName(etk::UString _name) { m_name = _name; };
+			virtual void setName(etk::UString _name) {
+				m_name = _name;
+			};
 			/**
 			 * @brief get the current name of the Attribute
 			 * @return String of the attribute
 			 */
-			virtual const etk::UString& getName(void) const { return m_name; };
+			virtual const etk::UString& getName(void) const {
+				return m_name;
+			};
 		public: // herited function:
-			virtual nodeType_te getType(void) const { return exml::typeAttribute; };
+			virtual enum nodeType getType(void) const {
+				return exml::typeAttribute;
+			};
 			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual exml::Attribute* toAttribute(void) { return this; };
-			virtual const exml::Attribute* toAttribute(void) const { return this; };
+			virtual exml::Attribute* toAttribute(void) {
+				return this;
+			};
+			virtual const exml::Attribute* toAttribute(void) const {
+				return this;
+			};
 			virtual void clear(void);
 	};
 };

@@ -11,10 +11,8 @@
 
 #include <exml/AttributeList.h>
 
-namespace exml
-{
-	class Declaration : public exml::AttributeList
-	{
+namespace exml {
+	class Declaration : public exml::AttributeList {
 		public:
 			/**
 			 * @brief Constructor
@@ -24,20 +22,28 @@ namespace exml
 			 * @brief Constructor
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
-			Declaration(const etk::UString& _name) : exml::AttributeList(_name) { };
+			Declaration(const etk::UString& _name) :
+			  exml::AttributeList(_name) {
+				
+			};
 			/**
 			 * @brief Destructor
 			 */
 			virtual ~Declaration(void) { };
 		public: // herited function:
-			virtual nodeType_te getType(void) const { return typeAttribute; };
+			virtual enum nodeType getType(void) const {
+				return typeAttribute;
+			};
 			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
 			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual exml::Declaration* toDeclaration(void) { return this; };
-			virtual const exml::Declaration* toDeclaration(void) const { return this; };
+			virtual exml::Declaration* toDeclaration(void) {
+				return this;
+			};
+			virtual const exml::Declaration* toDeclaration(void) const {
+				return this;
+			};
 	};
-	class DeclarationXML : public exml::Declaration
-	{
+	class DeclarationXML : public exml::Declaration {
 		public:
 			/**
 			 * @brief Constructor for the generic declaration : <?xml version="" format="UTF-8"?>
@@ -45,7 +51,7 @@ namespace exml
 			 * @param[in] _format charset of the XML
 			 * @param[in] _standalone this document is standalone
 			 */
-			DeclarationXML(const etk::UString& _version, unicode::charset_te _format=unicode::EDN_CHARSET_UTF8, bool _standalone=true);
+			DeclarationXML(const etk::UString& _version, enum unicode::charset _format=unicode::charsetUTF8, bool _standalone=true);
 			/**
 			 * @brief Destructor
 			 */

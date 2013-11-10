@@ -20,13 +20,12 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-exml::DeclarationXML::DeclarationXML(const etk::UString& _version, unicode::charset_te _format, bool _standalone) :
-	exml::Declaration("xml")
-{
+exml::DeclarationXML::DeclarationXML(const etk::UString& _version, enum unicode::charset _format, bool _standalone) :
+  exml::Declaration("xml") {
 	if (_version.size()!=0) {
 		setAttribute("version", _version);
 	}
-	if (_format!=unicode::EDN_CHARSET_UTF8) {
+	if (_format!=unicode::charsetUTF8) {
 		setAttribute("encoding", "UTF-8");
 	} else {
 		EXML_ERROR("Actually does not supported other charset than UTF8");
@@ -39,8 +38,7 @@ exml::DeclarationXML::DeclarationXML(const etk::UString& _version, unicode::char
 	}
 }
 
-bool exml::Declaration::iGenerate(etk::UString& _data, int32_t _indent) const
-{
+bool exml::Declaration::iGenerate(etk::UString& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
 	_data += "<?";
 	_data += m_value;
@@ -49,8 +47,7 @@ bool exml::Declaration::iGenerate(etk::UString& _data, int32_t _indent) const
 	return true;
 }
 
-bool exml::Declaration::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
-{
+bool exml::Declaration::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :

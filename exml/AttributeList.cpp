@@ -12,8 +12,7 @@
 #undef __class__
 #define __class__	"AttributeList"
 
-exml::AttributeList::~AttributeList(void)
-{
+exml::AttributeList::~AttributeList(void) {
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			delete(m_listAttribute[iii]);
@@ -23,24 +22,21 @@ exml::AttributeList::~AttributeList(void)
 	m_listAttribute.clear();
 }
 
-exml::Attribute* exml::AttributeList::getAttr(int32_t _id)
-{
+exml::Attribute* exml::AttributeList::getAttr(int32_t _id) {
 	if (_id <0 || _id>m_listAttribute.size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
 }
 
-const exml::Attribute* exml::AttributeList::getAttr(int32_t _id) const
-{
+const exml::Attribute* exml::AttributeList::getAttr(int32_t _id) const {
 	if (_id <0 || _id>m_listAttribute.size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
 }
 
-void exml::AttributeList::appendAttribute(exml::Attribute* _attr)
-{
+void exml::AttributeList::appendAttribute(exml::Attribute* _attr) {
 	if (_attr == NULL) {
 		EXML_ERROR("Try to set an empty node");
 		return;
@@ -54,8 +50,7 @@ void exml::AttributeList::appendAttribute(exml::Attribute* _attr)
 	m_listAttribute.pushBack(_attr);
 }
 
-const etk::UString& exml::AttributeList::getAttribute(const etk::UString& _name) const
-{
+const etk::UString& exml::AttributeList::getAttribute(const etk::UString& _name) const {
 	static const etk::UString errorReturn("");
 	if (_name.size() == 0) {
 		return errorReturn;
@@ -69,8 +64,7 @@ const etk::UString& exml::AttributeList::getAttribute(const etk::UString& _name)
 	return errorReturn;
 }
 
-bool exml::AttributeList::existAttribute(const etk::UString& _name) const
-{
+bool exml::AttributeList::existAttribute(const etk::UString& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
@@ -83,8 +77,7 @@ bool exml::AttributeList::existAttribute(const etk::UString& _name) const
 	return false;
 }
 
-void exml::AttributeList::setAttribute(const etk::UString& _name, const etk::UString& _value)
-{
+void exml::AttributeList::setAttribute(const etk::UString& _name, const etk::UString& _value) {
 	// check if attribute already det :
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
@@ -101,8 +94,7 @@ void exml::AttributeList::setAttribute(const etk::UString& _name, const etk::USt
 	m_listAttribute.pushBack(attr);
 }
 
-bool exml::AttributeList::iGenerate(etk::UString& _data, int32_t _indent) const
-{
+bool exml::AttributeList::iGenerate(etk::UString& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			m_listAttribute[iii]->iGenerate(_data, _indent);
@@ -111,8 +103,7 @@ bool exml::AttributeList::iGenerate(etk::UString& _data, int32_t _indent) const
 	return true;
 }
 
-void exml::AttributeList::clear(void)
-{
+void exml::AttributeList::clear(void) {
 	exml::Node::clear();
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {

@@ -12,10 +12,8 @@
 #include <exml/Node.h>
 #include <etk/Vector.h>
 
-namespace exml
-{
-	class Comment : public Node
-	{
+namespace exml {
+	class Comment : public Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -25,17 +23,26 @@ namespace exml
 			 * @brief Constructor
 			 * @param[in] _value comment value
 			 */
-			Comment(const etk::UString& _value) : exml::Node(_value) { };
+			Comment(const etk::UString& _value) :
+			  exml::Node(_value) {
+				
+			};
 			/**
 			 * @brief Destructor
 			 */
 			virtual ~Comment(void) { };
 		public: // herited function:
-			virtual nodeType_te getType(void) const { return typeAttribute; };
+			virtual enum nodeType getType(void) const {
+				return typeAttribute;
+			};
 			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual exml::Comment* toComment(void) { return this; };
-			virtual const exml::Comment* toComment(void) const { return this; };
+			virtual exml::Comment* toComment(void) {
+				return this;
+			};
+			virtual const exml::Comment* toComment(void) const {
+				return this;
+			};
 	};
 };
 

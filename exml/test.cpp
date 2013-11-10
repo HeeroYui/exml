@@ -14,15 +14,13 @@
 #undef __class__
 #define __class__ "test"
 
-class testCheck
-{
+class testCheck {
 	public:
 		etk::UString m_ref;
 		etk::UString m_input;
 		int32_t m_errorPos; // -1 : no error , 1 : parsing error, 2 generation error, 3 comparaison error ????
 		testCheck(void) {};
-		void set(const etk::UString& _ref, int32_t _pos, const etk::UString& _input)
-		{
+		void set(const etk::UString& _ref, int32_t _pos, const etk::UString& _input) {
 			m_ref = _ref;
 			m_input = _input;
 			m_errorPos = _pos;
@@ -31,8 +29,7 @@ class testCheck
 
 etk::Vector<testCheck> l_list;
 
-void init(void)
-{
+void init(void) {
 	etk::UString reference;
 	etk::UString input;
 	testCheck check;
@@ -281,8 +278,7 @@ void init(void)
 	l_list.pushBack(check);
 }
 
-int main(int argc, const char *argv[])
-{
+int main(int argc, const char *argv[]) {
 	debug::setGeneralLevel(etk::LOG_LEVEL_VERBOSE);
 	init();
 	int32_t countError = 0;

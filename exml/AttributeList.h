@@ -13,10 +13,8 @@
 #include <etk/Vector.h>
 #include <exml/Attribute.h>
 
-namespace exml
-{
-	class AttributeList : public Node
-	{
+namespace exml {
+	class AttributeList : public Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -26,7 +24,10 @@ namespace exml
 			 * @brief Constructor
 			 * @param[in] _value Node value;
 			 */
-			AttributeList(const etk::UString& _value) : exml::Node(_value) { };
+			AttributeList(const etk::UString& _value) :
+			  exml::Node(_value) {
+				
+			};
 			/**
 			 * @brief Destructor
 			 */
@@ -38,7 +39,9 @@ namespace exml
 			 * @brief get the number of attribute in the Node
 			 * @return Nulber of attribute >=0
 			 */
-			int32_t sizeAttribute(void) const { return m_listAttribute.size(); };
+			int32_t sizeAttribute(void) const {
+				return m_listAttribute.size();
+			};
 			/**
 			 * @brief add attribute on the List
 			 * @param[in] _attr Pointer on the attribute

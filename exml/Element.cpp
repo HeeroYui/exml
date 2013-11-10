@@ -28,14 +28,14 @@ exml::Element::~Element(void) {
 	m_listSub.clear();
 }
 
-exml::nodeType_te exml::Element::getType(int32_t _id) {
+enum exml::nodeType exml::Element::getType(int32_t _id) {
 	exml::Node* tmpp = getNode(_id);
 	if (NULL == tmpp) {
 		return exml::typeUnknow;
 	}
 	return tmpp->getType();
 }
-const exml::nodeType_te exml::Element::getType(int32_t _id) const {
+const enum exml::nodeType exml::Element::getType(int32_t _id) const {
 	const exml::Node* tmpp = getNode(_id);
 	if (NULL == tmpp) {
 		return exml::typeUnknow;
@@ -50,8 +50,7 @@ exml::Node* exml::Element::getNode(int32_t _id) {
 	return m_listSub[_id];
 }
 
-const exml::Node* exml::Element::getNode(int32_t _id) const
-{
+const exml::Node* exml::Element::getNode(int32_t _id) const {
 	if (_id <0 || _id>m_listSub.size()) {
 		return NULL;
 	}
@@ -59,16 +58,15 @@ const exml::Node* exml::Element::getNode(int32_t _id) const
 }
 
 
-exml::Element* exml::Element::getElement(int32_t _id)
-{
+exml::Element* exml::Element::getElement(int32_t _id) {
 	exml::Node* tmpp = getNode(_id);
 	if (NULL == tmpp) {
 		return NULL;
 	}
 	return tmpp->toElement();
 }
-const exml::Element* exml::Element::getElement(int32_t _id) const
-{
+
+const exml::Element* exml::Element::getElement(int32_t _id) const {
 	const exml::Node* tmpp = getNode(_id);
 	if (NULL == tmpp) {
 		return NULL;
@@ -76,26 +74,7 @@ const exml::Element* exml::Element::getElement(int32_t _id) const
 	return tmpp->toElement();
 }
 
-
-exml::Element* exml::Element::getNamed(const etk::UString& _name)
-{
-	if (_name.size() == 0) {
-		return NULL;
-	}
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
-		if(    NULL != m_listSub[iii]
-		    && m_listSub[iii]->getType() == exml::typeElement
-		    && m_listSub[iii]->getValue() == _name) {
-			if (NULL == m_listSub[iii]) {
-				return NULL;
-			}
-			return m_listSub[iii]->toElement();
-		}
-	}
-	return NULL;
-}
-const exml::Element* exml::Element::getNamed(const etk::UString& _name) const
-{
+exml::Element* exml::Element::getNamed(const etk::UString& _name) {
 	if (_name.size() == 0) {
 		return NULL;
 	}
@@ -112,8 +91,24 @@ const exml::Element* exml::Element::getNamed(const etk::UString& _name) const
 	return NULL;
 }
 
-void exml::Element::append(exml::Node* _node)
-{
+const exml::Element* exml::Element::getNamed(const etk::UString& _name) const {
+	if (_name.size() == 0) {
+		return NULL;
+	}
+	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+		if(    NULL != m_listSub[iii]
+		    && m_listSub[iii]->getType() == exml::typeElement
+		    && m_listSub[iii]->getValue() == _name) {
+			if (NULL == m_listSub[iii]) {
+				return NULL;
+			}
+			return m_listSub[iii]->toElement();
+		}
+	}
+	return NULL;
+}
+
+void exml::Element::append(exml::Node* _node) {
 	if (_node == NULL) {
 		EXML_ERROR("Try to set an empty node");
 		return;
@@ -131,8 +126,7 @@ void exml::Element::append(exml::Node* _node)
 	m_listSub.pushBack(_node);
 }
 
-etk::UString exml::Element::getText(void)
-{
+etk::UString exml::Element::getText(void) {
 	// TODO : add more capabilities ...
 	etk::UString res;
 	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
@@ -143,9 +137,7 @@ etk::UString exml::Element::getText(void)
 	return res;
 }
 
-
-bool exml::Element::iGenerate(etk::UString& _data, int32_t _indent) const
-{
+bool exml::Element::iGenerate(etk::UString& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
 	_data += "<";
 	_data += m_value;
@@ -178,8 +170,7 @@ bool exml::Element::iGenerate(etk::UString& _data, int32_t _indent) const
 }
 
 
-bool exml::Element::subParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode)
-{
+bool exml::Element::subParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode) {
 	EXML_PARSE_ELEMENT(" start subParse ... " << _pos << " " << _filePos);
 	for (int32_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
@@ -437,8 +428,7 @@ bool exml::Element::subParse(const etk::UString& _data, int32_t& _pos, bool _cas
 	return false;
 }
 
-bool exml::Element::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
-{
+bool exml::Element::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_PARSE_ELEMENT("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
 	m_pos=_filePos;
@@ -493,8 +483,7 @@ bool exml::Element::iParse(const etk::UString& _data, int32_t& _pos, bool _caseS
 	return false;
 }
 
-void exml::Element::clear(void)
-{
+void exml::Element::clear(void) {
 	exml::AttributeList::clear();
 	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {

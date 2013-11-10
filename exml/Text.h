@@ -34,11 +34,17 @@ namespace exml {
 			 */
 			int32_t countLines(void) const;
 		public: // herited function:
-			virtual nodeType_te getType(void) const { return typeText; };
+			virtual enum nodeType getType(void) const {
+				return typeText;
+			};
 			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual exml::Text* toText(void) { return this; };
-			virtual const exml::Text* toText(void) const{ return this; };
+			virtual exml::Text* toText(void) {
+				return this;
+			};
+			virtual const exml::Text* toText(void) const{
+				return this;
+			};
 	};
 	class TextCDATA : public Text {
 		public:

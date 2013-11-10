@@ -14,14 +14,12 @@
 #define __class__	"Attribute"
 
 exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value) :
-	exml::Node(_value),
-	m_name(_name)
-{
+  exml::Node(_value),
+  m_name(_name) {
 	
 }
 
-bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc)
-{
+bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -108,8 +106,7 @@ bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _cas
 	return true;
 }
 
-bool exml::Attribute::iGenerate(etk::UString& _data, int32_t _indent) const
-{
+bool exml::Attribute::iGenerate(etk::UString& _data, int32_t _indent) const {
 	_data += " ";
 	_data += m_name;
 	_data += "=\"";
@@ -118,10 +115,7 @@ bool exml::Attribute::iGenerate(etk::UString& _data, int32_t _indent) const
 	return true;
 }
 
-
-
-void exml::Attribute::clear(void)
-{
+void exml::Attribute::clear(void) {
 	m_name="";
 }
 

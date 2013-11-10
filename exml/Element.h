@@ -13,10 +13,8 @@
 #include <etk/Vector.h>
 #include <exml/AttributeList.h>
 
-namespace exml
-{
-	class Element : public AttributeList
-	{
+namespace exml {
+	class Element : public AttributeList {
 		public:
 			/**
 			 * @brief Constructor
@@ -26,7 +24,10 @@ namespace exml
 			 * @brief Constructor
 			 * @param[in] _value Element name;
 			 */
-			Element(const etk::UString& _value) : exml::AttributeList(_value) { };
+			Element(const etk::UString& _value) :
+			  exml::AttributeList(_value) {
+				
+			};
 			/**
 			 * @brief Destructor
 			 */
@@ -38,7 +39,9 @@ namespace exml
 			 * @brief get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).
 			 * @return a number >=0.
 			 */
-			int32_t size(void) const { return m_listSub.size(); };
+			int32_t size(void) const {
+				return m_listSub.size();
+			};
 			/**
 			 * @brief add a node at the element (not exml::Attribute (move in the attribute automaticly).
 			 * @param[in] _node Pointer of the node to add.
@@ -49,8 +52,8 @@ namespace exml
 			 * @param[in] _id Id of the element.
 			 * @return the Current type of the element or exml::typeUnknow.
 			 */
-			      nodeType_te getType(int32_t _id);
-			const nodeType_te getType(int32_t _id) const;
+			      enum nodeType getType(int32_t _id);
+			const enum nodeType getType(int32_t _id) const;
 			/**
 			 * @brief get the Node pointer of the element id.
 			 * @param[in] _id Id of the element.
@@ -80,11 +83,17 @@ namespace exml
 		protected:
 			bool subParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
 		public: // herited function:
-			virtual nodeType_te getType(void) const { return typeElement; };
+			virtual enum nodeType getType(void) const {
+				return typeElement;
+			};
 			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual exml::Element* toElement(void) { return this; };
-			virtual const exml::Element* toElement(void) const { return this; };
+			virtual exml::Element* toElement(void) {
+				return this;
+			};
+			virtual const exml::Element* toElement(void) const {
+				return this;
+			};
 			virtual void clear(void);
 	};
 };
