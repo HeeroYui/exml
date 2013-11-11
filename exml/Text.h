@@ -10,7 +10,7 @@
 #define __ETK_XML_TEXT_H__
 
 #include <exml/Node.h>
-#include <etk/Vector.h>
+#include <vector>
 
 namespace exml {
 	class Text : public Node {
@@ -23,7 +23,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _data String data of the current Text
 			 */
-			Text(const etk::UString& _data) : exml::Node(_data) { };
+			Text(const std::u32string& _data) : exml::Node(_data) { };
 			/**
 			 * @brief Destructor
 			 */
@@ -37,8 +37,8 @@ namespace exml {
 			virtual enum nodeType getType(void) const {
 				return typeText;
 			};
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const;
 			virtual exml::Text* toText(void) {
 				return this;
 			};
@@ -57,7 +57,7 @@ namespace exml {
 			 */
 			virtual ~TextCDATA(void) { };
 		public: // herited function:
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 	};
 };
 

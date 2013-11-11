@@ -13,13 +13,13 @@
 #undef __class__
 #define __class__	"Attribute"
 
-exml::Attribute::Attribute(const etk::UString& _name, const etk::UString& _value) :
+exml::Attribute::Attribute(const std::u32string& _name, const std::u32string& _value) :
   exml::Node(_value),
   m_name(_name) {
 	
 }
 
-bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Attribute::iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -35,27 +35,27 @@ bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _cas
 			break;
 		}
 	}
-	m_name = _data.extract(_pos, lastElementName+1);
+	m_name = std::u32string(_data, _pos, lastElementName+1);
 	if (true == _caseSensitive) {
-		m_name.lower();
+		m_name = to_lower(m_name);
 	}
 	// count white space :
 	exml::filePos tmpPos;
 	int32_t white = countWhiteChar(_data, lastElementName+1, tmpPos);
 	_filePos += tmpPos;
-	if (lastElementName+white+1>=_data.size()) {
-		CREATE_ERROR(_doc, _data, lastElementName+white+1, _filePos, " parse an xml end with an attribute parsing...");
+	if (lastElementName+white+1 >= _data.size()) {
+		CREATE_ERROR(_doc, _data, lastElementName+white+1, _filePos, U" parse an xml end with an attribute parsing...");
 		return false;
 	}
 	if (_data[lastElementName+white+1] != '=') {
-		CREATE_ERROR(_doc, _data, lastElementName+white+1, _filePos, " error attribute parsing  == > missing '=' ...");
+		CREATE_ERROR(_doc, _data, lastElementName+white+1, _filePos, U" error attribute parsing  == > missing '=' ...");
 		return false;
 	}
 	white += countWhiteChar(_data, lastElementName+white+2, tmpPos);
 	_filePos += tmpPos;
 	
 	if (lastElementName+white+2>=_data.size()) {
-		CREATE_ERROR(_doc, _data, lastElementName+white+2, _filePos, " parse an xml end with an attribute parsing...");
+		CREATE_ERROR(_doc, _data, lastElementName+white+2, _filePos, U" parse an xml end with an attribute parsing...");
 		return false;
 	}
 	if (_data[lastElementName+white+2] != '"') {
@@ -67,19 +67,19 @@ bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _cas
 				drawElementParsed(_data[iii], _filePos);
 			#endif
 			if (_filePos.check(_data[iii]) == true) {
-				CREATE_ERROR(_doc, _data, iii, _filePos, "unexpected '\\n' in an attribute parsing");
+				CREATE_ERROR(_doc, _data, iii, _filePos, U"unexpected '\\n' in an attribute parsing");
 				return false;
 			}
-			if(    _data[iii]!=' '
-			    && _data[iii]!='/'
-			    && _data[iii]!='?'
-			    && _data[iii]!='>') {
+			if(    _data[iii] != ' '
+			    && _data[iii] != '/'
+			    && _data[iii] != '?'
+			    && _data[iii] != '>') {
 				lastAttributePos = iii+1;
 			} else {
 				break;
 			}
 		}
-		m_value = _data.extract(lastElementName+white+2, lastAttributePos);
+		m_value = std::u32string(_data, lastElementName+white+2, lastAttributePos);
 		
 		EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 		
@@ -92,13 +92,13 @@ bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _cas
 			drawElementParsed(_data[iii], _filePos);
 		#endif
 		_filePos.check(_data[iii]);
-		if(_data[iii]!='"') {
+		if(_data[iii] != '"') {
 			lastAttributePos = iii+1;
 		} else {
 			break;
 		}
 	}
-	m_value = _data.extract(lastElementName+white+3, lastAttributePos);
+	m_value = std::u32string(_data, lastElementName+white+3, lastAttributePos);
 	
 	EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 	
@@ -106,16 +106,16 @@ bool exml::Attribute::iParse(const etk::UString& _data, int32_t& _pos, bool _cas
 	return true;
 }
 
-bool exml::Attribute::iGenerate(etk::UString& _data, int32_t _indent) const {
-	_data += " ";
+bool exml::Attribute::iGenerate(std::u32string& _data, int32_t _indent) const {
+	_data += U" ";
 	_data += m_name;
-	_data += "=\"";
+	_data += U"=\"";
 	_data += m_value;
-	_data += "\"";
+	_data += U"\"";
 	return true;
 }
 
 void exml::Attribute::clear(void) {
-	m_name="";
+	m_name = U"";
 }
 

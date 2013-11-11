@@ -8,7 +8,7 @@
 
 #include <exml/test.h>
 #include <exml/debug.h>
-#include <etk/Vector.h>
+#include <vector>
 #include <exml/debug.h>
 
 #undef __class__
@@ -16,241 +16,241 @@
 
 class testCheck {
 	public:
-		etk::UString m_ref;
-		etk::UString m_input;
+		std::u32string m_ref;
+		std::u32string m_input;
 		int32_t m_errorPos; // -1 : no error , 1 : parsing error, 2 generation error, 3 comparaison error ????
 		testCheck(void) {};
-		void set(const etk::UString& _ref, int32_t _pos, const etk::UString& _input) {
+		void set(const std::u32string& _ref, int32_t _pos, const std::u32string& _input) {
 			m_ref = _ref;
 			m_input = _input;
 			m_errorPos = _pos;
 		}
 };
 
-etk::Vector<testCheck> l_list;
+std::vector<testCheck> l_list;
 
 void init(void) {
-	etk::UString reference;
-	etk::UString input;
+	std::u32string reference;
+	std::u32string input;
 	testCheck check;
 	
 	//  == ====================================================
 	check.set("test exml::Element", -2, "");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	reference = "<exemple/>\n";
 	check.set(reference,
 	          -1,
 	          "<exemple/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          -1,
 	          "<    \t\r   exemple/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          -1,
 	          "<    \t\r   exemple    \t\r\r\r\n   		 		 \t\t />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<       exemple   <  >\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<       exemple   / />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<       exemple   ?  />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<       exemple   *  />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<  .     exemple   <  />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<!       exemple   < />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<!-       exemple   <  />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set(reference,
 	          1,
 	          "<       exemple   < />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	check.set("<exemple--/>\n",
 	          1,
 	          "<exemple-->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	check.set("<exemple/>\n",
 	          1,
 	          "<exemple>\n</exemple sdfgsdfg>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("test element exml::Attribute ", -2, "");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=\"plop\"/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=plop/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"234345@3452345_.'\"/>\n",
 	          -1,
 	          "<elementtt attr=234345@3452345_.'     />\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr   =\"plop\"/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=    \"plop\"/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr\n=\n\"plop\"/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr=plop/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"plop\"/>\n",
 	          -1,
 	          "<elementtt attr    \n  =   \n\t plop/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"\"/>\n",
 	          -1,
 	          "<elementtt attr=\"\"/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<elementtt attr=\"\"/>\n",
 	          -1,
 	          "<elementtt attr=/>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("test exml::Declaration", -2, "");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("<?testDeclaration?>\n",
 	          -1,
 	          "<?testDeclaration?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("test Declaration exml::Attribute", -2, "");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=\"plop\"?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=plop?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"234345@3452345_.'\"?>\n",
 	          -1,
 	          "<?xml attr=234345@3452345_.'     ?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr   =\"plop\"?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=    \"plop\"?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr\n=\n\"plop\"?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr=plop?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<?xml attr=\"plop\"?>\n",
 	          -1,
 	          "<?xml attr    \n  =   \n\t plop?>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("test exml::Comment", -2, "");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("<!--exemple-->\n",
 	          -1,
 	          "<!--exemple-->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!--exemple-->\n",
 	          -1,
 	          "<!--   \t \t\t exemple          \n\n\n\t-->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!---- exemple-->\n",
 	          -1,
 	          "<!--   -- exemple -->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!--> exemple-->\n",
 	          -1,
 	          "<!--> exemple -->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!--exemple-->\n",
 	          1,
 	          "<!--   ---> exemple -->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!--exemple-->\n",
 	          1,
 	          "<!-- ssdfgdfg  >\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!---->\n",
 	          -1,
 	          "<!---->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("<!--<.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>-->\n",
 	          -1,
 	          "<!-- <.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>	-->\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	check.set("test all", -2, "");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	//  == ====================================================
 	reference= "<exemple>\n"
 	           "	<ex2 ploppp-plpl:erer=\"dfsdfsdfsdf\" lkmjmlk=\"156235\" sdfsdf=\"456321\"/>\n"
@@ -265,7 +265,7 @@ void init(void) {
 	       "	</ex2>\n"
 	       "</exemple>\n";
 	check.set(reference, -1, input);
-	l_list.pushBack(check);
+	l_list.push_back(check);
 	// ------------------------------------------------------
 	check.set("", 1,
 	       "<   	 		 exemple\n   	>\n"
@@ -275,11 +275,11 @@ void init(void) {
 	       "		Text example ...\n"
 	       "	</ex2>\n"
 	       "</exemple>\n");
-	l_list.pushBack(check);
+	l_list.push_back(check);
 }
 
 int main(int argc, const char *argv[]) {
-	debug::setGeneralLevel(etk::LOG_LEVEL_VERBOSE);
+	debug::setGeneralLevel(etk::logLevelVerbose);
 	init();
 	int32_t countError = 0;
 	int32_t countSeparator = 0;
@@ -296,7 +296,7 @@ int main(int argc, const char *argv[]) {
 		}
 		sectionID++;
 		exml::Document doc;
-		etk::UString out("");
+		std::u32string out("");
 		//EXML_DEBUG("parse : \n" << l_list[iii].m_input);
 		if (false == doc.parse(l_list[iii].m_input)) {
 			if (l_list[iii].m_errorPos == 1) {

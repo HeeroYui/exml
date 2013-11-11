@@ -10,6 +10,7 @@
 #define __ETK_XML_DECLARATION_H__
 
 #include <exml/AttributeList.h>
+#include <etk/unicode.h>
 
 namespace exml {
 	class Declaration : public exml::AttributeList {
@@ -22,7 +23,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
-			Declaration(const etk::UString& _name) :
+			Declaration(const std::u32string& _name) :
 			  exml::AttributeList(_name) {
 				
 			};
@@ -34,8 +35,8 @@ namespace exml {
 			virtual enum nodeType getType(void) const {
 				return typeAttribute;
 			};
-			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const;
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual exml::Declaration* toDeclaration(void) {
 				return this;
 			};
@@ -51,7 +52,7 @@ namespace exml {
 			 * @param[in] _format charset of the XML
 			 * @param[in] _standalone this document is standalone
 			 */
-			DeclarationXML(const etk::UString& _version, enum unicode::charset _format=unicode::charsetUTF8, bool _standalone=true);
+			DeclarationXML(const std::u32string& _version, enum unicode::charset _format=unicode::charsetUTF8, bool _standalone=true);
 			/**
 			 * @brief Destructor
 			 */

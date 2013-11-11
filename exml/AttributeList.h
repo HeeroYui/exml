@@ -10,7 +10,7 @@
 #define __ETK_XML_ATTRIBUTE_LIST_H__
 
 #include <exml/Node.h>
-#include <etk/Vector.h>
+#include <vector>
 #include <exml/Attribute.h>
 
 namespace exml {
@@ -24,7 +24,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value Node value;
 			 */
-			AttributeList(const etk::UString& _value) :
+			AttributeList(const std::u32string& _value) :
 			  exml::Node(_value) {
 				
 			};
@@ -33,7 +33,7 @@ namespace exml {
 			 */
 			virtual ~AttributeList(void);
 		protected:
-			etk::Vector<exml::Attribute*> m_listAttribute; //!< list of all attribute
+			std::vector<exml::Attribute*> m_listAttribute; //!< list of all attribute
 		public:
 			/**
 			 * @brief get the number of attribute in the Node
@@ -59,21 +59,21 @@ namespace exml {
 			 * @param[in] _name Attribute Name.
 			 * @return Value of the attribute or no data in the string
 			 */
-			const etk::UString& getAttribute(const etk::UString& _name) const;
+			const std::u32string& getAttribute(const std::u32string& _name) const;
 			/**
 			 * @brief check if an attribute exist or not with his name.
 			 * @param[in] _name Attribute Name.
 			 * @return true if the attribute exist or False
 			 */
-			bool existAttribute(const etk::UString& _name) const;
+			bool existAttribute(const std::u32string& _name) const;
 			/**
 			 * @brief Sen A new attribute or replace data of the previous one
 			 * @param[in] _name Name of the attribute
 			 * @param[in] _value Value of the attribute
 			 */
-			void setAttribute(const etk::UString& _name, const etk::UString& _value);
+			void setAttribute(const std::u32string& _name, const std::u32string& _value);
 		public: // herited function:
-			bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			bool iGenerate(std::u32string& _data, int32_t _indent) const;
 			virtual void clear(void);
 	};
 };

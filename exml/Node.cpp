@@ -14,27 +14,27 @@
 
 
 etk::CCout& exml::operator <<(etk::CCout& _os, const exml::filePos& _obj) {
-	_os << "(l=";
+	_os << U"(l=";
 	_os << _obj.getLine();
-	_os << ",c=";
+	_os << U",c=";
 	_os << _obj.getCol();
-	_os << ")";
+	_os << U")";
 	return _os;
 }
 
-exml::Node::Node(const etk::UString& _value) :
+exml::Node::Node(const std::u32string& _value) :
     m_pos(0,0),
     m_value(_value) {
 	// nothing to do.
 }
 
-void exml::Node::addIndent(etk::UString& _data, int32_t _indent) const {
+void exml::Node::addIndent(std::u32string& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<_indent; iii++) {
-		_data+="\t";
+		_data += U"\t";
 	}
 }
 
-void exml::Node::drawElementParsed(const etk::UChar& _val, const exml::filePos& _filePos) const {
+void exml::Node::drawElementParsed(char32_t _val, const exml::filePos& _filePos) const {
 	if (_val == '\n') {
 		EXML_DEBUG(_filePos << " parse '\\n'");
 	} else if (_val == '\t') {
@@ -44,7 +44,7 @@ void exml::Node::drawElementParsed(const etk::UChar& _val, const exml::filePos& 
 	}
 }
 
-bool exml::Node::checkAvaillable(const etk::UChar& _val, bool _firstChar) const {
+bool exml::Node::checkAvaillable(char32_t _val, bool _firstChar) const {
 	if(    _val == '!'
 	    || _val == '"'
 	    || _val == '#'
@@ -91,12 +91,12 @@ bool exml::Node::checkAvaillable(const etk::UChar& _val, bool _firstChar) const 
 }
 
 
-int32_t exml::Node::countWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const {
+int32_t exml::Node::countWhiteChar(const std::u32string& _data, int32_t _pos, exml::filePos& _filePos) const {
 	_filePos.clear();
 	int32_t white=0;
 	for (int32_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
-		if(true == _data[iii].isWhiteChar()) {
+		if(true == etk::isWhiteChar(_data[iii])) {
 			white++;
 		} else {
 			break;
@@ -107,6 +107,6 @@ int32_t exml::Node::countWhiteChar(const etk::UString& _data, int32_t _pos, exml
 }
 
 void exml::Node::clear(void) {
-	m_value="";
+	m_value = U"";
 	m_pos.clear();
 }

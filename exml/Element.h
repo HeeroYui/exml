@@ -10,7 +10,7 @@
 #define __ETK_XML_ELEMENT_H__
 
 #include <exml/Node.h>
-#include <etk/Vector.h>
+#include <vector>
 #include <exml/AttributeList.h>
 
 namespace exml {
@@ -24,7 +24,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value Element name;
 			 */
-			Element(const etk::UString& _value) :
+			Element(const std::u32string& _value) :
 			  exml::AttributeList(_value) {
 				
 			};
@@ -33,7 +33,7 @@ namespace exml {
 			 */
 			virtual ~Element(void);
 		protected:
-			etk::Vector<exml::Node*> m_listSub;
+			std::vector<exml::Node*> m_listSub;
 		public:
 			/**
 			 * @brief get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).
@@ -73,21 +73,21 @@ namespace exml {
 			 * @param[in] _name Name of the element that is requested
 			 * @return Pointer on the element or NULL.
 			 */
-			      Element* getNamed(const etk::UString& _name);
-			const Element* getNamed(const etk::UString& _name) const;
+			      Element* getNamed(const std::u32string& _name);
+			const Element* getNamed(const std::u32string& _name) const;
 			/**
 			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 			 * @return the curent data string.
 			 */
-			etk::UString getText(void);
+			std::u32string getText(void);
 		protected:
-			bool subParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
+			bool subParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
 		public: // herited function:
 			virtual enum nodeType getType(void) const {
 				return typeElement;
 			};
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const;
 			virtual exml::Element* toElement(void) {
 				return this;
 			};

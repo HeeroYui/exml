@@ -10,7 +10,7 @@
 #define __ETK_XML_ATTRIBUTE_H__
 
 #include <exml/Node.h>
-#include <etk/Vector.h>
+#include <vector>
 
 namespace exml {
 	class Attribute : public Node {
@@ -24,34 +24,34 @@ namespace exml {
 			 * @param[in] _name Name of the attribute.
 			 * @param[in] _value Value of the attribute.
 			 */
-			Attribute(const etk::UString& _name, const etk::UString& _value);
+			Attribute(const std::u32string& _name, const std::u32string& _value);
 			/**
 			 * @brief Destructor
 			 */
 			virtual ~Attribute(void) { };
 		protected:
-			etk::UString m_name;
+			std::u32string m_name;
 		public:
 			/**
 			 * @brief set the name of the attribute
 			 * @param[in] _name New name of the attribute
 			 */
-			virtual void setName(etk::UString _name) {
+			virtual void setName(std::u32string _name) {
 				m_name = _name;
 			};
 			/**
 			 * @brief get the current name of the Attribute
 			 * @return String of the attribute
 			 */
-			virtual const etk::UString& getName(void) const {
+			virtual const std::u32string& getName(void) const {
 				return m_name;
 			};
 		public: // herited function:
 			virtual enum nodeType getType(void) const {
 				return exml::typeAttribute;
 			};
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const;
 			virtual exml::Attribute* toAttribute(void) {
 				return this;
 			};

@@ -47,11 +47,11 @@ void exml::AttributeList::appendAttribute(exml::Attribute* _attr) {
 			return;
 		}
 	}
-	m_listAttribute.pushBack(_attr);
+	m_listAttribute.push_back(_attr);
 }
 
-const etk::UString& exml::AttributeList::getAttribute(const etk::UString& _name) const {
-	static const etk::UString errorReturn("");
+const std::u32string& exml::AttributeList::getAttribute(const std::u32string& _name) const {
+	static const std::u32string errorReturn(U"");
 	if (_name.size() == 0) {
 		return errorReturn;
 	}
@@ -64,7 +64,7 @@ const etk::UString& exml::AttributeList::getAttribute(const etk::UString& _name)
 	return errorReturn;
 }
 
-bool exml::AttributeList::existAttribute(const etk::UString& _name) const {
+bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
@@ -77,7 +77,7 @@ bool exml::AttributeList::existAttribute(const etk::UString& _name) const {
 	return false;
 }
 
-void exml::AttributeList::setAttribute(const etk::UString& _name, const etk::UString& _value) {
+void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u32string& _value) {
 	// check if attribute already det :
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
@@ -91,10 +91,10 @@ void exml::AttributeList::setAttribute(const etk::UString& _name, const etk::USt
 	if (NULL == attr) {
 		EXML_ERROR("memory allocation error...");
 	}
-	m_listAttribute.pushBack(attr);
+	m_listAttribute.push_back(attr);
 }
 
-bool exml::AttributeList::iGenerate(etk::UString& _data, int32_t _indent) const {
+bool exml::AttributeList::iGenerate(std::u32string& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			m_listAttribute[iii]->iGenerate(_data, _indent);

@@ -11,7 +11,7 @@
 
 #include <exml/Element.h>
 #include <etk/unicode.h>
-#include <etk/Vector.h>
+#include <vector>
 
 namespace exml {
 	class Document : public exml::Element {
@@ -65,36 +65,36 @@ namespace exml {
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool parse(const etk::UString& _data);
+			bool parse(const std::u32string& _data);
 			/**
 			 * @brief generate a string that contain the created XML
 			 * @param[out] _data Data where the xml is stored
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool generate(etk::UString& _data);
+			bool generate(std::u32string& _data);
 			/**
 			 * @brief Load the file that might contain the xml
 			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool load(const etk::UString& _file);
+			bool load(const std::u32string& _file);
 			/**
 			 * @brief Store the Xml in the file
 			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool store(const etk::UString& _file);
+			bool store(const std::u32string& _file);
 			/**
 			 * @brief Display the Document on console
 			 */
 			void display(void);
 		private:
 			bool m_writeErrorWhenDetexted;
-			etk::UString m_comment;
-			etk::UString m_Line;
+			std::u32string m_comment;
+			std::u32string m_Line;
 			exml::filePos m_filePos;
 		public:
 			void displayErrorWhenDetected(void) {
@@ -104,13 +104,13 @@ namespace exml {
 				m_writeErrorWhenDetexted = false;
 			};
 			
-			void createError(const etk::UString& _data, int32_t _pos, const exml::filePos& _filePos, const etk::UString& _comment);
+			void createError(const std::u32string& _data, int32_t _pos, const exml::filePos& _filePos, const std::u32string& _comment);
 			void displayError(void);
 		public: // herited function:
 			virtual enum nodeType getType(void) const {
 				return typeDocument;
 			};
-			bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			bool iGenerate(std::u32string& _data, int32_t _indent) const;
 			virtual exml::Document* toDocument(void) {
 				return this;
 			};

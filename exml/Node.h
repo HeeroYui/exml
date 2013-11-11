@@ -94,7 +94,7 @@ namespace exml
 				m_col=0;
 				m_line++;
 			};
-			bool check(const etk::UChar& _val) {
+			bool check(char32_t _val) {
 				m_col++;
 				if (_val == '\n') {
 					newLine();
@@ -132,7 +132,7 @@ namespace exml
 			 * @brief basic element of a xml structure
 			 * @param[in] value of the node
 			 */
-			Node(const etk::UString& _value);
+			Node(const std::u32string& _value);
 			/**
 			 * @brief destructor
 			 */
@@ -146,14 +146,14 @@ namespace exml
 			 * @param[in,out] file parsing position (line x col x)
 			 * @return false if an error occured.
 			 */
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
 			/**
 			 * @brief generate a string with the tree of the xml
 			 * @param[in,out] _data string where to add the elements
 			 * @param[in] current indentation of the file
 			 * @return false if an error occured.
 			 */
-			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const {
+			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const {
 				return true;
 			};
 		protected:
@@ -166,20 +166,20 @@ namespace exml
 				return m_pos;
 			};
 		protected:
-			etk::UString m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
+			std::u32string m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
 		public:
 			/**
 			 * @brief set the value of the node.
 			 * @param[in] _value New value of the node.
 			 */
-			virtual void setValue(etk::UString _value) {
+			virtual void setValue(std::u32string _value) {
 				m_value = _value;
 			};
 			/**
 			 * @brief get the current element Value.
 			 * @return the reference of the string value.
 			 */
-			virtual const etk::UString& getValue(void) const {
+			virtual const std::u32string& getValue(void) const {
 				return m_value;
 			};
 		public:
@@ -196,19 +196,19 @@ namespace exml
 			 * @param[in,out] _data String where the indentation is done.
 			 * @param[in] _indent Number of tab to add at the string.
 			 */
-			void addIndent(etk::UString& _data, int32_t _indent) const;
+			void addIndent(std::u32string& _data, int32_t _indent) const;
 			/**
 			 * @brief Display the cuurent element that is curently parse.
 			 * @param[in] _val Char that is parsed.
 			 * @param[in] _filePos Position of the char in the file.
 			 */
-			void drawElementParsed(const etk::UChar& _val, const exml::filePos& _filePos) const;
+			void drawElementParsed(char32_t _val, const exml::filePos& _filePos) const;
 			/**
 			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \n\t\r and for first char : not -.0123456789).
 			 * @param[in] _val Value to check the conformity.
 			 * @param[in] _firstChar True if the element check is the first char.
 			 */
-			bool checkAvaillable(const etk::UChar& _val, bool _firstChar) const;
+			bool checkAvaillable(char32_t _val, bool _firstChar) const;
 			/**
 			 * @brief count the number of white char in the string from the specify position (stop at the first element that is not a white char)
 			 * @param[in] _data Data to parse.
@@ -216,7 +216,7 @@ namespace exml
 			 * @param[out] _filePos new poistion of te file to add.
 			 * @return number of white element.
 			 */
-			int32_t countWhiteChar(const etk::UString& _data, int32_t _pos, exml::filePos& _filePos) const;
+			int32_t countWhiteChar(const std::u32string& _data, int32_t _pos, exml::filePos& _filePos) const;
 		public:
 			/**
 			 * @brief Cast the element in a Document if it is possible.

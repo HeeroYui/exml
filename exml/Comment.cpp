@@ -13,7 +13,7 @@
 #undef __class__
 #define __class__	"Comment"
 
-bool exml::Comment::iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Comment::iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'comment'");
 	m_pos = _filePos;
 	exml::filePos tmpPos;
@@ -34,28 +34,28 @@ bool exml::Comment::iParse(const etk::UString& _data, int32_t& _pos, bool _caseS
 			// search whitespace :
 			int32_t newEnd=iii;
 			for( int32_t jjj=iii-1; jjj>_pos; jjj--) {
-				if(true == _data[jjj].isWhiteChar()) {
+				if(true == etk::isWhiteChar(_data[jjj])) {
 					newEnd = jjj;
 				} else {
 					break;
 				}
 			}
 			// find end of value:
-			m_value = _data.extract(_pos+white, newEnd);
+			m_value = std::u32string(_data, _pos+white, newEnd);
 			EXML_VERBOSE(" find comment '" << m_value << "'");
 			_pos = iii+2;
 			return true;
 		}
 	}
 	_pos = _data.size();
-	CREATE_ERROR(_doc, _data, _pos, _filePos, "comment got end of file without finding end node");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, U"comment got end of file without finding end node");
 	return false;
 }
 
-bool exml::Comment::iGenerate(etk::UString& _data, int32_t _indent) const {
+bool exml::Comment::iGenerate(std::u32string& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
-	_data += "<!--";
+	_data += U"<!--";
 	_data += m_value;
-	_data += "-->\n";
+	_data += U"-->\n";
 	return true;
 }

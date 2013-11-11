@@ -10,7 +10,7 @@
 #define __ETK_XML_COMMENT_H__
 
 #include <exml/Node.h>
-#include <etk/Vector.h>
+#include <vector>
 
 namespace exml {
 	class Comment : public Node {
@@ -23,7 +23,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value comment value
 			 */
-			Comment(const etk::UString& _value) :
+			Comment(const std::u32string& _value) :
 			  exml::Node(_value) {
 				
 			};
@@ -35,8 +35,8 @@ namespace exml {
 			virtual enum nodeType getType(void) const {
 				return typeAttribute;
 			};
-			virtual bool iParse(const etk::UString& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(etk::UString& _data, int32_t _indent) const;
+			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const;
 			virtual exml::Comment* toComment(void) {
 				return this;
 			};
