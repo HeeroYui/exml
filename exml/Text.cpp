@@ -11,9 +11,9 @@
 #include <exml/Document.h>
 
 #undef __class__
-#define __class__	"Text"
+#define __class__ "Text"
 
-bool exml::Text::iGenerate(std::u32string& _data, int32_t _indent) const {
+bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
 	_data += m_value;
 	return true;
 }
@@ -28,7 +28,7 @@ int32_t exml::Text::countLines(void) const {
 	return count;
 }
 
-bool exml::Text::iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'text'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -51,18 +51,18 @@ bool exml::Text::iParse(const std::u32string& _data, int32_t& _pos, bool _caseSe
 				}
 			}
 			// find end of value:
-			m_value = std::u32string(_data, _pos, newEnd);
+			m_value = std::string(_data, _pos, newEnd);
 			EXML_VERBOSE(" find text '" << m_value << "'");
 			_pos = iii-1;
 			return true;
 		}
 	}
-	CREATE_ERROR(_doc, _data, _pos, _filePos, U"Text got end of file without finding end node");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
 	_pos = _data.size();
 	return false;
 }
 
-bool exml::TextCDATA::iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::TextCDATA::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'text::CDATA'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -78,13 +78,13 @@ bool exml::TextCDATA::iParse(const std::u32string& _data, int32_t& _pos, bool _c
 		    && _data[iii+2] == '>') {
 			// find end of value:
 			_filePos += 2;
-			m_value = std::u32string(_data, _pos, iii);
+			m_value = std::string(_data, _pos, iii);
 			EXML_VERBOSE(" find text CDATA '" << m_value << "'");
 			_pos = iii+2;
 			return true;
 		}
 	}
-	CREATE_ERROR(_doc, _data, _pos, _filePos, U"text CDATA got end of file without finding end node");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, "text CDATA got end of file without finding end node");
 	_pos = _data.size();
 	return false;
 }

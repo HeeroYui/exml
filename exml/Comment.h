@@ -23,6 +23,10 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value comment value
 			 */
+			Comment(const std::string& _value) :
+			  exml::Node(_value) {
+				
+			};
 			Comment(const std::u32string& _value) :
 			  exml::Node(_value) {
 				
@@ -35,8 +39,8 @@ namespace exml {
 			virtual enum nodeType getType(void) const {
 				return typeAttribute;
 			};
-			virtual bool iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(std::u32string& _data, int32_t _indent) const;
+			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
 			virtual exml::Comment* toComment(void) {
 				return this;
 			};

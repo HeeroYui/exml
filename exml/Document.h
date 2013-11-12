@@ -65,6 +65,7 @@ namespace exml {
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
+			bool parse(const std::string& _data);
 			bool parse(const std::u32string& _data);
 			/**
 			 * @brief generate a string that contain the created XML
@@ -72,6 +73,7 @@ namespace exml {
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
+			bool generate(std::string& _data);
 			bool generate(std::u32string& _data);
 			/**
 			 * @brief Load the file that might contain the xml
@@ -79,6 +81,7 @@ namespace exml {
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
+			bool load(const std::string& _file);
 			bool load(const std::u32string& _file);
 			/**
 			 * @brief Store the Xml in the file
@@ -86,6 +89,7 @@ namespace exml {
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
+			bool store(const std::string& _file);
 			bool store(const std::u32string& _file);
 			/**
 			 * @brief Display the Document on console
@@ -93,8 +97,8 @@ namespace exml {
 			void display(void);
 		private:
 			bool m_writeErrorWhenDetexted;
-			std::u32string m_comment;
-			std::u32string m_Line;
+			std::string m_comment;
+			std::string m_Line;
 			exml::filePos m_filePos;
 		public:
 			void displayErrorWhenDetected(void) {
@@ -104,13 +108,13 @@ namespace exml {
 				m_writeErrorWhenDetexted = false;
 			};
 			
-			void createError(const std::u32string& _data, int32_t _pos, const exml::filePos& _filePos, const std::u32string& _comment);
+			void createError(const std::string& _data, int32_t _pos, const exml::filePos& _filePos, const std::string& _comment);
 			void displayError(void);
 		public: // herited function:
 			virtual enum nodeType getType(void) const {
 				return typeDocument;
 			};
-			bool iGenerate(std::u32string& _data, int32_t _indent) const;
+			bool iGenerate(std::string& _data, int32_t _indent) const;
 			virtual exml::Document* toDocument(void) {
 				return this;
 			};

@@ -11,7 +11,7 @@
 #include <exml/Document.h>
 
 #undef __class__
-#define __class__	"Declaration"
+#define __class__ "Declaration"
 
 /* basic declaration have 3 attributes:
 	version
@@ -20,34 +20,52 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-exml::DeclarationXML::DeclarationXML(const std::u32string& _version, enum unicode::charset _format, bool _standalone) :
-  exml::Declaration(U"xml") {
+exml::DeclarationXML::DeclarationXML(const std::string& _version, enum unicode::charset _format, bool _standalone) :
+  exml::Declaration("xml") {
 	if (_version.size()!=0) {
-		setAttribute(U"version", _version);
+		setAttribute("version", _version);
 	}
 	if (_format!=unicode::charsetUTF8) {
-		setAttribute(U"encoding", U"UTF-8");
+		setAttribute("encoding", "UTF-8");
 	} else {
 		EXML_ERROR("Actually does not supported other charset than UTF8");
-		setAttribute(U"encoding", U"UTF-8");
+		setAttribute("encoding", "UTF-8");
 	}
 	if (_standalone == true) {
-		setAttribute(U"standalone", U"true");
+		setAttribute("standalone", "true");
 	} else {
-		setAttribute(U"standalone", U"true");
+		setAttribute("standalone", "true");
 	}
 }
 
-bool exml::Declaration::iGenerate(std::u32string& _data, int32_t _indent) const {
+exml::DeclarationXML::DeclarationXML(const std::u32string& _version, enum unicode::charset _format, bool _standalone) :
+  exml::Declaration("xml") {
+	if (_version.size()!=0) {
+		setAttribute("version", to_u8string(_version));
+	}
+	if (_format!=unicode::charsetUTF8) {
+		setAttribute("encoding", "UTF-8");
+	} else {
+		EXML_ERROR("Actually does not supported other charset than UTF8");
+		setAttribute("encoding", "UTF-8");
+	}
+	if (_standalone == true) {
+		setAttribute("standalone", "true");
+	} else {
+		setAttribute("standalone", "true");
+	}
+}
+
+bool exml::Declaration::iGenerate(std::string& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
-	_data += U"<?";
+	_data += "<?";
 	_data += m_value;
 	exml::AttributeList::iGenerate(_data, _indent);
-	_data += U"?>\n";
+	_data += "?>\n";
 	return true;
 }
 
-bool exml::Declaration::iParse(const std::u32string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -61,7 +79,7 @@ bool exml::Declaration::iParse(const std::u32string& _data, int32_t& _pos, bool 
 		if(    _data[iii] == '>'
 		    || _data[iii] == '<') {
 			// an error occured : 
-			CREATE_ERROR(_doc, _data, _pos, _filePos, U" find '>' or '<'  instead of '?>'");
+			CREATE_ERROR(_doc, _data, _pos, _filePos, " find '>' or '<'  instead of '?>'");
 			return false;
 		}
 		if(    _data[iii] == '?'
@@ -75,7 +93,7 @@ bool exml::Declaration::iParse(const std::u32string& _data, int32_t& _pos, bool 
 			// we find an attibute  == > create a new and parse it :
 			exml::Attribute* attribute = new exml::Attribute();
 			if (NULL == attribute) {
-				CREATE_ERROR(_doc, _data, _pos, _filePos, U" Allocation error ...");
+				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");
 				return false;
 			}
 			_pos = iii;
@@ -88,7 +106,7 @@ bool exml::Declaration::iParse(const std::u32string& _data, int32_t& _pos, bool 
 			continue;
 		}
 	}
-	CREATE_ERROR(_doc, _data, _pos, _filePos, U"Text got end of file without finding end node");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
 	_pos = _data.size();
 	return false;
 }

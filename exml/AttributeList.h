@@ -24,6 +24,10 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value Node value;
 			 */
+			AttributeList(const std::string& _value) :
+			  exml::Node(_value) {
+				
+			};
 			AttributeList(const std::u32string& _value) :
 			  exml::Node(_value) {
 				
@@ -59,21 +63,24 @@ namespace exml {
 			 * @param[in] _name Attribute Name.
 			 * @return Value of the attribute or no data in the string
 			 */
-			const std::u32string& getAttribute(const std::u32string& _name) const;
+			const std::string& getAttribute(const std::string& _name) const;
+			std::u32string getAttribute(const std::u32string& _name) const;
 			/**
 			 * @brief check if an attribute exist or not with his name.
 			 * @param[in] _name Attribute Name.
 			 * @return true if the attribute exist or False
 			 */
+			bool existAttribute(const std::string& _name) const;
 			bool existAttribute(const std::u32string& _name) const;
 			/**
 			 * @brief Sen A new attribute or replace data of the previous one
 			 * @param[in] _name Name of the attribute
 			 * @param[in] _value Value of the attribute
 			 */
+			void setAttribute(const std::string& _name, const std::string& _value);
 			void setAttribute(const std::u32string& _name, const std::u32string& _value);
 		public: // herited function:
-			bool iGenerate(std::u32string& _data, int32_t _indent) const;
+			bool iGenerate(std::string& _data, int32_t _indent) const;
 			virtual void clear(void);
 	};
 };

@@ -14,23 +14,28 @@
 
 
 etk::CCout& exml::operator <<(etk::CCout& _os, const exml::filePos& _obj) {
-	_os << U"(l=";
+	_os << "(l=";
 	_os << _obj.getLine();
-	_os << U",c=";
+	_os << ",c=";
 	_os << _obj.getCol();
-	_os << U")";
+	_os << ")";
 	return _os;
 }
 
-exml::Node::Node(const std::u32string& _value) :
+exml::Node::Node(const std::string& _value) :
     m_pos(0,0),
     m_value(_value) {
 	// nothing to do.
 }
+exml::Node::Node(const std::u32string& _value) :
+    m_pos(0,0) {
+	m_value = to_u8string(_value);
+}
 
-void exml::Node::addIndent(std::u32string& _data, int32_t _indent) const {
+
+void exml::Node::addIndent(std::string& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<_indent; iii++) {
-		_data += U"\t";
+		_data += "\t";
 	}
 }
 
@@ -91,7 +96,7 @@ bool exml::Node::checkAvaillable(char32_t _val, bool _firstChar) const {
 }
 
 
-int32_t exml::Node::countWhiteChar(const std::u32string& _data, int32_t _pos, exml::filePos& _filePos) const {
+int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml::filePos& _filePos) const {
 	_filePos.clear();
 	int32_t white=0;
 	for (int32_t iii=_pos; iii<_data.size(); iii++) {
@@ -107,6 +112,14 @@ int32_t exml::Node::countWhiteChar(const std::u32string& _data, int32_t _pos, ex
 }
 
 void exml::Node::clear(void) {
-	m_value = U"";
+	m_value = "";
 	m_pos.clear();
+}
+
+void exml::Node::setValue(std::u32string _value) {
+	m_value = to_u8string(_value);
+}
+
+std::u32string exml::Node::getUValue(void) const {
+	return to_u32string(m_value);
 }

@@ -10,7 +10,7 @@
 #include <exml/debug.h>
 
 #undef __class__
-#define __class__	"AttributeList"
+#define __class__ "AttributeList"
 
 exml::AttributeList::~AttributeList(void) {
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
@@ -50,8 +50,8 @@ void exml::AttributeList::appendAttribute(exml::Attribute* _attr) {
 	m_listAttribute.push_back(_attr);
 }
 
-const std::u32string& exml::AttributeList::getAttribute(const std::u32string& _name) const {
-	static const std::u32string errorReturn(U"");
+const std::string& exml::AttributeList::getAttribute(const std::string& _name) const {
+	static const std::string errorReturn("");
 	if (_name.size() == 0) {
 		return errorReturn;
 	}
@@ -64,7 +64,21 @@ const std::u32string& exml::AttributeList::getAttribute(const std::u32string& _n
 	return errorReturn;
 }
 
-bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
+std::u32string exml::AttributeList::getAttribute(const std::u32string& _name) const {
+	static const std::u32string errorReturn(U"");
+	if (_name.size() == 0) {
+		return errorReturn;
+	}
+	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+		if(    NULL != m_listAttribute[iii]
+		    && m_listAttribute[iii]->getUName() == _name) {
+			return m_listAttribute[iii]->getUValue();
+		}
+	}
+	return errorReturn;
+}
+
+bool exml::AttributeList::existAttribute(const std::string& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
@@ -77,7 +91,20 @@ bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
 	return false;
 }
 
-void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u32string& _value) {
+bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
+	if (_name.size() == 0) {
+		return false;
+	}
+	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+		if(    NULL != m_listAttribute[iii]
+		    && m_listAttribute[iii]->getUName() == _name) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void exml::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
 	// check if attribute already det :
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
@@ -94,7 +121,24 @@ void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u
 	m_listAttribute.push_back(attr);
 }
 
-bool exml::AttributeList::iGenerate(std::u32string& _data, int32_t _indent) const {
+void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u32string& _value) {
+	// check if attribute already det :
+	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+		if(    NULL != m_listAttribute[iii]
+		    && m_listAttribute[iii]->getUName() == _name) {
+			// update the value :
+			m_listAttribute[iii]->setValue(_value);
+			return;
+		}
+	}
+	exml::Attribute* attr = new exml::Attribute(_name, _value);
+	if (NULL == attr) {
+		EXML_ERROR("memory allocation error...");
+	}
+	m_listAttribute.push_back(attr);
+}
+
+bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			m_listAttribute[iii]->iGenerate(_data, _indent);

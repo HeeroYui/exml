@@ -11,20 +11,20 @@
 #include <etk/os/FSNode.h>
 
 #undef __class__
-#define __class__	"Document"
+#define __class__ "Document"
 
 exml::Document::Document(void) :
   m_charset(unicode::charsetUTF8),
   m_caseSensitive(false),
   m_writeErrorWhenDetexted(true),
-  m_comment(U""),
-  m_Line(U""),
+  m_comment(""),
+  m_Line(""),
   m_filePos(0,0) {
 	
 }
 
 
-bool exml::Document::iGenerate(std::u32string& _data, int32_t _indent) const {
+bool exml::Document::iGenerate(std::string& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			m_listSub[iii]->iGenerate(_data, _indent);
@@ -34,6 +34,9 @@ bool exml::Document::iGenerate(std::u32string& _data, int32_t _indent) const {
 }
 
 bool exml::Document::parse(const std::u32string& _data) {
+	return parse(to_u8string(_data));
+}
+bool exml::Document::parse(const std::string& _data) {
 	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.size());
 	clear();
 	// came from char  == > force in utf8 ...
@@ -45,11 +48,20 @@ bool exml::Document::parse(const std::u32string& _data) {
 }
 
 bool exml::Document::generate(std::u32string& _data) {
-	_data = U"";
+	std::string data;
+	bool ret = generate(data);
+	_data = to_u32string(data);
+	return ret;
+}
+bool exml::Document::generate(std::string& _data) {
+	_data = "";
 	return iGenerate(_data,0);
 }
 
-bool exml::Document::load(const std::u32string& _file) {
+bool exml::Document::load(const std::u32string& _data) {
+	return load(to_u8string(_data));
+}
+bool exml::Document::load(const std::string& _file) {
 	// Start loading the XML : 
 	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
 	clear();
@@ -81,7 +93,7 @@ bool exml::Document::load(const std::u32string& _file) {
 	tmpFile.fileClose();
 	
 	// convert in UTF8 :
-	std::u32string tmpDataUnicode(to_u32string(fileBuffer));
+	std::string tmpDataUnicode(fileBuffer);
 	// remove temporary buffer:
 	delete(fileBuffer);
 	// parse the data :
@@ -90,8 +102,11 @@ bool exml::Document::load(const std::u32string& _file) {
 	return ret;
 }
 
-bool exml::Document::store(const std::u32string& _file) {
-	std::u32string createData;
+bool exml::Document::store(const std::u32string& _data) {
+	return store(to_u8string(_data));
+}
+bool exml::Document::store(const std::string& _file) {
+	std::string createData;
 	if (false == generate(createData)) {
 		EXML_ERROR("Error while creating the XML : " << _file);
 		return false;
@@ -101,8 +116,7 @@ bool exml::Document::store(const std::u32string& _file) {
 		EXML_ERROR("Can not open (w) the file : " << _file);
 		return false;
 	}
-	std::string endTable = to_u8string(createData);
-	if (tmpFile.fileWrite((char*)endTable.c_str(), sizeof(char), endTable.size()) != endTable.size()) {
+	if (tmpFile.fileWrite((char*)createData.c_str(), sizeof(char), createData.size()) != createData.size()) {
 		EXML_ERROR("Error while writing output XML file : " << _file);
 		tmpFile.fileClose();
 		return false;
@@ -112,25 +126,25 @@ bool exml::Document::store(const std::u32string& _file) {
 }
 
 void exml::Document::display(void) {
-	std::u32string tmpp;
+	std::string tmpp;
 	iGenerate(tmpp, 0);
 	EXML_INFO("Generated XML : \n" << tmpp);
 }
 
-std::u32string createPosPointer(const std::u32string& _line, int32_t _pos) {
-	std::u32string out;
+std::string createPosPointer(const std::string& _line, int32_t _pos) {
+	std::string out;
 	int32_t iii;
 	for (iii=0; iii<_pos && iii<_line.size(); iii++) {
 		if (_line[iii] == '\t') {
-			out += U"\t";
+			out += "\t";
 		} else {
-			out += U" ";
+			out += " ";
 		}
 	}
 	for (; iii<_pos; iii++) {
-		out += U" ";
+		out += " ";
 	}
-	out += U"^";
+	out += "^";
 	return out;
 }
 
@@ -147,7 +161,7 @@ void exml::Document::displayError(void) {
 	#endif
 }
 
-void exml::Document::createError(const std::u32string& _data, int32_t _pos, const exml::filePos& _filePos, const std::u32string& _comment) {
+void exml::Document::createError(const std::string& _data, int32_t _pos, const exml::filePos& _filePos, const std::string& _comment) {
 	m_comment = _comment;
 	m_Line = extract_line(_data, _pos);
 	m_filePos = _filePos;
