@@ -51,7 +51,7 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 				}
 			}
 			// find end of value:
-			m_value = std::string(_data, _pos, newEnd);
+			m_value = std::string(_data, _pos, newEnd-(_pos));
 			EXML_VERBOSE(" find text '" << m_value << "'");
 			_pos = iii-1;
 			return true;
@@ -78,7 +78,7 @@ bool exml::TextCDATA::iParse(const std::string& _data, int32_t& _pos, bool _case
 		    && _data[iii+2] == '>') {
 			// find end of value:
 			_filePos += 2;
-			m_value = std::string(_data, _pos, iii);
+			m_value = std::string(_data, _pos, iii-(_pos));
 			EXML_VERBOSE(" find text CDATA '" << m_value << "'");
 			_pos = iii+2;
 			return true;

@@ -219,7 +219,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					tmpPos.check(_data[jjj]);
 				}
-				std::string tmpname = std::string(_data, iii+white+2, endPosName+1);
+				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (true == _caseSensitive) {
 					tmpname = to_lower(tmpname);
 				}
@@ -322,7 +322,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					tmpPos.check(_data[jjj]);
 				}
-				std::string tmpname = std::string(_data, iii+white+2, endPosName+1);
+				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (true == _caseSensitive) {
 					tmpname = to_lower(tmpname);
 				}
@@ -359,13 +359,13 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				return false;
 			}
 			
-			if( true == checkAvaillable(_data[iii+white+1], true) ) {
+			if (checkAvaillable(_data[iii+white+1], true) == true) {
 				++tmpPos;
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
 				int32_t endPosName = iii+white+1;
 				// generate element name ...
 				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
-					if(true == checkAvaillable(_data[jjj], false) ) {
+					if(checkAvaillable(_data[jjj], false) == true) {
 						// we find the end ...
 						endPosName = jjj;
 					} else {
@@ -373,7 +373,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					tmpPos.check(_data[jjj]);
 				}
-				std::string tmpname = std::string(_data, iii+white+1, endPosName+1);
+				std::string tmpname = std::string(_data, iii+white+1, endPosName+1-(iii+white+1));
 				if (true == _caseSensitive) {
 					to_lower(tmpname);
 				}

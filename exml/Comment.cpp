@@ -41,7 +41,7 @@ bool exml::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 				}
 			}
 			// find end of value:
-			m_value = std::string(_data, _pos+white, newEnd);
+			m_value = std::string(_data, _pos+white, newEnd-(_pos+white));
 			EXML_VERBOSE(" find comment '" << m_value << "'");
 			_pos = iii+2;
 			return true;

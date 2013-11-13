@@ -47,7 +47,7 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 			break;
 		}
 	}
-	m_name = std::string(_data, _pos, lastElementName+1);
+	m_name = std::string(_data, _pos, lastElementName+1-(_pos));
 	if (true == _caseSensitive) {
 		m_name = to_lower(m_name);
 	}
@@ -91,7 +91,7 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 				break;
 			}
 		}
-		m_value = std::string(_data, lastElementName+white+2, lastAttributePos);
+		m_value = std::string(_data, lastElementName+white+2, lastAttributePos-(lastElementName+white+2));
 		
 		EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 		
@@ -110,7 +110,7 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 			break;
 		}
 	}
-	m_value = std::string(_data, lastElementName+white+3, lastAttributePos);
+	m_value = std::string(_data, lastElementName+white+3, lastAttributePos-(lastElementName+white+3));
 	
 	EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 	
