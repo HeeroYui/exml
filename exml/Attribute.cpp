@@ -35,8 +35,8 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
 	// search end of the comment :
-	int32_t lastElementName = _pos;
-	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+	size_t lastElementName = _pos;
+	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 		 drawElementParsed(_data[iii], _filePos);
@@ -73,8 +73,8 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 	if (_data[lastElementName+white+2] != '"') {
 		// parse with no element "  == > direct value separate with space ...
 		++_filePos;
-		int32_t lastAttributePos = lastElementName+white+2;
-		for (int32_t iii=lastElementName+white+2; iii<_data.size(); iii++) {
+		size_t lastAttributePos = lastElementName+white+2;
+		for (size_t iii=lastElementName+white+2; iii<_data.size(); iii++) {
 			#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 				drawElementParsed(_data[iii], _filePos);
 			#endif
@@ -98,8 +98,8 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 		_pos = lastAttributePos-1;
 		return true;
 	}
-	int32_t lastAttributePos = lastElementName+white+3;
-	for (int32_t iii=lastElementName+white+3; iii<_data.size(); iii++) {
+	size_t lastAttributePos = lastElementName+white+3;
+	for (size_t iii=lastElementName+white+3; iii<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			drawElementParsed(_data[iii], _filePos);
 		#endif

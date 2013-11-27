@@ -25,7 +25,7 @@ exml::Document::Document(void) :
 
 
 bool exml::Document::iGenerate(std::string& _data, int32_t _indent) const {
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			m_listSub[iii]->iGenerate(_data, _indent);
 		}
@@ -116,7 +116,7 @@ bool exml::Document::store(const std::string& _file) {
 		EXML_ERROR("Can not open (w) the file : " << _file);
 		return false;
 	}
-	if (tmpFile.fileWrite((char*)createData.c_str(), sizeof(char), createData.size()) != createData.size()) {
+	if (tmpFile.fileWrite((char*)createData.c_str(), sizeof(char), createData.size()) != (int64_t)createData.size()) {
 		EXML_ERROR("Error while writing output XML file : " << _file);
 		tmpFile.fileClose();
 		return false;
@@ -133,15 +133,15 @@ void exml::Document::display(void) {
 
 std::string createPosPointer(const std::string& _line, int32_t _pos) {
 	std::string out;
-	int32_t iii;
-	for (iii=0; iii<_pos && iii<_line.size(); iii++) {
+	size_t iii;
+	for (iii=0; (int64_t)iii<_pos && iii<_line.size(); iii++) {
 		if (_line[iii] == '\t') {
 			out += "\t";
 		} else {
 			out += " ";
 		}
 	}
-	for (; iii<_pos; iii++) {
+	for (; (int64_t)iii<_pos; iii++) {
 		out += " ";
 	}
 	out += "^";

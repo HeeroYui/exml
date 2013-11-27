@@ -13,7 +13,7 @@
 #define __class__ "AttributeList"
 
 exml::AttributeList::~AttributeList(void) {
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			delete(m_listAttribute[iii]);
 			m_listAttribute[iii]=NULL;
@@ -23,14 +23,14 @@ exml::AttributeList::~AttributeList(void) {
 }
 
 exml::Attribute* exml::AttributeList::getAttr(int32_t _id) {
-	if (_id <0 || _id>m_listAttribute.size()) {
+	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
 }
 
 const exml::Attribute* exml::AttributeList::getAttr(int32_t _id) const {
-	if (_id <0 || _id>m_listAttribute.size()) {
+	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
 		return NULL;
 	}
 	return m_listAttribute[_id];
@@ -41,7 +41,7 @@ void exml::AttributeList::appendAttribute(exml::Attribute* _attr) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (m_listAttribute[iii] == _attr) {
 			EXML_ERROR("Try to add a node that is already added befor !!!");
 			return;
@@ -55,7 +55,7 @@ const std::string& exml::AttributeList::getAttribute(const std::string& _name) c
 	if (_name.size() == 0) {
 		return errorReturn;
 	}
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getName() == _name) {
 			return m_listAttribute[iii]->getValue();
@@ -69,7 +69,7 @@ std::u32string exml::AttributeList::getAttribute(const std::u32string& _name) co
 	if (_name.size() == 0) {
 		return errorReturn;
 	}
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getUName() == _name) {
 			return m_listAttribute[iii]->getUValue();
@@ -82,7 +82,7 @@ bool exml::AttributeList::existAttribute(const std::string& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getName() == _name) {
 			return true;
@@ -95,7 +95,7 @@ bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getUName() == _name) {
 			return true;
@@ -106,7 +106,7 @@ bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
 
 void exml::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
 	// check if attribute already det :
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getName() == _name) {
 			// update the value :
@@ -123,7 +123,7 @@ void exml::AttributeList::setAttribute(const std::string& _name, const std::stri
 
 void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u32string& _value) {
 	// check if attribute already det :
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getUName() == _name) {
 			// update the value :
@@ -139,7 +139,7 @@ void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u
 }
 
 bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			m_listAttribute[iii]->iGenerate(_data, _indent);
 		}
@@ -149,7 +149,7 @@ bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
 
 void exml::AttributeList::clear(void) {
 	exml::Node::clear();
-	for (int32_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			delete(m_listAttribute[iii]);
 			m_listAttribute[iii]=NULL;

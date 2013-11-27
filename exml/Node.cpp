@@ -99,7 +99,7 @@ bool exml::Node::checkAvaillable(char32_t _val, bool _firstChar) const {
 int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml::filePos& _filePos) const {
 	_filePos.clear();
 	int32_t white=0;
-	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
 		if(true == etk::isWhiteChar(_data[iii])) {
 			white++;

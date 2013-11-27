@@ -20,7 +20,7 @@ bool exml::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 	int32_t white = countWhiteChar(_data, _pos, tmpPos);
 	_filePos += tmpPos;
 	// search end of the comment :
-	for (int32_t iii=_pos+white; iii+2<_data.size(); iii++) {
+	for (size_t iii=_pos+white; iii+2<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 		 drawElementParsed(_data[iii], _filePos);
 		#endif

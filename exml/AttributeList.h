@@ -43,7 +43,7 @@ namespace exml {
 			 * @brief get the number of attribute in the Node
 			 * @return Nulber of attribute >=0
 			 */
-			int32_t sizeAttribute(void) const {
+			size_t sizeAttribute(void) const {
 				return m_listAttribute.size();
 			};
 			/**

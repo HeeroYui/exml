@@ -19,7 +19,7 @@
 
 
 exml::Element::~Element(void) {
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			delete(m_listSub[iii]);
 			m_listSub[iii]=NULL;
@@ -44,14 +44,14 @@ const enum exml::nodeType exml::Element::getType(int32_t _id) const {
 }
 
 exml::Node* exml::Element::getNode(int32_t _id) {
-	if (_id <0 || _id>m_listSub.size()) {
+	if (_id <0 || (size_t)_id>m_listSub.size()) {
 		return NULL;
 	}
 	return m_listSub[_id];
 }
 
 const exml::Node* exml::Element::getNode(int32_t _id) const {
-	if (_id <0 || _id>m_listSub.size()) {
+	if (_id <0 || (size_t)_id>m_listSub.size()) {
 		return NULL;
 	}
 	return m_listSub[_id];
@@ -78,7 +78,7 @@ exml::Element* exml::Element::getNamed(const std::string& _name) {
 	if (_name.size() == 0) {
 		return NULL;
 	}
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    NULL != m_listSub[iii]
 		    && m_listSub[iii]->getType() == exml::typeElement
 		    && m_listSub[iii]->getValue() == _name) {
@@ -98,7 +98,7 @@ const exml::Element* exml::Element::getNamed(const std::string& _name) const {
 	if (_name.size() == 0) {
 		return NULL;
 	}
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    NULL != m_listSub[iii]
 		    && m_listSub[iii]->getType() == exml::typeElement
 		    && m_listSub[iii]->getValue() == _name) {
@@ -123,7 +123,7 @@ void exml::Element::append(exml::Node* _node) {
 		appendAttribute(_node->toAttribute());
 		return;
 	}
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (m_listSub[iii] == _node) {
 			EXML_ERROR("Try to add a node that is already added before !!!");
 			return;
@@ -135,7 +135,7 @@ void exml::Element::append(exml::Node* _node) {
 std::string exml::Element::getText(void) {
 	// TODO : add more capabilities ...
 	std::string res;
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			m_listSub[iii]->iGenerate(res, 0);
 		}
@@ -159,7 +159,7 @@ bool exml::Element::iGenerate(std::string& _data, int32_t _indent) const {
 		} else {
 			_data += ">\n";
 			
-			for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+			for (size_t iii=0; iii<m_listSub.size(); iii++) {
 				if (NULL!=m_listSub[iii]) {
 					m_listSub[iii]->iGenerate(_data, _indent+1);
 				}
@@ -178,7 +178,7 @@ bool exml::Element::iGenerate(std::string& _data, int32_t _indent) const {
 
 bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode) {
 	EXML_PARSE_ELEMENT(" start subParse ... " << _pos << " " << _filePos);
-	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			drawElementParsed(_data[iii], _filePos);
@@ -208,9 +208,9 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					return false;
 				}
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
-				int32_t endPosName = iii+white+1;
+				size_t endPosName = iii+white+1;
 				// generate element name ...
-				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
+				for (size_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
 					if(true == checkAvaillable(_data[jjj], false) ) {
 						// we find the end ...
 						endPosName = jjj;
@@ -311,9 +311,9 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 			if(_data[iii+white+1] == '/') {
 				++tmpPos;
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
-				int32_t endPosName = iii+white+1;
+				size_t endPosName = iii+white+1;
 				// generate element name ...
-				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
+				for (size_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
 					if(true == checkAvaillable(_data[jjj], false) ) {
 						// we find the end ...
 						endPosName = jjj;
@@ -329,7 +329,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				if( tmpname == m_value) {
 					// find end of node :
 					// find > element ... 
-					for (int32_t jjj=endPosName+1; jjj<_data.size(); jjj++) {
+					for (size_t jjj=endPosName+1; jjj<_data.size(); jjj++) {
 						#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 							drawElementParsed(_data[jjj], _filePos);
 						#endif
@@ -362,9 +362,9 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 			if (checkAvaillable(_data[iii+white+1], true) == true) {
 				++tmpPos;
 				//EXML_DEBUG("Generate node name : '" << _data[iii+1] << "'");
-				int32_t endPosName = iii+white+1;
+				size_t endPosName = iii+white+1;
 				// generate element name ...
-				for (int32_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
+				for (size_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
 					if(checkAvaillable(_data[jjj], false) == true) {
 						// we find the end ...
 						endPosName = jjj;
@@ -439,7 +439,7 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
 	m_pos=_filePos;
 	// find a normal node ...
-	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 		 drawElementParsed(_data[iii], _filePos);
@@ -491,7 +491,7 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 
 void exml::Element::clear(void) {
 	exml::AttributeList::clear();
-	for (int32_t iii=0; iii<m_listSub.size(); iii++) {
+	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			delete(m_listSub[iii]);
 			m_listSub[iii]=NULL;

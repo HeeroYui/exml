@@ -7,6 +7,9 @@ def Create(target):
 	
 	myModule.AddModuleDepend(['etk'])
 	
+	# add extra compilation flags :
+	myModule.add_extra_compile_flags()
+	# add sources files
 	myModule.AddSrcFile([
 		'exml/debug.cpp',
 		'exml/Attribute.cpp',

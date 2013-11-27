@@ -20,7 +20,7 @@ bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
 
 int32_t exml::Text::countLines(void) const {
 	int32_t count = 1;
-	for (int32_t iii=0; iii<m_value.size(); iii++) {
+	for (size_t iii=0; iii<m_value.size(); iii++) {
 		if(m_value[iii] == '\n') {
 			count++;
 		}
@@ -32,7 +32,7 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 	EXML_VERBOSE("start parse : 'text'");
 	m_pos = _filePos;
 	// search end of the comment :
-	for (int32_t iii=_pos; iii<_data.size(); iii++) {
+	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			drawElementParsed(_data[iii], _filePos);
 		#endif
@@ -42,8 +42,8 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 		if(    _data[iii] == '>'
 		    || _data[iii] == '<') {
 			// search whitespace :
-			int32_t newEnd=iii;
-			for( int32_t jjj=iii-1; jjj>_pos; jjj--) {
+			size_t newEnd=iii;
+			for (int64_t jjj=(int64_t)iii-1; jjj>(int64_t)_pos; --jjj) {
 				if(true == etk::isWhiteChar(_data[jjj])) {
 					newEnd = jjj;
 				} else {
@@ -66,7 +66,7 @@ bool exml::TextCDATA::iParse(const std::string& _data, int32_t& _pos, bool _case
 	EXML_VERBOSE("start parse : 'text::CDATA'");
 	m_pos = _filePos;
 	// search end of the comment :
-	for (int32_t iii=_pos; iii+2<_data.size(); iii++) {
+	for (size_t iii=_pos; iii+2<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			drawElementParsed(_data[iii], _filePos);
 		#endif

@@ -43,7 +43,7 @@ namespace exml {
 			 * @brief get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).
 			 * @return a number >=0.
 			 */
-			int32_t size(void) const {
+			size_t size(void) const {
 				return m_listSub.size();
 			};
 			/**

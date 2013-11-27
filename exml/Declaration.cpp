@@ -69,7 +69,7 @@ bool exml::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _ca
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :
-	for (int32_t iii=_pos; iii+1<_data.size(); iii++) {
+	for (size_t iii=_pos; iii+1<_data.size(); iii++) {
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 		 drawElementParsed(_data[iii], _filePos);
 		#endif
