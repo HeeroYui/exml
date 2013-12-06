@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>exml Library</title>
+	<link rel="stylesheet" href="base.css">
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="container">
+			<h1>exml Library</h1>
+				<li>exml</li>
+				<ul>
+				<li><a href="exml__Attribute.html">Attribute</a></li>
+				<li><a href="exml__AttributeList.html">AttributeList</a></li>
+				<li><a href="exml__Comment.html">Comment</a></li>
+				<li><a href="exml__Declaration.html">Declaration</a></li>
+				<li><a href="exml__DeclarationXML.html">DeclarationXML</a></li>
+				<li><a href="exml__Document.html">Document</a></li>
+				<li><a href="exml__Element.html">Element</a></li>
+				<li><a href="exml__Node.html">Node</a></li>
+				<li><a href="exml__Text.html">Text</a></li>
+				<li><a href="exml__TextCDATA.html">TextCDATA</a></li>
+				<li><a href="exml__filePos.html">filePos</a></li>
+				</ul>
+				<li><a href="exml__nodeType.html">nodeType</a></li>
+				</ul>
+		</div>
+	</div>
+	<div class="container" id="content">
+<h1>Class: exml::AttributeList</h1>
+<br/>
+<h2>Synopsis:</h2>
+<pre>
++                       <a class="code-function" href="#AttributeList">AttributeList</a>    (<span class="code-type">void</span>);<br>+                       <a class="code-function" href="#AttributeList">AttributeList</a>    (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_value</span>);<br>+                       <a class="code-function" href="#AttributeList">AttributeList</a>    (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_value</span>);<br>+                      ~<a class="code-function" href="#AttributeList">AttributeList</a>    (<span class="code-type">void</span>);<br>+  <span class="code-type">size_t</span>               <a class="code-function" href="#sizeAttribute">sizeAttribute</a>    (<span class="code-type">void</span>);<br>+  <span class="code-type">void</span>                 <a class="code-function" href="#appendAttribute">appendAttribute</a>  (<a href="exml__Attribute.html" class="code-type">exml::Attribute</a> * <span class="code-argument">_attr</span>);<br>+  Attribute *          <a class="code-function" href="#getAttr">getAttr</a>          (<span class="code-type">int32_t</span> <span class="code-argument">_id</span>);<br>+  <span class="code-storage-keyword">const</span> Attribute *    <a class="code-function" href="#getAttr">getAttr</a>          (<span class="code-type">int32_t</span> <span class="code-argument">_id</span>);<br>+  <span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> &  <a class="code-function" href="#getAttribute">getAttribute</a>     (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_name</span>);<br>+  <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a>       <a class="code-function" href="#getAttribute">getAttribute</a>     (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_name</span>);<br>+  <span class="code-type">bool</span>                 <a class="code-function" href="#existAttribute">existAttribute</a>   (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_name</span>);<br>+  <span class="code-type">bool</span>                 <a class="code-function" href="#existAttribute">existAttribute</a>   (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_name</span>);<br>+  <span class="code-type">void</span>                 <a class="code-function" href="#setAttribute">setAttribute</a>     (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_name</span>,<br/>                                          <span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_value</span>);<br>+  <span class="code-type">void</span>                 <a class="code-function" href="#setAttribute">setAttribute</a>     (<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_name</span>,<br/>                                          <span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_value</span>);<br>+  <span class="code-type">bool</span>                 <a class="code-function" href="#iGenerate">iGenerate</a>        (<a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_data</span>,<br/>                                          <span class="code-type">int32_t</span> <span class="code-argument">_indent</span>);<br>+  <span class="code-type">void</span>                 <a class="code-function" href="#clear">clear</a>            (<span class="code-type">void</span>);<br></pre>
+
+
+<h2>Object Hierarchy:</h2>
+<pre>
+<a href="">Node</a>
+    +--> <b>exml::AttributeList</b>
+        +--> <a href="exml__Declaration.html">exml::Declaration</a>
+</pre>
+<br/>
+<h2>Detail:<h2>
+<h3>exml::<a id="AttributeList">AttributeList</a> ()</h3>
+
+<pre>
+<span class="code-function">AttributeList</span>(<span class="code-type">void</span>);</pre>
+<br/>
+Constructor
+<br/><br/>
+
+<hr/>
+<h3>exml::<a id="AttributeList">AttributeList</a> ()</h3>
+
+<pre>
+<span class="code-function">AttributeList</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_value</span>);</pre>
+<br/>
+Constructor
+<br/><ul>
+<b>Parameter [input]:</b> <span class="code-argument">_value</span>  Node value;
+<br/></ul>
+<br/>
+
+<hr/>
+<h3>exml::<a id="AttributeList">AttributeList</a> ()</h3>
+
+<pre>
+<span class="code-function">AttributeList</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_value</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+<h3>exml::~<a id="AttributeList">AttributeList</a> ()</h3>
+
+<pre>
+~<span class="code-function">AttributeList</span>(<span class="code-type">void</span>);</pre>
+<br/>
+Destructor
+<br/><br/>
+
+<hr/>
+<h3><a id="sizeAttribute">sizeAttribute</a> ()</h3>
+
+<pre>
+<span class="code-type">size_t</span> <span class="code-function">sizeAttribute</span>(<span class="code-type">void</span>);</pre>
+<br/>
+get the number of attribute in the Node
+<br/><ul>
+<b>Return:</b> Nulber of attribute >=0
+<br/></ul>
+<br/>
+
+<hr/>
+<h3><a id="appendAttribute">appendAttribute</a> ()</h3>
+
+<pre>
+<span class="code-type">void</span> <span class="code-function">appendAttribute</span>(<a href="exml__Attribute.html" class="code-type">exml::Attribute</a> * <span class="code-argument">_attr</span>);</pre>
+<br/>
+add attribute on the List
+<br/><ul>
+<b>Parameter [input]:</b> <span class="code-argument">_attr</span>  Pointer on the attribute
+<br/></ul>
+<br/>
+
+<hr/>
+<h3><a id="getAttr">getAttr</a> ()</h3>
+
+<pre>
+Attribute * <span class="code-function">getAttr</span>(<span class="code-type">int32_t</span> <span class="code-argument">_id</span>);</pre>
+<br/>
+get attribute whith his ID
+<br/><ul>
+<b>Parameter [input]:</b> <span class="code-argument">_id</span>  Identifier of the attribute 0<= _id < sizeAttribute()
+<br/><b>Return:</b> Pointer on the attribute or NULL
+<br/></ul>
+<br/>
+
+<hr/>
+<h3><a id="getAttr">getAttr</a> ()</h3>
+
+<pre>
+<span class="code-storage-keyword">const</span> Attribute * <span class="code-function">getAttr</span>(<span class="code-type">int32_t</span> <span class="code-argument">_id</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+<h3><a id="getAttribute">getAttribute</a> ()</h3>
+
+<pre>
+<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-function">getAttribute</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_name</span>);</pre>
+<br/>
+get the attribute value with searching in the List with his name
+<br/><ul>
+<b>Parameter [input]:</b> <span class="code-argument">_name</span>  Attribute Name.
+<br/><b>Return:</b> Value of the attribute or no data in the string
+<br/></ul>
+<br/>
+
+<hr/>
+<h3><a id="getAttribute">getAttribute</a> ()</h3>
+
+<pre>
+<a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> <span class="code-function">getAttribute</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_name</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+<h3><a id="existAttribute">existAttribute</a> ()</h3>
+
+<pre>
+<span class="code-type">bool</span> <span class="code-function">existAttribute</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_name</span>);</pre>
+<br/>
+check if an attribute exist or not with his name.
+<br/><ul>
+<b>Parameter [input]:</b> <span class="code-argument">_name</span>  Attribute Name.
+<br/><b>Return:</b> true if the attribute exist or False
+<br/></ul>
+<br/>
+
+<hr/>
+<h3><a id="existAttribute">existAttribute</a> ()</h3>
+
+<pre>
+<span class="code-type">bool</span> <span class="code-function">existAttribute</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_name</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+<h3><a id="setAttribute">setAttribute</a> ()</h3>
+
+<pre>
+<span class="code-type">void</span> <span class="code-function">setAttribute</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_name</span>,
+                  <span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_value</span>);</pre>
+<br/>
+Sen A new attribute or replace data of the previous one
+<br/><ul>
+<b>Parameter [input]:</b> <span class="code-argument">_name</span>  Name of the attribute
+<br/><b>Parameter [input]:</b> <span class="code-argument">_value</span>  Value of the attribute
+<br/></ul>
+<br/>
+
+<hr/>
+<h3><a id="setAttribute">setAttribute</a> ()</h3>
+
+<pre>
+<span class="code-type">void</span> <span class="code-function">setAttribute</span>(<span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_name</span>,
+                  <span class="code-storage-keyword">const</span> <a href="http://www.cplusplus.com/reference/string/u32string/" class="code-type">std::u32string</a> & <span class="code-argument">_value</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+<h3><a id="iGenerate">iGenerate</a> ()</h3>
+
+<pre>
+<span class="code-type">bool</span> <span class="code-function">iGenerate</span>(<a href="http://www.cplusplus.com/reference/string/string/" class="code-type">std::string</a> & <span class="code-argument">_data</span>,
+               <span class="code-type">int32_t</span> <span class="code-argument">_indent</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+<h3><a id="clear">clear</a> ()</h3>
+
+<pre>
+<span class="code-type">void</span> <span class="code-function">clear</span>(<span class="code-type">void</span>);</pre>
+<br/>
+<br/>
+
+<hr/>
+	</div>
+</body>
+</html>
