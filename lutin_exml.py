@@ -6,7 +6,7 @@ def Create(target):
 	myModule = lutinModule.module(__file__, 'exml', 'LIBRARY')
 	# enable doculentation :
 	myModule.doc_enable()
-	myModule.documentation.set_website("http://HeeroYui.github.io/exml/doc/doc/")
+	myModule.documentation.set_website("http://HeeroYui.github.io/exml/")
 	myModule.documentation.set_path(lutinTools.GetCurrentPath(__file__) + "/exml/")
 	myModule.documentation.set_external_link(['etk'])
 	
