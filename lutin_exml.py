@@ -1,16 +1,20 @@
 #!/usr/bin/python
-import lutinModule
-import lutinTools
+import lutinModule as module
+import lutinTools as tools
 
-def Create(target):
-	myModule = lutinModule.module(__file__, 'exml', 'LIBRARY')
+def get_desc():
+	return "e-xml XML parser and generator"
+
+
+def create(target):
+	myModule = module.Module(__file__, 'exml', 'LIBRARY')
 	
-	myModule.AddModuleDepend(['etk'])
+	myModule.add_module_depend(['etk'])
 	
 	# add extra compilation flags :
 	myModule.add_extra_compile_flags()
 	# add sources files
-	myModule.AddSrcFile([
+	myModule.add_src_file([
 		'exml/debug.cpp',
 		'exml/Attribute.cpp',
 		'exml/AttributeList.cpp',
@@ -21,7 +25,7 @@ def Create(target):
 		'exml/Node.cpp',
 		'exml/Text.cpp'])
 	
-	myModule.AddExportPath(lutinTools.GetCurrentPath(__file__))
+	myModule.add_export_path(tools.get_current_path(__file__))
 	
 	# add the currrent module at the 
 	return myModule
