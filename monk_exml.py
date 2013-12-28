@@ -10,6 +10,7 @@ def create():
 	myModule = module.Module(__file__, 'exml', 'LIBRARY')
 	# enable doculentation :
 	myModule.set_website("http://heeroyui.github.io/exml/")
+	myModule.set_website_sources("http://github.com/heeroyui/exml/")
 	myModule.set_path(tools.get_current_path(__file__) + "/exml/")
 	# add the currrent module at the 
 	return myModule
