@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>exml Library</title>
+	<link rel="stylesheet" href="base.css">
+	<link rel="stylesheet" href="menu.css">
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="container">
+			<h1><a href="index.html">exml library</a></h1>
+			<h4><a href="http://github.com/heeroyui/exml/">&nbsp;&nbsp;&nbsp;[ sources ]</a></h4>
+<h3>API:</h3>			<div id="menu">
+<ul class="niveau1">
+	<li><a href="namespace_exml.html">exml</a>
+	</li>
+</ul>
+			</div>
+<br/><h3>Associate libraries:</h3><div id="menu">
+<ul class="niveau1"><li><a href="../ewol/index.html">ewol</a></li>
+</ul><ul class="niveau1"><li><a href="../ejson/index.html">ejson</a></li>
+</ul><ul class="niveau1"><li><a href="../egami/index.html">egami</a></li>
+</ul><ul class="niveau1"><li><a href="../ege/index.html">ege</a></li>
+</ul><ul class="niveau1"><li><a href="../esvg/index.html">esvg</a></li>
+</ul><ul class="niveau1"><li><a href="../etk/index.html">etk</a></li>
+</ul></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+		</div>
+	</div>
+	<div class="container" id="content">
+<h1>enum: exml::nodeType</h1><hr/><h2>Description:</h2>
+
+<br/><br/>
+<h2>Value list</h2>
+<ul>
+<table class="enumeration-list"><tr>
+<tr>
+<td><a href="#typeUnknow">typeUnknow</a></td></tr>
+<tr>
+<td><a href="#typeNode">typeNode</a></td></tr>
+<tr>
+<td><a href="#typeDocument">typeDocument</a></td></tr>
+<tr>
+<td><a href="#typeDeclaration">typeDeclaration</a></td></tr>
+<tr>
+<td><a href="#typeAttribute">typeAttribute</a></td></tr>
+<tr>
+<td><a href="#typeElement">typeElement</a></td></tr>
+<tr>
+<td><a href="#typeComment">typeComment</a></td></tr>
+<tr>
+<td><a href="#typeText">typeText</a></td></tr>
+</table>
+</ul>
+<h2>Detail:</h2>
+<h3><a id="typeUnknow"/>typeUnknow</h3><pre>
+typeUnknow      = <span class="code-type">0<span></pre>
+
+might be an error ...<br/><hr/>
+<h3><a id="typeNode"/>typeNode</h3><pre>
+typeNode        = <span class="code-type">1<span></pre>
+
+might be an error ...<br/><hr/>
+<h3><a id="typeDocument"/>typeDocument</h3><pre>
+typeDocument    = <span class="code-type">2<span></pre>
+
+all the file main access<br/><hr/>
+<h3><a id="typeDeclaration"/>typeDeclaration</h3><pre>
+typeDeclaration = <span class="code-type">3<span></pre>
+
+&lt;?xml ... ?&gt;<br/><hr/>
+<h3><a id="typeAttribute"/>typeAttribute</h3><pre>
+typeAttribute   = <span class="code-type">4<span></pre>
+
+the &lt;Element ATTRIBUTE="ATTRIBUTE_VALUE" /&gt;<br/><hr/>
+<h3><a id="typeElement"/>typeElement</h3><pre>
+typeElement     = <span class="code-type">5<span></pre>
+
+the &lt;XXX&gt; ... &lt;/XXX&gt;<br/><hr/>
+<h3><a id="typeComment"/>typeComment</h3><pre>
+typeComment     = <span class="code-type">6<span></pre>
+
+comment node : &lt;!--   --&gt;<br/><hr/>
+<h3><a id="typeText"/>typeText</h3><pre>
+typeText        = <span class="code-type">7<span></pre>
+
+&lt;XXX&gt; InsideText &lt;/XXX&gt;<br/>	</div>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-46753803-1', 'heeroyui.github.io');
+	ga('send', 'pageview');
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>exml Library</title>
+	<link rel="stylesheet" href="base.css">
+	<link rel="stylesheet" href="menu.css">
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="container">
+			<h1><a href="index.html">exml library</a></h1>
+			<h4><a href="http://github.com/heeroyui/exml/">&nbsp;&nbsp;&nbsp;[ sources ]</a></h4>
+<h3>API:</h3>			<div id="menu">
+<ul class="niveau1">
+	<li><a href="namespace_exml.html">exml</a>
+	</li>
+</ul>
+			</div>
+<br/><h3>Associate libraries:</h3><div id="menu">
+<ul class="niveau1"><li><a href="../ewol/index.html">ewol</a></li>
+</ul><ul class="niveau1"><li><a href="../ejson/index.html">ejson</a></li>
+</ul><ul class="niveau1"><li><a href="../egami/index.html">egami</a></li>
+</ul><ul class="niveau1"><li><a href="../ege/index.html">ege</a></li>
+</ul><ul class="niveau1"><li><a href="../esvg/index.html">esvg</a></li>
+</ul><ul class="niveau1"><li><a href="../etk/index.html">etk</a></li>
+</ul></div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+		</div>
+	</div>
+	<div class="container" id="content">
+<h1>class: exml::Element</h1><hr/><h2>Description:</h2>
+
+<br/><br/>
+<h2>Constructor and Destructor:</h2>
+<pre>
++                                  <a class="code-function" href="#9726">Element</a>    (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/>+                                  <a class="code-function" href="#9728">Element</a>    (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_value</span>);<br/>+ <span class="code-storage-keyword">virtual</span>                          <a class="code-function" href="#9730">~Element</a>   (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+<br/>
+<h2>Synopsis:</h2>
+<pre>
+#         <a class="code-type" href="http://www.cplusplus.com/reference/vector/vector/">std::vector</a>&lt;exml::Node*&gt; <a class="code-member" href="#9732">m_listSub</a>;<br/>+         size_t                   <a class="code-function" href="#9733">size</a>       (<span class="code-type" >void</span> <span class="code-argument"></span>) <span class="code-storage-keyword">const</span>;<br/>+         <span class="code-type" >void</span>                     <a class="code-function" href="#9735">append</a>     (Node* <span class="code-argument">_node</span>);<br/>+         <span class="code-storage-keyword">enum</span> nodeType            <a class="code-function" href="#9737">getType</a>    (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>);<br/>+         <span class="code-storage-keyword">const</span> <span class="code-storage-keyword">enum</span> nodeType      <a class="code-function" href="#9739">getType</a>    (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>) <span class="code-storage-keyword">const</span>;<br/>+         Node*                    <a class="code-function" href="#9741">getNode</a>    (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>);<br/>+         <span class="code-storage-keyword">const</span> Node*              <a class="code-function" href="#9743">getNode</a>    (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>) <span class="code-storage-keyword">const</span>;<br/>+         Element*                 <a class="code-function" href="#9745">getElement</a> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>);<br/>+         <span class="code-storage-keyword">const</span> Element*           <a class="code-function" href="#9747">getElement</a> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>) <span class="code-storage-keyword">const</span>;<br/>+         Element*                 <a class="code-function" href="#9749">getNamed</a>   (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_name</span>);<br/>+         <span class="code-storage-keyword">const</span> Element*           <a class="code-function" href="#9751">getNamed</a>   (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_name</span>) <span class="code-storage-keyword">const</span>;<br/>+         <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a>              <a class="code-function" href="#9753">getText</a>    (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/>#         <span class="code-type" >bool</span>                     <a class="code-function" href="#9755">subParse</a>   (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_data</span>,<br/>                                               <span class="code-type" >int32_t</span> & <span class="code-argument">_pos</span>,<br/>                                               <span class="code-type" >bool</span> <span class="code-argument">_caseSensitive</span>,<br/>                                               <a class="code-type" href="class_exml__filePos.html">exml::filePos</a> & <span class="code-argument">_filePos</span>,<br/>                                               <a class="code-type" href="class_exml__Document.html">exml::Document</a> & <span class="code-argument">_doc</span>,<br/>                                               <span class="code-type" >bool</span> <span class="code-argument">_mainNode</span>);<br/>+ <span class="code-storage-keyword">virtual</span> <span class="code-storage-keyword">enum</span> nodeType            <a class="code-function" href="#9762">getType</a>    (<span class="code-type" >void</span> <span class="code-argument"></span>) <span class="code-storage-keyword">const</span>;<br/>+ <span class="code-storage-keyword">virtual</span> <span class="code-type" >bool</span>                     <a class="code-function" href="#9764">iParse</a>     (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_data</span>,<br/>                                               <span class="code-type" >int32_t</span> & <span class="code-argument">_pos</span>,<br/>                                               <span class="code-type" >bool</span> <span class="code-argument">_caseSensitive</span>,<br/>                                               <a class="code-type" href="class_exml__filePos.html">exml::filePos</a> & <span class="code-argument">_filePos</span>,<br/>                                               <a class="code-type" href="class_exml__Document.html">exml::Document</a> & <span class="code-argument">_doc</span>);<br/>+ <span class="code-storage-keyword">virtual</span> <span class="code-type" >bool</span>                     <a class="code-function" href="#9770">iGenerate</a>  (<a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_data</span>,<br/>                                               <span class="code-type" >int32_t</span> <span class="code-argument">_indent</span>) <span class="code-storage-keyword">const</span>;<br/>+ <span class="code-storage-keyword">virtual</span> <a class="code-type" href="class_exml__Element.html">exml::Element</a>*           <a class="code-function" href="#9773">toElement</a>  (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/>+ <span class="code-storage-keyword">virtual</span> <span class="code-storage-keyword">const</span> <a class="code-type" href="class_exml__Element.html">exml::Element</a>*     <a class="code-function" href="#9775">toElement</a>  (<span class="code-type" >void</span> <span class="code-argument"></span>) <span class="code-storage-keyword">const</span>;<br/>+ <span class="code-storage-keyword">virtual</span> <span class="code-type" >void</span>                     <a class="code-function" href="#9777">clear</a>      (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+<br/>
+<h2>Object Hierarchy:<h2>
+<pre>
++<a href="class_exml__Node.html">exml::Node</a><br/>  +--> +<a href="class_exml__AttributeList.html">exml::AttributeList</a><br/>         +--> exml::Element<br/>                +--> <a href="class_exml__Document.html">exml::Document</a><br/></pre>
+<h2>Detail:</h2>
+<a id="9726"/><a id="9728"/><h3>Element</h3><pre>
++  <span class="code-function">Element</span> (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+Constructor<br/>
+<br/>
+<hr/>
+<a id="9730"/><h3>Element</h3><pre>
++  <span class="code-function">Element</span> (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_value</span>);<br/></pre>
+Constructor<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_value</span> </td><td> Element name;</td></tr>
+</table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9732"/><h3>~Element</h3><pre>
++ <span class="code-storage-keyword">virtual</span>  <span class="code-function">~Element</span> (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+Destructor<br/>
+<br/>
+<hr/>
+<a id="9733"/><h3>m_listSub</h3><pre>
+# <a class="code-type" href="http://www.cplusplus.com/reference/vector/vector/">std::vector</a>&lt;exml::Node*&gt; <span class="code-member">m_listSub</span>;<br/></pre>
+
+<br/>
+<br/>
+<hr/>
+<a id="9735"/><h3>size</h3><pre>
++ size_t <span class="code-function">size</span> (<span class="code-type" >void</span> <span class="code-argument"></span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).<br/><ul>
+<table class="parameter-list">
+<tr><td><b>Return: </b></td><td></td><td>a number &gt;=0.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9737"/><h3>append</h3><pre>
++ <span class="code-type" >void</span> <span class="code-function">append</span> (Node* <span class="code-argument">_node</span>);<br/></pre>
+add a node at the element (not exml::Attribute (move in the attribute automaticly).<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_node</span> </td><td> Pointer of the node to add.</td></tr>
+</table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9739"/><h3>getType</h3><pre>
++ <span class="code-storage-keyword">enum</span> nodeType <span class="code-function">getType</span> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>);<br/></pre>
+get the type of the element id.<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_id</span> </td><td> Id of the element.</td></tr>
+<tr><td><b>Return: </b></td><td></td><td>the Current type of the element or exml::typeUnknow.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9741"/><h3>getType</h3><pre>
++ <span class="code-storage-keyword">const</span> <span class="code-storage-keyword">enum</span> nodeType <span class="code-function">getType</span> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+get the node type.<br/><ul>
+<table class="parameter-list">
+<tr><td><b>Return: </b></td><td></td><td>the type of the Node.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9743"/><h3>getNode</h3><pre>
++ Node* <span class="code-function">getNode</span> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>);<br/></pre>
+get the Node pointer of the element id.<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_id</span> </td><td> Id of the element.</td></tr>
+<tr><td><b>Return: </b></td><td></td><td>Pointer on node.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9745"/><h3>getNode</h3><pre>
++ <span class="code-storage-keyword">const</span> Node* <span class="code-function">getNode</span> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+
+<br/>
+<br/>
+<hr/>
+<a id="9747"/><h3>getElement</h3><pre>
++ Element* <span class="code-function">getElement</span> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>);<br/></pre>
+get the element casted in Element (if the node is not an element return NULL).<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_id</span> </td><td> Id of the element.</td></tr>
+<tr><td><b>Return: </b></td><td></td><td>Pointer on the element or NULL.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9749"/><h3>getElement</h3><pre>
++ <span class="code-storage-keyword">const</span> Element* <span class="code-function">getElement</span> (<span class="code-type" >int32_t</span> <span class="code-argument">_id</span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+
+<br/>
+<br/>
+<hr/>
+<a id="9751"/><h3>getNamed</h3><pre>
++ Element* <span class="code-function">getNamed</span> (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_name</span>);<br/></pre>
+get an element with his name (work only with exml::Element)<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_name</span> </td><td> Name of the element that is requested</td></tr>
+<tr><td><b>Return: </b></td><td></td><td>Pointer on the element or NULL.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9753"/><h3>getNamed</h3><pre>
++ <span class="code-storage-keyword">const</span> Element* <span class="code-function">getNamed</span> (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_name</span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+
+<br/>
+<br/>
+<hr/>
+<a id="9755"/><h3>getText</h3><pre>
++ <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> <span class="code-function">getText</span> (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+get the internal data of the element (if the element has some sub node thay are converted in xml string  == &gt; like this it is not needed to use &lt;![CDATA[...]]&gt;<br/><ul>
+<table class="parameter-list">
+<tr><td><b>Return: </b></td><td></td><td>the curent data string.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9762"/><h3>subParse</h3><pre>
+# <span class="code-type" >bool</span> <span class="code-function">subParse</span> (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_data</span>,<br/>                 <span class="code-type" >int32_t</span> & <span class="code-argument">_pos</span>,<br/>                 <span class="code-type" >bool</span> <span class="code-argument">_caseSensitive</span>,<br/>                 <a class="code-type" href="class_exml__filePos.html">exml::filePos</a> & <span class="code-argument">_filePos</span>,<br/>                 <a class="code-type" href="class_exml__Document.html">exml::Document</a> & <span class="code-argument">_doc</span>,<br/>                 <span class="code-type" >bool</span> <span class="code-argument">_mainNode</span>);<br/></pre>
+
+<br/>
+<br/>
+<hr/>
+<a id="9764"/><h3>getType</h3><pre>
++ <span class="code-storage-keyword">virtual</span> <span class="code-storage-keyword">enum</span> nodeType <span class="code-function">getType</span> (<span class="code-type" >void</span> <span class="code-argument"></span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+get the node type.<br/><ul>
+<table class="parameter-list">
+<tr><td><b>Return: </b></td><td></td><td>the type of the Node.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9770"/><h3>iParse</h3><pre>
++ <span class="code-storage-keyword">virtual</span> <span class="code-type" >bool</span> <span class="code-function">iParse</span> (<span class="code-storage-keyword">const</span> <a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_data</span>,<br/>                       <span class="code-type" >int32_t</span> & <span class="code-argument">_pos</span>,<br/>                       <span class="code-type" >bool</span> <span class="code-argument">_caseSensitive</span>,<br/>                       <a class="code-type" href="class_exml__filePos.html">exml::filePos</a> & <span class="code-argument">_filePos</span>,<br/>                       <a class="code-type" href="class_exml__Document.html">exml::Document</a> & <span class="code-argument">_doc</span>);<br/></pre>
+parse the Current node [pure VIRUAL]<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_data</span> </td><td> data string to parse.</td></tr>
+<td><b>Parameter [input] [output]:</b></td><td><span class="code-argument">_pos</span> </td><td> position in the string to start parse, return the position end of parsing.</td></tr>
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">_caseSensitive</span> </td><td> Request a parsion of element that is not case sensitive (all element is in low case)</td></tr>
+<td><b>Parameter [input] [output]:</b></td><td><span class="code-argument">file</span> </td><td> parsing position (line x col x)</td></tr>
+<tr><td><b>Return: </b></td><td></td><td>false if an error occured.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9773"/><h3>iGenerate</h3><pre>
++ <span class="code-storage-keyword">virtual</span> <span class="code-type" >bool</span> <span class="code-function">iGenerate</span> (<a class="code-type" href="http://www.cplusplus.com/reference/string/string/">std::string</a> & <span class="code-argument">_data</span>,<br/>                          <span class="code-type" >int32_t</span> <span class="code-argument">_indent</span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+generate a string with the tree of the xml<br/><ul>
+<table class="parameter-list">
+<td><b>Parameter [input] [output]:</b></td><td><span class="code-argument">_data</span> </td><td> string where to add the elements</td></tr>
+<td><b>Parameter [input]:</b></td><td><span class="code-argument">current</span> </td><td> indentation of the file</td></tr>
+<tr><td><b>Return: </b></td><td></td><td>false if an error occured.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9775"/><h3>toElement</h3><pre>
++ <span class="code-storage-keyword">virtual</span> <a class="code-type" href="class_exml__Element.html">exml::Element</a>* <span class="code-function">toElement</span> (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+Cast the element in a Element if it is possible.<br/><ul>
+<table class="parameter-list">
+<tr><td><b>Return: </b></td><td></td><td>pointer on the class or NULL.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<a id="9777"/><h3>toElement</h3><pre>
++ <span class="code-storage-keyword">virtual</span> <span class="code-storage-keyword">const</span> <a class="code-type" href="class_exml__Element.html">exml::Element</a>* <span class="code-function">toElement</span> (<span class="code-type" >void</span> <span class="code-argument"></span>) <span class="code-storage-keyword">const</span>;<br/></pre>
+Cast the element in a Element if it is possible.<br/><ul>
+<table class="parameter-list">
+<tr><td><b>Return: </b></td><td></td><td>pointer on the class or NULL.</td></tr></table>
+</ul>
+
+<br/>
+<hr/>
+<h3>clear</h3><pre>
++ <span class="code-storage-keyword">virtual</span> <span class="code-type" >void</span> <span class="code-function">clear</span> (<span class="code-type" >void</span> <span class="code-argument"></span>);<br/></pre>
+clear the Node<br/>
+<br/>
+<hr/>
+	</div>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-46753803-1', 'heeroyui.github.io');
+	ga('send', 'pageview');
+</script>
+</body>
+</html>
