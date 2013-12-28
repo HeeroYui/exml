@@ -19,18 +19,6 @@ exml::Attribute::Attribute(const std::string& _name, const std::string& _value) 
 	
 }
 
-exml::Attribute::Attribute(const std::u32string& _name, const std::u32string& _value) :
-  exml::Node(_value) {
-	m_name = to_u8string(_name);
-}
-
-void exml::Attribute::setName(const std::u32string& _name) {
-	m_name = to_u8string(_name);
-};
-
-std::u32string exml::Attribute::getUName(void) const {
-	return to_u32string(m_name);
-};
 bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
@@ -49,7 +37,7 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 	}
 	m_name = std::string(_data, _pos, lastElementName+1-(_pos));
 	if (true == _caseSensitive) {
-		m_name = to_lower(m_name);
+		m_name = std::tolower(m_name);
 	}
 	// count white space :
 	exml::filePos tmpPos;

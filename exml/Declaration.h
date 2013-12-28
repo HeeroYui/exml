@@ -10,7 +10,6 @@
 #define __ETK_XML_DECLARATION_H__
 
 #include <exml/AttributeList.h>
-#include <etk/unicode.h>
 
 namespace exml {
 	class Declaration : public exml::AttributeList {
@@ -24,10 +23,6 @@ namespace exml {
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
 			Declaration(const std::string& _name) :
-			  exml::AttributeList(_name) {
-				
-			};
-			Declaration(const std::u32string& _name) :
 			  exml::AttributeList(_name) {
 				
 			};
@@ -56,8 +51,7 @@ namespace exml {
 			 * @param[in] _format charset of the XML
 			 * @param[in] _standalone this document is standalone
 			 */
-			DeclarationXML(const std::string& _version, enum unicode::charset _format=unicode::charsetUTF8, bool _standalone=true);
-			DeclarationXML(const std::u32string& _version, enum unicode::charset _format=unicode::charsetUTF8, bool _standalone=true);
+			DeclarationXML(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
 			/**
 			 * @brief Destructor
 			 */

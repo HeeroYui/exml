@@ -64,19 +64,6 @@ const std::string& exml::AttributeList::getAttribute(const std::string& _name) c
 	return errorReturn;
 }
 
-std::u32string exml::AttributeList::getAttribute(const std::u32string& _name) const {
-	static const std::u32string errorReturn(U"");
-	if (_name.size() == 0) {
-		return errorReturn;
-	}
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    NULL != m_listAttribute[iii]
-		    && m_listAttribute[iii]->getUName() == _name) {
-			return m_listAttribute[iii]->getUValue();
-		}
-	}
-	return errorReturn;
-}
 
 bool exml::AttributeList::existAttribute(const std::string& _name) const {
 	if (_name.size() == 0) {
@@ -91,41 +78,11 @@ bool exml::AttributeList::existAttribute(const std::string& _name) const {
 	return false;
 }
 
-bool exml::AttributeList::existAttribute(const std::u32string& _name) const {
-	if (_name.size() == 0) {
-		return false;
-	}
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    NULL != m_listAttribute[iii]
-		    && m_listAttribute[iii]->getUName() == _name) {
-			return true;
-		}
-	}
-	return false;
-}
-
 void exml::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
 	// check if attribute already det :
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if(    NULL != m_listAttribute[iii]
 		    && m_listAttribute[iii]->getName() == _name) {
-			// update the value :
-			m_listAttribute[iii]->setValue(_value);
-			return;
-		}
-	}
-	exml::Attribute* attr = new exml::Attribute(_name, _value);
-	if (NULL == attr) {
-		EXML_ERROR("memory allocation error...");
-	}
-	m_listAttribute.push_back(attr);
-}
-
-void exml::AttributeList::setAttribute(const std::u32string& _name, const std::u32string& _value) {
-	// check if attribute already det :
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    NULL != m_listAttribute[iii]
-		    && m_listAttribute[iii]->getUName() == _name) {
 			// update the value :
 			m_listAttribute[iii]->setValue(_value);
 			return;

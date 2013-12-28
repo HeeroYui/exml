@@ -18,6 +18,16 @@
 #define __class__ "Element"
 
 
+static bool isWhiteChar(char32_t _val) {
+	if(    _val == ' '
+	    || _val == '\t'
+	    || _val == '\n'
+	    || _val == '\r') {
+		return true;
+	}
+	return false;
+}
+
 exml::Element::~Element(void) {
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
@@ -90,9 +100,6 @@ exml::Element* exml::Element::getNamed(const std::string& _name) {
 	}
 	return NULL;
 }
-exml::Element* exml::Element::getNamed(const std::u32string& _name) {
-	return getNamed(to_u8string(_name));
-}
 
 const exml::Element* exml::Element::getNamed(const std::string& _name) const {
 	if (_name.size() == 0) {
@@ -109,9 +116,6 @@ const exml::Element* exml::Element::getNamed(const std::string& _name) const {
 		}
 	}
 	return NULL;
-}
-const exml::Element* exml::Element::getNamed(const std::u32string& _name) const {
-	return getNamed(to_u8string(_name));
 }
 
 void exml::Element::append(exml::Node* _node) {
@@ -221,7 +225,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (true == _caseSensitive) {
-					tmpname = to_lower(tmpname);
+					tmpname = std::tolower(tmpname);
 				}
 				// Find declaration balise
 				exml::Declaration* declaration = new exml::Declaration(tmpname);
@@ -324,7 +328,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (true == _caseSensitive) {
-					tmpname = to_lower(tmpname);
+					tmpname = std::tolower(tmpname);
 				}
 				if( tmpname == m_value) {
 					// find end of node :
@@ -375,7 +379,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				std::string tmpname = std::string(_data, iii+white+1, endPosName+1-(iii+white+1));
 				if (true == _caseSensitive) {
-					to_lower(tmpname);
+					std::tolower(tmpname);
 				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
@@ -480,7 +484,7 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 			m_listAttribute.push_back(attribute);
 			continue;
 		}
-		if (false == etk::isWhiteChar(_data[iii])) {
+		if (false == isWhiteChar(_data[iii])) {
 			CREATE_ERROR(_doc, _data, iii, _filePos, std::string("Find an unknow element : '") + _data[iii] + "'");
 			return false;
 		}

@@ -14,7 +14,6 @@
 #define __class__ "Document"
 
 exml::Document::Document(void) :
-  m_charset(unicode::charsetUTF8),
   m_caseSensitive(false),
   m_writeErrorWhenDetexted(true),
   m_comment(""),
@@ -33,34 +32,21 @@ bool exml::Document::iGenerate(std::string& _data, int32_t _indent) const {
 	return true;
 }
 
-bool exml::Document::parse(const std::u32string& _data) {
-	return parse(to_u8string(_data));
-}
 bool exml::Document::parse(const std::string& _data) {
 	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.size());
 	clear();
 	// came from char  == > force in utf8 ...
-	m_charset = unicode::charsetUTF8;
 	exml::filePos filePos(1,0);
 	m_pos = filePos;
 	int32_t parsePos = 0;
 	return subParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
 }
 
-bool exml::Document::generate(std::u32string& _data) {
-	std::string data;
-	bool ret = generate(data);
-	_data = to_u32string(data);
-	return ret;
-}
 bool exml::Document::generate(std::string& _data) {
 	_data = "";
 	return iGenerate(_data,0);
 }
 
-bool exml::Document::load(const std::u32string& _data) {
-	return load(to_u8string(_data));
-}
 bool exml::Document::load(const std::string& _file) {
 	// Start loading the XML : 
 	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
@@ -85,7 +71,6 @@ bool exml::Document::load(const std::string& _file) {
 		EXML_ERROR("Error Memory allocation size=" << fileSize);
 		return false;
 	}
-	// TODO :  change this ... get the charset from the Declaration element ...
 	memset(fileBuffer, 0, (fileSize+5)*sizeof(char));
 	// load data from the file :
 	tmpFile.fileRead(fileBuffer, 1, fileSize);
@@ -102,9 +87,6 @@ bool exml::Document::load(const std::string& _file) {
 	return ret;
 }
 
-bool exml::Document::store(const std::u32string& _data) {
-	return store(to_u8string(_data));
-}
 bool exml::Document::store(const std::string& _file) {
 	std::string createData;
 	if (false == generate(createData)) {

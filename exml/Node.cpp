@@ -12,6 +12,15 @@
 #undef __class__
 #define __class__ "Node"
 
+static bool isWhiteChar(char32_t _val) {
+	if(    _val == ' '
+	    || _val == '\t'
+	    || _val == '\n'
+	    || _val == '\r') {
+		return true;
+	}
+	return false;
+}
 
 etk::CCout& exml::operator <<(etk::CCout& _os, const exml::filePos& _obj) {
 	_os << "(l=";
@@ -26,10 +35,6 @@ exml::Node::Node(const std::string& _value) :
     m_pos(0,0),
     m_value(_value) {
 	// nothing to do.
-}
-exml::Node::Node(const std::u32string& _value) :
-    m_pos(0,0) {
-	m_value = to_u8string(_value);
 }
 
 
@@ -101,7 +106,7 @@ int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml:
 	int32_t white=0;
 	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
-		if(true == etk::isWhiteChar(_data[iii])) {
+		if(true == isWhiteChar(_data[iii])) {
 			white++;
 		} else {
 			break;
@@ -116,10 +121,3 @@ void exml::Node::clear(void) {
 	m_pos.clear();
 }
 
-void exml::Node::setValue(std::u32string _value) {
-	m_value = to_u8string(_value);
-}
-
-std::u32string exml::Node::getUValue(void) const {
-	return to_u32string(m_value);
-}

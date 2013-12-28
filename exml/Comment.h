@@ -13,7 +13,7 @@
 #include <vector>
 
 namespace exml {
-	class Comment : public Node {
+	class Comment : public exml::Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -24,10 +24,6 @@ namespace exml {
 			 * @param[in] _value comment value
 			 */
 			Comment(const std::string& _value) :
-			  exml::Node(_value) {
-				
-			};
-			Comment(const std::u32string& _value) :
 			  exml::Node(_value) {
 				
 			};

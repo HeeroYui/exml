@@ -10,7 +10,6 @@
 #define __ETK_XML_DOCUMENT_H__
 
 #include <exml/Element.h>
-#include <etk/unicode.h>
 #include <vector>
 
 namespace exml {
@@ -24,23 +23,6 @@ namespace exml {
 			 * @brief Destructor
 			 */
 			virtual ~Document(void) { };
-		private:
-			enum unicode::charset m_charset;
-		public:
-			/**
-			 * @brief get the current charset of the Parsing
-			 * @param[in] _charset The new charset
-			 */
-			virtual void setCharset(enum unicode::charset _charset) {
-				m_charset = _charset;
-			};
-			/**
-			 * @brief get the current charset of the Parsing
-			 * @return The current charset
-			 */
-			virtual enum unicode::charset getCharset(void) const {
-				return m_charset;
-			};
 		private:
 			bool m_caseSensitive; // check the case sensitive of the nodes and attribute
 		public:
@@ -66,7 +48,6 @@ namespace exml {
 			 * @return true : Parsing is OK
 			 */
 			bool parse(const std::string& _data);
-			bool parse(const std::u32string& _data);
 			/**
 			 * @brief generate a string that contain the created XML
 			 * @param[out] _data Data where the xml is stored
@@ -74,7 +55,6 @@ namespace exml {
 			 * @return true : Parsing is OK
 			 */
 			bool generate(std::string& _data);
-			bool generate(std::u32string& _data);
 			/**
 			 * @brief Load the file that might contain the xml
 			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
@@ -82,7 +62,6 @@ namespace exml {
 			 * @return true : Parsing is OK
 			 */
 			bool load(const std::string& _file);
-			bool load(const std::u32string& _file);
 			/**
 			 * @brief Store the Xml in the file
 			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
@@ -90,7 +69,6 @@ namespace exml {
 			 * @return true : Parsing is OK
 			 */
 			bool store(const std::string& _file);
-			bool store(const std::u32string& _file);
 			/**
 			 * @brief Display the Document on console
 			 */

@@ -20,30 +20,12 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-exml::DeclarationXML::DeclarationXML(const std::string& _version, enum unicode::charset _format, bool _standalone) :
+exml::DeclarationXML::DeclarationXML(const std::string& _version, const std::string& _format, bool _standalone) :
   exml::Declaration("xml") {
 	if (_version.size()!=0) {
 		setAttribute("version", _version);
 	}
-	if (_format!=unicode::charsetUTF8) {
-		setAttribute("encoding", "UTF-8");
-	} else {
-		EXML_ERROR("Actually does not supported other charset than UTF8");
-		setAttribute("encoding", "UTF-8");
-	}
-	if (_standalone == true) {
-		setAttribute("standalone", "true");
-	} else {
-		setAttribute("standalone", "true");
-	}
-}
-
-exml::DeclarationXML::DeclarationXML(const std::u32string& _version, enum unicode::charset _format, bool _standalone) :
-  exml::Declaration("xml") {
-	if (_version.size()!=0) {
-		setAttribute("version", to_u8string(_version));
-	}
-	if (_format!=unicode::charsetUTF8) {
+	if (_format!="UTF-8") {
 		setAttribute("encoding", "UTF-8");
 	} else {
 		EXML_ERROR("Actually does not supported other charset than UTF8");

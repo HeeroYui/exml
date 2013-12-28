@@ -13,7 +13,7 @@
 #include <vector>
 
 namespace exml {
-	class Text : public Node {
+	class Text : public exml::Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -46,7 +46,7 @@ namespace exml {
 				return this;
 			};
 	};
-	class TextCDATA : public Text {
+	class TextCDATA : public exml::Text {
 		public:
 			/**
 			 * @brief Constructor

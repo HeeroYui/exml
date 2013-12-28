@@ -13,6 +13,17 @@
 #undef __class__
 #define __class__ "Text"
 
+
+static bool isWhiteChar(char32_t _val) {
+	if(    _val == ' '
+	    || _val == '\t'
+	    || _val == '\n'
+	    || _val == '\r') {
+		return true;
+	}
+	return false;
+}
+
 bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
 	_data += m_value;
 	return true;
@@ -44,7 +55,7 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 			// search whitespace :
 			size_t newEnd=iii;
 			for (int64_t jjj=(int64_t)iii-1; jjj>(int64_t)_pos; --jjj) {
-				if(true == etk::isWhiteChar(_data[jjj])) {
+				if(true == isWhiteChar(_data[jjj])) {
 					newEnd = jjj;
 				} else {
 					break;

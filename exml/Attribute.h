@@ -13,7 +13,7 @@
 #include <vector>
 
 namespace exml {
-	class Attribute : public Node {
+	class Attribute : public exml::Node {
 		public:
 			/**
 			 * @brief Constructor
@@ -25,7 +25,6 @@ namespace exml {
 			 * @param[in] _value Value of the attribute.
 			 */
 			Attribute(const std::string& _name, const std::string& _value);
-			Attribute(const std::u32string& _name, const std::u32string& _value);
 			/**
 			 * @brief Destructor
 			 */
@@ -40,7 +39,6 @@ namespace exml {
 			virtual void setName(const std::string& _name) {
 				m_name = _name;
 			};
-			virtual void setName(const std::u32string& _name);
 			/**
 			 * @brief get the current name of the Attribute
 			 * @return String of the attribute
@@ -48,7 +46,6 @@ namespace exml {
 			virtual const std::string& getName(void) const {
 				return m_name;
 			};
-			virtual std::u32string getUName(void) const;
 		public: // herited function:
 			virtual enum nodeType getType(void) const {
 				return exml::typeAttribute;

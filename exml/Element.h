@@ -14,7 +14,7 @@
 #include <exml/AttributeList.h>
 
 namespace exml {
-	class Element : public AttributeList {
+	class Element : public exml::AttributeList {
 		public:
 			/**
 			 * @brief Constructor
@@ -25,10 +25,6 @@ namespace exml {
 			 * @param[in] _value Element name;
 			 */
 			Element(const std::string& _value) :
-			  exml::AttributeList(_value) {
-				
-			};
-			Element(const std::u32string& _value) :
 			  exml::AttributeList(_value) {
 				
 			};
@@ -79,8 +75,6 @@ namespace exml {
 			 */
 			      Element* getNamed(const std::string& _name);
 			const Element* getNamed(const std::string& _name) const;
-			      Element* getNamed(const std::u32string& _name);
-			const Element* getNamed(const std::u32string& _name) const;
 			/**
 			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 			 * @return the curent data string.

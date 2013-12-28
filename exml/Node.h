@@ -10,11 +10,10 @@
 #define __ETK_XML_NODE_H__
 
 #include <etk/types.h>
-#include <etk/UString.h>
+#include <etk/types.h>
 #include <etk/math/Vector2D.h>
 
-namespace exml
-{
+namespace exml {
 	//#define ENABLE_DISPLAY_PARSED_ELEMENT
 	//#define ENABLE_CRITICAL_WHEN_ERROR
 	#if 1
@@ -133,7 +132,6 @@ namespace exml
 			 * @param[in] value of the node
 			 */
 			Node(const std::string& _value);
-			Node(const std::u32string& _value);
 			/**
 			 * @brief destructor
 			 */
@@ -176,7 +174,6 @@ namespace exml
 			virtual void setValue(std::string _value) {
 				m_value = _value;
 			};
-			virtual void setValue(std::u32string _value);
 			/**
 			 * @brief get the current element Value.
 			 * @return the reference of the string value.
@@ -184,7 +181,6 @@ namespace exml
 			virtual const std::string& getValue(void) const {
 				return m_value;
 			};
-			virtual std::u32string getUValue(void) const;
 		public:
 			/**
 			 * @brief get the node type.
