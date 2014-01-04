@@ -58,7 +58,12 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 		CREATE_ERROR(_doc, _data, lastElementName+white+2, _filePos, " parse an xml end with an attribute parsing...");
 		return false;
 	}
-	if (_data[lastElementName+white+2] != '"') {
+	bool simpleQuoteCase = false;
+	if (_data[lastElementName+white+2] == '\'') { // '
+		simpleQuoteCase = true;
+	}
+	if (    _data[lastElementName+white+2] != '"'
+	     && _data[lastElementName+white+2] != '\'') { // '
 		// parse with no element "  == > direct value separate with space ...
 		++_filePos;
 		size_t lastAttributePos = lastElementName+white+2;
@@ -92,7 +97,8 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 			drawElementParsed(_data[iii], _filePos);
 		#endif
 		_filePos.check(_data[iii]);
-		if(_data[iii] != '"') {
+		if (    (_data[iii] != '"' && simpleQuoteCase == false)
+		     || (_data[iii] != '\'' && simpleQuoteCase == true) ) { // '
 			lastAttributePos = iii+1;
 		} else {
 			break;
