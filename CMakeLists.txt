@@ -28,18 +28,35 @@ include_directories(.)
 #Create src file list
 set(src_files
 	exml/debug.cpp
+	exml/debug.h
 	exml/Attribute.cpp
+	exml/Attribute.h
 	exml/AttributeList.cpp
+	exml/AttributeList.h
 	exml/Comment.cpp
+	exml/Comment.h
 	exml/Declaration.cpp
+	exml/Declaration.h
 	exml/Document.cpp
+	exml/Document.h
 	exml/Element.cpp
+	exml/Element.h
 	exml/Node.cpp
+	exml/Node.h
 	exml/Text.cpp
+	exml/Text.h
 )
 
 add_definitions( -DDEBUG_LEVEL=3 )
 add_definitions( -DDEBUG=1 )
+if (APPLE)
+	add_definitions( -D__TARGET_OS__MacOs )
+elseif (UNIX)
+	add_definitions( -D__TARGET_OS__Linux )
+elseif (WIN32)
+	add_definitions( -D__TARGET_OS__Windows )
+endif ()
+
 
 include_directories(${etk_SOURCE_DIR})
 include_directories(${linearmath_SOURCE_DIR}/bullet/src/)
