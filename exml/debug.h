@@ -9,20 +9,44 @@
 #ifndef __EXML_DEBUG_H__
 #define __EXML_DEBUG_H__
 
-#include <etk/types.h>
-#include <etk/debugGeneric.h>
+#include <etk/log.h>
 
-extern const char * g_exmlLibName;
+namespace exml {
+	int32_t getLogId(void);
+};
+// TODO : Review this problem of multiple intanciation of "std::stringbuf sb"
+#define EXML_BASE(info,data) \
+	do { \
+		if (info <= etk::log::getLevel(exml::getLogId())) { \
+			std::stringbuf sb; \
+			std::ostream tmpStream(&sb); \
+			tmpStream << data; \
+			etk::log::logStream(exml::getLogId(), info, __LINE__, __class__, __func__, tmpStream); \
+		} \
+	} while(0)
 
-#define EXML_CRITICAL(data)			ETK_CRITICAL(g_exmlLibName, data)
-#define EXML_WARNING(data)			ETK_WARNING(g_exmlLibName, data)
-#define EXML_ERROR(data)			ETK_ERROR(g_exmlLibName, data)
-#define EXML_INFO(data)				ETK_INFO(g_exmlLibName, data)
-#define EXML_DEBUG(data)			ETK_DEBUG(g_exmlLibName, data)
-#define EXML_VERBOSE(data)			ETK_VERBOSE(g_exmlLibName, data)
-#define EXML_ASSERT(cond, data)		ETK_ASSERT(g_exmlLibName, cond, data)
-#define EXML_CHECK_INOUT(cond)		ETK_CHECK_INOUT(g_exmlLibName, cond)
-#define EXML_TODO(cond)				ETK_TODO(g_exmlLibName, cond)
+#define EXML_CRITICAL(data)      EXML_BASE(1, data)
+#define EXML_ERROR(data)         EXML_BASE(2, data)
+#define EXML_WARNING(data)       EXML_BASE(3, data)
+#ifdef DEBUG
+	#define EXML_INFO(data)          EXML_BASE(4, data)
+	#define EXML_DEBUG(data)         EXML_BASE(5, data)
+	#define EXML_VERBOSE(data)       EXML_BASE(6, data)
+	#define EXML_TODO(data)          EXML_BASE(4, "TODO : " << data)
+#else
+	#define EXML_INFO(data)          do { } while(false)
+	#define EXML_DEBUG(data)         do { } while(false)
+	#define EXML_VERBOSE(data)       do { } while(false)
+	#define EXML_TODO(data)          do { } while(false)
+#endif
+
+#define EXML_ASSERT(cond,data) \
+	do { \
+		if (!(cond)) { \
+			EXML_CRITICAL(data); \
+			assert(!#cond); \
+		} \
+	} while (0)
 
 #endif
 

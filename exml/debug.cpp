@@ -8,4 +8,8 @@
 
 #include <exml/debug.h>
 
-const char * g_exmlLibName = "exml     ";
+int32_t exml::getLogId(void) {
+	static int32_t g_val = etk::log::registerInstance("exml");
+	return g_val;
+}
+

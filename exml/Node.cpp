@@ -22,7 +22,7 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-etk::CCout& exml::operator <<(etk::CCout& _os, const exml::filePos& _obj) {
+std::ostream& exml::operator <<(std::ostream& _os, const exml::filePos& _obj) {
 	_os << "(l=";
 	_os << _obj.getLine();
 	_os << ",c=";
