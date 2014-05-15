@@ -116,7 +116,7 @@ int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml:
 	return white;
 }
 
-void exml::Node::clear(void) {
+void exml::Node::clear() {
 	m_value = "";
 	m_pos.clear();
 }

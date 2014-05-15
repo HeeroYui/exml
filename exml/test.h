@@ -13,7 +13,7 @@
 #include <exml/Document.h>
 
 namespace exml {
-	bool test(void);
+	bool test();
 };
 
 

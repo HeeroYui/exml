@@ -19,7 +19,7 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			AttributeList(void) { };
+			AttributeList() { };
 			/**
 			 * @brief Constructor
 			 * @param[in] _value Node value;
@@ -31,7 +31,7 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~AttributeList(void);
+			virtual ~AttributeList();
 		protected:
 			std::vector<exml::Attribute*> m_listAttribute; //!< list of all attribute
 		public:
@@ -39,7 +39,7 @@ namespace exml {
 			 * @brief get the number of attribute in the Node
 			 * @return Nulber of attribute >=0
 			 */
-			size_t sizeAttribute(void) const {
+			size_t sizeAttribute() const {
 				return m_listAttribute.size();
 			};
 			/**
@@ -74,7 +74,7 @@ namespace exml {
 			void setAttribute(const std::string& _name, const std::string& _value);
 		public: // herited function:
 			bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual void clear(void);
+			virtual void clear();
 	};
 };
 

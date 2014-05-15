@@ -121,7 +121,7 @@ bool exml::Attribute::iGenerate(std::string& _data, int32_t _indent) const {
 	return true;
 }
 
-void exml::Attribute::clear(void) {
+void exml::Attribute::clear() {
 	m_name = "";
 }
 

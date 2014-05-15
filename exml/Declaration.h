@@ -17,7 +17,7 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			Declaration(void) { };
+			Declaration() { };
 			/**
 			 * @brief Constructor
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
@@ -29,17 +29,17 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~Declaration(void) { };
+			virtual ~Declaration() { };
 		public: // herited function:
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return typeAttribute;
 			};
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual exml::Declaration* toDeclaration(void) {
+			virtual exml::Declaration* toDeclaration() {
 				return this;
 			};
-			virtual const exml::Declaration* toDeclaration(void) const {
+			virtual const exml::Declaration* toDeclaration() const {
 				return this;
 			};
 	};
@@ -55,7 +55,7 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~DeclarationXML(void) { };
+			virtual ~DeclarationXML() { };
 	};
 };
 

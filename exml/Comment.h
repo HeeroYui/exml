@@ -18,7 +18,7 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			Comment(void) { };
+			Comment() { };
 			/**
 			 * @brief Constructor
 			 * @param[in] _value comment value
@@ -30,17 +30,17 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~Comment(void) { };
+			virtual ~Comment() { };
 		public: // herited function:
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return typeAttribute;
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Comment* toComment(void) {
+			virtual exml::Comment* toComment() {
 				return this;
 			};
-			virtual const exml::Comment* toComment(void) const {
+			virtual const exml::Comment* toComment() const {
 				return this;
 			};
 	};

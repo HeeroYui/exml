@@ -49,7 +49,7 @@ namespace exml {
 			int32_t m_col;
 			int32_t m_line;
 		public:
-			filePos(void) :
+			filePos() :
 			  m_col(0),
 			  m_line(0) {
 				
@@ -59,12 +59,12 @@ namespace exml {
 			  m_line(_line) {
 				
 			};
-			~filePos(void) { };
-			filePos& operator ++(void) {
+			~filePos() { };
+			filePos& operator ++() {
 				m_col++;
 				return *this;
 			};
-			filePos& operator --(void) {
+			filePos& operator --() {
 				m_col--;
 				if(m_col<0) {
 					m_col=0;
@@ -89,7 +89,7 @@ namespace exml {
 				m_line = _obj.m_line;
 				return *this;
 			}
-			void newLine(void) {
+			void newLine() {
 				m_col=0;
 				m_line++;
 			};
@@ -105,14 +105,14 @@ namespace exml {
 				m_col = _col;
 				m_line = _line;
 			}
-			void clear(void) {
+			void clear() {
 				m_col = 0;
 				m_line = 0;
 			}
-			int32_t getCol(void) const {
+			int32_t getCol() const {
 				return m_col;
 			};
-			int32_t getLine(void) const {
+			int32_t getLine() const {
 				return m_line;
 			};
 	};
@@ -123,7 +123,7 @@ namespace exml {
 			/**
 			 * @brief basic element of a xml structure
 			 */
-			Node(void) :
+			Node() :
 			  m_pos(0,0) {
 				
 			};
@@ -135,7 +135,7 @@ namespace exml {
 			/**
 			 * @brief destructor
 			 */
-			virtual ~Node(void) { };
+			virtual ~Node() { };
 		public:
 			/**
 			 * @brief parse the Current node [pure VIRUAL]
@@ -161,7 +161,7 @@ namespace exml {
 			/**
 			 * @brief get the current position where the element is in the file
 			 */
-			const exml::filePos& getPos(void) {
+			const exml::filePos& getPos() {
 				return m_pos;
 			};
 		protected:
@@ -178,7 +178,7 @@ namespace exml {
 			 * @brief get the current element Value.
 			 * @return the reference of the string value.
 			 */
-			virtual const std::string& getValue(void) const {
+			virtual const std::string& getValue() const {
 				return m_value;
 			};
 		public:
@@ -186,7 +186,7 @@ namespace exml {
 			 * @brief get the node type.
 			 * @return the type of the Node.
 			 */
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return typeNode;
 			};
 		protected:
@@ -221,60 +221,60 @@ namespace exml {
 			 * @brief Cast the element in a Document if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Document* toDocument(void) {
+			virtual exml::Document* toDocument() {
 				return NULL;
 			};
-			virtual const exml::Document* toDocument(void) const {
+			virtual const exml::Document* toDocument() const {
 				return NULL;
 			};
 			/**
 			 * @brief Cast the element in a Attribute if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Attribute* toAttribute(void) {
+			virtual exml::Attribute* toAttribute() {
 				return NULL;
 			};
-			virtual const exml::Attribute* toAttribute(void) const {
+			virtual const exml::Attribute* toAttribute() const {
 				return NULL;
 			};
 			/**
 			 * @brief Cast the element in a Comment if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Comment* toComment(void) {
+			virtual exml::Comment* toComment() {
 				return NULL;
 			};
-			virtual const exml::Comment* toComment(void) const {
+			virtual const exml::Comment* toComment() const {
 				return NULL;
 			};
 			/**
 			 * @brief Cast the element in a Declaration if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Declaration* toDeclaration(void) {
+			virtual exml::Declaration* toDeclaration() {
 				return NULL;
 			};
-			virtual const exml::Declaration* toDeclaration(void) const {
+			virtual const exml::Declaration* toDeclaration() const {
 				return NULL;
 			};
 			/**
 			 * @brief Cast the element in a Element if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Element* toElement(void) {
+			virtual exml::Element* toElement() {
 				return NULL;
 			};
-			virtual const exml::Element* toElement(void) const {
+			virtual const exml::Element* toElement() const {
 				return NULL;
 			};
 			/**
 			 * @brief Cast the element in a Text if it is possible.
 			 * @return pointer on the class or NULL.
 			 */
-			virtual exml::Text* toText(void) {
+			virtual exml::Text* toText() {
 				return NULL;
 			};
-			virtual const exml::Text* toText(void) const{
+			virtual const exml::Text* toText() const{
 				return NULL;
 			};
 			
@@ -282,49 +282,49 @@ namespace exml {
 			 * @brief check if the node is a exml::Document
 			 * @return true if the node is a exml::Document
 			 */
-			bool isDocument(void) const {
+			bool isDocument() const {
 				return getType() == exml::typeDocument;
 			};
 			/**
 			 * @brief check if the node is a exml::Attribute
 			 * @return true if the node is a exml::Attribute
 			 */
-			bool isAttribute(void) const {
+			bool isAttribute() const {
 				return getType() == exml::typeAttribute;
 			};
 			/**
 			 * @brief check if the node is a exml::Comment
 			 * @return true if the node is a exml::Comment
 			 */
-			bool isComment(void) const {
+			bool isComment() const {
 				return getType() == exml::typeComment;
 			};
 			/**
 			 * @brief check if the node is a exml::Declaration
 			 * @return true if the node is a exml::Declaration
 			 */
-			bool isDeclaration(void) const {
+			bool isDeclaration() const {
 				return getType() == exml::typeDeclaration;
 			};
 			/**
 			 * @brief check if the node is a exml::Element
 			 * @return true if the node is a exml::Element
 			 */
-			bool isElement(void) const {
+			bool isElement() const {
 				return getType() == exml::typeElement;
 			};
 			/**
 			 * @brief check if the node is a exml::Text
 			 * @return true if the node is a exml::Text
 			 */
-			bool isText(void) const {
+			bool isText() const {
 				return getType() == exml::typeText;
 			};
 			
 			/**
 			 * @brief clear the Node
 			 */
-			virtual void clear(void);
+			virtual void clear();
 	};
 };
 

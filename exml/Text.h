@@ -18,7 +18,7 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			Text(void) { };
+			Text() { };
 			/**
 			 * @brief Constructor
 			 * @param[in] _data String data of the current Text
@@ -27,22 +27,22 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~Text(void) { };
+			virtual ~Text() { };
 			/**
 			 * @brief count the number of line in the current text
 			 * @return The number of lines
 			 */
-			int32_t countLines(void) const;
+			int32_t countLines() const;
 		public: // herited function:
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return typeText;
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Text* toText(void) {
+			virtual exml::Text* toText() {
 				return this;
 			};
-			virtual const exml::Text* toText(void) const{
+			virtual const exml::Text* toText() const{
 				return this;
 			};
 	};
@@ -51,11 +51,11 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			TextCDATA(void) { };
+			TextCDATA() { };
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~TextCDATA(void) { };
+			virtual ~TextCDATA() { };
 		public: // herited function:
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 	};

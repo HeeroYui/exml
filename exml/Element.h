@@ -19,7 +19,7 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			Element(void) { };
+			Element() { };
 			/**
 			 * @brief Constructor
 			 * @param[in] _value Element name;
@@ -31,7 +31,7 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~Element(void);
+			virtual ~Element();
 		protected:
 			std::vector<exml::Node*> m_listSub;
 		public:
@@ -39,7 +39,7 @@ namespace exml {
 			 * @brief get the number of sub element in the node (can be exml::Comment ; exml::Element ; exml::Text :exml::Declaration).
 			 * @return a number >=0.
 			 */
-			size_t size(void) const {
+			size_t size() const {
 				return m_listSub.size();
 			};
 			/**
@@ -79,22 +79,22 @@ namespace exml {
 			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 			 * @return the curent data string.
 			 */
-			std::string getText(void);
+			std::string getText();
 		protected:
 			bool subParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode=false);
 		public: // herited function:
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return typeElement;
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Element* toElement(void) {
+			virtual exml::Element* toElement() {
 				return this;
 			};
-			virtual const exml::Element* toElement(void) const {
+			virtual const exml::Element* toElement() const {
 				return this;
 			};
-			virtual void clear(void);
+			virtual void clear();
 	};
 };
 

@@ -12,7 +12,7 @@
 #undef __class__
 #define __class__ "AttributeList"
 
-exml::AttributeList::~AttributeList(void) {
+exml::AttributeList::~AttributeList() {
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			delete(m_listAttribute[iii]);
@@ -104,7 +104,7 @@ bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
 	return true;
 }
 
-void exml::AttributeList::clear(void) {
+void exml::AttributeList::clear() {
 	exml::Node::clear();
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {

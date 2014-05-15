@@ -18,7 +18,7 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			Attribute(void) { };
+			Attribute() { };
 			/**
 			 * @brief Constructor
 			 * @param[in] _name Name of the attribute.
@@ -28,7 +28,7 @@ namespace exml {
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~Attribute(void) { };
+			virtual ~Attribute() { };
 		protected:
 			std::string m_name;
 		public:
@@ -43,22 +43,22 @@ namespace exml {
 			 * @brief get the current name of the Attribute
 			 * @return String of the attribute
 			 */
-			virtual const std::string& getName(void) const {
+			virtual const std::string& getName() const {
 				return m_name;
 			};
 		public: // herited function:
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return exml::typeAttribute;
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Attribute* toAttribute(void) {
+			virtual exml::Attribute* toAttribute() {
 				return this;
 			};
-			virtual const exml::Attribute* toAttribute(void) const {
+			virtual const exml::Attribute* toAttribute() const {
 				return this;
 			};
-			virtual void clear(void);
+			virtual void clear();
 	};
 };
 

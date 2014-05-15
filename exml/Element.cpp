@@ -28,7 +28,7 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-exml::Element::~Element(void) {
+exml::Element::~Element() {
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {
 			delete(m_listSub[iii]);
@@ -136,7 +136,7 @@ void exml::Element::append(exml::Node* _node) {
 	m_listSub.push_back(_node);
 }
 
-std::string exml::Element::getText(void) {
+std::string exml::Element::getText() {
 	// TODO : add more capabilities ...
 	std::string res;
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
@@ -493,7 +493,7 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 	return false;
 }
 
-void exml::Element::clear(void) {
+void exml::Element::clear() {
 	exml::AttributeList::clear();
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (NULL!=m_listSub[iii]) {

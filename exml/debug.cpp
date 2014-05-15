@@ -8,7 +8,7 @@
 
 #include <exml/debug.h>
 
-int32_t exml::getLogId(void) {
+int32_t exml::getLogId() {
 	static int32_t g_val = etk::log::registerInstance("exml");
 	return g_val;
 }

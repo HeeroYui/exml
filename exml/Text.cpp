@@ -29,7 +29,7 @@ bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
 	return true;
 }
 
-int32_t exml::Text::countLines(void) const {
+int32_t exml::Text::countLines() const {
 	int32_t count = 1;
 	for (size_t iii=0; iii<m_value.size(); iii++) {
 		if(m_value[iii] == '\n') {

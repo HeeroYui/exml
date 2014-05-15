@@ -18,11 +18,11 @@ namespace exml {
 			/**
 			 * @brief Constructor
 			 */
-			Document(void);
+			Document();
 			/**
 			 * @brief Destructor
 			 */
-			virtual ~Document(void) { };
+			virtual ~Document() { };
 		private:
 			bool m_caseSensitive; // check the case sensitive of the nodes and attribute
 		public:
@@ -37,7 +37,7 @@ namespace exml {
 			 * @brief get the status of case sensitive mode.
 			 * @return true if case sensitive is active
 			 */
-			virtual bool getCaseSensitive(void) const {
+			virtual bool getCaseSensitive() const {
 				return m_caseSensitive;
 			};
 		public:
@@ -72,31 +72,31 @@ namespace exml {
 			/**
 			 * @brief Display the Document on console
 			 */
-			void display(void);
+			void display();
 		private:
 			bool m_writeErrorWhenDetexted;
 			std::string m_comment;
 			std::string m_Line;
 			exml::filePos m_filePos;
 		public:
-			void displayErrorWhenDetected(void) {
+			void displayErrorWhenDetected() {
 				m_writeErrorWhenDetexted = true;
 			};
-			void notDisplayErrorWhenDetected(void) {
+			void notDisplayErrorWhenDetected() {
 				m_writeErrorWhenDetexted = false;
 			};
 			
 			void createError(const std::string& _data, int32_t _pos, const exml::filePos& _filePos, const std::string& _comment);
-			void displayError(void);
+			void displayError();
 		public: // herited function:
-			virtual enum nodeType getType(void) const {
+			virtual enum nodeType getType() const {
 				return typeDocument;
 			};
 			bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Document* toDocument(void) {
+			virtual exml::Document* toDocument() {
 				return this;
 			};
-			virtual const exml::Document* toDocument(void) const {
+			virtual const exml::Document* toDocument() const {
 				return this;
 			};
 	};

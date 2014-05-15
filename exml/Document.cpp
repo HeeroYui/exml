@@ -13,7 +13,7 @@
 #undef __class__
 #define __class__ "Document"
 
-exml::Document::Document(void) :
+exml::Document::Document() :
   m_caseSensitive(false),
   m_writeErrorWhenDetexted(true),
   m_comment(""),
@@ -107,7 +107,7 @@ bool exml::Document::store(const std::string& _file) {
 	return true;
 }
 
-void exml::Document::display(void) {
+void exml::Document::display() {
 	std::string tmpp;
 	iGenerate(tmpp, 0);
 	EXML_INFO("Generated XML : \n" << tmpp);
@@ -130,7 +130,7 @@ std::string createPosPointer(const std::string& _line, int32_t _pos) {
 	return out;
 }
 
-void exml::Document::displayError(void) {
+void exml::Document::displayError() {
 	if (m_comment.size() == 0) {
 		EXML_ERROR("No error detected ???");
 		return;
