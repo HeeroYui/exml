@@ -1,18 +1,15 @@
-== [center]EXML library[/center] ==
-__________________________________________________
+exml
+====
 
-===What is EXML, and how can I use it?===
-EXML, or Ewol XML file interface, is a simple xml reader and writer.
+`exml` ewol XML : is a XML parser generater for ewol
 
-===What languages are supported?===
-EXML is written in C++.
+Instructions
+============
 
+To compile and use see 'ewol' or 'edn' project
 
-===Are there any licensing restrictions?===
-EXML is [b]FREE software[/b]
-
-
-==== License (APACHE-2.0) ====
+License (APACHE v2.0)
+=====================
 Copyright exml Edouard DUPIN
 
 Licensed under the Apache License, Version 2.0 (the "License");
