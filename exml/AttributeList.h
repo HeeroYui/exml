@@ -12,6 +12,7 @@
 #include <exml/Node.h>
 #include <vector>
 #include <exml/Attribute.h>
+#include <utility>
 
 namespace exml {
 	class AttributeList : public exml::Node {
@@ -54,6 +55,7 @@ namespace exml {
 			 */
 			Attribute* getAttr(int32_t _id);
 			const Attribute* getAttr(int32_t _id) const;
+			std::pair<std::string, std::string> getAttrPair(int32_t _id) const;
 			/**
 			 * @brief get the attribute value with searching in the List with his name
 			 * @param[in] _name Attribute Name.

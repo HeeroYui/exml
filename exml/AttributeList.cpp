@@ -16,7 +16,7 @@ exml::AttributeList::~AttributeList() {
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (NULL!=m_listAttribute[iii]) {
 			delete(m_listAttribute[iii]);
-			m_listAttribute[iii]=NULL;
+			m_listAttribute[iii]=nullptr;
 		}
 	}
 	m_listAttribute.clear();
@@ -24,20 +24,29 @@ exml::AttributeList::~AttributeList() {
 
 exml::Attribute* exml::AttributeList::getAttr(int32_t _id) {
 	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
-		return NULL;
+		return nullptr;
 	}
 	return m_listAttribute[_id];
 }
 
 const exml::Attribute* exml::AttributeList::getAttr(int32_t _id) const {
 	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
-		return NULL;
+		return nullptr;
 	}
 	return m_listAttribute[_id];
 }
 
+std::pair<std::string, std::string> exml::AttributeList::getAttrPair(int32_t _id) const {
+	const exml::Attribute* att = getAttr(_id);
+	if (att == nullptr) {
+		return std::make_pair<std::string, std::string>("","");
+	}
+	return std::make_pair(att->getName(),att->getValue());
+}
+
+
 void exml::AttributeList::appendAttribute(exml::Attribute* _attr) {
-	if (_attr == NULL) {
+	if (_attr == nullptr) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
