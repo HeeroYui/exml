@@ -145,7 +145,7 @@ void exml::Document::displayError() {
 
 void exml::Document::createError(const std::string& _data, int32_t _pos, const exml::filePos& _filePos, const std::string& _comment) {
 	m_comment = _comment;
-	m_Line = extract_line(_data, _pos);
+	m_Line = etk::extract_line(_data, _pos);
 	m_filePos = _filePos;
 	if (true == m_writeErrorWhenDetexted) {
 		displayError();

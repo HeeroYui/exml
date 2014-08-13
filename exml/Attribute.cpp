@@ -37,7 +37,7 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 	}
 	m_name = std::string(_data, _pos, lastElementName+1-(_pos));
 	if (true == _caseSensitive) {
-		m_name = std::tolower(m_name);
+		m_name = etk::tolower(m_name);
 	}
 	// count white space :
 	exml::filePos tmpPos;

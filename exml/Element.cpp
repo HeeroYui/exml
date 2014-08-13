@@ -225,7 +225,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (true == _caseSensitive) {
-					tmpname = std::tolower(tmpname);
+					tmpname = etk::tolower(tmpname);
 				}
 				// Find declaration balise
 				exml::Declaration* declaration = new exml::Declaration(tmpname);
@@ -328,7 +328,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (true == _caseSensitive) {
-					tmpname = std::tolower(tmpname);
+					tmpname = etk::tolower(tmpname);
 				}
 				if( tmpname == m_value) {
 					// find end of node :
@@ -379,7 +379,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				std::string tmpname = std::string(_data, iii+white+1, endPosName+1-(iii+white+1));
 				if (true == _caseSensitive) {
-					std::tolower(tmpname);
+					etk::tolower(tmpname);
 				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
