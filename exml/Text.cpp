@@ -9,10 +9,49 @@
 #include <exml/Text.h>
 #include <exml/debug.h>
 #include <exml/Document.h>
+#include <regex>
 
 #undef __class__
 #define __class__ "Text"
 
+
+// transform the Text with :
+//     "&lt;"   == "<"
+//     "&gt;"   == ">"
+//     "&amp;"  == "&"
+//     "&apos;" == "'"
+//     "&quot;" == """
+static std::string replaceSpecialChar(const std::string& _inval) {
+	std::string out;
+	static std::regex regexLT("&lt;");
+	static std::regex regexGT("&gt;");
+	static std::regex regexAPOS("&apos;");
+	static std::regex regexQUOT("&quot;");
+	static std::regex regexAMP("&amp;");
+	
+	out = std::regex_replace(_inval, regexLT, "<");
+	out = std::regex_replace(out, regexGT, ">");
+	out = std::regex_replace(out, regexAPOS, "'");
+	out = std::regex_replace(out, regexQUOT, "\"");
+	out = std::regex_replace(out, regexAMP, "&");
+	//EXML_ERROR("plop "<< _inval << " => " << out);
+	return out;
+}
+static std::string replaceSpecialCharOut(const std::string& _inval) {
+	std::string out;
+	static std::regex regexLT("<");
+	static std::regex regexGT(">;");
+	static std::regex regexAMP("&");
+	static std::regex regexAPOS("'");
+	static std::regex regexQUOT("\"");
+	
+	out = std::regex_replace(_inval, regexAMP, "&amp;");
+	out = std::regex_replace(out, regexQUOT, "&quot;");
+	out = std::regex_replace(out, regexAPOS, "&apos;");
+	out = std::regex_replace(out, regexGT, "&gt;");
+	out = std::regex_replace(out, regexLT, "&lt;");
+	return out;
+}
 
 static bool isWhiteChar(char32_t _val) {
 	if(    _val == ' '
@@ -25,7 +64,7 @@ static bool isWhiteChar(char32_t _val) {
 }
 
 bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
-	_data += m_value;
+	_data += replaceSpecialCharOut(m_value);
 	return true;
 }
 
@@ -65,12 +104,18 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 			m_value = std::string(_data, _pos, newEnd-(_pos));
 			EXML_VERBOSE(" find text '" << m_value << "'");
 			_pos = iii-1;
+			m_value = replaceSpecialChar(m_value);
 			return true;
 		}
 	}
 	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
 	_pos = _data.size();
 	return false;
+}
+
+bool exml::TextCDATA::iGenerate(std::string& _data, int32_t _indent) const {
+	_data += "<![CDATA[" + m_value +"]]>";
+	return true;
 }
 
 bool exml::TextCDATA::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {

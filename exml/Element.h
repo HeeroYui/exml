@@ -77,7 +77,7 @@ namespace exml {
 			const Element* getNamed(const std::string& _name) const;
 			/**
 			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
-			 * @return the curent data string.
+			 * @return the curent data string. if Only one text node, then we get the parssed data (no &amp; ...) if more than one node, then we transform &,",',<,> in xml normal text...
 			 */
 			std::string getText();
 		protected:

@@ -58,6 +58,7 @@ namespace exml {
 			virtual ~TextCDATA() { };
 		public: // herited function:
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
+			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
 	};
 };
 

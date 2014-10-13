@@ -137,11 +137,18 @@ void exml::Element::append(exml::Node* _node) {
 }
 
 std::string exml::Element::getText() {
-	// TODO : add more capabilities ...
 	std::string res;
-	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if (NULL!=m_listSub[iii]) {
-			m_listSub[iii]->iGenerate(res, 0);
+	if (m_listSub.size() == 1) {
+		if (m_listSub[0]->getType() == typeText) {
+			res = m_listSub[0]->getValue();
+		} else {
+			m_listSub[0]->iGenerate(res, 0);
+		}
+	} else {
+		for (size_t iii=0; iii<m_listSub.size(); iii++) {
+			if (NULL!=m_listSub[iii]) {
+				m_listSub[iii]->iGenerate(res, 0);
+			}
 		}
 	}
 	return res;
@@ -309,7 +316,6 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("End file with '<!") + _data[iii+white+2] + "' chars  == > invalide XML");
 					return false;
 				}
-				
 				continue;
 			}
 			if(_data[iii+white+1] == '/') {
