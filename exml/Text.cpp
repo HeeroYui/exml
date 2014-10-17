@@ -29,11 +29,11 @@ static std::string replaceSpecialChar(const std::string& _inval) {
 	static std::regex regexQUOT("&quot;");
 	static std::regex regexAMP("&amp;");
 	
-	out = std::regex_replace(_inval, regexLT, "<");
-	out = std::regex_replace(out, regexGT, ">");
-	out = std::regex_replace(out, regexAPOS, "'");
-	out = std::regex_replace(out, regexQUOT, "\"");
-	out = std::regex_replace(out, regexAMP, "&");
+	out = std::regex_replace(_inval, regexLT, std::string("<"));
+	out = std::regex_replace(out, regexGT, std::string(">"));
+	out = std::regex_replace(out, regexAPOS, std::string("'"));
+	out = std::regex_replace(out, regexQUOT, std::string("\""));
+	out = std::regex_replace(out, regexAMP, std::string("&"));
 	//EXML_ERROR("plop "<< _inval << " => " << out);
 	return out;
 }
@@ -45,11 +45,11 @@ static std::string replaceSpecialCharOut(const std::string& _inval) {
 	static std::regex regexAPOS("'");
 	static std::regex regexQUOT("\"");
 	
-	out = std::regex_replace(_inval, regexAMP, "&amp;");
-	out = std::regex_replace(out, regexQUOT, "&quot;");
-	out = std::regex_replace(out, regexAPOS, "&apos;");
-	out = std::regex_replace(out, regexGT, "&gt;");
-	out = std::regex_replace(out, regexLT, "&lt;");
+	out = std::regex_replace(_inval, regexAMP, std::string("&amp;"));
+	out = std::regex_replace(out, regexQUOT, std::string("&quot;"));
+	out = std::regex_replace(out, regexAPOS, std::string("&apos;"));
+	out = std::regex_replace(out, regexGT, std::string("&gt;"));
+	out = std::regex_replace(out, regexLT, std::string("&lt;"));
 	return out;
 }
 
