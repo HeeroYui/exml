@@ -34,7 +34,7 @@ namespace exml {
 			 */
 			virtual ~AttributeList();
 		protected:
-			std::vector<exml::Attribute*> m_listAttribute; //!< list of all attribute
+			std::vector<std::shared_ptr<exml::Attribute>> m_listAttribute; //!< list of all attribute
 		public:
 			/**
 			 * @brief get the number of attribute in the Node
@@ -47,14 +47,14 @@ namespace exml {
 			 * @brief add attribute on the List
 			 * @param[in] _attr Pointer on the attribute
 			 */
-			void appendAttribute(exml::Attribute* _attr);
+			void appendAttribute(const std::shared_ptr<exml::Attribute>& _attr);
 			/**
 			 * @brief get attribute whith his ID
 			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
 			 * @return Pointer on the attribute or NULL
 			 */
-			Attribute* getAttr(int32_t _id);
-			const Attribute* getAttr(int32_t _id) const;
+			std::shared_ptr<Attribute> getAttr(int32_t _id);
+			std::shared_ptr<const Attribute> getAttr(int32_t _id) const;
 			std::pair<std::string, std::string> getAttrPair(int32_t _id) const;
 			/**
 			 * @brief get the attribute value with searching in the List with his name

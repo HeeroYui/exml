@@ -9,7 +9,7 @@
 #ifndef __ETK_XML_NODE_H__
 #define __ETK_XML_NODE_H__
 
-#include <etk/types.h>
+#include <memory>
 #include <etk/types.h>
 #include <etk/math/Vector2D.h>
 
@@ -118,8 +118,8 @@ namespace exml {
 	};
 	std::ostream& operator <<(std::ostream& _os, const filePos& _obj);
 	
-	class Node {
-		public:
+	class Node : public std::enable_shared_from_this<Node>{
+		protected:
 			/**
 			 * @brief basic element of a xml structure
 			 */
@@ -132,6 +132,8 @@ namespace exml {
 			 * @param[in] value of the node
 			 */
 			Node(const std::string& _value);
+		public:
+			//static std::shared_ptr<Node> create(const std::string& _value = "");
 			/**
 			 * @brief destructor
 			 */
@@ -219,63 +221,63 @@ namespace exml {
 		public:
 			/**
 			 * @brief Cast the element in a Document if it is possible.
-			 * @return pointer on the class or NULL.
+			 * @return pointer on the class or nullptr.
 			 */
-			virtual exml::Document* toDocument() {
-				return NULL;
+			virtual std::shared_ptr<exml::Document> toDocument() {
+				return nullptr;
 			};
-			virtual const exml::Document* toDocument() const {
-				return NULL;
+			virtual std::shared_ptr<const exml::Document> toDocument() const {
+				return nullptr;
 			};
 			/**
 			 * @brief Cast the element in a Attribute if it is possible.
-			 * @return pointer on the class or NULL.
+			 * @return pointer on the class or nullptr.
 			 */
-			virtual exml::Attribute* toAttribute() {
-				return NULL;
+			virtual std::shared_ptr<exml::Attribute> toAttribute() {
+				return nullptr;
 			};
-			virtual const exml::Attribute* toAttribute() const {
-				return NULL;
+			virtual std::shared_ptr<const exml::Attribute> toAttribute() const {
+				return nullptr;
 			};
 			/**
 			 * @brief Cast the element in a Comment if it is possible.
-			 * @return pointer on the class or NULL.
+			 * @return pointer on the class or nullptr.
 			 */
-			virtual exml::Comment* toComment() {
-				return NULL;
+			virtual std::shared_ptr<exml::Comment> toComment() {
+				return nullptr;
 			};
-			virtual const exml::Comment* toComment() const {
-				return NULL;
+			virtual std::shared_ptr<const exml::Comment> toComment() const {
+				return nullptr;
 			};
 			/**
 			 * @brief Cast the element in a Declaration if it is possible.
-			 * @return pointer on the class or NULL.
+			 * @return pointer on the class or nullptr.
 			 */
-			virtual exml::Declaration* toDeclaration() {
-				return NULL;
+			virtual std::shared_ptr<exml::Declaration> toDeclaration() {
+				return nullptr;
 			};
-			virtual const exml::Declaration* toDeclaration() const {
-				return NULL;
+			virtual std::shared_ptr<const exml::Declaration> toDeclaration() const {
+				return nullptr;
 			};
 			/**
 			 * @brief Cast the element in a Element if it is possible.
-			 * @return pointer on the class or NULL.
+			 * @return pointer on the class or nullptr.
 			 */
-			virtual exml::Element* toElement() {
-				return NULL;
+			virtual std::shared_ptr<exml::Element> toElement() {
+				return nullptr;
 			};
-			virtual const exml::Element* toElement() const {
-				return NULL;
+			virtual std::shared_ptr<const exml::Element> toElement() const {
+				return nullptr;
 			};
 			/**
 			 * @brief Cast the element in a Text if it is possible.
-			 * @return pointer on the class or NULL.
+			 * @return pointer on the class or nullptr.
 			 */
-			virtual exml::Text* toText() {
-				return NULL;
+			virtual std::shared_ptr<exml::Text> toText() {
+				return nullptr;
 			};
-			virtual const exml::Text* toText() const{
-				return NULL;
+			virtual std::shared_ptr<const exml::Text> toText() const{
+				return nullptr;
 			};
 			
 			/**

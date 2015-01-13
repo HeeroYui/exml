@@ -13,6 +13,14 @@
 #undef __class__
 #define __class__ "Attribute"
 
+std::shared_ptr<exml::Attribute> exml::Attribute::create() {
+	return std::shared_ptr<exml::Attribute>(new exml::Attribute());
+}
+std::shared_ptr<exml::Attribute> exml::Attribute::create(const std::string& _name, const std::string& _value) {
+	return std::shared_ptr<exml::Attribute>(new exml::Attribute(_name, _value));
+}
+
+
 exml::Attribute::Attribute(const std::string& _name, const std::string& _value) :
   exml::Node(_value),
   m_name(_name) {
@@ -29,14 +37,14 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 		 drawElementParsed(_data[iii], _filePos);
 		#endif
-		if (true == checkAvaillable(_data[iii], false) ) {
+		if (checkAvaillable(_data[iii], false) == true) {
 			lastElementName = iii;
 		} else {
 			break;
 		}
 	}
 	m_name = std::string(_data, _pos, lastElementName+1-(_pos));
-	if (true == _caseSensitive) {
+	if (_caseSensitive == true) {
 		m_name = etk::tolower(m_name);
 	}
 	// count white space :

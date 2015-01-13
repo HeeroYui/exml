@@ -63,6 +63,11 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
+
+std::shared_ptr<exml::Text> exml::Text::create() {
+	return std::shared_ptr<exml::Text>(new exml::Text());
+}
+
 bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
 	_data += replaceSpecialCharOut(m_value);
 	return true;
@@ -94,7 +99,7 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 			// search whitespace :
 			size_t newEnd=iii;
 			for (int64_t jjj=(int64_t)iii-1; jjj>(int64_t)_pos; --jjj) {
-				if(true == isWhiteChar(_data[jjj])) {
+				if(isWhiteChar(_data[jjj]) == true) {
 					newEnd = jjj;
 				} else {
 					break;
@@ -111,6 +116,11 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 	CREATE_ERROR(_doc, _data, _pos, _filePos, "Text got end of file without finding end node");
 	_pos = _data.size();
 	return false;
+}
+
+
+std::shared_ptr<exml::TextCDATA> exml::TextCDATA::create() {
+	return std::shared_ptr<exml::TextCDATA>(new exml::TextCDATA());
 }
 
 bool exml::TextCDATA::iGenerate(std::string& _data, int32_t _indent) const {

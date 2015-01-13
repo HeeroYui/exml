@@ -24,7 +24,9 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-
+std::shared_ptr<exml::Comment> exml::Comment::create() {
+	return std::shared_ptr<exml::Comment>(new exml::Comment());
+}
 
 bool exml::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'comment'");
@@ -47,7 +49,7 @@ bool exml::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 			// search whitespace :
 			int32_t newEnd=iii;
 			for( int32_t jjj=iii-1; jjj>_pos; jjj--) {
-				if(true == isWhiteChar(_data[jjj])) {
+				if(isWhiteChar(_data[jjj]) == true) {
 					newEnd = jjj;
 				} else {
 					break;

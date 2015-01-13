@@ -14,11 +14,13 @@
 
 namespace exml {
 	class Text : public exml::Node {
-		public:
+		protected:
 			/**
 			 * @brief Constructor
 			 */
 			Text() { };
+		public:
+			static std::shared_ptr<Text> create();
 			/**
 			 * @brief Constructor
 			 * @param[in] _data String data of the current Text
@@ -39,19 +41,21 @@ namespace exml {
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Text* toText() {
-				return this;
+			virtual std::shared_ptr<exml::Text> toText() {
+				return std::static_pointer_cast<exml::Text>(shared_from_this());
 			};
-			virtual const exml::Text* toText() const{
-				return this;
+			virtual std::shared_ptr<const exml::Text> toText() const{
+				return std::static_pointer_cast<const exml::Text>(shared_from_this());
 			};
 	};
 	class TextCDATA : public exml::Text {
-		public:
+		protected:
 			/**
 			 * @brief Constructor
 			 */
 			TextCDATA() { };
+		public:
+			static std::shared_ptr<TextCDATA> create();
 			/**
 			 * @brief Destructor
 			 */

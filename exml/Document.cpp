@@ -13,6 +13,11 @@
 #undef __class__
 #define __class__ "Document"
 
+
+std::shared_ptr<exml::Document> exml::Document::create() {
+	return std::shared_ptr<exml::Document>(new exml::Document());
+}
+
 exml::Document::Document() :
   m_caseSensitive(false),
   m_writeErrorWhenDetexted(true),
@@ -25,7 +30,7 @@ exml::Document::Document() :
 
 bool exml::Document::iGenerate(std::string& _data, int32_t _indent) const {
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if (NULL!=m_listSub[iii]) {
+		if (m_listSub[iii] != nullptr) {
 			m_listSub[iii]->iGenerate(_data, _indent);
 		}
 	}
@@ -52,35 +57,29 @@ bool exml::Document::load(const std::string& _file) {
 	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
 	clear();
 	etk::FSNode tmpFile(_file);
-	if (false == tmpFile.exist()) {
+	if (tmpFile.exist() == false) {
 		EXML_ERROR("File Does not exist : " << _file);
 		return false;
 	}
 	int64_t fileSize = tmpFile.fileSize();
-	if (0 == fileSize) {
+	if (fileSize == 0) {
 		EXML_ERROR("This file is empty : " << _file);
 		return false;
 	}
-	if (false == tmpFile.fileOpenRead()) {
+	if (tmpFile.fileOpenRead() == false) {
 		EXML_ERROR("Can not open (r) the file : " << _file);
 		return false;
 	}
 	// allocate data
-	char * fileBuffer = new char[fileSize+5];
-	if (NULL == fileBuffer) {
-		EXML_ERROR("Error Memory allocation size=" << fileSize);
-		return false;
-	}
-	memset(fileBuffer, 0, (fileSize+5)*sizeof(char));
+	std::vector<char> fileBuffer;
+	fileBuffer.resize(fileSize+5, 0);
 	// load data from the file :
-	tmpFile.fileRead(fileBuffer, 1, fileSize);
+	tmpFile.fileRead(&fileBuffer[0], 1, fileSize);
 	// close the file:
 	tmpFile.fileClose();
 	
 	// convert in UTF8 :
-	std::string tmpDataUnicode(fileBuffer);
-	// remove temporary buffer:
-	delete[] fileBuffer;
+	std::string tmpDataUnicode(&fileBuffer[0]);
 	// parse the data :
 	bool ret = parse(tmpDataUnicode);
 	//Display();
@@ -89,12 +88,12 @@ bool exml::Document::load(const std::string& _file) {
 
 bool exml::Document::store(const std::string& _file) {
 	std::string createData;
-	if (false == generate(createData)) {
+	if (generate(createData) == false) {
 		EXML_ERROR("Error while creating the XML : " << _file);
 		return false;
 	}
 	etk::FSNode tmpFile(_file);
-	if (false == tmpFile.fileOpenWrite()) {
+	if (tmpFile.fileOpenWrite() == false) {
 		EXML_ERROR("Can not open (w) the file : " << _file);
 		return false;
 	}
@@ -147,7 +146,7 @@ void exml::Document::createError(const std::string& _data, int32_t _pos, const e
 	m_comment = _comment;
 	m_Line = etk::extract_line(_data, _pos);
 	m_filePos = _filePos;
-	if (true == m_writeErrorWhenDetexted) {
+	if (m_writeErrorWhenDetexted== true) {
 		displayError();
 	}
 }

@@ -19,6 +19,7 @@ namespace exml {
 			 * @brief Constructor
 			 */
 			Document();
+			static std::shared_ptr<Document> create();
 			/**
 			 * @brief Destructor
 			 */
@@ -93,11 +94,11 @@ namespace exml {
 				return typeDocument;
 			};
 			bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Document* toDocument() {
-				return this;
+			virtual std::shared_ptr<exml::Document> toDocument() {
+				return std::static_pointer_cast<exml::Document>(shared_from_this());
 			};
-			virtual const exml::Document* toDocument() const {
-				return this;
+			virtual std::shared_ptr<const exml::Document> toDocument() const {
+				return std::static_pointer_cast<const exml::Document>(shared_from_this());
 			};
 	};
 };

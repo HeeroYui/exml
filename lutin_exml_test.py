@@ -9,13 +9,13 @@ def get_desc():
 
 def create(target):
 	# module name is 'edn' and type binary.
-	myModule = module.Module(__file__, 'exmltest', 'BINARY')
+	myModule = module.Module(__file__, 'exml_test', 'BINARY')
 	
 	# add the file to compile:
 	myModule.add_src_file([
-		'exml/test.cpp'])
+		'test/main.cpp'])
 	
-	myModule.add_module_depend(['exml'])
+	myModule.add_module_depend(['exml', 'gtest'])
 	
 	now = datetime.datetime.now()
 	versionID=str(now.year-2012)+"."+str(now.month)+"."+str(now.day)

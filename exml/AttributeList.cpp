@@ -13,23 +13,17 @@
 #define __class__ "AttributeList"
 
 exml::AttributeList::~AttributeList() {
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if (NULL!=m_listAttribute[iii]) {
-			delete(m_listAttribute[iii]);
-			m_listAttribute[iii]=nullptr;
-		}
-	}
 	m_listAttribute.clear();
 }
 
-exml::Attribute* exml::AttributeList::getAttr(int32_t _id) {
+std::shared_ptr<exml::Attribute> exml::AttributeList::getAttr(int32_t _id) {
 	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
 		return nullptr;
 	}
 	return m_listAttribute[_id];
 }
 
-const exml::Attribute* exml::AttributeList::getAttr(int32_t _id) const {
+std::shared_ptr<const exml::Attribute> exml::AttributeList::getAttr(int32_t _id) const {
 	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
 		return nullptr;
 	}
@@ -37,7 +31,7 @@ const exml::Attribute* exml::AttributeList::getAttr(int32_t _id) const {
 }
 
 std::pair<std::string, std::string> exml::AttributeList::getAttrPair(int32_t _id) const {
-	const exml::Attribute* att = getAttr(_id);
+	std::shared_ptr<const exml::Attribute> att = getAttr(_id);
 	if (att == nullptr) {
 		return std::make_pair<std::string, std::string>("","");
 	}
@@ -45,7 +39,7 @@ std::pair<std::string, std::string> exml::AttributeList::getAttrPair(int32_t _id
 }
 
 
-void exml::AttributeList::appendAttribute(exml::Attribute* _attr) {
+void exml::AttributeList::appendAttribute(const std::shared_ptr<exml::Attribute>& _attr) {
 	if (_attr == nullptr) {
 		EXML_ERROR("Try to set an empty node");
 		return;
@@ -65,7 +59,7 @@ const std::string& exml::AttributeList::getAttribute(const std::string& _name) c
 		return errorReturn;
 	}
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    NULL != m_listAttribute[iii]
+		if(    m_listAttribute[iii] != nullptr
 		    && m_listAttribute[iii]->getName() == _name) {
 			return m_listAttribute[iii]->getValue();
 		}
@@ -79,7 +73,7 @@ bool exml::AttributeList::existAttribute(const std::string& _name) const {
 		return false;
 	}
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    NULL != m_listAttribute[iii]
+		if(    m_listAttribute[iii] != nullptr
 		    && m_listAttribute[iii]->getName() == _name) {
 			return true;
 		}
@@ -90,15 +84,15 @@ bool exml::AttributeList::existAttribute(const std::string& _name) const {
 void exml::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
 	// check if attribute already det :
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    NULL != m_listAttribute[iii]
+		if(    m_listAttribute[iii] != nullptr
 		    && m_listAttribute[iii]->getName() == _name) {
 			// update the value :
 			m_listAttribute[iii]->setValue(_value);
 			return;
 		}
 	}
-	exml::Attribute* attr = new exml::Attribute(_name, _value);
-	if (NULL == attr) {
+	std::shared_ptr<exml::Attribute> attr = exml::Attribute::create(_name, _value);
+	if (attr == nullptr) {
 		EXML_ERROR("memory allocation error...");
 	}
 	m_listAttribute.push_back(attr);
@@ -106,7 +100,7 @@ void exml::AttributeList::setAttribute(const std::string& _name, const std::stri
 
 bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if (NULL!=m_listAttribute[iii]) {
+		if (m_listAttribute[iii] != nullptr) {
 			m_listAttribute[iii]->iGenerate(_data, _indent);
 		}
 	}
@@ -115,12 +109,6 @@ bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
 
 void exml::AttributeList::clear() {
 	exml::Node::clear();
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if (NULL!=m_listAttribute[iii]) {
-			delete(m_listAttribute[iii]);
-			m_listAttribute[iii]=NULL;
-		}
-	}
 	m_listAttribute.clear();
 }
 

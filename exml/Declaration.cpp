@@ -20,6 +20,19 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
+
+std::shared_ptr<exml::Declaration> exml::Declaration::create() {
+	return std::shared_ptr<exml::Declaration>(new exml::Declaration());
+}
+
+std::shared_ptr<exml::Declaration> exml::Declaration::create(const std::string& _name) {
+	return std::shared_ptr<exml::Declaration>(new exml::Declaration(_name));
+}
+
+std::shared_ptr<exml::DeclarationXML> exml::DeclarationXML::create(const std::string& _version, const std::string& _format, bool _standalone) {
+	return std::shared_ptr<exml::DeclarationXML>(new exml::DeclarationXML(_version, _format, _standalone));
+}
+
 exml::DeclarationXML::DeclarationXML(const std::string& _version, const std::string& _format, bool _standalone) :
   exml::Declaration("xml") {
 	if (_version.size()!=0) {
@@ -71,16 +84,15 @@ bool exml::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _ca
 			_pos = iii+1;
 			return true;
 		}
-		if (true == checkAvaillable(_data[iii], true)) {
+		if (checkAvaillable(_data[iii], true) == true) {
 			// we find an attibute  == > create a new and parse it :
-			exml::Attribute* attribute = new exml::Attribute();
-			if (NULL == attribute) {
+			std::shared_ptr<exml::Attribute> attribute = exml::Attribute::create();
+			if (attribute == nullptr) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");
 				return false;
 			}
 			_pos = iii;
-			if (false == attribute->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-				delete(attribute);
+			if (attribute->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 				return false;
 			}
 			iii = _pos;

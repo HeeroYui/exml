@@ -14,11 +14,13 @@
 
 namespace exml {
 	class Comment : public exml::Node {
-		public:
+		protected:
 			/**
 			 * @brief Constructor
 			 */
 			Comment() { };
+		public:
+			static std::shared_ptr<Comment> create();
 			/**
 			 * @brief Constructor
 			 * @param[in] _value comment value
@@ -37,11 +39,11 @@ namespace exml {
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Comment* toComment() {
-				return this;
+			virtual std::shared_ptr<exml::Comment> toComment() {
+				return std::static_pointer_cast<exml::Comment>(shared_from_this());
 			};
-			virtual const exml::Comment* toComment() const {
-				return this;
+			virtual std::shared_ptr<const exml::Comment> toComment() const {
+				return std::static_pointer_cast<const exml::Comment>(shared_from_this());
 			};
 	};
 };

@@ -28,98 +28,100 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
+std::shared_ptr<exml::Element> exml::Element::create() {
+	return std::shared_ptr<exml::Element>(new exml::Element());
+}
+std::shared_ptr<exml::Element> exml::Element::create(const std::string& _value) {
+	return std::shared_ptr<exml::Element>(new exml::Element(_value));
+}
+
+
 exml::Element::~Element() {
-	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if (NULL!=m_listSub[iii]) {
-			delete(m_listSub[iii]);
-			m_listSub[iii]=NULL;
-		}
-	}
 	m_listSub.clear();
 }
 
 enum exml::nodeType exml::Element::getType(int32_t _id) {
-	exml::Node* tmpp = getNode(_id);
-	if (NULL == tmpp) {
+	std::shared_ptr<exml::Node> tmpp = getNode(_id);
+	if (tmpp == nullptr) {
 		return exml::typeUnknow;
 	}
 	return tmpp->getType();
 }
 const enum exml::nodeType exml::Element::getType(int32_t _id) const {
-	const exml::Node* tmpp = getNode(_id);
-	if (NULL == tmpp) {
+	std::shared_ptr<const exml::Node> tmpp = getNode(_id);
+	if (tmpp == nullptr) {
 		return exml::typeUnknow;
 	}
 	return tmpp->getType();
 }
 
-exml::Node* exml::Element::getNode(int32_t _id) {
+std::shared_ptr<exml::Node> exml::Element::getNode(int32_t _id) {
 	if (_id <0 || (size_t)_id>m_listSub.size()) {
-		return NULL;
+		return nullptr;
 	}
 	return m_listSub[_id];
 }
 
-const exml::Node* exml::Element::getNode(int32_t _id) const {
+std::shared_ptr<const exml::Node> exml::Element::getNode(int32_t _id) const {
 	if (_id <0 || (size_t)_id>m_listSub.size()) {
-		return NULL;
+		return nullptr;
 	}
 	return m_listSub[_id];
 }
 
 
-exml::Element* exml::Element::getElement(int32_t _id) {
-	exml::Node* tmpp = getNode(_id);
-	if (NULL == tmpp) {
-		return NULL;
+std::shared_ptr<exml::Element> exml::Element::getElement(int32_t _id) {
+	std::shared_ptr<exml::Node> tmpp = getNode(_id);
+	if (tmpp == nullptr) {
+		return nullptr;
 	}
 	return tmpp->toElement();
 }
 
-const exml::Element* exml::Element::getElement(int32_t _id) const {
-	const exml::Node* tmpp = getNode(_id);
-	if (NULL == tmpp) {
-		return NULL;
+std::shared_ptr<const exml::Element> exml::Element::getElement(int32_t _id) const {
+	std::shared_ptr<const exml::Node> tmpp = getNode(_id);
+	if (tmpp == nullptr) {
+		return nullptr;
 	}
 	return tmpp->toElement();
 }
 
-exml::Element* exml::Element::getNamed(const std::string& _name) {
+std::shared_ptr<exml::Element> exml::Element::getNamed(const std::string& _name) {
 	if (_name.size() == 0) {
-		return NULL;
+		return nullptr;
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if(    NULL != m_listSub[iii]
+		if(    m_listSub[iii] != nullptr
 		    && m_listSub[iii]->getType() == exml::typeElement
 		    && m_listSub[iii]->getValue() == _name) {
-			if (NULL == m_listSub[iii]) {
-				return NULL;
+			if (m_listSub[iii] == nullptr) {
+				return nullptr;
 			}
 			return m_listSub[iii]->toElement();
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
-const exml::Element* exml::Element::getNamed(const std::string& _name) const {
+std::shared_ptr<const exml::Element> exml::Element::getNamed(const std::string& _name) const {
 	if (_name.size() == 0) {
-		return NULL;
+		return nullptr;
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if(    NULL != m_listSub[iii]
+		if(    m_listSub[iii] != nullptr
 		    && m_listSub[iii]->getType() == exml::typeElement
 		    && m_listSub[iii]->getValue() == _name) {
-			if (NULL == m_listSub[iii]) {
-				return NULL;
+			if (m_listSub[iii] == nullptr) {
+				return nullptr;
 			}
 			return m_listSub[iii]->toElement();
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
-void exml::Element::append(exml::Node* _node) {
-	if (_node == NULL) {
+void exml::Element::append(const std::shared_ptr<exml::Node>& _node) {
+	if (_node == nullptr) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
@@ -146,7 +148,7 @@ std::string exml::Element::getText() {
 		}
 	} else {
 		for (size_t iii=0; iii<m_listSub.size(); iii++) {
-			if (NULL!=m_listSub[iii]) {
+			if (m_listSub[iii] != nullptr) {
 				m_listSub[iii]->iGenerate(res, 0);
 			}
 		}
@@ -162,16 +164,16 @@ bool exml::Element::iGenerate(std::string& _data, int32_t _indent) const {
 	
 	if (m_listSub.size()>0) {
 		if(    m_listSub.size() == 1
-		    && m_listSub[0] != NULL
+		    && m_listSub[0] != nullptr
 		    && m_listSub[0]->getType() == exml::typeText
-		    && static_cast<exml::Text*>(m_listSub[0])->countLines() == 1) {
+		    && std::dynamic_pointer_cast<exml::Text>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
 			m_listSub[0]->iGenerate(_data,0);
 		} else {
 			_data += ">\n";
 			
 			for (size_t iii=0; iii<m_listSub.size(); iii++) {
-				if (NULL!=m_listSub[iii]) {
+				if (m_listSub[iii] != nullptr) {
 					m_listSub[iii]->iGenerate(_data, _indent+1);
 				}
 			}
@@ -213,7 +215,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 			if(_data[iii+white+1] == '?') {
 				++tmpPos;
 				// TODO : white space ...
-				if( false == checkAvaillable(_data[iii+white+2], true) ) {
+				if(checkAvaillable(_data[iii+white+2], true) == false) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Find unavaillable name in the Declaration node...");
 					_pos = iii+white+1;
 					return false;
@@ -222,7 +224,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				size_t endPosName = iii+white+1;
 				// generate element name ...
 				for (size_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
-					if(true == checkAvaillable(_data[jjj], false) ) {
+					if(checkAvaillable(_data[jjj], false) == true) {
 						// we find the end ...
 						endPosName = jjj;
 					} else {
@@ -231,19 +233,18 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					tmpPos.check(_data[jjj]);
 				}
 				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
-				if (true == _caseSensitive) {
+				if (_caseSensitive == true) {
 					tmpname = etk::tolower(tmpname);
 				}
 				// Find declaration balise
-				exml::Declaration* declaration = new exml::Declaration(tmpname);
-				if (NULL == declaration) {
+				std::shared_ptr<exml::Declaration> declaration = exml::Declaration::create(tmpname);
+				if (declaration == nullptr) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation Error...");
 					return false;
 				}
 				_filePos += tmpPos;
 				_pos = endPosName+1;
-				if (false == declaration->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-					delete(declaration);
+				if (declaration->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 					return false;
 				}
 				iii = _pos;
@@ -269,15 +270,14 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					++tmpPos;
 					// find comment:
-					exml::Comment* comment = new exml::Comment();
-					if (NULL == comment) {
+					std::shared_ptr<exml::Comment> comment = exml::Comment::create();
+					if (comment == nullptr) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
 					}
 					_pos = iii+white+4;
 					_filePos += tmpPos;
-					if (false == comment->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-						delete(comment);
+					if (comment->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 						return false;
 					}
 					iii = _pos;
@@ -299,15 +299,14 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					tmpPos+=6;
 					// find text:
-					exml::TextCDATA* text = new exml::TextCDATA();
-					if (NULL == text) {
+					std::shared_ptr<exml::TextCDATA> text = exml::TextCDATA::create();
+					if (text == nullptr) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
 					}
 					_pos = iii+9+white;
 					_filePos += tmpPos;
-					if (false == text->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-						delete(text);
+					if (text->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 						return false;
 					}
 					iii = _pos;
@@ -324,7 +323,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				size_t endPosName = iii+white+1;
 				// generate element name ...
 				for (size_t jjj=iii+white+2; jjj<_data.size(); jjj++) {
-					if(true == checkAvaillable(_data[jjj], false) ) {
+					if(checkAvaillable(_data[jjj], false) == true) {
 						// we find the end ...
 						endPosName = jjj;
 					} else {
@@ -333,7 +332,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					tmpPos.check(_data[jjj]);
 				}
 				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
-				if (true == _caseSensitive) {
+				if (_caseSensitive == true) {
 					tmpname = etk::tolower(tmpname);
 				}
 				if( tmpname == m_value) {
@@ -343,7 +342,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 						#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 							drawElementParsed(_data[jjj], _filePos);
 						#endif
-						if (true == tmpPos.check(_data[jjj])) {
+						if (tmpPos.check(_data[jjj]) == true) {
 							continue;
 						}
 						if(_data[jjj] == '>') {
@@ -384,20 +383,19 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					tmpPos.check(_data[jjj]);
 				}
 				std::string tmpname = std::string(_data, iii+white+1, endPosName+1-(iii+white+1));
-				if (true == _caseSensitive) {
+				if (_caseSensitive == true) {
 					etk::tolower(tmpname);
 				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
-				exml::Element* element = new exml::Element(tmpname);
-				if (NULL == element) {
+				std::shared_ptr<exml::Element> element = exml::Element::create(tmpname);
+				if (element == nullptr) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
 				}
 				_pos = endPosName+1;
 				_filePos += tmpPos;
-				if (false == element->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-					delete(element);
+				if (element->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 					return false;
 				}
 				iii = _pos;
@@ -421,15 +419,14 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				// empty spaces  == > nothing to do ....
 			} else {
 				// find data  == > parse it...
-				exml::Text* text = new exml::Text();
-				if (NULL == text) {
+				std::shared_ptr<exml::Text> text = exml::Text::create();
+				if (text == nullptr) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
 				}
 				_pos = iii;
 				_filePos += tmpPos;
-				if (false == text->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-					delete(text);
+				if (text->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 					return false;
 				}
 				iii = _pos;
@@ -474,23 +471,22 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 			CREATE_ERROR(_doc, _data, _pos, _filePos, "Find / without > char ...");
 			return false;
 		}
-		if (true == checkAvaillable(_data[iii], true)) {
+		if (checkAvaillable(_data[iii], true) == true) {
 			// we find an attibute  == > create a new and parse it :
-			exml::Attribute* attribute = new exml::Attribute();
-			if (NULL == attribute) {
+			std::shared_ptr<exml::Attribute> attribute = exml::Attribute::create();
+			if (attribute == nullptr) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 				return false;
 			}
 			_pos = iii;
-			if (false == attribute->iParse(_data, _pos, _caseSensitive, _filePos, _doc)) {
-				delete(attribute);
+			if (attribute->iParse(_data, _pos, _caseSensitive, _filePos, _doc) == false) {
 				return false;
 			}
 			iii = _pos;
 			m_listAttribute.push_back(attribute);
 			continue;
 		}
-		if (false == isWhiteChar(_data[iii])) {
+		if (isWhiteChar(_data[iii]) == false) {
 			CREATE_ERROR(_doc, _data, iii, _filePos, std::string("Find an unknow element : '") + _data[iii] + "'");
 			return false;
 		}
@@ -501,12 +497,6 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 
 void exml::Element::clear() {
 	exml::AttributeList::clear();
-	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if (NULL!=m_listSub[iii]) {
-			delete(m_listSub[iii]);
-			m_listSub[iii]=NULL;
-		}
-	}
 	m_listSub.clear();
 }
 

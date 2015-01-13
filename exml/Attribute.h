@@ -14,7 +14,7 @@
 
 namespace exml {
 	class Attribute : public exml::Node {
-		public:
+		protected:
 			/**
 			 * @brief Constructor
 			 */
@@ -25,6 +25,9 @@ namespace exml {
 			 * @param[in] _value Value of the attribute.
 			 */
 			Attribute(const std::string& _name, const std::string& _value);
+		public:
+			static std::shared_ptr<Attribute> create();
+			static std::shared_ptr<Attribute> create(const std::string& _name, const std::string& _value);
 			/**
 			 * @brief Destructor
 			 */
@@ -52,11 +55,11 @@ namespace exml {
 			};
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual exml::Attribute* toAttribute() {
-				return this;
+			virtual std::shared_ptr<exml::Attribute> toAttribute() {
+				return std::static_pointer_cast<exml::Attribute>(shared_from_this());
 			};
-			virtual const exml::Attribute* toAttribute() const {
-				return this;
+			virtual std::shared_ptr<const exml::Attribute> toAttribute() const {
+				return std::static_pointer_cast<const exml::Attribute>(shared_from_this());
 			};
 			virtual void clear();
 	};
