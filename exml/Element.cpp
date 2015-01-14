@@ -169,6 +169,7 @@ bool exml::Element::iGenerate(std::string& _data, int32_t _indent) const {
 		    && std::dynamic_pointer_cast<exml::Text>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
 			m_listSub[0]->iGenerate(_data,0);
+			EXML_VERBOSE(" generate : '" << _data << "'");
 		} else {
 			_data += ">\n";
 			

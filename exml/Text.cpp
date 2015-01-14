@@ -34,7 +34,7 @@ static std::string replaceSpecialChar(const std::string& _inval) {
 	out = std::regex_replace(out, regexAPOS, std::string("'"));
 	out = std::regex_replace(out, regexQUOT, std::string("\""));
 	out = std::regex_replace(out, regexAMP, std::string("&"));
-	//EXML_ERROR("plop "<< _inval << " => " << out);
+	//EXML_ERROR("INNN '"<< _inval << "' => '" << out << "'");
 	return out;
 }
 static std::string replaceSpecialCharOut(const std::string& _inval) {
@@ -50,6 +50,7 @@ static std::string replaceSpecialCharOut(const std::string& _inval) {
 	out = std::regex_replace(out, regexAPOS, std::string("&apos;"));
 	out = std::regex_replace(out, regexGT, std::string("&gt;"));
 	out = std::regex_replace(out, regexLT, std::string("&lt;"));
+	//EXML_ERROR("OUTTT '"<< _inval << "' => '" << out << "'");
 	return out;
 }
 
