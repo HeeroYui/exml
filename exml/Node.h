@@ -163,7 +163,7 @@ namespace exml {
 			/**
 			 * @brief get the current position where the element is in the file
 			 */
-			const exml::filePos& getPos() {
+			const exml::filePos& getPos() const {
 				return m_pos;
 			};
 		protected:

@@ -63,9 +63,12 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-
 std::shared_ptr<exml::Text> exml::Text::create() {
 	return std::shared_ptr<exml::Text>(new exml::Text());
+}
+
+std::shared_ptr<exml::Text> exml::Text::create(const std::string& _data) {
+	return std::shared_ptr<exml::Text>(new exml::Text(_data));
 }
 
 bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {

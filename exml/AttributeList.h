@@ -16,7 +16,7 @@
 
 namespace exml {
 	class AttributeList : public exml::Node {
-		public:
+		protected:
 			/**
 			 * @brief Constructor
 			 */
@@ -29,6 +29,7 @@ namespace exml {
 			  exml::Node(_value) {
 				
 			};
+		public:
 			/**
 			 * @brief Destructor
 			 */

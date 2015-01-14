@@ -19,13 +19,14 @@ namespace exml {
 			 * @brief Constructor
 			 */
 			Text() { };
-		public:
-			static std::shared_ptr<Text> create();
 			/**
 			 * @brief Constructor
 			 * @param[in] _data String data of the current Text
 			 */
 			Text(const std::string& _data) : exml::Node(_data) { };
+		public:
+			static std::shared_ptr<Text> create();
+			static std::shared_ptr<Text> create(const std::string& _data);
 			/**
 			 * @brief Destructor
 			 */

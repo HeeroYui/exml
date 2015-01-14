@@ -138,7 +138,7 @@ void exml::Element::append(const std::shared_ptr<exml::Node>& _node) {
 	m_listSub.push_back(_node);
 }
 
-std::string exml::Element::getText() {
+std::string exml::Element::getText() const {
 	std::string res;
 	if (m_listSub.size() == 1) {
 		if (m_listSub[0]->getType() == typeText) {
