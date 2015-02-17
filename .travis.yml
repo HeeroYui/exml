@@ -27,7 +27,7 @@ before_script:
 install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qq
-  - sudo apt-get install -qq g++-4.8
+  - sudo apt-get install -qq g++-4.9
   - sudo apt-get install -qq libstdc++-4.9-dev
   - sudo rm /usr/bin/gcc /usr/bin/g++
   - sudo ln -s /usr/bin/gcc-4.9 /usr/bin/gcc
