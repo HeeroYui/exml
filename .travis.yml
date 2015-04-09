@@ -3,24 +3,20 @@ language: cpp
 
 # compilator system:
 compiler:
-- clang
-- gcc
+  - clang
+  - gcc
 
 os:
-- linux
-- osx
-
-osx_image: xcode61
+  - linux
+  - osx
 
 # previous actions:
 before_script: 
   - rm -rf *
-  - git clone https://github.com/HeeroYui/ewol.git
-  - cd ewol; git checkout origin/dev -b dev; cd ..
-  - cd ewol; git submodule init; cd ..
-  - cd ewol; git submodule update; cd ..
-  - cd ewol; git submodule foreach git checkout master; cd ..
-  - cd ewol; git submodule foreach git pull; cd ..
+  - git clone https://github.com/HeeroYui/etk.git
+  - git clone https://github.com/HeeroYui/lutin.git
+  - git clone https://github.com/HeeroYui/gtest.git
+  - git clone https://github.com/HeeroYui/exml.git
   - if [ "$CXX" == "clang++" ]; then BUILDER=clang; else BUILDER=gcc; fi
 
 #install Gcc to have lisstdc++ 4.8 & gcc 4.8
@@ -29,12 +25,13 @@ install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq g++-4.9
   - sudo apt-get install -qq libstdc++-4.9-dev
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 90
+  - sudo rm /usr/bin/gcc /usr/bin/g++
+  - sudo ln -s /usr/bin/gcc-4.9 /usr/bin/gcc
+  - sudo ln -s /usr/bin/g++-4.9 /usr/bin/g++
 
 # build sequence with Lutin :
 script: 
-  - ./ewol/build/lutin.py -C -P -c$BUILDER -mdebug -p exml_test
+  - ./lutin/lutin.py -C -P -c$BUILDER -mdebug -p exml_test
   - ./out/Linux_x86_64/debug/staging/$BUILDER/exml_test/usr/bin/exml_test -l6
 
 #send e-mail on compilation result:
