@@ -3,6 +3,8 @@ exml
 
 `exml` ewol XML : is a XML parser generater for ewol
 
+[![Build Status](https://travis-ci.org/atria-soft/exml.svg?branch=master)](https://travis-ci.org/atria-soft/exml)
+
 Instructions
 ============
 
