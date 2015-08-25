@@ -3,9 +3,9 @@ language:
 
 sudo: false
 
-compiler:
-  - clang
-  - gcc
+#compiler:
+#  - clang
+#  - gcc
 
 os:
   - linux
@@ -25,24 +25,31 @@ addons:
 
 install:
   - pip install --user lutin
-  - wget http://atria-soft.com/coverage/sendCoverage.py .
+
+env:
+  - CONF=debug   BOARD=Linux BUILDER=clang GCOV=
+  - CONF=release BOARD=Linux BUILDER=clang GCOV=
+  - CONF=debug   BOARD=Linux BUILDER=gcc   GCOV=
+  - CONF=release BOARD=Linux BUILDER=gcc   GCOV=
+  - CONF=debug   BOARD=Linux BUILDER=gcc   GCOV=--gcov
 
 before_script:
+  - LIB_SHA1=`git rev-parse HEAD`
+  - LIB_TAG=`git describe --tags`
   - cd ..
+  - wget http://atria-soft.com/coverage/sendCoverage.py
+  - chmod +x sendCoverage.py
   - git clone https://github.com/atria-soft/etk.git
   - git clone https://github.com/generic-library/gtest-lutin.git --recursive
   - pwd
   - ls -l
-  - if [ "$CXX" == "clang++" ]; then BUILDER=clang; else BUILDER=gcc; fi
-  - if [ "$CXX" == "g++" ]; then COMPILATOR_OPTION="--compilator-version=4.9"; else COMPILATOR_OPTION=""; fi
+  - if [ "$BUILDER" == "gcc" ]; then COMPILATOR_OPTION="--compilator-version=4.9"; else COMPILATOR_OPTION=""; fi
 
 script:
-  - if [ "$CXX" == "clang++" ]; then lutin -C -P -c$BUILDER $COMPILATOR_OPTION -mdebug -p exml-test; fi
-  - if [ "$CXX" == "clang++" ]; then ./out/Linux_x86_64/debug/staging/$BUILDER/exml-test/usr/bin/exml-test -l6; fi
-  - if [ "$CXX" == "g++" ]; then lutin -C -P -c$BUILDER $COMPILATOR_OPTION --gcov -mdebug -p exml-test; fi
-  - if [ "$CXX" == "g++" ]; then ./out/Linux_x86_64/debug/staging/$BUILDER/exml-test/usr/bin/exml-test -l6; fi
-  - if [ "$CXX" == "g++" ]; then lutin -C -P -c$BUILDER $COMPILATOR_OPTION --gcov -mdebug -p exml?gcov -l6; fi
-  - if [ "$CXX" == "g++" ]; then ./sendCoverage.py "http://atria-soft.com/coverage/inject.php" "atria-soft" "XXX" "exml" "master" "out/Linux_x86_64/debug/build/gcc/exml/exml_coverage.json"; fi
+  - lutin -C -P -j4 -c $BUILDER $COMPILATOR_OPTION $GCOV -m $CONF -p exml-test
+  - ./out/Linux_x86_64/$CONF/staging/$BUILDER/exml-test/usr/bin/exml-test
+  - if [ "$GCOV" != "" ]; then lutin -C -P -c $BUILDER $COMPILATOR_OPTION -m $CONF -p exml?gcov; fi
+  - if [ "$GCOV" != "" ]; then ./sendCoverage.py "http://atria-soft.com/coverage/inject.php" "atria-soft" "$LIB_SHA1" "exml" "$TRAVIS_BRANCH" "out/Linux_x86_64/$CONF/build/$BUILDER/exml/exml_coverage.json"; fi
 
 notifications:
   email:
