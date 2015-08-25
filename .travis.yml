@@ -25,6 +25,7 @@ addons:
 
 install:
   - pip install --user lutin
+  - wget http://atria-soft.com/coverage/sendCoverage.py .
 
 before_script:
   - cd ..
@@ -36,8 +37,12 @@ before_script:
   - if [ "$CXX" == "g++" ]; then COMPILATOR_OPTION="--compilator-version=4.9"; else COMPILATOR_OPTION=""; fi
 
 script:
-  - lutin -C -P -c$BUILDER $COMPILATOR_OPTION -mdebug -p exml-test
-  - ./out/Linux_x86_64/debug/staging/$BUILDER/exml-test/usr/bin/exml-test -l6
+  - if [ "$CXX" == "clang++" ]; then lutin -C -P -c$BUILDER $COMPILATOR_OPTION -mdebug -p exml-test; fi
+  - if [ "$CXX" == "clang++" ]; then ./out/Linux_x86_64/debug/staging/$BUILDER/exml-test/usr/bin/exml-test -l6; fi
+  - if [ "$CXX" == "g++" ]; then lutin -C -P -c$BUILDER $COMPILATOR_OPTION --gcov -mdebug -p exml-test; fi
+  - if [ "$CXX" == "g++" ]; then ./out/Linux_x86_64/debug/staging/$BUILDER/exml-test/usr/bin/exml-test -l6; fi
+  - if [ "$CXX" == "g++" ]; then lutin -C -P -c$BUILDER $COMPILATOR_OPTION --gcov -mdebug -p exml?gcov -l6; fi
+  - if [ "$CXX" == "g++" ]; then ./sendCoverage.py "http://atria-soft.com/coverage/inject.php" "atria-soft" "XXX" "exml" "master" "out/Linux_x86_64/debug/build/gcc/exml/exml_coverage.json"; fi
 
 notifications:
   email:
