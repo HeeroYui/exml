@@ -4,7 +4,14 @@ exml
 `exml` ewol XML : is a XML parser generater for ewol
 
 [![Build Status](https://travis-ci.org/atria-soft/exml.svg?branch=master)](https://travis-ci.org/atria-soft/exml)
-[![Coverage Status](http://atria-soft.com/coverage/thumb.php?USER=atria-soft&LIB_NAME=exml&LIB_BRANCH=master)](http://atria-soft.com/coverage/view.php?USER=atria-soft&LIB_NAME=exml&LIB_BRANCH=master)
+
+[![Coverage Status](http://atria-soft.com/ci/coverage/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
+
+[![Coverage Status](http://atria-soft.com/ci/test/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
+
+[![Coverage Status](http://atria-soft.com/ci/warning/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
+
+
 Instructions
 ============
 
