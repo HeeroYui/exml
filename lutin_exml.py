@@ -23,9 +23,22 @@ def create(target):
 		'exml/Document.cpp',
 		'exml/Element.cpp',
 		'exml/Node.cpp',
-		'exml/Text.cpp'])
+		'exml/Text.cpp'
+		])
 	
-	myModule.add_export_path(tools.get_current_path(__file__))
+	myModule.add_header_file([
+		'exml/exml.h',
+		'exml/Attribute.h',
+		'exml/AttributeList.h',
+		'exml/Comment.h',
+		'exml/Declaration.h',
+		'exml/Document.h',
+		'exml/Element.h',
+		'exml/Node.h',
+		'exml/Text.h'
+		])
+	
+	myModule.add_path(tools.get_current_path(__file__))
 	
 	# add the currrent module at the 
 	return myModule

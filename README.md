@@ -7,9 +7,9 @@ exml
 
 [![Coverage Status](http://atria-soft.com/ci/coverage/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
 
-[![Coverage Status](http://atria-soft.com/ci/test/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
+[![Test Status](http://atria-soft.com/ci/test/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
 
-[![Coverage Status](http://atria-soft.com/ci/warning/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
+[![Warning Status](http://atria-soft.com/ci/warning/atria-soft/exml.svg?branch=master)](http://atria-soft.com/ci/atria-soft/exml)
 
 
 Instructions
