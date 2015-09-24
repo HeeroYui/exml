@@ -7,14 +7,14 @@ def get_desc():
 
 
 def create(target):
-	myModule = module.Module(__file__, 'exml', 'LIBRARY')
+	my_module = module.Module(__file__, 'exml', 'LIBRARY')
 	
-	myModule.add_module_depend(['etk'])
+	my_module.add_module_depend(['etk'])
 	
 	# add extra compilation flags :
-	myModule.add_extra_compile_flags()
+	my_module.add_extra_compile_flags()
 	# add sources files
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'exml/debug.cpp',
 		'exml/Attribute.cpp',
 		'exml/AttributeList.cpp',
@@ -26,7 +26,7 @@ def create(target):
 		'exml/Text.cpp'
 		])
 	
-	myModule.add_header_file([
+	my_module.add_header_file([
 		'exml/exml.h',
 		'exml/Attribute.h',
 		'exml/AttributeList.h',
@@ -38,9 +38,9 @@ def create(target):
 		'exml/Text.h'
 		])
 	
-	myModule.add_path(tools.get_current_path(__file__))
+	my_module.add_path(tools.get_current_path(__file__))
 	
 	# add the currrent module at the 
-	return myModule
+	return my_module
 
 
