@@ -3,33 +3,42 @@ import lutin.module as module
 import lutin.tools as tools
 import datetime
 
+
+def get_type():
+	return "BINARY"
+
+def get_name():
+	return "exml_tester"
+
+def get_sub_type():
+	return "TEST"
+
 def get_desc():
 	return "e-xml test software"
 
+def get_licence():
+	return "APACHE-2"
 
-def create(target):
-	# module name is 'edn' and type binary.
-	my_module = module.Module(__file__, 'exml-test', 'BINARY')
-	
-	# add the file to compile:
+def get_compagny_type():
+	return "com"
+
+def get_compagny_name():
+	return "atria-soft"
+
+def get_maintainer():
+	return ["Mr DUPIN Edouard <yui.heero@gmail.com>"]
+
+def create(target, module_name):
+	my_module = module.Module(__file__, module_name, get_type())
 	my_module.add_src_file([
-		'test/main.cpp'])
-	
-	my_module.add_module_depend(['exml', 'gtest'])
-	
+		'test/main.cpp'
+		])
+	my_module.add_module_depend(['exml', 'gtest', 'test-debug'])
 	now = datetime.datetime.now()
 	versionID=str(now.year-2012)+"."+str(now.month)+"."+str(now.day)
-	
 	# set the package properties :
 	my_module.pkg_set("VERSION", versionID)
-	my_module.pkg_set("COMPAGNY_TYPE", "org")
-	my_module.pkg_set("COMPAGNY_NAME", "Edouard DUPIN")
-	my_module.pkg_set("MAINTAINER", ["Mr DUPIN Edouard <yui.heero@gmail.com>"])
 	my_module.pkg_set("SECTION", ["Development"])
 	my_module.pkg_set("PRIORITY", "optional")
-	my_module.pkg_set("DESCRIPTION", "E_xml tester soft")
-	my_module.pkg_set("NAME", "exml_tester")
-	
-	# add the currrent module at the 
 	return my_module
 

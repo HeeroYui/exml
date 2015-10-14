@@ -6,7 +6,7 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/debug.h>
+#include <test-debug/debug.h>
 #include <vector>
 #include <gtest/gtest.h>
 #include <etk/os/FSNode.h>

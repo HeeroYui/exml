@@ -11,7 +11,7 @@
 #define __EXML_TEST_COMMON_H__
 
 #include <etk/types.h>
-#include <exml/debug.h>
+#include <test-debug/debug.h>
 #include <exml/exml.h>
 
 // _errorPos : -1 : no error , 1 : parsing error, 2 generation error, 3 comparaison error ????
