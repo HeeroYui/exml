@@ -70,11 +70,18 @@ namespace exml {
 			 */
 			bool existAttribute(const std::string& _name) const;
 			/**
-			 * @brief Sen A new attribute or replace data of the previous one
+			 * @brief Set A new attribute or replace data of the previous one
 			 * @param[in] _name Name of the attribute
 			 * @param[in] _value Value of the attribute
 			 */
 			void setAttribute(const std::string& _name, const std::string& _value);
+			/**
+			 * @brief Remove an attribute form the list
+			 * @param[in] _name Name of the attribute
+			 * @return true The attribute has been removed
+			 * @return false An error occured.
+			 */
+			bool removeAttribute(const std::string& _name);
 		public: // herited function:
 			bool iGenerate(std::string& _data, int32_t _indent) const;
 			virtual void clear();

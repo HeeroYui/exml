@@ -72,7 +72,7 @@ bool exml::AttributeList::existAttribute(const std::string& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); ++iii) {
 		if(    m_listAttribute[iii] != nullptr
 		    && m_listAttribute[iii]->getName() == _name) {
 			return true;
@@ -81,9 +81,28 @@ bool exml::AttributeList::existAttribute(const std::string& _name) const {
 	return false;
 }
 
+bool exml::AttributeList::removeAttribute(const std::string& _name) {
+	if (_name.size() == 0) {
+		return false;
+	}
+	auto it = m_listAttribute.begin();
+	while (it != m_listAttribute.end()) {
+		if (*it == nullptr) {
+			it = m_listAttribute.erase(it);
+			continue;
+		}
+		if((*it)->getName() == _name) {
+			it = m_listAttribute.erase(it);
+			return true;
+		}
+		it++;
+	}
+	return false;
+}
+
 void exml::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
 	// check if attribute already det :
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
+	for (size_t iii=0; iii<m_listAttribute.size(); ++iii) {
 		if(    m_listAttribute[iii] != nullptr
 		    && m_listAttribute[iii]->getName() == _name) {
 			// update the value :
