@@ -5,9 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-#ifndef __ETK_XML_DOCUMENT_H__
-#define __ETK_XML_DOCUMENT_H__
+#pragma once
 
 #include <exml/Element.h>
 #include <vector>
@@ -116,7 +114,4 @@ namespace exml {
 	} while (0)
 
 //__LINE__, __class__, __func__
-
-#endif
-
 

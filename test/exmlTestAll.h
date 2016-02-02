@@ -5,10 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-
-#ifndef __EXML_TEST_ALL_H__
-#define __EXML_TEST_ALL_H__
+#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
@@ -42,4 +39,3 @@ TEST(TestAll, testError) {
 }
 
 
-#endif

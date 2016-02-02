@@ -5,9 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-#ifndef __ETK_XML_TEXT_H__
-#define __ETK_XML_TEXT_H__
+#pragma once
 
 #include <exml/Node.h>
 #include <vector>
@@ -65,8 +63,5 @@ namespace exml {
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
 	};
-};
-
-
-#endif
+}
 

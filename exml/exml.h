@@ -5,12 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-#ifndef __ETK_XML_H__
-#define __ETK_XML_H__
+#pragma once
 
 #include <exml/Document.h>
-
-
-#endif
 

@@ -5,10 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-
-#ifndef __EXML_TEST_ELEMENT_H__
-#define __EXML_TEST_ELEMENT_H__
+#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
@@ -57,4 +54,3 @@ TEST(TestElement, testBase3) {
 	exmlLocalTest("<exemple/>\n", "<exemple>\n</exemple sdfgsdfg>\n", 1);
 }
 
-#endif

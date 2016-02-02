@@ -5,10 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-
-#ifndef __EXML_TEST_ATTRIBUTE_H__
-#define __EXML_TEST_ATTRIBUTE_H__
+#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
@@ -59,5 +56,3 @@ TEST(TestAttribute, testEmptyAttributeNoQuote) {
 	              "<elementtt attr=/>\n",
 	              -1);
 }
-
-#endif

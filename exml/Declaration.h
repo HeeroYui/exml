@@ -5,9 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-#ifndef __ETK_XML_DECLARATION_H__
-#define __ETK_XML_DECLARATION_H__
+#pragma once
 
 #include <exml/AttributeList.h>
 
@@ -62,8 +60,5 @@ namespace exml {
 			 */
 			virtual ~DeclarationXML() { };
 	};
-};
-
-
-#endif
+}
 

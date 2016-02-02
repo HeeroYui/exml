@@ -5,10 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-
-#ifndef __EXML_TEST_COMMENT_H__
-#define __EXML_TEST_COMMENT_H__
+#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
@@ -40,5 +37,3 @@ TEST(TestComment, testAll) {
 	              "<!-- <.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>	-->\n",
 	              -1);
 }
-
-#endif
