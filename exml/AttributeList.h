@@ -5,9 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-#ifndef __ETK_XML_ATTRIBUTE_LIST_H__
-#define __ETK_XML_ATTRIBUTE_LIST_H__
+#pragma once
 
 #include <exml/Node.h>
 #include <vector>
@@ -86,8 +84,5 @@ namespace exml {
 			bool iGenerate(std::string& _data, int32_t _indent) const;
 			virtual void clear();
 	};
-};
-
-
-#endif
+}
 

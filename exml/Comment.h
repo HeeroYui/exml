@@ -5,9 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-#ifndef __ETK_XML_COMMENT_H__
-#define __ETK_XML_COMMENT_H__
+#pragma once
 
 #include <exml/Node.h>
 #include <vector>
@@ -46,8 +44,5 @@ namespace exml {
 				return std::static_pointer_cast<const exml::Comment>(shared_from_this());
 			};
 	};
-};
-
-
-#endif
+}
 

@@ -5,10 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-
-#ifndef __EXML_TEST_COMMON_H__
-#define __EXML_TEST_COMMON_H__
+#pragma once
 
 #include <etk/types.h>
 #include <test-debug/debug.h>
@@ -41,4 +38,3 @@ static void exmlLocalTest(const std::string& _ref, const std::string& _input, in
 	}
 }
 
-#endif

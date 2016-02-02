@@ -5,10 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-
-
-#ifndef __EXML_TEST_DECLARATION_H__
-#define __EXML_TEST_DECLARATION_H__
+#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
@@ -39,4 +36,3 @@ TEST(TestDeclaration, testAll) {
 	exmlLocalTest("<?xml attr=\"p65421lop\"?>\n", "<?xml attr    \n  =   \n\t p65421lop?>\n", -1);
 }
 
-#endif
