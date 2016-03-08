@@ -9,7 +9,7 @@
 #include <exml/debug.h>
 
 int32_t exml::getLogId() {
-	static int32_t g_val = etk::log::registerInstance("exml");
+	static int32_t g_val = elog::registerInstance("exml");
 	return g_val;
 }
 
