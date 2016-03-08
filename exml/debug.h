@@ -7,12 +7,12 @@
  */
 #pragma once
 
-#include <etk/log.h>
+#include <elog/log.h>
 
 namespace exml {
 	int32_t getLogId();
 };
-#define EXML_BASE(info,data)  TK_LOG_BASE(exml::getLogId(),info,data)
+#define EXML_BASE(info,data)  ELOG_BASE(exml::getLogId(),info,data)
 
 #define EXML_CRITICAL(data)      EXML_BASE(1, data)
 #define EXML_ERROR(data)         EXML_BASE(2, data)

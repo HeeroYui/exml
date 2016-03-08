@@ -24,23 +24,23 @@ int main(int argc, const char *argv[]) {
 	// init Google test :
 	::testing::InitGoogleTest(&argc, const_cast<char **>(argv));
 	// the only one init for etk:
-	etk::log::setLevel(etk::log::logLevelNone);
+	elog::setLevel(elog::logLevelNone);
 	for (int32_t iii=0; iii<argc ; ++iii) {
 		std::string data = argv[iii];
 		if (data == "-l0") {
-			etk::log::setLevel(etk::log::logLevelNone);
+			elog::setLevel(elog::logLevelNone);
 		} else if (data == "-l1") {
-			etk::log::setLevel(etk::log::logLevelCritical);
+			elog::setLevel(elog::logLevelCritical);
 		} else if (data == "-l2") {
-			etk::log::setLevel(etk::log::logLevelError);
+			elog::setLevel(elog::logLevelError);
 		} else if (data == "-l3") {
-			etk::log::setLevel(etk::log::logLevelWarning);
+			elog::setLevel(elog::logLevelWarning);
 		} else if (data == "-l4") {
-			etk::log::setLevel(etk::log::logLevelInfo);
+			elog::setLevel(elog::logLevelInfo);
 		} else if (data == "-l5") {
-			etk::log::setLevel(etk::log::logLevelDebug);
+			elog::setLevel(elog::logLevelDebug);
 		} else if (data == "-l6") {
-			etk::log::setLevel(etk::log::logLevelVerbose);
+			elog::setLevel(elog::logLevelVerbose);
 		} else if (    data == "-h"
 		            || data == "--help") {
 			std::cout << "Help : " <<std::endl;
