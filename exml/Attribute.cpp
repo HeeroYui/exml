@@ -10,16 +10,9 @@
 #include <exml/debug.h>
 #include <exml/Document.h>
 
-#undef __class__
-#define __class__ "Attribute"
-
-std::shared_ptr<exml::Attribute> exml::Attribute::create() {
-	return std::shared_ptr<exml::Attribute>(new exml::Attribute());
+ememory::SharedPtr<exml::Attribute> exml::Attribute::create(const std::string& _name, const std::string& _value) {
+	return ememory::SharedPtr<exml::Attribute>(new exml::Attribute(_name, _value));
 }
-std::shared_ptr<exml::Attribute> exml::Attribute::create(const std::string& _name, const std::string& _value) {
-	return std::shared_ptr<exml::Attribute>(new exml::Attribute(_name, _value));
-}
-
 
 exml::Attribute::Attribute(const std::string& _name, const std::string& _value) :
   exml::Node(_value),
@@ -27,7 +20,7 @@ exml::Attribute::Attribute(const std::string& _name, const std::string& _value) 
 	
 }
 
-bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -48,7 +41,7 @@ bool exml::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _case
 		m_name = etk::tolower(m_name);
 	}
 	// count white space :
-	exml::filePos tmpPos;
+	exml::FilePos tmpPos;
 	int32_t white = countWhiteChar(_data, lastElementName+1, tmpPos);
 	_filePos += tmpPos;
 	if (lastElementName+white+1 >= _data.size()) {

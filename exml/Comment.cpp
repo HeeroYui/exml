@@ -10,10 +10,6 @@
 #include <exml/debug.h>
 #include <exml/Document.h>
 
-#undef __class__
-#define __class__ "Comment"
-
-
 static bool isWhiteChar(char32_t _val) {
 	if(    _val == ' '
 	    || _val == '\t'
@@ -24,14 +20,14 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-std::shared_ptr<exml::Comment> exml::Comment::create() {
-	return std::shared_ptr<exml::Comment>(new exml::Comment());
+ememory::SharedPtr<exml::Comment> exml::Comment::create() {
+	return ememory::SharedPtr<exml::Comment>(new exml::Comment());
 }
 
-bool exml::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'comment'");
 	m_pos = _filePos;
-	exml::filePos tmpPos;
+	exml::FilePos tmpPos;
 	int32_t white = countWhiteChar(_data, _pos, tmpPos);
 	_filePos += tmpPos;
 	// search end of the comment :

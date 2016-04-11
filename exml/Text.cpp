@@ -11,10 +11,6 @@
 #include <exml/Document.h>
 #include <regex>
 
-#undef __class__
-#define __class__ "Text"
-
-
 // transform the Text with :
 //     "&lt;"   == "<"
 //     "&gt;"   == ">"
@@ -64,12 +60,12 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-std::shared_ptr<exml::Text> exml::Text::create() {
-	return std::shared_ptr<exml::Text>(new exml::Text());
+ememory::SharedPtr<exml::Text> exml::Text::create() {
+	return ememory::SharedPtr<exml::Text>(new exml::Text());
 }
 
-std::shared_ptr<exml::Text> exml::Text::create(const std::string& _data) {
-	return std::shared_ptr<exml::Text>(new exml::Text(_data));
+ememory::SharedPtr<exml::Text> exml::Text::create(const std::string& _data) {
+	return ememory::SharedPtr<exml::Text>(new exml::Text(_data));
 }
 
 bool exml::Text::iGenerate(std::string& _data, int32_t _indent) const {
@@ -87,7 +83,7 @@ int32_t exml::Text::countLines() const {
 	return count;
 }
 
-bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'text'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -123,8 +119,8 @@ bool exml::Text::iParse(const std::string& _data, int32_t& _pos, bool _caseSensi
 }
 
 
-std::shared_ptr<exml::TextCDATA> exml::TextCDATA::create() {
-	return std::shared_ptr<exml::TextCDATA>(new exml::TextCDATA());
+ememory::SharedPtr<exml::TextCDATA> exml::TextCDATA::create() {
+	return ememory::SharedPtr<exml::TextCDATA>(new exml::TextCDATA());
 }
 
 bool exml::TextCDATA::iGenerate(std::string& _data, int32_t _indent) const {
@@ -132,7 +128,7 @@ bool exml::TextCDATA::iGenerate(std::string& _data, int32_t _indent) const {
 	return true;
 }
 
-bool exml::TextCDATA::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::TextCDATA::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'text::CDATA'");
 	m_pos = _filePos;
 	// search end of the comment :

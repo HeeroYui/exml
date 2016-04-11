@@ -18,9 +18,6 @@
 #include "exmlTestDeclaration.h"
 #include "exmlTestAll.h"
 
-#undef __class__
-#define __class__ "exml::test"
-
 int main(int argc, const char *argv[]) {
 	// init Google test :
 	::testing::InitGoogleTest(&argc, const_cast<char **>(argv));

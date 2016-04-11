@@ -18,7 +18,11 @@ namespace exml {
 			 */
 			Comment() { };
 		public:
-			static std::shared_ptr<Comment> create();
+			/**
+			 * @brief defined factory
+			 * @return Shared pointer on the Comment element
+			 */
+			static ememory::SharedPtr<exml::Comment> create();
 			/**
 			 * @brief Constructor
 			 * @param[in] _value comment value
@@ -27,20 +31,16 @@ namespace exml {
 			  exml::Node(_value) {
 				
 			};
-			/**
-			 * @brief Destructor
-			 */
-			virtual ~Comment() { };
-		public: // herited function:
-			virtual enum nodeType getType() const {
+		public:
+			enum nodeType getType() const override {
 				return typeAttribute;
 			};
-			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual std::shared_ptr<exml::Comment> toComment() {
+			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
+			ememory::SharedPtr<exml::Comment> toComment() override {
 				return std::static_pointer_cast<exml::Comment>(shared_from_this());
 			};
-			virtual std::shared_ptr<const exml::Comment> toComment() const {
+			ememory::SharedPtr<const exml::Comment> toComment() const override {
 				return std::static_pointer_cast<const exml::Comment>(shared_from_this());
 			};
 	};

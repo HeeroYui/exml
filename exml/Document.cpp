@@ -10,12 +10,8 @@
 #include <exml/debug.h>
 #include <etk/os/FSNode.h>
 
-#undef __class__
-#define __class__ "Document"
-
-
-std::shared_ptr<exml::Document> exml::Document::create() {
-	return std::shared_ptr<exml::Document>(new exml::Document());
+ememory::SharedPtr<exml::Document> exml::Document::create() {
+	return ememory::SharedPtr<exml::Document>(new exml::Document());
 }
 
 exml::Document::Document() :
@@ -41,7 +37,7 @@ bool exml::Document::parse(const std::string& _data) {
 	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.size());
 	clear();
 	// came from char  == > force in utf8 ...
-	exml::filePos filePos(1,0);
+	exml::FilePos filePos(1,0);
 	m_pos = filePos;
 	int32_t parsePos = 0;
 	return subParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
@@ -142,7 +138,7 @@ void exml::Document::displayError() {
 	#endif
 }
 
-void exml::Document::createError(const std::string& _data, int32_t _pos, const exml::filePos& _filePos, const std::string& _comment) {
+void exml::Document::createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment) {
 	m_comment = _comment;
 	m_Line = etk::extract_line(_data, _pos);
 	m_filePos = _filePos;

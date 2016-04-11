@@ -23,27 +23,23 @@ namespace exml {
 			 */
 			Text(const std::string& _data) : exml::Node(_data) { };
 		public:
-			static std::shared_ptr<Text> create();
-			static std::shared_ptr<Text> create(const std::string& _data);
-			/**
-			 * @brief Destructor
-			 */
-			virtual ~Text() { };
+			static ememory::SharedPtr<exml::Text> create();
+			static ememory::SharedPtr<exml::Text> create(const std::string& _data);
 			/**
 			 * @brief count the number of line in the current text
 			 * @return The number of lines
 			 */
 			int32_t countLines() const;
-		public: // herited function:
-			virtual enum nodeType getType() const {
+		public:
+			enum nodeType getType() const override{
 				return typeText;
 			};
-			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual std::shared_ptr<exml::Text> toText() {
+			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
+			ememory::SharedPtr<exml::Text> toText() override {
 				return std::static_pointer_cast<exml::Text>(shared_from_this());
 			};
-			virtual std::shared_ptr<const exml::Text> toText() const{
+			ememory::SharedPtr<const exml::Text> toText() const override {
 				return std::static_pointer_cast<const exml::Text>(shared_from_this());
 			};
 	};
@@ -54,14 +50,10 @@ namespace exml {
 			 */
 			TextCDATA() { };
 		public:
-			static std::shared_ptr<TextCDATA> create();
-			/**
-			 * @brief Destructor
-			 */
-			virtual ~TextCDATA() { };
-		public: // herited function:
-			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
+			static ememory::SharedPtr<TextCDATA> create();
+		public:
+			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
 	};
 }
 

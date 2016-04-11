@@ -9,21 +9,14 @@
 #include <exml/AttributeList.h>
 #include <exml/debug.h>
 
-#undef __class__
-#define __class__ "AttributeList"
-
-exml::AttributeList::~AttributeList() {
-	m_listAttribute.clear();
-}
-
-std::shared_ptr<exml::Attribute> exml::AttributeList::getAttr(int32_t _id) {
+ememory::SharedPtr<exml::Attribute> exml::AttributeList::getAttr(int32_t _id) {
 	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
 		return nullptr;
 	}
 	return m_listAttribute[_id];
 }
 
-std::shared_ptr<const exml::Attribute> exml::AttributeList::getAttr(int32_t _id) const {
+ememory::SharedPtr<const exml::Attribute> exml::AttributeList::getAttr(int32_t _id) const {
 	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
 		return nullptr;
 	}
@@ -31,7 +24,7 @@ std::shared_ptr<const exml::Attribute> exml::AttributeList::getAttr(int32_t _id)
 }
 
 std::pair<std::string, std::string> exml::AttributeList::getAttrPair(int32_t _id) const {
-	std::shared_ptr<const exml::Attribute> att = getAttr(_id);
+	ememory::SharedPtr<const exml::Attribute> att = getAttr(_id);
 	if (att == nullptr) {
 		return std::make_pair<std::string, std::string>("","");
 	}
@@ -39,7 +32,7 @@ std::pair<std::string, std::string> exml::AttributeList::getAttrPair(int32_t _id
 }
 
 
-void exml::AttributeList::appendAttribute(const std::shared_ptr<exml::Attribute>& _attr) {
+void exml::AttributeList::appendAttribute(const ememory::SharedPtr<exml::Attribute>& _attr) {
 	if (_attr == nullptr) {
 		EXML_ERROR("Try to set an empty node");
 		return;
@@ -110,7 +103,7 @@ void exml::AttributeList::setAttribute(const std::string& _name, const std::stri
 			return;
 		}
 	}
-	std::shared_ptr<exml::Attribute> attr = exml::Attribute::create(_name, _value);
+	ememory::SharedPtr<exml::Attribute> attr = exml::Attribute::create(_name, _value);
 	if (attr == nullptr) {
 		EXML_ERROR("memory allocation error...");
 	}

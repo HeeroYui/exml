@@ -14,33 +14,29 @@ namespace exml {
 		protected:
 			/**
 			 * @brief Constructor
-			 */
-			Declaration() { };
-			/**
-			 * @brief Constructor
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
-			Declaration(const std::string& _name) :
+			Declaration(const std::string& _name="") :
 			  exml::AttributeList(_name) {
 				
 			};
 		public:
-			static std::shared_ptr<Declaration> create();
-			static std::shared_ptr<Declaration> create(const std::string& _name);
 			/**
-			 * @brief Destructor
+			 * @brief Factory to create declaration
+			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
+			 * @return a structure declaration
 			 */
-			virtual ~Declaration() { };
-		public: // herited function:
-			virtual enum nodeType getType() const {
+			static ememory::SharedPtr<Declaration> create(const std::string& _name="");
+		public:
+			enum nodeType getType() const override{
 				return typeAttribute;
 			};
-			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual std::shared_ptr<exml::Declaration> toDeclaration() {
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
+			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
+			ememory::SharedPtr<exml::Declaration> toDeclaration() override {
 				return std::static_pointer_cast<exml::Declaration>(shared_from_this());
 			};
-			virtual std::shared_ptr<const exml::Declaration> toDeclaration() const {
+			ememory::SharedPtr<const exml::Declaration> toDeclaration() const override {
 				return std::static_pointer_cast<const exml::Declaration>(shared_from_this());
 			};
 	};
@@ -54,11 +50,14 @@ namespace exml {
 			 */
 			DeclarationXML(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
 		public:
-			static std::shared_ptr<DeclarationXML> create(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
 			/**
-			 * @brief Destructor
+			 * @brief Factory to create XML declaration
+			 * @param[in] _version Xml version.
+			 * @param[in] _format charset of the XML
+			 * @param[in] _standalone this document is standalone
+			 * @return a structure declaration
 			 */
-			virtual ~DeclarationXML() { };
+			static ememory::SharedPtr<DeclarationXML> create(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
 	};
 }
 

@@ -26,10 +26,11 @@ def get_version():
 
 def create(target, module_name):
 	my_module = module.Module(__file__, module_name, get_type())
-	my_module.add_module_depend(['etk'])
+	my_module.add_module_depend(['elog', 'etk', 'ememory'])
 	my_module.add_extra_compile_flags()
 	my_module.add_src_file([
 		'exml/debug.cpp',
+		'exml/FilePos.cpp',
 		'exml/Attribute.cpp',
 		'exml/AttributeList.cpp',
 		'exml/Comment.cpp',
@@ -40,6 +41,7 @@ def create(target, module_name):
 		'exml/Text.cpp'
 		])
 	my_module.add_header_file([
+		'exml/FilePos.h',
 		'exml/exml.h',
 		'exml/Attribute.h',
 		'exml/AttributeList.h',

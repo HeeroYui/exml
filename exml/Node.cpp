@@ -9,9 +9,6 @@
 #include <exml/Node.h>
 #include <exml/debug.h>
 
-#undef __class__
-#define __class__ "Node"
-
 static bool isWhiteChar(char32_t _val) {
 	if(    _val == ' '
 	    || _val == '\t'
@@ -20,15 +17,6 @@ static bool isWhiteChar(char32_t _val) {
 		return true;
 	}
 	return false;
-}
-
-std::ostream& exml::operator <<(std::ostream& _os, const exml::filePos& _obj) {
-	_os << "(l=";
-	_os << _obj.getLine();
-	_os << ",c=";
-	_os << _obj.getCol();
-	_os << ")";
-	return _os;
 }
 
 exml::Node::Node(const std::string& _value) :
@@ -44,7 +32,7 @@ void exml::Node::addIndent(std::string& _data, int32_t _indent) const {
 	}
 }
 
-void exml::Node::drawElementParsed(char32_t _val, const exml::filePos& _filePos) const {
+void exml::Node::drawElementParsed(char32_t _val, const exml::FilePos& _filePos) const {
 	if (_val == '\n') {
 		EXML_DEBUG(_filePos << " parse '\\n'");
 	} else if (_val == '\t') {
@@ -101,7 +89,7 @@ bool exml::Node::checkAvaillable(char32_t _val, bool _firstChar) const {
 }
 
 
-int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml::filePos& _filePos) const {
+int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml::FilePos& _filePos) const {
 	_filePos.clear();
 	int32_t white=0;
 	for (size_t iii=_pos; iii<_data.size(); iii++) {
@@ -116,8 +104,100 @@ int32_t exml::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml:
 	return white;
 }
 
+bool exml::Node::iGenerate(std::string& _data, int32_t _indent) const {
+	return true;
+}
+
+const exml::FilePos& exml::Node::getPos() const {
+	return m_pos;
+}
+
 void exml::Node::clear() {
 	m_value = "";
 	m_pos.clear();
+}
+
+void exml::Node::setValue(std::string _value) {
+	m_value = _value;
+}
+
+const std::string& exml::Node::getValue() const {
+	return m_value;
+}
+
+enum exml::nodeType exml::Node::getType() const {
+	return typeNode;
+}
+
+ememory::SharedPtr<exml::Document> exml::Node::toDocument() {
+	return nullptr;
+}
+
+ememory::SharedPtr<const exml::Document> exml::Node::toDocument() const {
+	return nullptr;
+}
+
+ememory::SharedPtr<exml::Attribute> exml::Node::toAttribute() {
+	return nullptr;
+}
+
+ememory::SharedPtr<const exml::Attribute> exml::Node::toAttribute() const {
+	return nullptr;
+}
+
+ememory::SharedPtr<exml::Comment> exml::Node::toComment() {
+	return nullptr;
+}
+
+ememory::SharedPtr<const exml::Comment> exml::Node::toComment() const {
+	return nullptr;
+}
+
+ememory::SharedPtr<exml::Declaration> exml::Node::toDeclaration() {
+	return nullptr;
+}
+
+ememory::SharedPtr<const exml::Declaration> exml::Node::toDeclaration() const {
+	return nullptr;
+}
+
+ememory::SharedPtr<exml::Element> exml::Node::toElement() {
+	return nullptr;
+}
+
+ememory::SharedPtr<const exml::Element> exml::Node::toElement() const {
+	return nullptr;
+}
+
+ememory::SharedPtr<exml::Text> exml::Node::toText() {
+	return nullptr;
+}
+
+ememory::SharedPtr<const exml::Text> exml::Node::toText() const{
+	return nullptr;
+}
+
+bool exml::Node::isDocument() const {
+	return getType() == exml::typeDocument;
+}
+
+bool exml::Node::isAttribute() const {
+	return getType() == exml::typeAttribute;
+}
+
+bool exml::Node::isComment() const {
+	return getType() == exml::typeComment;
+}
+
+bool exml::Node::isDeclaration() const {
+	return getType() == exml::typeDeclaration;
+}
+
+bool exml::Node::isElement() const {
+	return getType() == exml::typeElement;
+}
+
+bool exml::Node::isText() const {
+	return getType() == exml::typeText;
 }
 

@@ -14,10 +14,6 @@
 #include <exml/Declaration.h>
 #include <exml/Document.h>
 
-#undef __class__
-#define __class__ "Element"
-
-
 static bool isWhiteChar(char32_t _val) {
 	if(    _val == ' '
 	    || _val == '\t'
@@ -28,41 +24,29 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-std::shared_ptr<exml::Element> exml::Element::create() {
-	return std::shared_ptr<exml::Element>(new exml::Element());
+ememory::SharedPtr<exml::Element> exml::Element::create() {
+	return ememory::SharedPtr<exml::Element>(new exml::Element());
 }
-std::shared_ptr<exml::Element> exml::Element::create(const std::string& _value) {
-	return std::shared_ptr<exml::Element>(new exml::Element(_value));
-}
-
-
-exml::Element::~Element() {
-	m_listSub.clear();
+ememory::SharedPtr<exml::Element> exml::Element::create(const std::string& _value) {
+	return ememory::SharedPtr<exml::Element>(new exml::Element(_value));
 }
 
-enum exml::nodeType exml::Element::getType(int32_t _id) {
-	std::shared_ptr<exml::Node> tmpp = getNode(_id);
-	if (tmpp == nullptr) {
-		return exml::typeUnknow;
-	}
-	return tmpp->getType();
-}
-const enum exml::nodeType exml::Element::getType(int32_t _id) const {
-	std::shared_ptr<const exml::Node> tmpp = getNode(_id);
+enum exml::nodeType exml::Element::getType(int32_t _id) const {
+	ememory::SharedPtr<const exml::Node> tmpp = getNode(_id);
 	if (tmpp == nullptr) {
 		return exml::typeUnknow;
 	}
 	return tmpp->getType();
 }
 
-std::shared_ptr<exml::Node> exml::Element::getNode(int32_t _id) {
+ememory::SharedPtr<exml::Node> exml::Element::getNode(int32_t _id) {
 	if (_id <0 || (size_t)_id>m_listSub.size()) {
 		return nullptr;
 	}
 	return m_listSub[_id];
 }
 
-std::shared_ptr<const exml::Node> exml::Element::getNode(int32_t _id) const {
+ememory::SharedPtr<const exml::Node> exml::Element::getNode(int32_t _id) const {
 	if (_id <0 || (size_t)_id>m_listSub.size()) {
 		return nullptr;
 	}
@@ -70,23 +54,23 @@ std::shared_ptr<const exml::Node> exml::Element::getNode(int32_t _id) const {
 }
 
 
-std::shared_ptr<exml::Element> exml::Element::getElement(int32_t _id) {
-	std::shared_ptr<exml::Node> tmpp = getNode(_id);
+ememory::SharedPtr<exml::Element> exml::Element::getElement(int32_t _id) {
+	ememory::SharedPtr<exml::Node> tmpp = getNode(_id);
 	if (tmpp == nullptr) {
 		return nullptr;
 	}
 	return tmpp->toElement();
 }
 
-std::shared_ptr<const exml::Element> exml::Element::getElement(int32_t _id) const {
-	std::shared_ptr<const exml::Node> tmpp = getNode(_id);
+ememory::SharedPtr<const exml::Element> exml::Element::getElement(int32_t _id) const {
+	ememory::SharedPtr<const exml::Node> tmpp = getNode(_id);
 	if (tmpp == nullptr) {
 		return nullptr;
 	}
 	return tmpp->toElement();
 }
 
-std::shared_ptr<exml::Element> exml::Element::getNamed(const std::string& _name) {
+ememory::SharedPtr<exml::Element> exml::Element::getNamed(const std::string& _name) {
 	if (_name.size() == 0) {
 		return nullptr;
 	}
@@ -103,7 +87,7 @@ std::shared_ptr<exml::Element> exml::Element::getNamed(const std::string& _name)
 	return nullptr;
 }
 
-std::shared_ptr<const exml::Element> exml::Element::getNamed(const std::string& _name) const {
+ememory::SharedPtr<const exml::Element> exml::Element::getNamed(const std::string& _name) const {
 	if (_name.size() == 0) {
 		return nullptr;
 	}
@@ -120,7 +104,7 @@ std::shared_ptr<const exml::Element> exml::Element::getNamed(const std::string& 
 	return nullptr;
 }
 
-void exml::Element::append(const std::shared_ptr<exml::Node>& _node) {
+void exml::Element::append(const ememory::SharedPtr<exml::Node>& _node) {
 	if (_node == nullptr) {
 		EXML_ERROR("Try to set an empty node");
 		return;
@@ -190,14 +174,14 @@ bool exml::Element::iGenerate(std::string& _data, int32_t _indent) const {
 }
 
 
-bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc, bool _mainNode) {
+bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc, bool _mainNode) {
 	EXML_PARSE_ELEMENT(" start subParse ... " << _pos << " " << _filePos);
 	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
 		#ifdef ENABLE_DISPLAY_PARSED_ELEMENT
 			drawElementParsed(_data[iii], _filePos);
 		#endif
-		exml::filePos tmpPos;
+		exml::FilePos tmpPos;
 		if (_data[iii] == '<') {
 			int32_t white = countWhiteChar(_data, iii+1, tmpPos);
 			if (iii+white+1>=_data.size()) {
@@ -238,7 +222,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					tmpname = etk::tolower(tmpname);
 				}
 				// Find declaration balise
-				std::shared_ptr<exml::Declaration> declaration = exml::Declaration::create(tmpname);
+				ememory::SharedPtr<exml::Declaration> declaration = exml::Declaration::create(tmpname);
 				if (declaration == nullptr) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation Error...");
 					return false;
@@ -271,7 +255,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					++tmpPos;
 					// find comment:
-					std::shared_ptr<exml::Comment> comment = exml::Comment::create();
+					ememory::SharedPtr<exml::Comment> comment = exml::Comment::create();
 					if (comment == nullptr) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
@@ -300,7 +284,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 					}
 					tmpPos+=6;
 					// find text:
-					std::shared_ptr<exml::TextCDATA> text = exml::TextCDATA::create();
+					ememory::SharedPtr<exml::TextCDATA> text = exml::TextCDATA::create();
 					if (text == nullptr) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
@@ -389,7 +373,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
-				std::shared_ptr<exml::Element> element = exml::Element::create(tmpname);
+				ememory::SharedPtr<exml::Element> element = exml::Element::create(tmpname);
 				if (element == nullptr) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
@@ -420,7 +404,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 				// empty spaces  == > nothing to do ....
 			} else {
 				// find data  == > parse it...
-				std::shared_ptr<exml::Text> text = exml::Text::create();
+				ememory::SharedPtr<exml::Text> text = exml::Text::create();
 				if (text == nullptr) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
@@ -442,7 +426,7 @@ bool exml::Element::subParse(const std::string& _data, int32_t& _pos, bool _case
 	return false;
 }
 
-bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) {
 	EXML_PARSE_ELEMENT("start parse : 'element' named='" << m_value << "'");
 	// note : When start parsing the upper element must have set the value of the element and set the position after this one
 	m_pos=_filePos;
@@ -474,7 +458,7 @@ bool exml::Element::iParse(const std::string& _data, int32_t& _pos, bool _caseSe
 		}
 		if (checkAvaillable(_data[iii], true) == true) {
 			// we find an attibute  == > create a new and parse it :
-			std::shared_ptr<exml::Attribute> attribute = exml::Attribute::create();
+			ememory::SharedPtr<exml::Attribute> attribute = exml::Attribute::create();
 			if (attribute == nullptr) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 				return false;

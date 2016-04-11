@@ -10,9 +10,6 @@
 #include <exml/debug.h>
 #include <exml/Document.h>
 
-#undef __class__
-#define __class__ "Declaration"
-
 /* basic declaration have 3 attributes:
 	version
 	encoding
@@ -20,17 +17,12 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-
-std::shared_ptr<exml::Declaration> exml::Declaration::create() {
-	return std::shared_ptr<exml::Declaration>(new exml::Declaration());
+ememory::SharedPtr<exml::Declaration> exml::Declaration::create(const std::string& _name) {
+	return ememory::SharedPtr<exml::Declaration>(new exml::Declaration(_name));
 }
 
-std::shared_ptr<exml::Declaration> exml::Declaration::create(const std::string& _name) {
-	return std::shared_ptr<exml::Declaration>(new exml::Declaration(_name));
-}
-
-std::shared_ptr<exml::DeclarationXML> exml::DeclarationXML::create(const std::string& _version, const std::string& _format, bool _standalone) {
-	return std::shared_ptr<exml::DeclarationXML>(new exml::DeclarationXML(_version, _format, _standalone));
+ememory::SharedPtr<exml::DeclarationXML> exml::DeclarationXML::create(const std::string& _version, const std::string& _format, bool _standalone) {
+	return ememory::SharedPtr<exml::DeclarationXML>(new exml::DeclarationXML(_version, _format, _standalone));
 }
 
 exml::DeclarationXML::DeclarationXML(const std::string& _version, const std::string& _format, bool _standalone) :
@@ -60,7 +52,7 @@ bool exml::Declaration::iGenerate(std::string& _data, int32_t _indent) const {
 	return true;
 }
 
-bool exml::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) {
+bool exml::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) {
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -86,7 +78,7 @@ bool exml::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _ca
 		}
 		if (checkAvaillable(_data[iii], true) == true) {
 			// we find an attibute  == > create a new and parse it :
-			std::shared_ptr<exml::Attribute> attribute = exml::Attribute::create();
+			ememory::SharedPtr<exml::Attribute> attribute = exml::Attribute::create();
 			if (attribute == nullptr) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");
 				return false;

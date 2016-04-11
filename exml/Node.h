@@ -7,10 +7,14 @@
  */
 #pragma once
 
-#include <memory>
+#include <ememory/memory.h>
 #include <etk/types.h>
 #include <etk/math/Vector2D.h>
+#include <exml/FilePos.h>
 
+/**
+ * @brief exml namespace containing all function for XML interpretor
+ */
 namespace exml {
 	//#define ENABLE_DISPLAY_PARSED_ELEMENT
 	//#define ENABLE_CRITICAL_WHEN_ERROR
@@ -41,82 +45,10 @@ namespace exml {
 		typeComment, //!< comment node : <!--   -->
 		typeText, //!< <XXX> InsideText </XXX>
 	};
-	
-	class filePos {
-		private:
-			int32_t m_col;
-			int32_t m_line;
-		public:
-			filePos() :
-			  m_col(0),
-			  m_line(0) {
-				
-			};
-			filePos(int32_t _line, int32_t _col) :
-			  m_col(_col),
-			  m_line(_line) {
-				
-			};
-			~filePos() { };
-			filePos& operator ++() {
-				m_col++;
-				return *this;
-			};
-			filePos& operator --() {
-				m_col--;
-				if(m_col<0) {
-					m_col=0;
-				}
-				return *this;
-			};
-			const filePos& operator +=(const filePos& _obj) {
-				if (_obj.m_line == 0) {
-					m_col += _obj.m_col;
-				} else {
-					m_col = _obj.m_col;
-					m_line += _obj.m_line;
-				}
-				return *this;
-			};
-			const filePos& operator +=(int32_t _col) {
-				m_col += _col;
-				return *this;
-			};
-			const filePos& operator= (const filePos& _obj ) {
-				m_col = _obj.m_col;
-				m_line = _obj.m_line;
-				return *this;
-			}
-			void newLine() {
-				m_col=0;
-				m_line++;
-			};
-			bool check(char32_t _val) {
-				m_col++;
-				if (_val == '\n') {
-					newLine();
-					return true;
-				}
-				return false;
-			}
-			void set(int32_t _line, int32_t _col) {
-				m_col = _col;
-				m_line = _line;
-			}
-			void clear() {
-				m_col = 0;
-				m_line = 0;
-			}
-			int32_t getCol() const {
-				return m_col;
-			};
-			int32_t getLine() const {
-				return m_line;
-			};
-	};
-	std::ostream& operator <<(std::ostream& _os, const filePos& _obj);
-	
-	class Node : public std::enable_shared_from_this<Node>{
+	/**
+	 * @brief Basic main object of all xml elements.
+	 */
+	class Node : public ememory::EnableSharedFromThis<Node>{
 		protected:
 			/**
 			 * @brief basic element of a xml structure
@@ -131,11 +63,10 @@ namespace exml {
 			 */
 			Node(const std::string& _value);
 		public:
-			//static std::shared_ptr<Node> create(const std::string& _value = "");
 			/**
-			 * @brief destructor
+			 * @brief Virtualize destructor
 			 */
-			virtual ~Node() { };
+			virtual ~Node() = default;
 		public:
 			/**
 			 * @brief parse the Current node [pure VIRUAL]
@@ -145,25 +76,21 @@ namespace exml {
 			 * @param[in,out] file parsing position (line x col x)
 			 * @return false if an error occured.
 			 */
-			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc) = 0;
+			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) = 0;
 			/**
 			 * @brief generate a string with the tree of the xml
 			 * @param[in,out] _data string where to add the elements
 			 * @param[in] current indentation of the file
 			 * @return false if an error occured.
 			 */
-			virtual bool iGenerate(std::string& _data, int32_t _indent) const {
-				return true;
-			};
+			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
 		protected:
-			exml::filePos m_pos; //!< position in the readed file  == > not correct when the file is generated
+			exml::FilePos m_pos; //!< position in the readed file  == > not correct when the file is generated
 		public:
 			/**
 			 * @brief get the current position where the element is in the file
 			 */
-			const exml::filePos& getPos() const {
-				return m_pos;
-			};
+			const exml::FilePos& getPos() const;
 		protected:
 			std::string m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
 		public:
@@ -171,24 +98,18 @@ namespace exml {
 			 * @brief set the value of the node.
 			 * @param[in] _value New value of the node.
 			 */
-			virtual void setValue(std::string _value) {
-				m_value = _value;
-			};
+			virtual void setValue(std::string _value);
 			/**
 			 * @brief get the current element Value.
 			 * @return the reference of the string value.
 			 */
-			virtual const std::string& getValue() const {
-				return m_value;
-			};
+			virtual const std::string& getValue() const;
 		public:
 			/**
 			 * @brief get the node type.
 			 * @return the type of the Node.
 			 */
-			virtual enum nodeType getType() const {
-				return typeNode;
-			};
+			virtual enum nodeType getType() const;
 		protected:
 			/**
 			 * @brief add indentation of the string input.
@@ -201,7 +122,7 @@ namespace exml {
 			 * @param[in] _val Char that is parsed.
 			 * @param[in] _filePos Position of the char in the file.
 			 */
-			void drawElementParsed(char32_t _val, const exml::filePos& _filePos) const;
+			void drawElementParsed(char32_t _val, const exml::FilePos& _filePos) const;
 			/**
 			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \n\t\r and for first char : not -.0123456789).
 			 * @param[in] _val Value to check the conformity.
@@ -215,111 +136,99 @@ namespace exml {
 			 * @param[out] _filePos new poistion of te file to add.
 			 * @return number of white element.
 			 */
-			int32_t countWhiteChar(const std::string& _data, int32_t _pos, exml::filePos& _filePos) const;
+			int32_t countWhiteChar(const std::string& _data, int32_t _pos, exml::FilePos& _filePos) const;
 		public:
 			/**
 			 * @brief Cast the element in a Document if it is possible.
 			 * @return pointer on the class or nullptr.
 			 */
-			virtual std::shared_ptr<exml::Document> toDocument() {
-				return nullptr;
-			};
-			virtual std::shared_ptr<const exml::Document> toDocument() const {
-				return nullptr;
-			};
+			virtual ememory::SharedPtr<exml::Document> toDocument();
+			/**
+			 * @brief Cast the element in a Document if it is possible.
+			 * @return CONST pointer on the class or nullptr.
+			 */
+			virtual ememory::SharedPtr<const exml::Document> toDocument() const;
 			/**
 			 * @brief Cast the element in a Attribute if it is possible.
 			 * @return pointer on the class or nullptr.
 			 */
-			virtual std::shared_ptr<exml::Attribute> toAttribute() {
-				return nullptr;
-			};
-			virtual std::shared_ptr<const exml::Attribute> toAttribute() const {
-				return nullptr;
-			};
+			virtual ememory::SharedPtr<exml::Attribute> toAttribute();
+			/**
+			 * @brief Cast the element in a Attribute if it is possible.
+			 * @return CONST pointer on the class or nullptr.
+			 */
+			virtual ememory::SharedPtr<const exml::Attribute> toAttribute() const;
 			/**
 			 * @brief Cast the element in a Comment if it is possible.
 			 * @return pointer on the class or nullptr.
 			 */
-			virtual std::shared_ptr<exml::Comment> toComment() {
-				return nullptr;
-			};
-			virtual std::shared_ptr<const exml::Comment> toComment() const {
-				return nullptr;
-			};
+			virtual ememory::SharedPtr<exml::Comment> toComment();
+			/**
+			 * @brief Cast the element in a Comment if it is possible.
+			 * @return CONST pointer on the class or nullptr.
+			 */
+			virtual ememory::SharedPtr<const exml::Comment> toComment() const;
 			/**
 			 * @brief Cast the element in a Declaration if it is possible.
 			 * @return pointer on the class or nullptr.
 			 */
-			virtual std::shared_ptr<exml::Declaration> toDeclaration() {
-				return nullptr;
-			};
-			virtual std::shared_ptr<const exml::Declaration> toDeclaration() const {
-				return nullptr;
-			};
+			virtual ememory::SharedPtr<exml::Declaration> toDeclaration();
+			/**
+			 * @brief Cast the element in a Declaration if it is possible.
+			 * @return CONST pointer on the class or nullptr.
+			 */
+			virtual ememory::SharedPtr<const exml::Declaration> toDeclaration() const;
 			/**
 			 * @brief Cast the element in a Element if it is possible.
 			 * @return pointer on the class or nullptr.
 			 */
-			virtual std::shared_ptr<exml::Element> toElement() {
-				return nullptr;
-			};
-			virtual std::shared_ptr<const exml::Element> toElement() const {
-				return nullptr;
-			};
+			virtual ememory::SharedPtr<exml::Element> toElement();
+			/**
+			 * @brief Cast the element in a Element if it is possible.
+			 * @return CONST pointer on the class or nullptr.
+			 */
+			virtual ememory::SharedPtr<const exml::Element> toElement() const;
 			/**
 			 * @brief Cast the element in a Text if it is possible.
 			 * @return pointer on the class or nullptr.
 			 */
-			virtual std::shared_ptr<exml::Text> toText() {
-				return nullptr;
-			};
-			virtual std::shared_ptr<const exml::Text> toText() const{
-				return nullptr;
-			};
+			virtual ememory::SharedPtr<exml::Text> toText();
+			/**
+			 * @brief Cast the element in a Text if it is possible.
+			 * @return CONST pointer on the class or nullptr.
+			 */
+			virtual ememory::SharedPtr<const exml::Text> toText() const;
 			
 			/**
 			 * @brief check if the node is a exml::Document
 			 * @return true if the node is a exml::Document
 			 */
-			bool isDocument() const {
-				return getType() == exml::typeDocument;
-			};
+			bool isDocument() const;
 			/**
 			 * @brief check if the node is a exml::Attribute
 			 * @return true if the node is a exml::Attribute
 			 */
-			bool isAttribute() const {
-				return getType() == exml::typeAttribute;
-			};
+			bool isAttribute() const;
 			/**
 			 * @brief check if the node is a exml::Comment
 			 * @return true if the node is a exml::Comment
 			 */
-			bool isComment() const {
-				return getType() == exml::typeComment;
-			};
+			bool isComment() const;
 			/**
 			 * @brief check if the node is a exml::Declaration
 			 * @return true if the node is a exml::Declaration
 			 */
-			bool isDeclaration() const {
-				return getType() == exml::typeDeclaration;
-			};
+			bool isDeclaration() const;
 			/**
 			 * @brief check if the node is a exml::Element
 			 * @return true if the node is a exml::Element
 			 */
-			bool isElement() const {
-				return getType() == exml::typeElement;
-			};
+			bool isElement() const;
 			/**
 			 * @brief check if the node is a exml::Text
 			 * @return true if the node is a exml::Text
 			 */
-			bool isText() const {
-				return getType() == exml::typeText;
-			};
+			bool isText() const;
 			
 			/**
 			 * @brief clear the Node

@@ -17,23 +17,14 @@ namespace exml {
 		protected:
 			/**
 			 * @brief Constructor
-			 */
-			AttributeList() { };
-			/**
-			 * @brief Constructor
 			 * @param[in] _value Node value;
 			 */
-			AttributeList(const std::string& _value) :
+			AttributeList(const std::string& _value="") :
 			  exml::Node(_value) {
 				
 			};
-		public:
-			/**
-			 * @brief Destructor
-			 */
-			virtual ~AttributeList();
 		protected:
-			std::vector<std::shared_ptr<exml::Attribute>> m_listAttribute; //!< list of all attribute
+			std::vector<ememory::SharedPtr<exml::Attribute>> m_listAttribute; //!< list of all attribute
 		public:
 			/**
 			 * @brief get the number of attribute in the Node
@@ -46,14 +37,24 @@ namespace exml {
 			 * @brief add attribute on the List
 			 * @param[in] _attr Pointer on the attribute
 			 */
-			void appendAttribute(const std::shared_ptr<exml::Attribute>& _attr);
+			void appendAttribute(const ememory::SharedPtr<exml::Attribute>& _attr);
 			/**
 			 * @brief get attribute whith his ID
 			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
 			 * @return Pointer on the attribute or NULL
 			 */
-			std::shared_ptr<Attribute> getAttr(int32_t _id);
-			std::shared_ptr<const Attribute> getAttr(int32_t _id) const;
+			ememory::SharedPtr<Attribute> getAttr(int32_t _id);
+			/**
+			 * @brief get attribute whith his ID
+			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
+			 * @return Pointer on the attribute or NULL
+			 */
+			ememory::SharedPtr<const Attribute> getAttr(int32_t _id) const;
+			/**
+			 * @brief get attribute whith his ID
+			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
+			 * @return Name and value of the attribute
+			 */
 			std::pair<std::string, std::string> getAttrPair(int32_t _id) const;
 			/**
 			 * @brief get the attribute value with searching in the List with his name
@@ -80,9 +81,9 @@ namespace exml {
 			 * @return false An error occured.
 			 */
 			bool removeAttribute(const std::string& _name);
-		public: // herited function:
-			bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual void clear();
+		public:
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
+			void clear() override;
 	};
 }
 

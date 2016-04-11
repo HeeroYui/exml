@@ -17,13 +17,13 @@ namespace exml {
 			 * @brief Constructor
 			 */
 			Document();
-			static std::shared_ptr<Document> create();
 			/**
-			 * @brief Destructor
+			 * @brief Factory on a document
+			 * @return an local created xml document
 			 */
-			virtual ~Document() { };
+			static ememory::SharedPtr<Document> create();
 		private:
-			bool m_caseSensitive; // check the case sensitive of the nodes and attribute
+			bool m_caseSensitive; //!< check the case sensitive of the nodes and attribute
 		public:
 			/**
 			 * @brief Enable or diasable the case sensitive (must be done before the call of parsing)
@@ -73,10 +73,10 @@ namespace exml {
 			 */
 			void display();
 		private:
-			bool m_writeErrorWhenDetexted;
-			std::string m_comment;
-			std::string m_Line;
-			exml::filePos m_filePos;
+			bool m_writeErrorWhenDetexted; //!< Request print error in parsing just when detected
+			std::string m_comment; //!< Comment on the error
+			std::string m_Line; //!< Parse line error (copy)
+			exml::FilePos m_filePos; //!< position of the error
 		public:
 			void displayErrorWhenDetected() {
 				m_writeErrorWhenDetexted = true;
@@ -85,33 +85,24 @@ namespace exml {
 				m_writeErrorWhenDetexted = false;
 			};
 			
-			void createError(const std::string& _data, int32_t _pos, const exml::filePos& _filePos, const std::string& _comment);
+			void createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment);
 			void displayError();
-		public: // herited function:
-			virtual enum nodeType getType() const {
+		public:
+			enum nodeType getType() const override {
 				return typeDocument;
 			};
-			bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual std::shared_ptr<exml::Document> toDocument() {
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
+			ememory::SharedPtr<exml::Document> toDocument() override {
 				return std::static_pointer_cast<exml::Document>(shared_from_this());
 			};
-			virtual std::shared_ptr<const exml::Document> toDocument() const {
+			ememory::SharedPtr<const exml::Document> toDocument() const override {
 				return std::static_pointer_cast<const exml::Document>(shared_from_this());
 			};
 	};
 };
 
-/*
-#define CREATE_ERROR(doc,data,pos,filePos,comment) \
-	EXML_ERROR( (pos) << " " << (comment) << "\n" \
-	           << (data).ExtractLine((pos)) << "\n" \
-	           << CreatePosPointer((filePos).getCol()) )
-*/
 #define CREATE_ERROR(doc,data,pos,filePos,comment) \
 	do { \
 		EXML_ERROR(comment); \
 		(doc).createError((data),(pos),(filePos),(comment)); \
 	} while (0)
-
-//__LINE__, __class__, __func__
-

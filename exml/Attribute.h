@@ -15,23 +15,20 @@ namespace exml {
 		protected:
 			/**
 			 * @brief Constructor
-			 */
-			Attribute() { };
-			/**
-			 * @brief Constructor
 			 * @param[in] _name Name of the attribute.
 			 * @param[in] _value Value of the attribute.
 			 */
-			Attribute(const std::string& _name, const std::string& _value);
+			Attribute(const std::string& _name="", const std::string& _value="");
 		public:
-			static std::shared_ptr<Attribute> create();
-			static std::shared_ptr<Attribute> create(const std::string& _name, const std::string& _value);
 			/**
-			 * @brief Destructor
+			 * @brief defined factory
+			 * @param[in] _name Name of the attribute
+			 * @param[in] _value Value of the attribute
+			 * @return Shared pointer on the Attribute element
 			 */
-			virtual ~Attribute() { };
+			static ememory::SharedPtr<Attribute> create(const std::string& _name="", const std::string& _value="");
 		protected:
-			std::string m_name;
+			std::string m_name; //!< Name of the attribute
 		public:
 			/**
 			 * @brief set the name of the attribute
@@ -47,19 +44,19 @@ namespace exml {
 			virtual const std::string& getName() const {
 				return m_name;
 			};
-		public: // herited function:
-			virtual enum nodeType getType() const {
+		public:
+			enum nodeType getType() const override {
 				return exml::typeAttribute;
 			};
-			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::filePos& _filePos, exml::Document& _doc);
-			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
-			virtual std::shared_ptr<exml::Attribute> toAttribute() {
+			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
+			bool iGenerate(std::string& _data, int32_t _indent) const override;
+			ememory::SharedPtr<exml::Attribute> toAttribute() override {
 				return std::static_pointer_cast<exml::Attribute>(shared_from_this());
 			};
-			virtual std::shared_ptr<const exml::Attribute> toAttribute() const {
+			ememory::SharedPtr<const exml::Attribute> toAttribute() const override {
 				return std::static_pointer_cast<const exml::Attribute>(shared_from_this());
 			};
-			virtual void clear();
+			void clear() override;
 	};
 }
 
