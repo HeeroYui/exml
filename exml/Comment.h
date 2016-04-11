@@ -11,6 +11,9 @@
 #include <vector>
 
 namespace exml {
+	/**
+	 * @brief Comment node: &lt;!-- ... --&gt;
+	 */
 	class Comment : public exml::Node {
 		protected:
 			/**
@@ -30,19 +33,19 @@ namespace exml {
 			Comment(const std::string& _value) :
 			  exml::Node(_value) {
 				
-			};
+			}
 		public:
 			enum nodeType getType() const override {
-				return typeAttribute;
-			};
+				return nodeType_attribute;
+			}
 			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
 			bool iGenerate(std::string& _data, int32_t _indent) const override;
 			ememory::SharedPtr<exml::Comment> toComment() override {
 				return std::static_pointer_cast<exml::Comment>(shared_from_this());
-			};
+			}
 			ememory::SharedPtr<const exml::Comment> toComment() const override {
 				return std::static_pointer_cast<const exml::Comment>(shared_from_this());
-			};
+			}
 	};
 }
 

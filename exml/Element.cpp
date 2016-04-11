@@ -24,9 +24,6 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-ememory::SharedPtr<exml::Element> exml::Element::create() {
-	return ememory::SharedPtr<exml::Element>(new exml::Element());
-}
 ememory::SharedPtr<exml::Element> exml::Element::create(const std::string& _value) {
 	return ememory::SharedPtr<exml::Element>(new exml::Element(_value));
 }
@@ -34,7 +31,7 @@ ememory::SharedPtr<exml::Element> exml::Element::create(const std::string& _valu
 enum exml::nodeType exml::Element::getType(int32_t _id) const {
 	ememory::SharedPtr<const exml::Node> tmpp = getNode(_id);
 	if (tmpp == nullptr) {
-		return exml::typeUnknow;
+		return exml::nodeType_unknow;
 	}
 	return tmpp->getType();
 }
@@ -76,7 +73,7 @@ ememory::SharedPtr<exml::Element> exml::Element::getNamed(const std::string& _na
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    m_listSub[iii] != nullptr
-		    && m_listSub[iii]->getType() == exml::typeElement
+		    && m_listSub[iii]->getType() == exml::nodeType_element
 		    && m_listSub[iii]->getValue() == _name) {
 			if (m_listSub[iii] == nullptr) {
 				return nullptr;
@@ -93,7 +90,7 @@ ememory::SharedPtr<const exml::Element> exml::Element::getNamed(const std::strin
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    m_listSub[iii] != nullptr
-		    && m_listSub[iii]->getType() == exml::typeElement
+		    && m_listSub[iii]->getType() == exml::nodeType_element
 		    && m_listSub[iii]->getValue() == _name) {
 			if (m_listSub[iii] == nullptr) {
 				return nullptr;
@@ -109,7 +106,7 @@ void exml::Element::append(const ememory::SharedPtr<exml::Node>& _node) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
-	if (_node->getType() == exml::typeAttribute) {
+	if (_node->getType() == exml::nodeType_attribute) {
 		appendAttribute(_node->toAttribute());
 		return;
 	}
@@ -125,7 +122,7 @@ void exml::Element::append(const ememory::SharedPtr<exml::Node>& _node) {
 std::string exml::Element::getText() const {
 	std::string res;
 	if (m_listSub.size() == 1) {
-		if (m_listSub[0]->getType() == typeText) {
+		if (m_listSub[0]->getType() == nodeType_text) {
 			res = m_listSub[0]->getValue();
 		} else {
 			m_listSub[0]->iGenerate(res, 0);
@@ -149,7 +146,7 @@ bool exml::Element::iGenerate(std::string& _data, int32_t _indent) const {
 	if (m_listSub.size()>0) {
 		if(    m_listSub.size() == 1
 		    && m_listSub[0] != nullptr
-		    && m_listSub[0]->getType() == exml::typeText
+		    && m_listSub[0]->getType() == exml::nodeType_text
 		    && std::dynamic_pointer_cast<exml::Text>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
 			m_listSub[0]->iGenerate(_data,0);

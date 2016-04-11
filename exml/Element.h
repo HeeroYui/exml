@@ -12,6 +12,9 @@
 #include <exml/AttributeList.h>
 
 namespace exml {
+	/**
+	 * @brief Basic element Node of an XML document &lt;YYYYY&gt;
+	 */
 	class Element : public exml::AttributeList {
 		protected:
 			/**
@@ -27,8 +30,12 @@ namespace exml {
 				
 			};
 		public:
-			static ememory::SharedPtr<Element> create();
-			static ememory::SharedPtr<Element> create(const std::string& _value);
+			/**
+			 * @brief factory of an exml::Element
+			 * @param[in] _value Name of the node.
+			 * @return Shared pointer on the Element
+			 */
+			static ememory::SharedPtr<Element> create(const std::string& _value="");
 		protected:
 			std::vector<ememory::SharedPtr<exml::Node>> m_listSub; //!< List of subNodes
 		public:
@@ -56,6 +63,11 @@ namespace exml {
 			 * @return Pointer on node.
 			 */
 			ememory::SharedPtr<Node> getNode(int32_t _id);
+			/**
+			 * @brief get the Node pointer of the element id.
+			 * @param[in] _id Id of the element.
+			 * @return Pointer on node.
+			 */
 			ememory::SharedPtr<const Node> getNode(int32_t _id) const;
 			/**
 			 * @brief get the element casted in Element (if the node is not an element return NULL).
@@ -63,6 +75,11 @@ namespace exml {
 			 * @return Pointer on the element or NULL.
 			 */
 			ememory::SharedPtr<Element> getElement(int32_t _id);
+			/**
+			 * @brief get the element casted in Element (if the node is not an element return NULL).
+			 * @param[in] _id Id of the element.
+			 * @return Pointer on the element or NULL.
+			 */
 			ememory::SharedPtr<const Element> getElement(int32_t _id) const;
 			/**
 			 * @brief get an element with his name (work only with exml::Element)
@@ -70,6 +87,11 @@ namespace exml {
 			 * @return Pointer on the element or NULL.
 			 */
 			ememory::SharedPtr<Element> getNamed(const std::string& _name);
+			/**
+			 * @brief get an element with his name (work only with exml::Element)
+			 * @param[in] _name Name of the element that is requested
+			 * @return Pointer on the element or NULL.
+			 */
 			ememory::SharedPtr<const Element> getNamed(const std::string& _name) const;
 			/**
 			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
@@ -77,10 +99,26 @@ namespace exml {
 			 */
 			std::string getText() const;
 		protected:
-			bool subParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc, bool _mainNode=false);
-		public: // herited function:
+			/**
+			 * @brief Parse sub node string
+			 * @param[in] _data all file string data
+			 * @param[in,out] _pos Position to start parsing in the file and return the end of parsing
+			 * @param[in] _caseSensitive Case sensitive parsing (usefull for html)
+			 * @param[in] _filePos Current File position of the parsing
+			 * @param[in] _doc Document base reference
+			 * @param[in] _mainNode if true, this is the first root node
+			 * @return true parsing is done OK
+			 * @return false An error appear in the parsing
+			 */
+			bool subParse(const std::string& _data,
+			              int32_t& _pos,
+			              bool _caseSensitive,
+			              exml::FilePos& _filePos,
+			              exml::Document& _doc,
+			              bool _mainNode=false);
+		public:
 			enum nodeType getType() const override {
-				return typeElement;
+				return nodeType_element;
 			}
 			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
 			bool iGenerate(std::string& _data, int32_t _indent) const override;

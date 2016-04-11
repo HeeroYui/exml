@@ -11,6 +11,9 @@
 #include <vector>
 
 namespace exml {
+	/**
+	 * @brief Single attribute element
+	 */
 	class Attribute : public exml::Node {
 		protected:
 			/**
@@ -46,7 +49,7 @@ namespace exml {
 			};
 		public:
 			enum nodeType getType() const override {
-				return exml::typeAttribute;
+				return exml::nodeType_attribute;
 			};
 			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
 			bool iGenerate(std::string& _data, int32_t _indent) const override;

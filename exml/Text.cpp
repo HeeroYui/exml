@@ -60,10 +60,6 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-ememory::SharedPtr<exml::Text> exml::Text::create() {
-	return ememory::SharedPtr<exml::Text>(new exml::Text());
-}
-
 ememory::SharedPtr<exml::Text> exml::Text::create(const std::string& _data) {
 	return ememory::SharedPtr<exml::Text>(new exml::Text(_data));
 }

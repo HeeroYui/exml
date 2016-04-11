@@ -11,6 +11,9 @@
 #include <vector>
 
 namespace exml {
+	/**
+	 * @brief Basic document element of a document
+	 */
 	class Document : public exml::Element {
 		public:
 			/**
@@ -78,26 +81,41 @@ namespace exml {
 			std::string m_Line; //!< Parse line error (copy)
 			exml::FilePos m_filePos; //!< position of the error
 		public:
+			/**
+			 * @brief Request display error when detected (not print only at the end ...)
+			 */
 			void displayErrorWhenDetected() {
 				m_writeErrorWhenDetexted = true;
-			};
+			}
+			/**
+			 * @brief Request NOT display error when detected.
+			 */
 			void notDisplayErrorWhenDetected() {
 				m_writeErrorWhenDetexted = false;
-			};
-			
+			}
+			/**
+			 * @brief Create an error in the parsing (call by the syetm for error management)
+			 * @param[in] _data string of chat is wrong
+			 * @param[in] _pos Position in the file
+			 * @param[in] _filePos human position of the error
+			 * @param[in] _comment Error string to display
+			 */
 			void createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment);
+			/**
+			 * @brief request display in log of the error
+			 */
 			void displayError();
 		public:
 			enum nodeType getType() const override {
-				return typeDocument;
-			};
+				return nodeType_document;
+			}
 			bool iGenerate(std::string& _data, int32_t _indent) const override;
 			ememory::SharedPtr<exml::Document> toDocument() override {
 				return std::static_pointer_cast<exml::Document>(shared_from_this());
-			};
+			}
 			ememory::SharedPtr<const exml::Document> toDocument() const override {
 				return std::static_pointer_cast<const exml::Document>(shared_from_this());
-			};
+			}
 	};
 };
 

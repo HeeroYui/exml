@@ -13,6 +13,9 @@
 #include <utility>
 
 namespace exml {
+	/**
+	 * @brief List of all attribute element in a node
+	 */
 	class AttributeList : public exml::Node {
 		protected:
 			/**

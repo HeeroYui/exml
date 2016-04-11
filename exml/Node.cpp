@@ -126,7 +126,7 @@ const std::string& exml::Node::getValue() const {
 }
 
 enum exml::nodeType exml::Node::getType() const {
-	return typeNode;
+	return nodeType_node;
 }
 
 ememory::SharedPtr<exml::Document> exml::Node::toDocument() {
@@ -178,26 +178,26 @@ ememory::SharedPtr<const exml::Text> exml::Node::toText() const{
 }
 
 bool exml::Node::isDocument() const {
-	return getType() == exml::typeDocument;
+	return getType() == exml::nodeType_document;
 }
 
 bool exml::Node::isAttribute() const {
-	return getType() == exml::typeAttribute;
+	return getType() == exml::nodeType_attribute;
 }
 
 bool exml::Node::isComment() const {
-	return getType() == exml::typeComment;
+	return getType() == exml::nodeType_comment;
 }
 
 bool exml::Node::isDeclaration() const {
-	return getType() == exml::typeDeclaration;
+	return getType() == exml::nodeType_declaration;
 }
 
 bool exml::Node::isElement() const {
-	return getType() == exml::typeElement;
+	return getType() == exml::nodeType_element;
 }
 
 bool exml::Node::isText() const {
-	return getType() == exml::typeText;
+	return getType() == exml::nodeType_text;
 }
 

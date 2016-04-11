@@ -35,15 +35,18 @@ namespace exml {
 	class Element;
 	class Text;
 	
+	/**
+	 * @brief Type of the XML elements.
+	 */
 	enum nodeType {
-		typeUnknow, //!< might be an error ...
-		typeNode, //!< might be an error ...
-		typeDocument, //!< all the file main access
-		typeDeclaration, //!< <?xml ... ?>
-		typeAttribute, //!< the <Element ATTRIBUTE="ATTRIBUTE_VALUE" />
-		typeElement,  //!< the <XXX> ... </XXX>
-		typeComment, //!< comment node : <!--   -->
-		typeText, //!< <XXX> InsideText </XXX>
+		nodeType_unknow, //!< might be an error ...
+		nodeType_node, //!< might be an error ...
+		nodeType_document, //!< all the file main access
+		nodeType_declaration, //!< &lt;?xml ... ?&gt;
+		nodeType_attribute, //!< the &lt;Element ATTRIBUTE="ATTRIBUTE_VALUE" /&gt;
+		nodeType_element,  //!< the &lt;XXX&gt; ... &lt;/XXX&gt;
+		nodeType_comment, //!< comment node : &lt;!--   --&gt;
+		nodeType_text, //!< &lt;XXX&gt; InsideText &lt;/XXX&gt;
 	};
 	/**
 	 * @brief Basic main object of all xml elements.
@@ -59,7 +62,7 @@ namespace exml {
 			};
 			/**
 			 * @brief basic element of a xml structure
-			 * @param[in] value of the node
+			 * @param[in] _value value of the node
 			 */
 			Node(const std::string& _value);
 		public:
@@ -73,14 +76,15 @@ namespace exml {
 			 * @param[in] _data data string to parse.
 			 * @param[in,out] _pos position in the string to start parse, return the position end of parsing.
 			 * @param[in] _caseSensitive Request a parsion of element that is not case sensitive (all element is in low case)
-			 * @param[in,out] file parsing position (line x col x)
+			 * @param[in,out] _filePos file parsing position (line x col x)
+			 * @param[in,out] _doc Base document reference
 			 * @return false if an error occured.
 			 */
 			virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) = 0;
 			/**
 			 * @brief generate a string with the tree of the xml
 			 * @param[in,out] _data string where to add the elements
-			 * @param[in] current indentation of the file
+			 * @param[in] _indent current indentation of the file
 			 * @return false if an error occured.
 			 */
 			virtual bool iGenerate(std::string& _data, int32_t _indent) const;
@@ -89,6 +93,7 @@ namespace exml {
 		public:
 			/**
 			 * @brief get the current position where the element is in the file
+			 * @return The file position reference
 			 */
 			const exml::FilePos& getPos() const;
 		protected:
@@ -124,9 +129,11 @@ namespace exml {
 			 */
 			void drawElementParsed(char32_t _val, const exml::FilePos& _filePos) const;
 			/**
-			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \n\t\r and for first char : not -.0123456789).
+			 * @brief check if an element or attribute is availlable (not : !"#$%&'()*+,/;<=>?@[\]^`{|}~ \\n\\t\\r and for first char : not -.0123456789).
 			 * @param[in] _val Value to check the conformity.
 			 * @param[in] _firstChar True if the element check is the first char.
+			 * @return true The value can be a part of attribute name
+			 * @return false The value can NOT be a part of attribute name
 			 */
 			bool checkAvaillable(char32_t _val, bool _firstChar) const;
 			/**

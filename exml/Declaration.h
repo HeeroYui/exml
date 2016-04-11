@@ -10,6 +10,9 @@
 #include <exml/AttributeList.h>
 
 namespace exml {
+	/**
+	 * @brief Declaration node: &lt;?XXXXXX ... &gt;
+	 */
 	class Declaration : public exml::AttributeList {
 		protected:
 			/**
@@ -29,7 +32,7 @@ namespace exml {
 			static ememory::SharedPtr<Declaration> create(const std::string& _name="");
 		public:
 			enum nodeType getType() const override{
-				return typeAttribute;
+				return nodeType_attribute;
 			};
 			bool iGenerate(std::string& _data, int32_t _indent) const override;
 			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
@@ -40,6 +43,9 @@ namespace exml {
 				return std::static_pointer_cast<const exml::Declaration>(shared_from_this());
 			};
 	};
+	/**
+	 * @brief Declaration node: &lt;?XML ... &gt;
+	 */
 	class DeclarationXML : public exml::Declaration {
 		public:
 			/**
