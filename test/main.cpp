@@ -7,16 +7,9 @@
  */
 
 #include <test-debug/debug.h>
-#include <vector>
 #include <gtest/gtest.h>
 #include <etk/os/FSNode.h>
 #include <etk/etk.h>
-
-//#include "exmlTestDocument.h"
-#include "exmlTestElement.h"
-#include "exmlTestAttribute.h"
-#include "exmlTestDeclaration.h"
-#include "exmlTestAll.h"
 
 int main(int argc, const char *argv[]) {
 	// init Google test :

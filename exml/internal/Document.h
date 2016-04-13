@@ -33,6 +33,7 @@ namespace exml {
 				 * @brief Enable or diasable the case sensitive (must be done before the call of parsing)
 				 * @param[in] _val true if enable; false else.
 				 */
+				// TODO: Naming error, it is insensitive ...
 				virtual void setCaseSensitive(bool _val) {
 					m_caseSensitive = _val;
 				};

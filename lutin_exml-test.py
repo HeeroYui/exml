@@ -31,7 +31,18 @@ def get_maintainer():
 def create(target, module_name):
 	my_module = module.Module(__file__, module_name, get_type())
 	my_module.add_src_file([
-		'test/main.cpp'
+		'test/main.cpp',
+		'test/exmlTestAll.cpp',
+		'test/exmlTestComment.cpp',
+		'test/exmlTestElement.cpp',
+		'test/exmlTestAttribute.cpp',
+		'test/exmlTestCommon.cpp',
+		'test/exmlTestDeclaration.cpp',
+		'test/exmlTestDeclarationXML.cpp',
+		'test/exmlTestParseComment.cpp',
+		'test/exmlTestParseElement.cpp',
+		'test/exmlTestParseAttribute.cpp',
+		'test/exmlTestParseDeclaration.cpp'
 		])
 	my_module.add_module_depend(['exml', 'gtest', 'test-debug'])
 	return my_module

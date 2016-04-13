@@ -1,38 +1,38 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2014, Edouard DUPIN, all right reserved
  * 
  * @license APACHE v2.0 (see license file)
  */
-#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
 
 
-TEST(TestComment, testBase) {
+
+TEST(TestParseComment, testBase) {
 	exmlLocalTest("<!--exemple-->\n", "<!--exemple-->\n", -1);
 }
-TEST(TestComment, testMultiline) {
+TEST(TestParseComment, testMultiline) {
 	exmlLocalTest("<!--exemple-->\n", "<!--   \t \t\t exemple          \n\n\n\t-->\n", -1);
 }
-TEST(TestComment, testTiretInComment) {
+TEST(TestParseComment, testTiretInComment) {
 	exmlLocalTest("<!---- exemple-->\n", "<!--   -- exemple -->\n", -1);
 }
-TEST(TestComment, testWrongEndParsing) {
+TEST(TestParseComment, testWrongEndParsing) {
 	exmlLocalTest("<!--> exemple-->\n", "<!--> exemple -->\n", -1);
 }
-TEST(TestComment, testMultipleEnd) {
+TEST(TestParseComment, testMultipleEnd) {
 	exmlLocalTest("<!--exemple-->\n", "<!--   ---> exemple -->\n", 1);
 }
-TEST(TestComment, testEndError) {
+TEST(TestParseComment, testEndError) {
 	exmlLocalTest("<!--exemple-->\n", "<!-- ssdfgdfg  >\n", 1);
 }
-TEST(TestComment, testNoCharInComment) {
+TEST(TestParseComment, testNoCharInComment) {
 	exmlLocalTest("<!---->\n", "<!---->\n", -1);
 }
-TEST(TestComment, testAll) {
+TEST(TestParseComment, testAll) {
 	exmlLocalTest("<!--<.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>-->\n",
 	              "<!-- <.:!*%^$0945-	'(-	&<<< >>>	'&	(	'(	'-' <elementPouris>	-->\n",
 	              -1);

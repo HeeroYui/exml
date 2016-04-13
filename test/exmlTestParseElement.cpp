@@ -1,11 +1,10 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2014, Edouard DUPIN, all right reserved
  * 
  * @license APACHE v2.0 (see license file)
  */
-#pragma once
 
 #include "exmlTestCommon.h"
 #include <gtest/gtest.h>
@@ -13,44 +12,44 @@
 
 static std::string refOutputElement("<exemple/>\n");
 
-TEST(TestElement, testBase) {
+TEST(TestParseElement, testBase) {
 	exmlLocalTest(refOutputElement, "<exemple/>\n", -1);
 }
-TEST(TestElement, testMultiline) {
+TEST(TestParseElement, testMultiline) {
 	exmlLocalTest(refOutputElement, "<    \t\r   exemple/>\n", -1);
 }
-TEST(TestElement, testMultilineMultiTabbed) {
+TEST(TestParseElement, testMultilineMultiTabbed) {
 	exmlLocalTest(refOutputElement, "<    \t\r   exemple    \t\r\r\r\n   		 		 \t\t />\n", -1);
 }
-TEST(TestElement, testWrongStart) {
+TEST(TestParseElement, testWrongStart) {
 	exmlLocalTest(refOutputElement, "<       exemple   <  >\n", 1);
 }
-TEST(TestElement, testMultipleSlash) {
+TEST(TestParseElement, testMultipleSlash) {
 	exmlLocalTest(refOutputElement, "<       exemple   / />\n", 1);
 }
-TEST(TestElement, testExclamationPresence) {
+TEST(TestParseElement, testExclamationPresence) {
 	exmlLocalTest(refOutputElement, "<       exemple   ?  />\n", 1);
 }
-TEST(TestElement, testStarPresence) {
+TEST(TestParseElement, testStarPresence) {
 	exmlLocalTest(refOutputElement, "<       exemple   *  />\n", 1);
 }
-TEST(TestElement, testDotPresent) {
+TEST(TestParseElement, testDotPresent) {
 	exmlLocalTest(refOutputElement, "<  .     exemple   <  />\n", 1);
 }
-TEST(TestElement, testWrong1) {
+TEST(TestParseElement, testWrong1) {
 	exmlLocalTest(refOutputElement, "<!       exemple   < />\n", 1);
 }
-TEST(TestElement, testWrong2) {
+TEST(TestParseElement, testWrong2) {
 	exmlLocalTest(refOutputElement, "<!-       exemple   <  />\n", 1);
 }
-TEST(TestElement, testWrong3) {
+TEST(TestParseElement, testWrong3) {
 	exmlLocalTest(refOutputElement, "<       exemple   < />\n", 1);
 }
 
-TEST(TestElement, testBase2) {
+TEST(TestParseElement, testBase2) {
 	exmlLocalTest("<exemple--/>\n", "<exemple-->\n", 1);
 }
-TEST(TestElement, testBase3) {
+TEST(TestParseElement, testBase3) {
 	exmlLocalTest("<exemple/>\n", "<exemple>\n</exemple sdfgsdfg>\n", 1);
 }
 
