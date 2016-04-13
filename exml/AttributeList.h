@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -8,85 +8,97 @@
 #pragma once
 
 #include <exml/Node.h>
-#include <vector>
 #include <exml/Attribute.h>
-#include <utility>
+#include <exml/iterator.h>
 
 namespace exml {
-	/**
-	 * @brief List of all attribute element in a node
-	 */
-	class AttributeList : public exml::Node {
-		protected:
-			/**
-			 * @brief Constructor
-			 * @param[in] _value Node value;
-			 */
-			AttributeList(const std::string& _value="") :
-			  exml::Node(_value) {
-				
-			};
-		protected:
-			std::vector<ememory::SharedPtr<exml::Attribute>> m_listAttribute; //!< list of all attribute
+	class AttributeList;
+	
+	class AttributeListData {
+		private:
+			exml::AttributeList* m_data;
+		public:
+			AttributeListData(exml::AttributeList* _list);
 		public:
 			/**
 			 * @brief get the number of attribute in the Node
-			 * @return Nulber of attribute >=0
+			 * @return Number of attribute >=0
 			 */
-			size_t sizeAttribute() const {
-				return m_listAttribute.size();
-			};
+			size_t size() const;
 			/**
 			 * @brief add attribute on the List
 			 * @param[in] _attr Pointer on the attribute
 			 */
-			void appendAttribute(const ememory::SharedPtr<exml::Attribute>& _attr);
-			/**
-			 * @brief get attribute whith his ID
-			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
-			 * @return Pointer on the attribute or NULL
-			 */
-			ememory::SharedPtr<Attribute> getAttr(int32_t _id);
-			/**
-			 * @brief get attribute whith his ID
-			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
-			 * @return Pointer on the attribute or NULL
-			 */
-			ememory::SharedPtr<const Attribute> getAttr(int32_t _id) const;
-			/**
-			 * @brief get attribute whith his ID
-			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
-			 * @return Name and value of the attribute
-			 */
-			std::pair<std::string, std::string> getAttrPair(int32_t _id) const;
-			/**
-			 * @brief get the attribute value with searching in the List with his name
-			 * @param[in] _name Attribute Name.
-			 * @return Value of the attribute or no data in the string
-			 */
-			const std::string& getAttribute(const std::string& _name) const;
-			/**
-			 * @brief check if an attribute exist or not with his name.
-			 * @param[in] _name Attribute Name.
-			 * @return true if the attribute exist or False
-			 */
-			bool existAttribute(const std::string& _name) const;
-			/**
-			 * @brief Set A new attribute or replace data of the previous one
-			 * @param[in] _name Name of the attribute
-			 * @param[in] _value Value of the attribute
-			 */
-			void setAttribute(const std::string& _name, const std::string& _value);
+			void add(exml::Attribute _attr);
 			/**
 			 * @brief Remove an attribute form the list
 			 * @param[in] _name Name of the attribute
 			 * @return true The attribute has been removed
 			 * @return false An error occured.
 			 */
-			bool removeAttribute(const std::string& _name);
+			bool remove(const std::string& _name);
+			/**
+			 * @brief get attribute whith his ID
+			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
+			 * @return Pointer on the attribute or NULL
+			 */
+			exml::Attribute operator[] (int32_t _id);
+			/**
+			 * @brief get attribute whith his ID
+			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
+			 * @return Pointer on the attribute or NULL
+			 */
+			const exml::Attribute operator[](int32_t _id) const;
+			/**
+			 * @brief get attribute whith his ID
+			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
+			 * @return Name and value of the attribute
+			 */
+			std::pair<std::string, std::string> getPair(int32_t _id) const;
+			/**
+			 * @brief get the attribute value with searching in the List with his name
+			 * @param[in] _name Attribute Name.
+			 * @return Value of the attribute or no data in the string
+			 */
+			const std::string& get(const std::string& _name) const;
+			/**
+			 * @brief check if an attribute exist or not with his name.
+			 * @param[in] _name Attribute Name.
+			 * @return true if the attribute exist or False
+			 */
+			bool exist(const std::string& _name) const;
+			/**
+			 * @brief Set A new attribute or replace data of the previous one
+			 * @param[in] _name Name of the attribute
+			 * @param[in] _value Value of the attribute
+			 */
+			void set(const std::string& _name, const std::string& _value);
 		public:
-			bool iGenerate(std::string& _data, int32_t _indent) const override;
-			void clear() override;
+			using iterator = exml::iterator<exml::AttributeListData, exml::Attribute>;
+			iterator begin() {
+				return iterator(*this, 0);
+			}
+			iterator end() {
+				return iterator(*this, size());
+			}
+	};
+	
+	/**
+	 * @brief List of all attribute element in a node
+	 */
+	class AttributeList : public exml::Node {
+		public:
+			AttributeListData attributes;
+		protected:
+			/**
+			 * @brief basic element of a xml structure
+			 * @param[in] _value value of the node
+			 */
+			AttributeList(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			/**
+			 * @brief basic element of a xml structure
+			 */
+			AttributeList();
 	};
 }
 

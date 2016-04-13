@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -18,30 +18,33 @@ namespace exml {
 		public:
 			/**
 			 * @brief Constructor
+			 * @param[in] _internalNode Internal Node to set data
+			 */
+			Document(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			Document(const exml::Document& _obj);
+			/**
+			 * @brief Constructor
 			 */
 			Document();
 			/**
-			 * @brief Factory on a document
-			 * @return an local created xml document
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
 			 */
-			static ememory::SharedPtr<Document> create();
-		private:
-			bool m_caseSensitive; //!< check the case sensitive of the nodes and attribute
-		public:
+			exml::Document& operator= (const exml::Document& _obj);
 			/**
 			 * @brief Enable or diasable the case sensitive (must be done before the call of parsing)
 			 * @param[in] _val true if enable; false else.
 			 */
-			virtual void setCaseSensitive(bool _val) {
-				m_caseSensitive = _val;
-			};
+			void setCaseSensitive(bool _val);
 			/**
 			 * @brief get the status of case sensitive mode.
 			 * @return true if case sensitive is active
 			 */
-			virtual bool getCaseSensitive() const {
-				return m_caseSensitive;
-			};
+			virtual bool getCaseSensitive() const;
 		public:
 			/**
 			 * @brief parse a string that contain an XML
@@ -75,52 +78,17 @@ namespace exml {
 			 * @brief Display the Document on console
 			 */
 			void display();
-		private:
-			bool m_writeErrorWhenDetexted; //!< Request print error in parsing just when detected
-			std::string m_comment; //!< Comment on the error
-			std::string m_Line; //!< Parse line error (copy)
-			exml::FilePos m_filePos; //!< position of the error
-		public:
 			/**
 			 * @brief Request display error when detected (not print only at the end ...)
 			 */
-			void displayErrorWhenDetected() {
-				m_writeErrorWhenDetexted = true;
-			}
+			void displayErrorWhenDetected();
 			/**
 			 * @brief Request NOT display error when detected.
 			 */
-			void notDisplayErrorWhenDetected() {
-				m_writeErrorWhenDetexted = false;
-			}
-			/**
-			 * @brief Create an error in the parsing (call by the syetm for error management)
-			 * @param[in] _data string of chat is wrong
-			 * @param[in] _pos Position in the file
-			 * @param[in] _filePos human position of the error
-			 * @param[in] _comment Error string to display
-			 */
-			void createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment);
+			void notDisplayErrorWhenDetected();
 			/**
 			 * @brief request display in log of the error
 			 */
 			void displayError();
-		public:
-			enum nodeType getType() const override {
-				return nodeType_document;
-			}
-			bool iGenerate(std::string& _data, int32_t _indent) const override;
-			ememory::SharedPtr<exml::Document> toDocument() override {
-				return std::static_pointer_cast<exml::Document>(shared_from_this());
-			}
-			ememory::SharedPtr<const exml::Document> toDocument() const override {
-				return std::static_pointer_cast<const exml::Document>(shared_from_this());
-			}
 	};
 };
-
-#define CREATE_ERROR(doc,data,pos,filePos,comment) \
-	do { \
-		EXML_ERROR(comment); \
-		(doc).createError((data),(pos),(filePos),(comment)); \
-	} while (0)

@@ -1,26 +1,17 @@
 /** @file
  * @author Edouard DUPIN
  * 
- * @copyright 2014, Edouard DUPIN, all right reserved
+ * @copyright 2016, Edouard DUPIN, all right reserved
  * 
  * @license APACHE v2.0 (see license file)
  */
 
 #include <test-debug/debug.h>
-#include <vector>
-#include <gtest/gtest.h>
-#include <etk/os/FSNode.h>
 #include <etk/etk.h>
-
-//#include "exmlTestDocument.h"
-#include "exmlTestElement.h"
-#include "exmlTestAttribute.h"
-#include "exmlTestDeclaration.h"
-#include "exmlTestAll.h"
+#include "read.h"
+#include "write.h"
 
 int main(int argc, const char *argv[]) {
-	// init Google test :
-	::testing::InitGoogleTest(&argc, const_cast<char **>(argv));
 	// the only one init for etk:
 	etk::init(argc, argv);
 	for (int32_t iii=0; iii<argc ; ++iii) {
@@ -33,6 +24,11 @@ int main(int argc, const char *argv[]) {
 			exit(0);
 		}
 	}
-	etk::initDefaultFolder("exml_test");
-	return RUN_ALL_TESTS();
+	TEST_INFO("read [START] ***************************");
+	appl::read();
+	TEST_INFO("read [STOP ] ***************************");
+	TEST_INFO("write [START] ***************************");
+	appl::write();
+	TEST_INFO("write [STOP ] ***************************");
+	return 0;
 }

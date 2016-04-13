@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -15,37 +15,27 @@ namespace exml {
 	 * @brief Comment node: &lt;!-- ... --&gt;
 	 */
 	class Comment : public exml::Node {
-		protected:
-			/**
-			 * @brief Constructor
-			 */
-			Comment() { };
 		public:
 			/**
-			 * @brief defined factory
-			 * @return Shared pointer on the Comment element
+			 * @brief Constructor
+			 * @param[in] _internalNode Internal Node to set data
 			 */
-			static ememory::SharedPtr<exml::Comment> create();
+			Comment(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			Comment(const exml::Comment& _obj);
 			/**
 			 * @brief Constructor
 			 * @param[in] _value comment value
 			 */
-			Comment(const std::string& _value) :
-			  exml::Node(_value) {
-				
-			}
-		public:
-			enum nodeType getType() const override {
-				return nodeType_attribute;
-			}
-			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
-			bool iGenerate(std::string& _data, int32_t _indent) const override;
-			ememory::SharedPtr<exml::Comment> toComment() override {
-				return std::static_pointer_cast<exml::Comment>(shared_from_this());
-			}
-			ememory::SharedPtr<const exml::Comment> toComment() const override {
-				return std::static_pointer_cast<const exml::Comment>(shared_from_this());
-			}
+			Comment(const std::string& _value="");
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			exml::Comment& operator= (const exml::Comment& _obj);
 	};
 }
 

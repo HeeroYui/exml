@@ -31,6 +31,7 @@ def create(target, module_name):
 	my_module.add_src_file([
 		'exml/debug.cpp',
 		'exml/FilePos.cpp',
+		'exml/nodeType.cpp',
 		'exml/Attribute.cpp',
 		'exml/AttributeList.cpp',
 		'exml/Comment.cpp',
@@ -38,11 +39,23 @@ def create(target, module_name):
 		'exml/Document.cpp',
 		'exml/Element.cpp',
 		'exml/Node.cpp',
-		'exml/Text.cpp'
+		'exml/Text.cpp',
+		])
+	my_module.add_src_file([
+		'exml/internal/Attribute.cpp',
+		'exml/internal/AttributeList.cpp',
+		'exml/internal/Comment.cpp',
+		'exml/internal/Declaration.cpp',
+		'exml/internal/Document.cpp',
+		'exml/internal/Element.cpp',
+		'exml/internal/Node.cpp',
+		'exml/internal/Text.cpp'
 		])
 	my_module.add_header_file([
 		'exml/FilePos.h',
+		'exml/nodeType.h',
 		'exml/exml.h',
+		'exml/iterator.h',
 		'exml/Attribute.h',
 		'exml/AttributeList.h',
 		'exml/Comment.h',
@@ -50,7 +63,15 @@ def create(target, module_name):
 		'exml/Document.h',
 		'exml/Element.h',
 		'exml/Node.h',
-		'exml/Text.h'
+		'exml/Text.h',
+		'exml/internal/Attribute.h',
+		'exml/internal/AttributeList.h',
+		'exml/internal/Comment.h',
+		'exml/internal/Declaration.h',
+		'exml/internal/Document.h',
+		'exml/internal/Element.h',
+		'exml/internal/Node.h',
+		'exml/internal/Text.h'
 		])
 	my_module.add_path(tools.get_current_path(__file__))
 	return my_module

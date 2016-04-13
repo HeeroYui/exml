@@ -1,11 +1,14 @@
 /** @file
  * @author Edouard DUPIN
  * 
- * @copyright 2011, Edouard DUPIN, all right reserved
+ * @copyright 2016, Edouard DUPIN, all right reserved
  * 
  * @license APACHE v2.0 (see license file)
  */
+
 #pragma once
 
-#include <exml/Document.h>
+namespace appl {
+	void write();
+}
 

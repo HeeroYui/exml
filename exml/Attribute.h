@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -11,55 +11,57 @@
 #include <vector>
 
 namespace exml {
+	namespace internal {
+		class Attribute;
+	}
+	class AttributeListData;
 	/**
 	 * @brief Single attribute element
 	 */
 	class Attribute : public exml::Node {
-		protected:
+		public:
+			/**
+			 * @brief Constructor
+			 * @param[in] _internalNode Internal Node to set data
+			 */
+			Attribute(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			// TODO : Attribute(nullptr);
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			Attribute(const exml::Attribute& _obj);
 			/**
 			 * @brief Constructor
 			 * @param[in] _name Name of the attribute.
 			 * @param[in] _value Value of the attribute.
 			 */
 			Attribute(const std::string& _name="", const std::string& _value="");
-		public:
 			/**
-			 * @brief defined factory
-			 * @param[in] _name Name of the attribute
-			 * @param[in] _value Value of the attribute
-			 * @return Shared pointer on the Attribute element
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
 			 */
-			static ememory::SharedPtr<Attribute> create(const std::string& _name="", const std::string& _value="");
-		protected:
-			std::string m_name; //!< Name of the attribute
+			exml::Attribute& operator= (const exml::Attribute& _obj);
 		public:
 			/**
 			 * @brief set the name of the attribute
 			 * @param[in] _name New name of the attribute
 			 */
-			virtual void setName(const std::string& _name) {
-				m_name = _name;
-			};
+			virtual void setName(const std::string& _name);
 			/**
 			 * @brief get the current name of the Attribute
 			 * @return String of the attribute
 			 */
-			virtual const std::string& getName() const {
-				return m_name;
-			};
+			virtual const std::string& getName() const;
 		public:
-			enum nodeType getType() const override {
-				return exml::nodeType_attribute;
-			};
-			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
-			bool iGenerate(std::string& _data, int32_t _indent) const override;
-			ememory::SharedPtr<exml::Attribute> toAttribute() override {
-				return std::static_pointer_cast<exml::Attribute>(shared_from_this());
-			};
-			ememory::SharedPtr<const exml::Attribute> toAttribute() const override {
-				return std::static_pointer_cast<const exml::Attribute>(shared_from_this());
-			};
 			void clear() override;
+		friend class exml::AttributeListData;
+		private:
+			ememory::SharedPtr<exml::internal::Attribute> getInternalAttribute();
 	};
 }
 

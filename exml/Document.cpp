@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -8,142 +8,113 @@
 
 #include <exml/Document.h>
 #include <exml/debug.h>
-#include <etk/os/FSNode.h>
+#include <exml/internal/Document.h>
 
-ememory::SharedPtr<exml::Document> exml::Document::create() {
-	return ememory::SharedPtr<exml::Document>(new exml::Document());
+exml::Document::Document(ememory::SharedPtr<exml::internal::Node> _internalNode) :
+  exml::Element(_internalNode) {
+	if (m_data == nullptr) {
+		return;
+	}
+	if (m_data->isDocument() == false) {
+		// try to set wrong type inside ... ==> remove it ...
+		m_data = nullptr;
+	}
+}
+
+exml::Document::Document(const exml::Document& _obj) :
+  exml::Element(_obj.m_data) {
+	
 }
 
 exml::Document::Document() :
-  m_caseSensitive(false),
-  m_writeErrorWhenDetexted(true),
-  m_comment(""),
-  m_Line(""),
-  m_filePos(0,0) {
-	
+  exml::Element() {
+	m_data = exml::internal::Document::create();
 }
 
-
-bool exml::Document::iGenerate(std::string& _data, int32_t _indent) const {
-	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if (m_listSub[iii] != nullptr) {
-			m_listSub[iii]->iGenerate(_data, _indent);
-		}
-	}
-	return true;
+exml::Document& exml::Document::operator= (const exml::Document& _obj) {
+	m_data = _obj.m_data;
+	return *this;
 }
 
 bool exml::Document::parse(const std::string& _data) {
-	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.size());
-	clear();
-	// came from char  == > force in utf8 ...
-	exml::FilePos filePos(1,0);
-	m_pos = filePos;
-	int32_t parsePos = 0;
-	return subParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not parse (nullptr) ...");
+		return false;
+	}
+	return static_cast<exml::internal::Document*>(m_data.get())->parse(_data);
 }
 
 bool exml::Document::generate(std::string& _data) {
-	_data = "";
-	return iGenerate(_data,0);
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not generate (nullptr) ...");
+		return false;
+	}
+	return static_cast<exml::internal::Document*>(m_data.get())->generate(_data);
 }
 
 bool exml::Document::load(const std::string& _file) {
-	// Start loading the XML : 
-	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
-	clear();
-	etk::FSNode tmpFile(_file);
-	if (tmpFile.exist() == false) {
-		EXML_ERROR("File Does not exist : " << _file);
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not load (nullptr) ...");
 		return false;
 	}
-	int64_t fileSize = tmpFile.fileSize();
-	if (fileSize == 0) {
-		EXML_ERROR("This file is empty : " << _file);
-		return false;
-	}
-	if (tmpFile.fileOpenRead() == false) {
-		EXML_ERROR("Can not open (r) the file : " << _file);
-		return false;
-	}
-	// allocate data
-	std::vector<char> fileBuffer;
-	fileBuffer.resize(fileSize+5, 0);
-	// load data from the file :
-	tmpFile.fileRead(&fileBuffer[0], 1, fileSize);
-	// close the file:
-	tmpFile.fileClose();
-	
-	// convert in UTF8 :
-	std::string tmpDataUnicode(&fileBuffer[0]);
-	// parse the data :
-	bool ret = parse(tmpDataUnicode);
-	//Display();
-	return ret;
+	return static_cast<exml::internal::Document*>(m_data.get())->load(_file);
 }
 
 bool exml::Document::store(const std::string& _file) {
-	std::string createData;
-	if (generate(createData) == false) {
-		EXML_ERROR("Error while creating the XML : " << _file);
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not store (nullptr) ...");
 		return false;
 	}
-	etk::FSNode tmpFile(_file);
-	if (tmpFile.fileOpenWrite() == false) {
-		EXML_ERROR("Can not open (w) the file : " << _file);
-		return false;
-	}
-	if (tmpFile.fileWrite((char*)createData.c_str(), sizeof(char), createData.size()) != (int64_t)createData.size()) {
-		EXML_ERROR("Error while writing output XML file : " << _file);
-		tmpFile.fileClose();
-		return false;
-	}
-	tmpFile.fileClose();
-	return true;
+	return static_cast<exml::internal::Document*>(m_data.get())->store(_file);
 }
 
 void exml::Document::display() {
-	std::string tmpp;
-	iGenerate(tmpp, 0);
-	EXML_INFO("Generated XML : \n" << tmpp);
-}
-
-std::string createPosPointer(const std::string& _line, int32_t _pos) {
-	std::string out;
-	size_t iii;
-	for (iii=0; (int64_t)iii<_pos && iii<_line.size(); iii++) {
-		if (_line[iii] == '\t') {
-			out += "\t";
-		} else {
-			out += " ";
-		}
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not display (nullptr) ...");
+		return;
 	}
-	for (; (int64_t)iii<_pos; iii++) {
-		out += " ";
-	}
-	out += "^";
-	return out;
+	static_cast<exml::internal::Document*>(m_data.get())->display();
 }
 
 void exml::Document::displayError() {
-	if (m_comment.size() == 0) {
-		EXML_ERROR("No error detected ???");
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not displayError (nullptr) ...");
 		return;
 	}
-	EXML_ERROR(m_filePos << " " << m_comment << "\n"
-	           << m_Line << "\n"
-	           << createPosPointer(m_Line, m_filePos.getCol()) );
-	#ifdef ENABLE_CRITICAL_WHEN_ERROR
-		EXML_CRITICAL("detect error");
-	#endif
+	static_cast<exml::internal::Document*>(m_data.get())->displayError();
 }
 
-void exml::Document::createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment) {
-	m_comment = _comment;
-	m_Line = etk::extract_line(_data, _pos);
-	m_filePos = _filePos;
-	if (m_writeErrorWhenDetexted== true) {
-		displayError();
+
+void exml::Document::setCaseSensitive(bool _val) {
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not setCaseSensitive (nullptr) ...");
+		return;
 	}
+	static_cast<exml::internal::Document*>(m_data.get())->setCaseSensitive(_val);
 }
+
+bool exml::Document::getCaseSensitive() const {
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not getCaseSensitive (nullptr) ...");
+		return false;
+	}
+	return static_cast<exml::internal::Document*>(m_data.get())->getCaseSensitive();
+}
+
+void exml::Document::displayErrorWhenDetected() {
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not displayErrorWhenDetected (nullptr) ...");
+		return;
+	}
+	static_cast<exml::internal::Document*>(m_data.get())->displayErrorWhenDetected();
+}
+
+void exml::Document::notDisplayErrorWhenDetected() {
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not notDisplayErrorWhenDetected (nullptr) ...");
+		return;
+	}
+	static_cast<exml::internal::Document*>(m_data.get())->notDisplayErrorWhenDetected();
+}
+
 

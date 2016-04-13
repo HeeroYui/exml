@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -7,6 +7,7 @@
  */
 #pragma once
 
+#include <exml/Node.h>
 #include <exml/AttributeList.h>
 
 namespace exml {
@@ -14,34 +15,27 @@ namespace exml {
 	 * @brief Declaration node: &lt;?XXXXXX ... &gt;
 	 */
 	class Declaration : public exml::AttributeList {
-		protected:
+		public:
+			/**
+			 * @brief Constructor
+			 * @param[in] _internalNode Internal Node to set data
+			 */
+			Declaration(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			Declaration(const exml::Declaration& _obj);
 			/**
 			 * @brief Constructor
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
-			Declaration(const std::string& _name="") :
-			  exml::AttributeList(_name) {
-				
-			};
-		public:
+			Declaration(const std::string& _name="");
 			/**
-			 * @brief Factory to create declaration
-			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
-			 * @return a structure declaration
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
 			 */
-			static ememory::SharedPtr<Declaration> create(const std::string& _name="");
-		public:
-			enum nodeType getType() const override{
-				return nodeType_attribute;
-			};
-			bool iGenerate(std::string& _data, int32_t _indent) const override;
-			bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::Document& _doc) override;
-			ememory::SharedPtr<exml::Declaration> toDeclaration() override {
-				return std::static_pointer_cast<exml::Declaration>(shared_from_this());
-			};
-			ememory::SharedPtr<const exml::Declaration> toDeclaration() const override {
-				return std::static_pointer_cast<const exml::Declaration>(shared_from_this());
-			};
+			exml::Declaration& operator= (const exml::Declaration& _obj);
 	};
 	/**
 	 * @brief Declaration node: &lt;?XML ... &gt;
@@ -49,21 +43,27 @@ namespace exml {
 	class DeclarationXML : public exml::Declaration {
 		public:
 			/**
+			 * @brief Constructor
+			 * @param[in] _internalNode Internal Node to set data
+			 */
+			DeclarationXML(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			/**
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
+			 */
+			DeclarationXML(const exml::DeclarationXML& _obj);
+			/**
 			 * @brief Constructor for the generic declaration : <?xml version="" format="UTF-8"?>
 			 * @param[in] _version Xml version.
 			 * @param[in] _format charset of the XML
 			 * @param[in] _standalone this document is standalone
 			 */
 			DeclarationXML(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
-		public:
 			/**
-			 * @brief Factory to create XML declaration
-			 * @param[in] _version Xml version.
-			 * @param[in] _format charset of the XML
-			 * @param[in] _standalone this document is standalone
-			 * @return a structure declaration
+			 * @brief Copy constructor
+			 * @param[in] _obj Object to copy
 			 */
-			static ememory::SharedPtr<DeclarationXML> create(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
+			exml::DeclarationXML& operator= (const exml::DeclarationXML& _obj);
 	};
 }
 

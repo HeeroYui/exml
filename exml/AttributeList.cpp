@@ -1,4 +1,4 @@
-/**
+/** @file
  * @author Edouard DUPIN
  * 
  * @copyright 2011, Edouard DUPIN, all right reserved
@@ -6,122 +6,104 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/AttributeList.h>
 #include <exml/debug.h>
+#include <exml/AttributeList.h>
+#include <exml/internal/AttributeList.h>
 
-ememory::SharedPtr<exml::Attribute> exml::AttributeList::getAttr(int32_t _id) {
-	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
-		return nullptr;
-	}
-	return m_listAttribute[_id];
+
+exml::AttributeList::AttributeList(ememory::SharedPtr<exml::internal::Node> _internalNode) :
+  exml::Node(_internalNode),
+  attributes(this) {
+	
 }
 
-ememory::SharedPtr<const exml::Attribute> exml::AttributeList::getAttr(int32_t _id) const {
-	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
-		return nullptr;
-	}
-	return m_listAttribute[_id];
+exml::AttributeList::AttributeList() :
+  exml::Node(),
+  attributes(this) {
+	
 }
 
-std::pair<std::string, std::string> exml::AttributeList::getAttrPair(int32_t _id) const {
-	ememory::SharedPtr<const exml::Attribute> att = getAttr(_id);
-	if (att == nullptr) {
-		return std::make_pair<std::string, std::string>("","");
-	}
-	return std::make_pair(att->getName(),att->getValue());
+exml::AttributeListData::AttributeListData(exml::AttributeList* _list) :
+  m_data(_list) {
+	
 }
 
+size_t exml::AttributeListData::size() const {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not sizeAttribute ...");
+		return 0;
+	}
+	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->sizeAttribute();
+	
+}
 
-void exml::AttributeList::appendAttribute(const ememory::SharedPtr<exml::Attribute>& _attr) {
-	if (_attr == nullptr) {
-		EXML_ERROR("Try to set an empty node");
+exml::Attribute exml::AttributeListData::operator[] (int32_t _id) {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not getAttr (nullptr) ...");
+		return exml::Attribute(ememory::SharedPtr<exml::internal::Attribute>(nullptr));
+	}
+	return exml::Attribute(static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttr(_id));
+}
+
+const exml::Attribute exml::AttributeListData::operator[] (int32_t _id) const {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not getAttr (nullptr) ...");
+		return exml::Attribute(ememory::SharedPtr<exml::internal::Attribute>(nullptr));
+	}
+	return exml::Attribute(static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttr(_id));
+}
+
+std::pair<std::string, std::string> exml::AttributeListData::getPair(int32_t _id) const {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not getAttrPair (nullptr) ...");
+		return std::pair<std::string, std::string>();
+	}
+	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttrPair(_id);
+}
+
+void exml::AttributeListData::add(exml::Attribute _attr) {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not appendAttribute (nullptr) ...");
 		return;
 	}
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if (m_listAttribute[iii] == _attr) {
-			EXML_ERROR("Try to add a node that is already added befor !!!");
-			return;
-		}
-	}
-	m_listAttribute.push_back(_attr);
+	static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->appendAttribute(_attr.getInternalAttribute());
 }
 
-const std::string& exml::AttributeList::getAttribute(const std::string& _name) const {
-	static const std::string errorReturn("");
-	if (_name.size() == 0) {
-		return errorReturn;
+const std::string& exml::AttributeListData::get(const std::string& _name) const {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not getAttribute (nullptr) ...");
+		static std::string errorValue("");
+		return errorValue;
 	}
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if(    m_listAttribute[iii] != nullptr
-		    && m_listAttribute[iii]->getName() == _name) {
-			return m_listAttribute[iii]->getValue();
-		}
-	}
-	return errorReturn;
+	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttribute(_name);
 }
 
-
-bool exml::AttributeList::existAttribute(const std::string& _name) const {
-	if (_name.size() == 0) {
+bool exml::AttributeListData::exist(const std::string& _name) const {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not getAttribute (nullptr) ...");
 		return false;
 	}
-	for (size_t iii=0; iii<m_listAttribute.size(); ++iii) {
-		if(    m_listAttribute[iii] != nullptr
-		    && m_listAttribute[iii]->getName() == _name) {
-			return true;
-		}
-	}
-	return false;
+	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->existAttribute(_name);
 }
 
-bool exml::AttributeList::removeAttribute(const std::string& _name) {
-	if (_name.size() == 0) {
+bool exml::AttributeListData::remove(const std::string& _name) {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not removeAttribute (nullptr) ...");
 		return false;
 	}
-	auto it = m_listAttribute.begin();
-	while (it != m_listAttribute.end()) {
-		if (*it == nullptr) {
-			it = m_listAttribute.erase(it);
-			continue;
-		}
-		if((*it)->getName() == _name) {
-			it = m_listAttribute.erase(it);
-			return true;
-		}
-		it++;
-	}
-	return false;
+	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->removeAttribute(_name);
 }
 
-void exml::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
-	// check if attribute already det :
-	for (size_t iii=0; iii<m_listAttribute.size(); ++iii) {
-		if(    m_listAttribute[iii] != nullptr
-		    && m_listAttribute[iii]->getName() == _name) {
-			// update the value :
-			m_listAttribute[iii]->setValue(_value);
-			return;
-		}
+void exml::AttributeListData::set(const std::string& _name, const std::string& _value) {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not setAttribute (nullptr) ...");
+		return;
 	}
-	ememory::SharedPtr<exml::Attribute> attr = exml::Attribute::create(_name, _value);
-	if (attr == nullptr) {
-		EXML_ERROR("memory allocation error...");
-	}
-	m_listAttribute.push_back(attr);
+	static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->setAttribute(_name, _value);
 }
 
-bool exml::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
-	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
-		if (m_listAttribute[iii] != nullptr) {
-			m_listAttribute[iii]->iGenerate(_data, _indent);
-		}
-	}
-	return true;
-}
+#include <exml/details/iterator.hxx>
 
-void exml::AttributeList::clear() {
-	exml::Node::clear();
-	m_listAttribute.clear();
-}
+template class exml::iterator<exml::AttributeListData, exml::Attribute>;
 
 
