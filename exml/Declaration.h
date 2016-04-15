@@ -58,7 +58,7 @@ namespace exml {
 			 * @param[in] _format charset of the XML
 			 * @param[in] _standalone this document is standalone
 			 */
-			DeclarationXML(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
+			DeclarationXML(const std::string& _version="0.0", const std::string& _format = "UTF-8", bool _standalone = true);
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy

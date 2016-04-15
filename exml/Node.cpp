@@ -37,7 +37,7 @@ exml::Node::Node() :
 	
 }
 
-bool exml::Node::exist() {
+bool exml::Node::exist() const {
 	if (m_data == nullptr) {
 		return false;
 	}

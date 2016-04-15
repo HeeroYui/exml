@@ -60,7 +60,7 @@ namespace exml {
 			 * @param[in] _name Attribute Name.
 			 * @return Value of the attribute or no data in the string
 			 */
-			const std::string& get(const std::string& _name) const;
+			const std::string& operator[](const std::string& _name) const;
 			/**
 			 * @brief check if an attribute exist or not with his name.
 			 * @param[in] _name Attribute Name.

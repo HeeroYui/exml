@@ -10,14 +10,16 @@
 #include <exml/debug.h>
 
 ememory::SharedPtr<exml::internal::Attribute> exml::internal::AttributeList::getAttr(int32_t _id) {
-	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
+	if (    _id < 0
+	     || size_t(_id) >= m_listAttribute.size()) {
 		return nullptr;
 	}
 	return m_listAttribute[_id];
 }
 
 ememory::SharedPtr<const exml::internal::Attribute> exml::internal::AttributeList::getAttr(int32_t _id) const {
-	if (_id <0 || (size_t)_id>m_listAttribute.size()) {
+	if (    _id < 0
+	     || size_t(_id) >= m_listAttribute.size()) {
 		return nullptr;
 	}
 	return m_listAttribute[_id];

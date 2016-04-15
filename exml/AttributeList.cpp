@@ -56,7 +56,7 @@ const exml::Attribute exml::AttributeListData::operator[] (int32_t _id) const {
 std::pair<std::string, std::string> exml::AttributeListData::getPair(int32_t _id) const {
 	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not getAttrPair (nullptr) ...");
-		return std::pair<std::string, std::string>();
+		return std::pair<std::string, std::string>("","");
 	}
 	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttrPair(_id);
 }
@@ -69,7 +69,7 @@ void exml::AttributeListData::add(exml::Attribute _attr) {
 	static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->appendAttribute(_attr.getInternalAttribute());
 }
 
-const std::string& exml::AttributeListData::get(const std::string& _name) const {
+const std::string& exml::AttributeListData::operator[](const std::string& _name) const {
 	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not getAttribute (nullptr) ...");
 		static std::string errorValue("");

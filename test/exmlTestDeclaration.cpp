@@ -23,7 +23,8 @@ TEST(TestDeclaration, createCopy) {
 
 TEST(TestDeclaration, createAssignement) {
 	exml::Declaration myDeclaration("type");
-	exml::Declaration myOtherDeclaration = myDeclaration;
+	exml::Declaration myOtherDeclaration;
+	myOtherDeclaration = myDeclaration;
 	//EXPECT_EQ(myDeclaration, myOtherDeclaration);
 }
 

@@ -37,14 +37,16 @@ enum exml::nodeType exml::internal::Element::getType(int32_t _id) const {
 }
 
 ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(int32_t _id) {
-	if (_id <0 || (size_t)_id>m_listSub.size()) {
+	if (    _id <0
+	     || (size_t)_id>=m_listSub.size()) {
 		return nullptr;
 	}
 	return m_listSub[_id];
 }
 
 ememory::SharedPtr<const exml::internal::Node> exml::internal::Element::getNode(int32_t _id) const {
-	if (_id <0 || (size_t)_id>m_listSub.size()) {
+	if (    _id <0
+	     || (size_t)_id>=m_listSub.size()) {
 		return nullptr;
 	}
 	return m_listSub[_id];
@@ -117,6 +119,22 @@ void exml::internal::Element::append(const ememory::SharedPtr<exml::internal::No
 		}
 	}
 	m_listSub.push_back(_node);
+}
+
+void exml::internal::Element::remove(const std::string& _nodeName) {
+	if (_nodeName == "") {
+		return;
+	}
+	auto it = m_listSub.begin();
+	while (it != m_listSub.end()) {
+		if (*it == nullptr) {
+			it = m_listSub.erase(it);
+		} else if ((*it)->getValue() == _nodeName) {
+			it = m_listSub.erase(it);
+		} else {
+			++it;
+		}
+	}
 }
 
 std::string exml::internal::Element::getText() const {

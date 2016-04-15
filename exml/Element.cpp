@@ -12,7 +12,8 @@
 
 
 exml::Element::Element(ememory::SharedPtr<exml::internal::Node> _internalNode) :
-  exml::AttributeList(_internalNode) {
+  exml::AttributeList(_internalNode),
+  nodes(this) {
 	if (m_data == nullptr) {
 		return;
 	}
@@ -23,12 +24,14 @@ exml::Element::Element(ememory::SharedPtr<exml::internal::Node> _internalNode) :
 }
 
 exml::Element::Element(const exml::Element& _obj) :
-  exml::AttributeList(_obj.m_data) {
+  exml::AttributeList(_obj.m_data),
+  nodes(this) {
 	
 }
 
 exml::Element::Element(const std::string& _data) :
-  exml::AttributeList() {
+  exml::AttributeList(),
+  nodes(this) {
 	m_data = exml::internal::Element::create(_data);
 }
 
@@ -37,61 +40,73 @@ exml::Element& exml::Element::operator= (const exml::Element& _obj) {
 	return *this;
 }
 
-size_t exml::Element::size() const {
-	if (m_data == nullptr) {
+exml::ElementData::ElementData(exml::Element* _elem) :
+  m_data(_elem) {
+	
+}
+
+size_t exml::ElementData::size() const {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
 		return 0;
 	}
-	return static_cast<exml::internal::Element*>(m_data.get())->size();
+	return static_cast<exml::internal::Element*>(m_data->m_data.get())->size();
 }
 
-
-enum exml::nodeType exml::Element::getType(int32_t _id) const {
-	if (m_data == nullptr) {
+enum exml::nodeType exml::ElementData::getType(int32_t _id) const {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
 		return exml::nodeType_unknow;
 	}
-	return static_cast<exml::internal::Element*>(m_data.get())->getType(_id);
+	return static_cast<exml::internal::Element*>(m_data->m_data.get())->getType(_id);
 }
 
-exml::Node exml::Element::operator[](int32_t _id) {
-	if (m_data == nullptr) {
+exml::Node exml::ElementData::operator[](int32_t _id) {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
 		return exml::Node();
 	}
-	return exml::Node(static_cast<exml::internal::Element*>(m_data.get())->getNode(_id));
+	return exml::Node(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNode(_id));
 }
 
-const exml::Node exml::Element::operator[](int32_t _id) const {
-	if (m_data == nullptr) {
+const exml::Node exml::ElementData::operator[](int32_t _id) const {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
 		return exml::Node();
 	}
-	return exml::Node(static_cast<exml::internal::Element*>(m_data.get())->getNode(_id));
+	return exml::Node(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNode(_id));
 }
 
-exml::Element exml::Element::getNamed(const std::string& _name) {
-	if (m_data == nullptr) {
+exml::Element exml::ElementData::operator[](const std::string& _name) {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
 		return exml::Element();
 	}
-	return exml::Element(static_cast<exml::internal::Element*>(m_data.get())->getNamed(_name));
+	return exml::Element(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNamed(_name));
 }
 
-const exml::Element exml::Element::getNamed(const std::string& _name) const {
-	if (m_data == nullptr) {
+const exml::Element exml::ElementData::operator[] (const std::string& _name) const {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
 		return exml::Element();
 	}
-	return exml::Element(static_cast<exml::internal::Element*>(m_data.get())->getNamed(_name));
+	return exml::Element(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNamed(_name));
 }
 
-void exml::Element::append(const exml::Node& _node) {
-	if (m_data == nullptr) {
+void exml::ElementData::add(const exml::Node& _node) {
+	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not APPEND on null element ...");
 		return;
 	}
-	static_cast<exml::internal::Element*>(m_data.get())->append(_node.m_data);
+	static_cast<exml::internal::Element*>(m_data->m_data.get())->append(_node.m_data);
+}
+
+void exml::ElementData::remove(const std::string& _nodeName) {
+	if (m_data->m_data == nullptr) {
+		EXML_ERROR(" can not APPEND on null element ...");
+		return;
+	}
+	static_cast<exml::internal::Element*>(m_data->m_data.get())->remove(_nodeName);
 }
 
 std::string exml::Element::getText() const {
@@ -113,5 +128,5 @@ void exml::Element::clear() {
 
 #include <exml/details/iterator.hxx>
 
-template class exml::iterator<exml::Element, exml::Node>;
+template class exml::iterator<exml::ElementData, exml::Node>;
 

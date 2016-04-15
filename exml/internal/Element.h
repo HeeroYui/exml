@@ -53,6 +53,11 @@ namespace exml {
 				 */
 				void append(const ememory::SharedPtr<exml::internal::Node>& _node);
 				/**
+				 * @brief Remove all element with this name
+				 * @param[in] _nodeName Name of nodes to remove.
+				 */
+				void remove(const std::string& _nodeName);
+				/**
 				 * @brief get the type of the element id.
 				 * @param[in] _id Id of the element.
 				 * @return the Current type of the element or exml::internal::typeUnknow.

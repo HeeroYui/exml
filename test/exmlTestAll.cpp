@@ -50,7 +50,7 @@ TEST(TestAll, testCaseSensitive) {
 	               "		Text example ...\n"
 	               "	</ex2>\n"
 	               "</exemple>\n",
-	               1,
+	               -1,
 	               false);
 }
 

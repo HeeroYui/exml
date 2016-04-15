@@ -23,7 +23,8 @@ TEST(TestDeclarationXML, createCopy) {
 
 TEST(TestDeclarationXML, createAssignement) {
 	exml::DeclarationXML myDeclarationXML("1.0", "UTF-8", true);
-	exml::DeclarationXML myOtherDeclarationXML = myDeclarationXML;
+	exml::DeclarationXML myOtherDeclarationXML;
+	myOtherDeclarationXML = myDeclarationXML;
 	//EXPECT_EQ(myDeclarationXML, myOtherDeclarationXML);
 }
 

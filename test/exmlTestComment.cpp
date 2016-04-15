@@ -23,6 +23,14 @@ TEST(TestComment, createCopy) {
 
 TEST(TestComment, createAssignement) {
 	exml::Comment myComment("my comment");
-	exml::Comment myOtherComment = myComment;
+	exml::Comment myOtherComment;
+	myOtherComment = myComment;
+	//EXPECT_EQ(myComment, myOtherComment);
+}
+
+TEST(TestComment, transform) {
+	exml::Comment myComment("my comment");
+	exml::Node myNode = myComment;
+	myComment = myNode.toComment();
 	//EXPECT_EQ(myComment, myOtherComment);
 }

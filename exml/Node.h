@@ -25,12 +25,14 @@ namespace exml {
 	class Element;
 	class Text;
 	class AttributeListData;
+	class ElementData;
 	/**
 	 * @brief Basic main object of all xml elements.
 	 */
 	class Node {
 		friend class exml::Element;
 		friend class exml::AttributeListData;
+		friend class exml::ElementData;
 		protected:
 			ememory::SharedPtr<exml::internal::Node> m_data; //< internal reference on a node
 		public:
@@ -52,7 +54,7 @@ namespace exml {
 			/**
 			 * @brief Check if the element exit
 			 */
-			bool exist();
+			bool exist() const;
 			/**
 			 * @brief get the current position where the element is in the file
 			 * @return The file position reference
