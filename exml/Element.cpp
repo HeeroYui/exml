@@ -40,6 +40,23 @@ exml::Element& exml::Element::operator= (const exml::Element& _obj) {
 	return *this;
 }
 
+exml::ElementData::iterator exml::ElementData::begin() {
+	return exml::ElementData::iterator(*this, 0);
+}
+
+exml::ElementData::iterator exml::ElementData::end() {
+	return exml::ElementData::iterator(*this, size());
+}
+
+const exml::ElementData::iterator exml::ElementData::begin() const {
+	return exml::ElementData::iterator(*this, 0);
+}
+
+const exml::ElementData::iterator exml::ElementData::end() const {
+	return exml::ElementData::iterator(*this, size());
+}
+
+
 exml::ElementData::ElementData(exml::Element* _elem) :
   m_data(_elem) {
 	

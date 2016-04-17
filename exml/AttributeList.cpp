@@ -106,4 +106,19 @@ void exml::AttributeListData::set(const std::string& _name, const std::string& _
 
 template class exml::iterator<exml::AttributeListData, exml::Attribute>;
 
+exml::AttributeListData::iterator exml::AttributeListData::begin() {
+	return exml::AttributeListData::iterator(*this, 0);
+}
+
+exml::AttributeListData::iterator exml::AttributeListData::end() {
+	return exml::AttributeListData::iterator(*this, size());
+}
+
+const exml::AttributeListData::iterator exml::AttributeListData::begin() const {
+	return exml::AttributeListData::iterator(*this, 0);
+}
+
+const exml::AttributeListData::iterator exml::AttributeListData::end() const {
+	return exml::AttributeListData::iterator(*this, size());
+}
 

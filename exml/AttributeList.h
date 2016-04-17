@@ -75,12 +75,10 @@ namespace exml {
 			void set(const std::string& _name, const std::string& _value);
 		public:
 			using iterator = exml::iterator<exml::AttributeListData, exml::Attribute>;
-			iterator begin() {
-				return iterator(*this, 0);
-			}
-			iterator end() {
-				return iterator(*this, size());
-			}
+			iterator begin();
+			iterator end();
+			const iterator begin() const;
+			const iterator end() const;
 	};
 	
 	/**

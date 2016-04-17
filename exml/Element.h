@@ -70,12 +70,10 @@ namespace exml {
 			const exml::Element operator[] (const std::string& _name) const;
 		public:
 			using iterator = exml::iterator<exml::ElementData, exml::Node>;
-			iterator begin() {
-				return iterator(*this, 0);
-			}
-			iterator end() {
-				return iterator(*this, size());
-			}
+			iterator begin();
+			iterator end();
+			const iterator begin() const;
+			const iterator end() const;
 	};
 	/**
 	 * @brief Basic element Node of an XML document &lt;YYYYY&gt;
