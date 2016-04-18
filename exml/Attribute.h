@@ -57,6 +57,11 @@ namespace exml {
 			 * @return String of the attribute
 			 */
 			virtual const std::string& getName() const;
+			/**
+			 * @brief get attribute name and value
+			 * @return Name and value of the attribute
+			 */
+			std::pair<std::string, std::string> getPair() const;
 		public:
 			void clear() override;
 		friend class exml::AttributeListData;
