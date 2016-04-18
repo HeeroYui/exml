@@ -33,7 +33,7 @@ namespace exml {
 				}
 			public:
 				enum nodeType getType() const override {
-					return nodeType_comment;
+					return nodeType::comment;
 				}
 				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
 				bool iGenerate(std::string& _data, int32_t _indent) const override;

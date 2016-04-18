@@ -14,7 +14,7 @@
 
 TEST(TestElement, create) {
 	exml::Element myElement("NodeName");
-	EXPECT_EQ(myElement.getType(), exml::nodeType_element);
+	EXPECT_EQ(myElement.getType(), exml::nodeType::element);
 }
 
 TEST(TestElement, createCopy) {
@@ -55,7 +55,7 @@ TEST(TestElement, getText2 ) {
 
 TEST(TestElement, getTypeId ) {
 	exml::Element myElement("NodeName");
-	EXPECT_EQ(myElement.nodes.getType(1), exml::nodeType_unknow);
+	EXPECT_EQ(myElement.nodes.getType(1), exml::nodeType::unknow);
 }
 
 TEST(TestElement, getNamed ) {

@@ -16,15 +16,15 @@ namespace exml {
 	/**
 	 * @brief Type of the XML elements.
 	 */
-	enum nodeType {
-		nodeType_unknow, //!< might be an error ...
-		nodeType_node, //!< might be an error ...
-		nodeType_document, //!< all the file main access
-		nodeType_declaration, //!< &lt;?xml ... ?&gt;
-		nodeType_attribute, //!< the &lt;Element ATTRIBUTE="ATTRIBUTE_VALUE" /&gt;
-		nodeType_element,  //!< the &lt;XXX&gt; ... &lt;/XXX&gt;
-		nodeType_comment, //!< comment node : &lt;!--   --&gt;
-		nodeType_text, //!< &lt;XXX&gt; InsideText &lt;/XXX&gt;
+	enum class nodeType {
+		unknow, //!< might be an error ...
+		node, //!< might be an error ...
+		document, //!< all the file main access
+		declaration, //!< &lt;?xml ... ?&gt;
+		attribute, //!< the &lt;Element ATTRIBUTE="ATTRIBUTE_VALUE" /&gt;
+		element,  //!< the &lt;XXX&gt; ... &lt;/XXX&gt;
+		comment, //!< comment node : &lt;!--   --&gt;
+		text, //!< &lt;XXX&gt; InsideText &lt;/XXX&gt;
 	};
 	//! @not_in_doc
 	std::ostream& operator <<(std::ostream& _os, enum nodeType _obj);

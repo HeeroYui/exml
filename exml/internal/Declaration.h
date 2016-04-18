@@ -33,7 +33,7 @@ namespace exml {
 				static ememory::SharedPtr<Declaration> create(const std::string& _name="");
 			public:
 				enum nodeType getType() const override{
-					return nodeType_declaration;
+					return nodeType::declaration;
 				};
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
 				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;

@@ -13,7 +13,7 @@
 
 TEST(TestAttribute, create) {
 	exml::Attribute myAttribute("nameAttribute", "valueAttribute");
-	EXPECT_EQ(myAttribute.getType(), exml::nodeType_attribute);
+	EXPECT_EQ(myAttribute.getType(), exml::nodeType::attribute);
 }
 
 TEST(TestAttribute, createCopy) {

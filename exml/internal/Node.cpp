@@ -126,7 +126,7 @@ const std::string& exml::internal::Node::getValue() const {
 }
 
 enum exml::nodeType exml::internal::Node::getType() const {
-	return nodeType_node;
+	return nodeType::node;
 }
 
 ememory::SharedPtr<exml::internal::Document> exml::internal::Node::toDocument() {
@@ -178,26 +178,26 @@ ememory::SharedPtr<const exml::internal::Text> exml::internal::Node::toText() co
 }
 
 bool exml::internal::Node::isDocument() const {
-	return getType() == exml::nodeType_document;
+	return getType() == exml::nodeType::document;
 }
 
 bool exml::internal::Node::isAttribute() const {
-	return getType() == exml::nodeType_attribute;
+	return getType() == exml::nodeType::attribute;
 }
 
 bool exml::internal::Node::isComment() const {
-	return getType() == exml::nodeType_comment;
+	return getType() == exml::nodeType::comment;
 }
 
 bool exml::internal::Node::isDeclaration() const {
-	return getType() == exml::nodeType_declaration;
+	return getType() == exml::nodeType::declaration;
 }
 
 bool exml::internal::Node::isElement() const {
-	return getType() == exml::nodeType_element;
+	return getType() == exml::nodeType::element;
 }
 
 bool exml::internal::Node::isText() const {
-	return getType() == exml::nodeType_text;
+	return getType() == exml::nodeType::text;
 }
 

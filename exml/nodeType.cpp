@@ -13,29 +13,29 @@
 
 std::ostream& exml::operator <<(std::ostream& _os, enum exml::nodeType _obj) {
 	switch (_obj) {
-		case nodeType_unknow:
-			_os << "exml::nodeType_unknow";
+		case nodeType::unknow:
+			_os << "exml::nodeType::unknow";
 			break;
-		case nodeType_node:
-			_os << "exml::nodeType_node";
+		case nodeType::node:
+			_os << "exml::nodeType::node";
 			break;
-		case nodeType_document:
-			_os << "exml::nodeType_document";
+		case nodeType::document:
+			_os << "exml::nodeType::document";
 			break;
-		case nodeType_declaration:
-			_os << "exml::nodeType_declaration";
+		case nodeType::declaration:
+			_os << "exml::nodeType::declaration";
 			break;
-		case nodeType_attribute:
-			_os << "exml::nodeType_attribute";
+		case nodeType::attribute:
+			_os << "exml::nodeType::attribute";
 			break;
-		case nodeType_element:
-			_os << "exml::nodeType_element";
+		case nodeType::element:
+			_os << "exml::nodeType::element";
 			break;
-		case nodeType_comment:
-			_os << "exml::nodeType_comment";
+		case nodeType::comment:
+			_os << "exml::nodeType::comment";
 			break;
-		case nodeType_text:
-			_os << "exml::nodeType_text";
+		case nodeType::text:
+			_os << "exml::nodeType::text";
 			break;
 	}
 	return _os;

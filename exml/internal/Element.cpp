@@ -31,7 +31,7 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Element::create(cons
 enum exml::nodeType exml::internal::Element::getType(int32_t _id) const {
 	ememory::SharedPtr<const exml::internal::Node> tmpp = getNode(_id);
 	if (tmpp == nullptr) {
-		return exml::nodeType_unknow;
+		return exml::nodeType::unknow;
 	}
 	return tmpp->getType();
 }
@@ -75,7 +75,7 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(co
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    m_listSub[iii] != nullptr
-		    && m_listSub[iii]->getType() == exml::nodeType_element
+		    && m_listSub[iii]->getType() == exml::nodeType::element
 		    && m_listSub[iii]->getValue() == _name) {
 			if (m_listSub[iii] == nullptr) {
 				return nullptr;
@@ -92,7 +92,7 @@ ememory::SharedPtr<const exml::internal::Element> exml::internal::Element::getNa
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if(    m_listSub[iii] != nullptr
-		    && m_listSub[iii]->getType() == exml::nodeType_element
+		    && m_listSub[iii]->getType() == exml::nodeType::element
 		    && m_listSub[iii]->getValue() == _name) {
 			if (m_listSub[iii] == nullptr) {
 				return nullptr;
@@ -108,7 +108,7 @@ void exml::internal::Element::append(const ememory::SharedPtr<exml::internal::No
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
-	if (_node->getType() == exml::nodeType_attribute) {
+	if (_node->getType() == exml::nodeType::attribute) {
 		appendAttribute(_node->toAttribute());
 		return;
 	}
@@ -140,7 +140,7 @@ void exml::internal::Element::remove(const std::string& _nodeName) {
 std::string exml::internal::Element::getText() const {
 	std::string res;
 	if (m_listSub.size() == 1) {
-		if (m_listSub[0]->getType() == nodeType_text) {
+		if (m_listSub[0]->getType() == nodeType::text) {
 			res = m_listSub[0]->getValue();
 		} else {
 			m_listSub[0]->iGenerate(res, 0);
@@ -164,7 +164,7 @@ bool exml::internal::Element::iGenerate(std::string& _data, int32_t _indent) con
 	if (m_listSub.size()>0) {
 		if(    m_listSub.size() == 1
 		    && m_listSub[0] != nullptr
-		    && m_listSub[0]->getType() == exml::nodeType_text
+		    && m_listSub[0]->getType() == exml::nodeType::text
 		    && std::dynamic_pointer_cast<exml::internal::Text>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
 			m_listSub[0]->iGenerate(_data,0);

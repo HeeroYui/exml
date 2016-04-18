@@ -12,7 +12,7 @@
 
 TEST(TestDeclaration, create) {
 	exml::Declaration myDeclaration("type");
-	EXPECT_EQ(myDeclaration.getType(), exml::nodeType_declaration);
+	EXPECT_EQ(myDeclaration.getType(), exml::nodeType::declaration);
 }
 
 TEST(TestDeclaration, createCopy) {

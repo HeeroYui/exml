@@ -40,7 +40,7 @@ namespace exml {
 				int32_t countLines() const;
 			public:
 				enum nodeType getType() const override{
-					return nodeType_text;
+					return nodeType::text;
 				};
 				bool iParse(const std::string& _data,
 				            int32_t& _pos,

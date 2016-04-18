@@ -12,7 +12,7 @@
 
 TEST(TestDeclarationXML, create) {
 	exml::DeclarationXML myDeclarationXML("1.0", "UTF-8", true);
-	EXPECT_EQ(myDeclarationXML.getType(), exml::nodeType_declaration);
+	EXPECT_EQ(myDeclarationXML.getType(), exml::nodeType::declaration);
 }
 
 TEST(TestDeclarationXML, createCopy) {

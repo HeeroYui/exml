@@ -12,7 +12,7 @@
 
 TEST(TestComment, create) {
 	exml::Comment myComment("my Comment");
-	EXPECT_EQ(myComment.getType(), exml::nodeType_comment);
+	EXPECT_EQ(myComment.getType(), exml::nodeType::comment);
 }
 
 TEST(TestComment, createCopy) {

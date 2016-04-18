@@ -73,7 +73,7 @@ size_t exml::ElementData::size() const {
 enum exml::nodeType exml::ElementData::getType(int32_t _id) const {
 	if (m_data->m_data == nullptr) {
 		EXML_ERROR(" can not get type ...");
-		return exml::nodeType_unknow;
+		return exml::nodeType::unknow;
 	}
 	return static_cast<exml::internal::Element*>(m_data->m_data.get())->getType(_id);
 }

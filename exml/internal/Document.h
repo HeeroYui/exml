@@ -109,7 +109,7 @@ namespace exml {
 				void displayError();
 			public:
 				enum nodeType getType() const override {
-					return nodeType_document;
+					return nodeType::document;
 				}
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Document> toDocument() override {

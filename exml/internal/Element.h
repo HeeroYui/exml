@@ -124,7 +124,7 @@ namespace exml {
 				              bool _mainNode=false);
 			public:
 				enum nodeType getType() const override {
-					return nodeType_element;
+					return nodeType::element;
 				}
 				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
