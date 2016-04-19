@@ -17,7 +17,8 @@ exml::Element::Element(ememory::SharedPtr<exml::internal::Node> _internalNode) :
 	if (m_data == nullptr) {
 		return;
 	}
-	if (m_data->isElement() == false) {
+	if (    m_data->isElement() == false
+	     && m_data->isDocument() == false) {
 		// try to set wrong type inside ... ==> remove it ...
 		m_data = nullptr;
 	}

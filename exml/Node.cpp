@@ -156,7 +156,7 @@ bool exml::Node::isElement() const {
 	if (m_data == nullptr) {
 		return false;
 	}
-	return m_data->isElement();
+	return m_data->isElement() || m_data->isDocument();
 }
 
 bool exml::Node::isText() const {

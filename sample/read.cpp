@@ -24,7 +24,7 @@ void appl::read() {
 		TEST_INFO("	" << it);
 	}
 	TEST_INFO("list of sub-node:");
-	for (const auto it: doc) {
+	for (const auto it: doc.nodes) {
 		TEST_INFO("	" << it);
 		if (it.isElement() == false) {
 			continue;
@@ -38,7 +38,7 @@ void appl::read() {
 			TEST_INFO("			" << itElem);
 		}
 		TEST_INFO("		list of sub-node:");
-		for (const auto itElem: elem) {
+		for (const auto itElem: elem.nodes) {
 			TEST_INFO("			" << itElem);
 		}
 	}
