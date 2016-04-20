@@ -34,11 +34,11 @@ namespace exml {
 		friend class exml::AttributeListData;
 		friend class exml::ElementData;
 		protected:
-			ememory::SharedPtr<exml::internal::Node> m_data; //< internal reference on a node
+			ememory::SharedPtr<exml::internal::Node> m_data; //!< internal reference on a node
 		public:
 			/**
 			 * @brief basic element of a xml structure
-			 * @param[in] _value value of the node
+			 * @param[in] _internalNode Internal reference of the Node
 			 */
 			Node(ememory::SharedPtr<exml::internal::Node> _internalNode);
 			/**

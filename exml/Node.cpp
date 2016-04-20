@@ -70,7 +70,7 @@ const std::string& exml::Node::getValue() const {
 
 enum exml::nodeType exml::Node::getType() const {
 	if (m_data == nullptr) {
-		EXML_ERROR(" can not get type ...");
+		EXML_ERROR("Can not get type ...");
 		return exml::nodeType::unknow;
 	}
 	return m_data->getType();

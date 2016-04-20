@@ -57,7 +57,6 @@ const exml::ElementData::iterator exml::ElementData::end() const {
 	return exml::ElementData::iterator(*this, size());
 }
 
-
 exml::ElementData::ElementData(exml::Element* _elem) :
   m_data(_elem) {
 	
