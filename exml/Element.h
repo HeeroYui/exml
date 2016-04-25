@@ -1,8 +1,6 @@
 /** @file
  * @author Edouard DUPIN
- * 
  * @copyright 2011, Edouard DUPIN, all right reserved
- * 
  * @license APACHE v2.0 (see license file)
  */
 #pragma once
@@ -16,11 +14,17 @@ namespace exml {
 	
 	/**
 	 * @brief Basic element Node of an XML document &lt;YYYYY&gt;
+	 * @todo Remove node with a specisic ID/Iterator (erase)
+	 * @todo Remove an Node with his exml::Element link
 	 */
 	class ElementData {
 		private:
-			exml::Element* m_data;
+			exml::Element* m_data; //!< Pointer on the exml::Element class (must not be nullptr)
 		public:
+			/**
+			 * @brief constructor on the ElementData class
+			 * @param[in] _list Get pointer on the exml::Element class (must not be nullptr)
+			 */
 			ElementData(exml::Element* _list);
 		public:
 			/**
@@ -69,10 +73,26 @@ namespace exml {
 			 */
 			const exml::Element operator[] (const std::string& _name) const;
 		public:
-			using iterator = exml::iterator<exml::ElementData, exml::Node>;
+			using iterator = exml::iterator<exml::ElementData, exml::Node>; //!< Specify iterator of the element methode
+			/**
+			 * @brief Get iterator of the first sub nodes
+			 * @return iterator on the begin position of the nodes
+			 */
 			iterator begin();
+			/**
+			 * @brief Get iterator of the next of the last sub nodes
+			 * @return iterator on the next of the last position of the nodes
+			 */
 			iterator end();
+			/**
+			 * @brief Get const iterator of the first sub nodes
+			 * @return const iterator on the begin position of the nodes
+			 */
 			const iterator begin() const;
+			/**
+			 * @brief Get const iterator of the next of the last sub nodes
+			 * @return const iterator on the next of the last position of the nodes
+			 */
 			const iterator end() const;
 	};
 	/**
@@ -80,7 +100,7 @@ namespace exml {
 	 */
 	class Element : public exml::AttributeList {
 		public:
-			ElementData nodes;
+			ElementData nodes; //!< All Sub-nodes interface
 		public:
 			/**
 			 * @brief Constructor
@@ -100,6 +120,7 @@ namespace exml {
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
+			 * @return Local reference on this class
 			 */
 			exml::Element& operator= (const exml::Element& _obj);
 			/**

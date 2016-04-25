@@ -1,8 +1,6 @@
 /** @file
  * @author Edouard DUPIN
- * 
  * @copyright 2011, Edouard DUPIN, all right reserved
- * 
  * @license APACHE v2.0 (see license file)
  */
 #pragma once
@@ -21,11 +19,13 @@ namespace exml {
 		//#define ENABLE_DISPLAY_PARSED_ELEMENT
 		//#define ENABLE_CRITICAL_WHEN_ERROR
 		#if 1
+			//! manual debug element (when developpe exml)
 			#define EXML_PARSE_ELEMENT EXML_VERBOSE
 		#else
 			#define EXML_PARSE_ELEMENT EXML_DEBUG
 		#endif
 		#if 1
+			//! manual debug element (when developpe exml)
 			#define EXML_PARSE_ATTRIBUTE EXML_VERBOSE
 		#else
 			#define EXML_PARSE_ATTRIBUTE EXML_DEBUG

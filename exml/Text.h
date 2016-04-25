@@ -1,8 +1,6 @@
 /** @file
  * @author Edouard DUPIN
- * 
  * @copyright 2011, Edouard DUPIN, all right reserved
- * 
  * @license APACHE v2.0 (see license file)
  */
 #pragma once
@@ -34,6 +32,7 @@ namespace exml {
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
+			 * @return A reference on this object
 			 */
 			exml::Text& operator= (const exml::Text& _obj);
 	};

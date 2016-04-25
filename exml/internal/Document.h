@@ -1,8 +1,6 @@
 /** @file
  * @author Edouard DUPIN
- * 
  * @copyright 2011, Edouard DUPIN, all right reserved
- * 
  * @license APACHE v2.0 (see license file)
  */
 #pragma once
@@ -122,6 +120,14 @@ namespace exml {
 	}
 }
 
+/**
+ * @brief Automatic create error on the basic Document object
+ * @param[in] doc Document reference
+ * @param[in] data main string parsed
+ * @param[in] pos Position in the file
+ * @param[in] filePos position in linre row in the file
+ * @param[in] comment Comment of the error find
+ */
 #define CREATE_ERROR(doc,data,pos,filePos,comment) \
 	do { \
 		EXML_ERROR(comment); \

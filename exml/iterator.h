@@ -1,8 +1,6 @@
 /** @file
  * @author Edouard DUPIN
- * 
  * @copyright 2011, Edouard DUPIN, all right reserved
- * 
  * @license APACHE v2.0 (see license file)
  */
 #pragma once
@@ -20,13 +18,27 @@ namespace exml {
 			EXML_BASE_T& m_data; //!< Reference on the exml::Element
 			size_t m_id; //!< Id of the element that we are parsing
 		public:
+			/**
+			 * @brief Constructor of the generic object class
+			 * @param[in] _obj Reference on the object to go threw
+			 * @param[in] _pos Position in the object
+			 */
 			iterator(EXML_BASE_T& _obj, size_t _pos);
+			/**
+			 * @brief Const constructor of the generic const object class
+			 * @param[in] _obj Reference on the object to go threw
+			 * @param[in] _pos Position in the object
+			 */
 			iterator(const EXML_BASE_T& _obj, size_t _pos);
+			/**
+			 * @brief Copy iterator
+			 * @param[in] _obj Iterator to copy
+			 */
 			iterator(const iterator& _obj);
 			/**
-			 * @brief Operator+= Addition value
-			 * @param[in] _val Value to addition
-			 * @return Local reference of the iterator additionned
+			 * @brief Operator= Asignement iterator
+			 * @param[in] _obj Iterator to copy
+			 * @return Local reference of the iterator assigned
 			 */
 			iterator& operator= (const iterator& _obj);
 			/**

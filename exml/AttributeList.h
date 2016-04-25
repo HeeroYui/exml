@@ -1,8 +1,6 @@
 /** @file
  * @author Edouard DUPIN
- * 
  * @copyright 2011, Edouard DUPIN, all right reserved
- * 
  * @license APACHE v2.0 (see license file)
  */
 #pragma once
@@ -13,11 +11,17 @@
 
 namespace exml {
 	class AttributeList;
-	
+	/**
+	 * @brief Abstract interface on all attributes elements
+	 */
 	class AttributeListData {
 		private:
-			exml::AttributeList* m_data;
+			exml::AttributeList* m_data; //!< Pointer on the Attribute list class (must not be nullptr)
 		public:
+			/**
+			 * @brief Constructor on the AttributeListData class
+			 * @param[in] _list Point on the parrent class (must not be nullptr)
+			 */
 			AttributeListData(exml::AttributeList* _list);
 		public:
 			/**
@@ -74,10 +78,26 @@ namespace exml {
 			 */
 			void set(const std::string& _name, const std::string& _value);
 		public:
-			using iterator = exml::iterator<exml::AttributeListData, exml::Attribute>;
+			using iterator = exml::iterator<exml::AttributeListData, exml::Attribute>; //!< Specify iterator of the element methode
+			/**
+			 * @brief Get iterator of the first sub nodes
+			 * @return iterator on the begin position of the nodes
+			 */
 			iterator begin();
+			/**
+			 * @brief Get iterator of the next of the last sub nodes
+			 * @return iterator on the next of the last position of the nodes
+			 */
 			iterator end();
+			/**
+			 * @brief Get const iterator of the first sub nodes
+			 * @return const iterator on the begin position of the nodes
+			 */
 			const iterator begin() const;
+			/**
+			 * @brief Get const iterator of the next of the last sub nodes
+			 * @return const iterator on the next of the last position of the nodes
+			 */
 			const iterator end() const;
 	};
 	
@@ -86,11 +106,11 @@ namespace exml {
 	 */
 	class AttributeList : public exml::Node {
 		public:
-			AttributeListData attributes;
+			AttributeListData attributes; //!< interface on all attributes
 		protected:
 			/**
 			 * @brief basic element of a xml structure
-			 * @param[in] _value value of the node
+			 * @param[in] _internalNode Value of the node
 			 */
 			AttributeList(ememory::SharedPtr<exml::internal::Node> _internalNode);
 			/**
