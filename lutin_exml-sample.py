@@ -10,7 +10,7 @@ def get_sub_type():
 	return "SAMPLE"
 
 def get_desc():
-	return "e-signal sample 1"
+	return "e-xml sample"
 
 def get_licence():
 	return "APACHE-2"

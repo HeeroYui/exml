@@ -27,7 +27,7 @@ The file naming is manage by @ref etk::FSNode that provide "DATA:" start string 
 Read an XML Stream                              {#exml_tutorial_read_stream}
 ==================
 
-Reading a file is done like this:
+Reading a stream is done like this:
 @snippet read.cpp exml_sample_read_stream1
 
 In C and C++ it is very hard to read string with the \\" then to simplify parsing of xml the parser engine support the use of simple ' interface:
