@@ -123,6 +123,14 @@ std::string createPosPointer(const std::string& _line, int32_t _pos) {
 	return out;
 }
 
+void exml::internal::Document::setDisplayError(bool _value) {
+	m_writeErrorWhenDetexted = _value;
+}
+
+bool exml::internal::Document::getDisplayError() {
+	return m_writeErrorWhenDetexted;
+}
+
 void exml::internal::Document::displayError() {
 	if (m_comment.size() == 0) {
 		EXML_ERROR("No error detected ???");

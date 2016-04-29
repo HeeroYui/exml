@@ -82,17 +82,20 @@ namespace exml {
 				exml::FilePos m_filePos; //!< position of the error
 			public:
 				/**
-				 * @brief Request display error when detected (not print only at the end ...)
+				 * @brief Set the display of the error when detected.
+				 * @param[in] _value true: display error, false not display error (get it at end)
 				 */
-				void displayErrorWhenDetected() {
-					m_writeErrorWhenDetexted = true;
-				}
+				void setDisplayError(bool _value);
 				/**
-				 * @brief Request NOT display error when detected.
+				 * @brief Get the display of the error status.
+				 * @return true Display error
+				 * @return false Does not display error (get it at end)
 				 */
-				void notDisplayErrorWhenDetected() {
-					m_writeErrorWhenDetexted = false;
-				}
+				bool getDisplayError();
+				/**
+				 * @brief Request display in log of the error
+				 */
+				void displayError();
 				/**
 				 * @brief Create an error in the parsing (call by the syetm for error management)
 				 * @param[in] _data string of chat is wrong
@@ -101,10 +104,6 @@ namespace exml {
 				 * @param[in] _comment Error string to display
 				 */
 				void createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment);
-				/**
-				 * @brief request display in log of the error
-				 */
-				void displayError();
 			public:
 				enum nodeType getType() const override {
 					return nodeType::document;

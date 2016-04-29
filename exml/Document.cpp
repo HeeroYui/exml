@@ -74,15 +74,6 @@ void exml::Document::display() {
 	static_cast<exml::internal::Document*>(m_data.get())->display();
 }
 
-void exml::Document::displayError() {
-	if (m_data == nullptr) {
-		EXML_ERROR("Can not displayError (nullptr) ...");
-		return;
-	}
-	static_cast<exml::internal::Document*>(m_data.get())->displayError();
-}
-
-
 void exml::Document::setCaseSensitive(bool _val) {
 	if (m_data == nullptr) {
 		EXML_ERROR("Can not setCaseSensitive (nullptr) ...");
@@ -99,20 +90,26 @@ bool exml::Document::getCaseSensitive() const {
 	return static_cast<exml::internal::Document*>(m_data.get())->getCaseSensitive();
 }
 
-void exml::Document::displayErrorWhenDetected() {
+void exml::Document::setDisplayError(bool _value){
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not displayErrorWhenDetected (nullptr) ...");
+		EXML_ERROR("Can not setDisplayError (nullptr) ...");
 		return;
 	}
-	static_cast<exml::internal::Document*>(m_data.get())->displayErrorWhenDetected();
+	static_cast<exml::internal::Document*>(m_data.get())->setDisplayError(_value);
 }
 
-void exml::Document::notDisplayErrorWhenDetected() {
+bool exml::Document::getDisplayError() {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not notDisplayErrorWhenDetected (nullptr) ...");
+		EXML_ERROR("Can not getDisplayError (nullptr) ...");
+		return false;
+	}
+	return static_cast<exml::internal::Document*>(m_data.get())->getDisplayError();
+}
+
+void exml::Document::displayError() {
+	if (m_data == nullptr) {
+		EXML_ERROR("Can not displayError (nullptr) ...");
 		return;
 	}
-	static_cast<exml::internal::Document*>(m_data.get())->notDisplayErrorWhenDetected();
+	static_cast<exml::internal::Document*>(m_data.get())->displayError();
 }
-
-

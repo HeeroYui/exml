@@ -78,15 +78,18 @@ namespace exml {
 			 */
 			void display();
 			/**
-			 * @brief Request display error when detected (not print only at the end ...)
+			 * @brief Set the display of the error when detected.
+			 * @param[in] _value true: display error, false not display error (get it at end)
 			 */
-			void displayErrorWhenDetected();
+			void setDisplayError(bool _value);
 			/**
-			 * @brief Request NOT display error when detected.
+			 * @brief Get the display of the error status.
+			 * @return true Display error
+			 * @return false Does not display error (get it at end)
 			 */
-			void notDisplayErrorWhenDetected();
+			bool getDisplayError();
 			/**
-			 * @brief request display in log of the error
+			 * @brief Display error detected.
 			 */
 			void displayError();
 	};
