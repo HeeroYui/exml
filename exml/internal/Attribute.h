@@ -53,10 +53,10 @@ namespace exml {
 				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Attribute> toAttribute() override {
-					return std::static_pointer_cast<exml::internal::Attribute>(shared_from_this());
+					return ememory::staticPointerCast<exml::internal::Attribute>(sharedFromThis());
 				};
 				ememory::SharedPtr<const exml::internal::Attribute> toAttribute() const override {
-					return std::static_pointer_cast<const exml::internal::Attribute>(shared_from_this());
+					return ememory::staticPointerCast<const exml::internal::Attribute>(sharedFromThis());
 				};
 				void clear() override;
 		};

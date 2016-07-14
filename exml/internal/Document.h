@@ -110,10 +110,10 @@ namespace exml {
 				}
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Document> toDocument() override {
-					return std::static_pointer_cast<exml::internal::Document>(shared_from_this());
+					return ememory::staticPointerCast<exml::internal::Document>(sharedFromThis());
 				}
 				ememory::SharedPtr<const exml::internal::Document> toDocument() const override {
-					return std::static_pointer_cast<const exml::internal::Document>(shared_from_this());
+					return ememory::staticPointerCast<const exml::internal::Document>(sharedFromThis());
 				}
 		};
 	}

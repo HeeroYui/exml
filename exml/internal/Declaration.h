@@ -36,10 +36,10 @@ namespace exml {
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
 				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
 				ememory::SharedPtr<exml::internal::Declaration> toDeclaration() override {
-					return std::static_pointer_cast<exml::internal::Declaration>(shared_from_this());
+					return ememory::staticPointerCast<exml::internal::Declaration>(sharedFromThis());
 				};
 				ememory::SharedPtr<const exml::internal::Declaration> toDeclaration() const override {
-					return std::static_pointer_cast<const exml::internal::Declaration>(shared_from_this());
+					return ememory::staticPointerCast<const exml::internal::Declaration>(sharedFromThis());
 				};
 		};
 		/**

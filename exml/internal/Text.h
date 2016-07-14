@@ -47,10 +47,10 @@ namespace exml {
 				            exml::internal::Document& _doc) override;
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Text> toText() override {
-					return std::static_pointer_cast<exml::internal::Text>(shared_from_this());
+					return ememory::staticPointerCast<exml::internal::Text>(sharedFromThis());
 				};
 				ememory::SharedPtr<const exml::internal::Text> toText() const override {
-					return std::static_pointer_cast<const exml::internal::Text>(shared_from_this());
+					return ememory::staticPointerCast<const exml::internal::Text>(sharedFromThis());
 				};
 		};
 		/**

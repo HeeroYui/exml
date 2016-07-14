@@ -65,7 +65,7 @@ size_t exml::ElementData::size() const {
 		EXML_ERROR(" can not get type ...");
 		return 0;
 	}
-	return static_cast<exml::internal::Element*>(m_data->m_data.get())->size();
+	return static_cast<const exml::internal::Element*>(m_data->m_data.get())->size();
 }
 
 enum exml::nodeType exml::ElementData::getType(int32_t _id) const {
@@ -73,7 +73,7 @@ enum exml::nodeType exml::ElementData::getType(int32_t _id) const {
 		EXML_ERROR(" can not get type ...");
 		return exml::nodeType::unknow;
 	}
-	return static_cast<exml::internal::Element*>(m_data->m_data.get())->getType(_id);
+	return static_cast<const exml::internal::Element*>(m_data->m_data.get())->getType(_id);
 }
 
 exml::Node exml::ElementData::operator[](int32_t _id) {
@@ -89,7 +89,7 @@ const exml::Node exml::ElementData::operator[](int32_t _id) const {
 		EXML_ERROR(" can not get type ...");
 		return exml::Node();
 	}
-	return exml::Node(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNode(_id));
+	return exml::Node(static_cast<const exml::internal::Element*>(m_data->m_data.get())->getNode(_id));
 }
 
 exml::Element exml::ElementData::operator[](const std::string& _name) {
@@ -105,7 +105,7 @@ const exml::Element exml::ElementData::operator[] (const std::string& _name) con
 		EXML_ERROR(" can not get type ...");
 		return exml::Element();
 	}
-	return exml::Element(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNamed(_name));
+	return exml::Element(static_cast<const exml::internal::Element*>(m_data->m_data.get())->getNamed(_name));
 }
 
 void exml::ElementData::add(const exml::Node& _node) {
@@ -129,7 +129,7 @@ std::string exml::Element::getText() const {
 		EXML_ERROR(" can not APPEND on null element ...");
 		return "";
 	}
-	return static_cast<exml::internal::Element*>(m_data.get())->getText();
+	return static_cast<const exml::internal::Element*>(m_data.get())->getText();
 }
 
 void exml::Element::clear() {

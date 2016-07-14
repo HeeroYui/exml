@@ -53,7 +53,7 @@ const std::string& exml::Attribute::getName() const {
 		EXML_ERROR(" can not setName (nullptr) ...");
 		return errorValue;
 	}
-	return static_cast<exml::internal::Attribute*>(m_data.get())->getName();
+	return static_cast<const exml::internal::Attribute*>(m_data.get())->getName();
 }
 
 void exml::Attribute::clear() {
@@ -69,11 +69,11 @@ std::pair<std::string, std::string> exml::Attribute::getPair() const {
 		EXML_ERROR(" can not setName (nullptr) ...");
 		return std::pair<std::string, std::string>("","");
 	}
-	return std::pair<std::string, std::string>(static_cast<exml::internal::Attribute*>(m_data.get())->getName(),
-	                                           static_cast<exml::internal::Attribute*>(m_data.get())->getValue());
+	return std::pair<std::string, std::string>(static_cast<const exml::internal::Attribute*>(m_data.get())->getName(),
+	                                           static_cast<const exml::internal::Attribute*>(m_data.get())->getValue());
 }
 
 ememory::SharedPtr<exml::internal::Attribute> exml::Attribute::getInternalAttribute() {
-	return std::static_pointer_cast<exml::internal::Attribute>(m_data);
+	return ememory::staticPointerCast<exml::internal::Attribute>(m_data);
 }
 

@@ -87,7 +87,7 @@ bool exml::Document::getCaseSensitive() const {
 		EXML_ERROR("Can not getCaseSensitive (nullptr) ...");
 		return false;
 	}
-	return static_cast<exml::internal::Document*>(m_data.get())->getCaseSensitive();
+	return static_cast<const exml::internal::Document*>(m_data.get())->getCaseSensitive();
 }
 
 void exml::Document::setDisplayError(bool _value){
