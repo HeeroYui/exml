@@ -42,7 +42,7 @@ ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(int32_
 	return m_listSub[_id];
 }
 
-ememory::SharedPtr<const exml::internal::Node> exml::internal::Element::getNode(int32_t _id) const {
+const ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(int32_t _id) const {
 	if (    _id <0
 	     || (size_t)_id>=m_listSub.size()) {
 		return nullptr;
@@ -59,8 +59,8 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getElement(
 	return tmpp->toElement();
 }
 
-ememory::SharedPtr<const exml::internal::Element> exml::internal::Element::getElement(int32_t _id) const {
-	ememory::SharedPtr<const exml::internal::Node> tmpp = getNode(_id);
+const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getElement(int32_t _id) const {
+	const ememory::SharedPtr<exml::internal::Node> tmpp = getNode(_id);
 	if (tmpp == nullptr) {
 		return nullptr;
 	}
@@ -84,7 +84,7 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(co
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Element> exml::internal::Element::getNamed(const std::string& _name) const {
+const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const std::string& _name) const {
 	if (_name.size() == 0) {
 		return nullptr;
 	}
@@ -163,7 +163,7 @@ bool exml::internal::Element::iGenerate(std::string& _data, int32_t _indent) con
 		if(    m_listSub.size() == 1
 		    && m_listSub[0] != nullptr
 		    && m_listSub[0]->getType() == exml::nodeType::text
-		    && std::dynamic_pointer_cast<exml::internal::Text>(m_listSub[0])->countLines() == 1) {
+		    && ememory::dynamicPointerCast<exml::internal::Text>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
 			m_listSub[0]->iGenerate(_data,0);
 			EXML_VERBOSE(" generate : '" << _data << "'");

@@ -38,7 +38,7 @@ namespace exml {
 			 * @brief basic element of a xml structure
 			 * @param[in] _internalNode Internal reference of the Node
 			 */
-			Node(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			Node(const ememory::SharedPtr<exml::internal::Node>& _internalNode);
 			/**
 			 * @brief basic element of a xml structure
 			 */

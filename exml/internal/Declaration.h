@@ -38,8 +38,8 @@ namespace exml {
 				ememory::SharedPtr<exml::internal::Declaration> toDeclaration() override {
 					return ememory::staticPointerCast<exml::internal::Declaration>(sharedFromThis());
 				};
-				ememory::SharedPtr<const exml::internal::Declaration> toDeclaration() const override {
-					return ememory::staticPointerCast<const exml::internal::Declaration>(sharedFromThis());
+				const ememory::SharedPtr<exml::internal::Declaration> toDeclaration() const override {
+					return ememory::staticPointerCast<exml::internal::Declaration>(sharedFromThis());
 				};
 		};
 		/**

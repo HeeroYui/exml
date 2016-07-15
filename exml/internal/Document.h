@@ -112,8 +112,8 @@ namespace exml {
 				ememory::SharedPtr<exml::internal::Document> toDocument() override {
 					return ememory::staticPointerCast<exml::internal::Document>(sharedFromThis());
 				}
-				ememory::SharedPtr<const exml::internal::Document> toDocument() const override {
-					return ememory::staticPointerCast<const exml::internal::Document>(sharedFromThis());
+				const ememory::SharedPtr<exml::internal::Document> toDocument() const override {
+					return ememory::staticPointerCast<exml::internal::Document>(sharedFromThis());
 				}
 		};
 	}

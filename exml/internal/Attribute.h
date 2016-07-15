@@ -55,8 +55,8 @@ namespace exml {
 				ememory::SharedPtr<exml::internal::Attribute> toAttribute() override {
 					return ememory::staticPointerCast<exml::internal::Attribute>(sharedFromThis());
 				};
-				ememory::SharedPtr<const exml::internal::Attribute> toAttribute() const override {
-					return ememory::staticPointerCast<const exml::internal::Attribute>(sharedFromThis());
+				const ememory::SharedPtr<exml::internal::Attribute> toAttribute() const override {
+					return ememory::staticPointerCast<exml::internal::Attribute>(sharedFromThis());
 				};
 				void clear() override;
 		};

@@ -38,8 +38,8 @@ namespace exml {
 				ememory::SharedPtr<exml::internal::Comment> toComment() override {
 					return ememory::staticPointerCast<exml::internal::Comment>(sharedFromThis());
 				}
-				ememory::SharedPtr<const exml::internal::Comment> toComment() const override {
-					return ememory::staticPointerCast<const exml::internal::Comment>(sharedFromThis());
+				const ememory::SharedPtr<exml::internal::Comment> toComment() const override {
+					return ememory::staticPointerCast<exml::internal::Comment>(sharedFromThis());
 				}
 		};
 	}

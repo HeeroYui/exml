@@ -25,8 +25,8 @@ std::ostream& exml::operator <<(std::ostream& _os, const exml::Node& _obj) {
 }
 
 
-exml::Node::Node(ememory::SharedPtr<exml::internal::Node> _internalNode) :
-  m_data(_internalNode) {
+exml::Node::Node(const ememory::SharedPtr<exml::internal::Node>& _internalNode) :
+  m_data(ememory::constPointerCast<exml::internal::Node>(_internalNode)) {
 	// nothing to DO ...
 }
 

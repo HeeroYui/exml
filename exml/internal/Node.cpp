@@ -5,6 +5,12 @@
  */
 
 #include <exml/internal/Node.h>
+#include <exml/internal/Document.h>
+#include <exml/internal/Attribute.h>
+#include <exml/internal/Comment.h>
+#include <exml/internal/Declaration.h>
+#include <exml/internal/Element.h>
+#include <exml/internal/Text.h>
 #include <exml/debug.h>
 
 static bool isWhiteChar(char32_t _val) {
@@ -131,7 +137,7 @@ ememory::SharedPtr<exml::internal::Document> exml::internal::Node::toDocument() 
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Document> exml::internal::Node::toDocument() const {
+const ememory::SharedPtr<exml::internal::Document> exml::internal::Node::toDocument() const {
 	return nullptr;
 }
 
@@ -139,7 +145,7 @@ ememory::SharedPtr<exml::internal::Attribute> exml::internal::Node::toAttribute(
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Attribute> exml::internal::Node::toAttribute() const {
+const ememory::SharedPtr<exml::internal::Attribute> exml::internal::Node::toAttribute() const {
 	return nullptr;
 }
 
@@ -147,7 +153,7 @@ ememory::SharedPtr<exml::internal::Comment> exml::internal::Node::toComment() {
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Comment> exml::internal::Node::toComment() const {
+const ememory::SharedPtr<exml::internal::Comment> exml::internal::Node::toComment() const {
 	return nullptr;
 }
 
@@ -155,7 +161,7 @@ ememory::SharedPtr<exml::internal::Declaration> exml::internal::Node::toDeclarat
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Declaration> exml::internal::Node::toDeclaration() const {
+const ememory::SharedPtr<exml::internal::Declaration> exml::internal::Node::toDeclaration() const {
 	return nullptr;
 }
 
@@ -163,7 +169,7 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Node::toElement() {
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Element> exml::internal::Node::toElement() const {
+const ememory::SharedPtr<exml::internal::Element> exml::internal::Node::toElement() const {
 	return nullptr;
 }
 
@@ -171,7 +177,7 @@ ememory::SharedPtr<exml::internal::Text> exml::internal::Node::toText() {
 	return nullptr;
 }
 
-ememory::SharedPtr<const exml::internal::Text> exml::internal::Node::toText() const{
+const ememory::SharedPtr<exml::internal::Text> exml::internal::Node::toText() const{
 	return nullptr;
 }
 

@@ -72,7 +72,7 @@ namespace exml {
 				 * @param[in] _id Id of the element.
 				 * @return Pointer on node.
 				 */
-				ememory::SharedPtr<const Node> getNode(int32_t _id) const;
+				const ememory::SharedPtr<Node> getNode(int32_t _id) const;
 				/**
 				 * @brief get the element casted in Element (if the node is not an element return NULL).
 				 * @param[in] _id Id of the element.
@@ -84,7 +84,7 @@ namespace exml {
 				 * @param[in] _id Id of the element.
 				 * @return Pointer on the element or NULL.
 				 */
-				ememory::SharedPtr<const Element> getElement(int32_t _id) const;// TODO : DEPRECATED ... not use anymore ...
+				const ememory::SharedPtr<Element> getElement(int32_t _id) const;// TODO : DEPRECATED ... not use anymore ...
 				/**
 				 * @brief get an element with his name (work only with exml::internal::Element)
 				 * @param[in] _name Name of the element that is requested
@@ -96,7 +96,7 @@ namespace exml {
 				 * @param[in] _name Name of the element that is requested
 				 * @return Pointer on the element or NULL.
 				 */
-				ememory::SharedPtr<const Element> getNamed(const std::string& _name) const;
+				const ememory::SharedPtr<Element> getNamed(const std::string& _name) const;
 				/**
 				 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 				 * @return the curent data string. if Only one text node, then we get the parssed data (no &amp; ...) if more than one node, then we transform &,",',<,> in xml normal text...
@@ -129,8 +129,8 @@ namespace exml {
 				ememory::SharedPtr<exml::internal::Element> toElement() override {
 					return ememory::staticPointerCast<exml::internal::Element>(sharedFromThis());
 				}
-				ememory::SharedPtr<const exml::internal::Element> toElement() const override {
-					return ememory::staticPointerCast<const exml::internal::Element>(sharedFromThis());
+				const ememory::SharedPtr<exml::internal::Element> toElement() const override {
+					return ememory::staticPointerCast<exml::internal::Element>(sharedFromThis());
 				}
 				void clear() override;
 		};

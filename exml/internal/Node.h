@@ -143,7 +143,7 @@ namespace exml {
 				 * @brief Cast the element in a Document if it is possible.
 				 * @return CONST pointer on the class or nullptr.
 				 */
-				virtual ememory::SharedPtr<const exml::internal::Document> toDocument() const;
+				virtual const ememory::SharedPtr<exml::internal::Document> toDocument() const;
 				/**
 				 * @brief Cast the element in a Attribute if it is possible.
 				 * @return pointer on the class or nullptr.
@@ -153,7 +153,7 @@ namespace exml {
 				 * @brief Cast the element in a Attribute if it is possible.
 				 * @return CONST pointer on the class or nullptr.
 				 */
-				virtual ememory::SharedPtr<const exml::internal::Attribute> toAttribute() const;
+				virtual const ememory::SharedPtr<exml::internal::Attribute> toAttribute() const;
 				/**
 				 * @brief Cast the element in a Comment if it is possible.
 				 * @return pointer on the class or nullptr.
@@ -163,7 +163,7 @@ namespace exml {
 				 * @brief Cast the element in a Comment if it is possible.
 				 * @return CONST pointer on the class or nullptr.
 				 */
-				virtual ememory::SharedPtr<const exml::internal::Comment> toComment() const;
+				virtual const ememory::SharedPtr<exml::internal::Comment> toComment() const;
 				/**
 				 * @brief Cast the element in a Declaration if it is possible.
 				 * @return pointer on the class or nullptr.
@@ -173,7 +173,7 @@ namespace exml {
 				 * @brief Cast the element in a Declaration if it is possible.
 				 * @return CONST pointer on the class or nullptr.
 				 */
-				virtual ememory::SharedPtr<const exml::internal::Declaration> toDeclaration() const;
+				virtual const ememory::SharedPtr<exml::internal::Declaration> toDeclaration() const;
 				/**
 				 * @brief Cast the element in a Element if it is possible.
 				 * @return pointer on the class or nullptr.
@@ -183,7 +183,7 @@ namespace exml {
 				 * @brief Cast the element in a Element if it is possible.
 				 * @return CONST pointer on the class or nullptr.
 				 */
-				virtual ememory::SharedPtr<const exml::internal::Element> toElement() const;
+				virtual const ememory::SharedPtr<exml::internal::Element> toElement() const;
 				/**
 				 * @brief Cast the element in a Text if it is possible.
 				 * @return pointer on the class or nullptr.
@@ -193,7 +193,7 @@ namespace exml {
 				 * @brief Cast the element in a Text if it is possible.
 				 * @return CONST pointer on the class or nullptr.
 				 */
-				virtual ememory::SharedPtr<const exml::internal::Text> toText() const;
+				virtual const ememory::SharedPtr<exml::internal::Text> toText() const;
 				
 				/**
 				 * @brief check if the node is a exml::internal::Document
