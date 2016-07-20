@@ -126,12 +126,8 @@ namespace exml {
 				}
 				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
 				bool iGenerate(std::string& _data, int32_t _indent) const override;
-				ememory::SharedPtr<exml::internal::Element> toElement() override {
-					return ememory::staticPointerCast<exml::internal::Element>(sharedFromThis());
-				}
-				const ememory::SharedPtr<exml::internal::Element> toElement() const override {
-					return ememory::staticPointerCast<exml::internal::Element>(sharedFromThis());
-				}
+				ememory::SharedPtr<exml::internal::Element> toElement() override;
+				const ememory::SharedPtr<exml::internal::Element> toElement() const override;
 				void clear() override;
 		};
 	}

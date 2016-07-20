@@ -5,6 +5,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <test-debug/debug.h>
 #include <exml/exml.h>
 #include <exml/Element.h>
 #include <exml/Comment.h>

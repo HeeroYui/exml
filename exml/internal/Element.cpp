@@ -503,3 +503,11 @@ void exml::internal::Element::clear() {
 }
 
 
+ememory::SharedPtr<exml::internal::Element> exml::internal::Element::toElement() {
+	return ememory::staticPointerCast<exml::internal::Element>(sharedFromThis());
+}
+
+const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::toElement() const {
+	return ememory::staticPointerCast<exml::internal::Element>(sharedFromThis());
+}
+

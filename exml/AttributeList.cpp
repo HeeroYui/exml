@@ -9,7 +9,7 @@
 #include <exml/internal/AttributeList.h>
 
 
-exml::AttributeList::AttributeList(ememory::SharedPtr<exml::internal::Node> _internalNode) :
+exml::AttributeList::AttributeList(const ememory::SharedPtr<exml::internal::Node>& _internalNode) :
   exml::Node(_internalNode),
   attributes(this) {
 	

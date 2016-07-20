@@ -112,7 +112,7 @@ namespace exml {
 			 * @brief basic element of a xml structure
 			 * @param[in] _internalNode Value of the node
 			 */
-			AttributeList(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			AttributeList(const ememory::SharedPtr<exml::internal::Node>& _internalNode);
 			/**
 			 * @brief basic element of a xml structure
 			 */

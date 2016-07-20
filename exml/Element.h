@@ -106,7 +106,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _internalNode Internal Node to set data
 			 */
-			Element(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			Element(const ememory::SharedPtr<exml::internal::Node>& _internalNode);
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy

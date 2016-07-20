@@ -9,7 +9,7 @@
 #include <exml/internal/Element.h>
 
 
-exml::Element::Element(ememory::SharedPtr<exml::internal::Node> _internalNode) :
+exml::Element::Element(const ememory::SharedPtr<exml::internal::Node>& _internalNode) :
   exml::AttributeList(_internalNode),
   nodes(this) {
 	if (m_data == nullptr) {
