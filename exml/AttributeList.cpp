@@ -28,7 +28,7 @@ exml::AttributeListData::AttributeListData(exml::AttributeList* _list) :
 
 size_t exml::AttributeListData::size() const {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not sizeAttribute ...");
+		EXML_DEBUG(" can not sizeAttribute ...");
 		return 0;
 	}
 	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->sizeAttribute();
@@ -37,7 +37,7 @@ size_t exml::AttributeListData::size() const {
 
 exml::Attribute exml::AttributeListData::operator[] (int32_t _id) {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not getAttr (nullptr) ...");
+		EXML_DEBUG(" can not getAttr (nullptr) ...");
 		return exml::Attribute(ememory::SharedPtr<exml::internal::Attribute>(nullptr));
 	}
 	return exml::Attribute(static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttr(_id));
@@ -45,7 +45,7 @@ exml::Attribute exml::AttributeListData::operator[] (int32_t _id) {
 
 const exml::Attribute exml::AttributeListData::operator[] (int32_t _id) const {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not getAttr (nullptr) ...");
+		EXML_DEBUG(" can not getAttr (nullptr) ...");
 		return exml::Attribute(ememory::SharedPtr<exml::internal::Attribute>(nullptr));
 	}
 	return exml::Attribute(static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttr(_id));
@@ -53,7 +53,7 @@ const exml::Attribute exml::AttributeListData::operator[] (int32_t _id) const {
 
 std::pair<std::string, std::string> exml::AttributeListData::getPair(int32_t _id) const {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not getAttrPair (nullptr) ...");
+		EXML_DEBUG(" can not getAttrPair (nullptr) ...");
 		return std::pair<std::string, std::string>("","");
 	}
 	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->getAttrPair(_id);
@@ -61,7 +61,7 @@ std::pair<std::string, std::string> exml::AttributeListData::getPair(int32_t _id
 
 void exml::AttributeListData::add(exml::Attribute _attr) {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not appendAttribute (nullptr) ...");
+		EXML_DEBUG(" can not appendAttribute (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->appendAttribute(_attr.getInternalAttribute());
@@ -69,7 +69,7 @@ void exml::AttributeListData::add(exml::Attribute _attr) {
 
 const std::string& exml::AttributeListData::operator[](const std::string& _name) const {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not getAttribute (nullptr) ...");
+		EXML_DEBUG(" can not getAttribute (nullptr) ...");
 		static std::string errorValue("");
 		return errorValue;
 	}
@@ -78,7 +78,7 @@ const std::string& exml::AttributeListData::operator[](const std::string& _name)
 
 bool exml::AttributeListData::exist(const std::string& _name) const {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not getAttribute (nullptr) ...");
+		EXML_DEBUG(" can not getAttribute (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->existAttribute(_name);
@@ -86,7 +86,7 @@ bool exml::AttributeListData::exist(const std::string& _name) const {
 
 bool exml::AttributeListData::remove(const std::string& _name) {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not removeAttribute (nullptr) ...");
+		EXML_DEBUG(" can not removeAttribute (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->removeAttribute(_name);
@@ -94,7 +94,7 @@ bool exml::AttributeListData::remove(const std::string& _name) {
 
 void exml::AttributeListData::set(const std::string& _name, const std::string& _value) {
 	if (m_data->m_data == nullptr) {
-		EXML_ERROR(" can not setAttribute (nullptr) ...");
+		EXML_DEBUG(" can not setAttribute (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::AttributeList*>(m_data->m_data.get())->setAttribute(_name, _value);

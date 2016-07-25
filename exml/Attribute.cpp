@@ -41,7 +41,7 @@ exml::Attribute& exml::Attribute::operator= (const exml::Attribute& _obj) {
 
 void exml::Attribute::setName(const std::string& _name){
 	if (m_data == nullptr) {
-		EXML_ERROR(" can not setName (nullptr) ...");
+		EXML_DEBUG(" can not setName (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::Attribute*>(m_data.get())->setName(_name);
@@ -50,7 +50,7 @@ void exml::Attribute::setName(const std::string& _name){
 const std::string& exml::Attribute::getName() const {
 	if (m_data == nullptr) {
 		static std::string errorValue = "";
-		EXML_ERROR(" can not setName (nullptr) ...");
+		EXML_DEBUG(" can not setName (nullptr) ...");
 		return errorValue;
 	}
 	return static_cast<const exml::internal::Attribute*>(m_data.get())->getName();
@@ -58,7 +58,7 @@ const std::string& exml::Attribute::getName() const {
 
 void exml::Attribute::clear() {
 	if (m_data == nullptr) {
-		EXML_ERROR(" can not setName (nullptr) ...");
+		EXML_DEBUG(" can not setName (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::Attribute*>(m_data.get())->clear();
@@ -66,7 +66,7 @@ void exml::Attribute::clear() {
 
 std::pair<std::string, std::string> exml::Attribute::getPair() const {
 	if (m_data == nullptr) {
-		EXML_ERROR(" can not setName (nullptr) ...");
+		EXML_DEBUG(" can not setName (nullptr) ...");
 		return std::pair<std::string, std::string>("","");
 	}
 	return std::pair<std::string, std::string>(static_cast<const exml::internal::Attribute*>(m_data.get())->getName(),

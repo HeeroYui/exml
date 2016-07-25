@@ -36,7 +36,7 @@ exml::Document& exml::Document::operator= (const exml::Document& _obj) {
 
 bool exml::Document::parse(const std::string& _data) {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not parse (nullptr) ...");
+		EXML_DEBUG("Can not parse (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::Document*>(m_data.get())->parse(_data);
@@ -44,7 +44,7 @@ bool exml::Document::parse(const std::string& _data) {
 
 bool exml::Document::generate(std::string& _data) {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not generate (nullptr) ...");
+		EXML_DEBUG("Can not generate (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::Document*>(m_data.get())->generate(_data);
@@ -52,7 +52,7 @@ bool exml::Document::generate(std::string& _data) {
 
 bool exml::Document::load(const std::string& _file) {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not load (nullptr) ...");
+		EXML_DEBUG("Can not load (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::Document*>(m_data.get())->load(_file);
@@ -60,7 +60,7 @@ bool exml::Document::load(const std::string& _file) {
 
 bool exml::Document::store(const std::string& _file) {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not store (nullptr) ...");
+		EXML_DEBUG("Can not store (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::Document*>(m_data.get())->store(_file);
@@ -68,7 +68,7 @@ bool exml::Document::store(const std::string& _file) {
 
 void exml::Document::display() {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not display (nullptr) ...");
+		EXML_DEBUG("Can not display (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::Document*>(m_data.get())->display();
@@ -76,7 +76,7 @@ void exml::Document::display() {
 
 void exml::Document::setCaseSensitive(bool _val) {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not setCaseSensitive (nullptr) ...");
+		EXML_DEBUG("Can not setCaseSensitive (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::Document*>(m_data.get())->setCaseSensitive(_val);
@@ -84,7 +84,7 @@ void exml::Document::setCaseSensitive(bool _val) {
 
 bool exml::Document::getCaseSensitive() const {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not getCaseSensitive (nullptr) ...");
+		EXML_DEBUG("Can not getCaseSensitive (nullptr) ...");
 		return false;
 	}
 	return static_cast<const exml::internal::Document*>(m_data.get())->getCaseSensitive();
@@ -92,7 +92,7 @@ bool exml::Document::getCaseSensitive() const {
 
 void exml::Document::setDisplayError(bool _value){
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not setDisplayError (nullptr) ...");
+		EXML_DEBUG("Can not setDisplayError (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::Document*>(m_data.get())->setDisplayError(_value);
@@ -100,7 +100,7 @@ void exml::Document::setDisplayError(bool _value){
 
 bool exml::Document::getDisplayError() {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not getDisplayError (nullptr) ...");
+		EXML_DEBUG("Can not getDisplayError (nullptr) ...");
 		return false;
 	}
 	return static_cast<exml::internal::Document*>(m_data.get())->getDisplayError();
@@ -108,7 +108,7 @@ bool exml::Document::getDisplayError() {
 
 void exml::Document::displayError() {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not displayError (nullptr) ...");
+		EXML_DEBUG("Can not displayError (nullptr) ...");
 		return;
 	}
 	static_cast<exml::internal::Document*>(m_data.get())->displayError();

@@ -60,7 +60,7 @@ void exml::Node::setValue(std::string _value) {
 const std::string& exml::Node::getValue() const {
 	if (m_data == nullptr) {
 		static std::string errorString = "";
-		EXML_ERROR(" can not get value ...");
+		EXML_DEBUG(" can not get value ...");
 		return errorString;
 	}
 	return m_data->getValue();
@@ -68,7 +68,7 @@ const std::string& exml::Node::getValue() const {
 
 enum exml::nodeType exml::Node::getType() const {
 	if (m_data == nullptr) {
-		EXML_ERROR("Can not get type ...");
+		EXML_DEBUG("Can not get type ...");
 		return exml::nodeType::unknow;
 	}
 	return m_data->getType();
