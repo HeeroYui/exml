@@ -31,7 +31,7 @@ def create(target, module_name):
 		'sample/read.cpp',
 		'sample/write.cpp'
 		])
-	my_module.add_module_depend(['exml', 'test-debug'])
+	my_module.add_depend(['exml', 'test-debug'])
 	my_module.copy_path('sample/read.xml')
 	return my_module
 

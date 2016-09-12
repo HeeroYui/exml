@@ -44,6 +44,6 @@ def create(target, module_name):
 		'test/exmlTestParseAttribute.cpp',
 		'test/exmlTestParseDeclaration.cpp'
 		])
-	my_module.add_module_depend(['exml', 'gtest', 'test-debug'])
+	my_module.add_depend(['exml', 'gtest', 'test-debug'])
 	return my_module
 
