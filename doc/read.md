@@ -76,5 +76,5 @@ Get all the data in an element in text mode:
 All example file                                  {#exml_tutorial_read_all}
 ================
 
-@snippet read.cpp exml_sample_read_all
+@include read.cpp
 

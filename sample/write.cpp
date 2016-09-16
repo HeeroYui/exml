@@ -4,7 +4,6 @@
  * @license APACHE v2.0 (see license file)
  */
 
-//! [exml_sample_write_all]
 #include <test-debug/debug.h>
 #include <exml/exml.h>
 #include "write.h"
@@ -79,5 +78,4 @@ void appl::write() {
 	writeToString();
 	writeAll();
 }
-//! [exml_sample_write_all]
 

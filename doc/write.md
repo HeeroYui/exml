@@ -57,5 +57,5 @@ Then if you asign an element to an other, it is the same. You need to clone it i
 All example file                                  {#exml_tutorial_write_all}
 ================
 
-@snippet write.cpp exml_sample_write_all
+@include write.cpp
 

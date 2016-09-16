@@ -4,7 +4,6 @@
  * @license APACHE v2.0 (see license file)
  */
 
-//! [exml_sample_read_all]
 #include <test-debug/debug.h>
 //! [exml_sample_include]
 #include <exml/exml.h>
@@ -145,4 +144,3 @@ void appl::read() {
 	readFromString1();
 	readFull();
 }
-//! [exml_sample_read_all]
