@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <exml/Element.h>
+#include <exml/Element.hpp>
 #include <vector>
 
 namespace exml {

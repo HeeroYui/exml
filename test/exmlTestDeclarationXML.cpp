@@ -5,8 +5,8 @@
  */
 
 #include <gtest/gtest.h>
-#include <exml/exml.h>
-#include <exml/Declaration.h>
+#include <exml/exml.hpp>
+#include <exml/Declaration.hpp>
 
 TEST(TestDeclarationXML, create) {
 	exml::DeclarationXML myDeclarationXML("1.0", "UTF-8", true);

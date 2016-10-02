@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/Element.h>
-#include <exml/debug.h>
-#include <exml/internal/Element.h>
+#include <exml/Element.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Element.hpp>
 
 
 exml::Element::Element(const ememory::SharedPtr<exml::internal::Node>& _internalNode) :

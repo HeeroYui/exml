@@ -5,10 +5,10 @@
  */
 #pragma once
 
-#include <exml/Node.h>
+#include <exml/Node.hpp>
 #include <vector>
-#include <exml/AttributeList.h>
-#include <exml/iterator.h>
+#include <exml/AttributeList.hpp>
+#include <exml/iterator.hpp>
 
 namespace exml {
 	

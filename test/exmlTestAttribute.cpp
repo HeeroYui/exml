@@ -5,8 +5,8 @@
  */
 
 #include <gtest/gtest.h>
-#include <exml/exml.h>
-#include <exml/Attribute.h>
+#include <exml/exml.hpp>
+#include <exml/Attribute.hpp>
 
 
 TEST(TestAttribute, create) {

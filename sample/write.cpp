@@ -4,9 +4,10 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <test-debug/debug.h>
-#include <exml/exml.h>
-#include "write.h"
+//! [exml_sample_write_all]
+#include <test-debug/debug.hpp>
+#include <exml/exml.hpp>
+#include "write.hpp"
 
 
 static void writeToFile() {

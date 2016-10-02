@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/internal/Declaration.h>
-#include <exml/debug.h>
-#include <exml/internal/Document.h>
+#include <exml/internal/Declaration.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Document.hpp>
 
 /* basic declaration have 3 attributes:
 	version

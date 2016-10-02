@@ -4,10 +4,10 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <test-debug/debug.h>
+#include <test-debug/debug.hpp>
 #include <gtest/gtest.h>
-#include <etk/os/FSNode.h>
-#include <etk/etk.h>
+#include <etk/os/FSNode.hpp>
+#include <etk/etk.hpp>
 
 int main(int argc, const char *argv[]) {
 	// init Google test :

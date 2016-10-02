@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <exml/internal/Node.h>
+#include <exml/internal/Node.hpp>
 #include <vector>
 
 namespace exml {

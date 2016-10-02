@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <exml/internal/AttributeList.h>
+#include <exml/internal/AttributeList.hpp>
 
 namespace exml {
 	namespace internal {

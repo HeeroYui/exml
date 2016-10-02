@@ -5,9 +5,9 @@
  */
 #pragma once
 
-#include <exml/Node.h>
-#include <exml/Attribute.h>
-#include <exml/iterator.h>
+#include <exml/Node.hpp>
+#include <exml/Attribute.hpp>
+#include <exml/iterator.hpp>
 
 namespace exml {
 	class AttributeList;

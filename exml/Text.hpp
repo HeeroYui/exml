@@ -5,36 +5,36 @@
  */
 #pragma once
 
-#include <exml/Node.h>
+#include <exml/Node.hpp>
 #include <vector>
 
 namespace exml {
 	/**
-	 * @brief Comment node: &lt;!-- ... --&gt;
+	 * @brief Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;
 	 */
-	class Comment : public exml::Node {
+	class Text : public exml::Node {
 		public:
 			/**
 			 * @brief Constructor
 			 * @param[in] _internalNode Internal Node to set data
 			 */
-			Comment(ememory::SharedPtr<exml::internal::Node> _internalNode);
+			Text(ememory::SharedPtr<exml::internal::Node> _internalNode);
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
 			 */
-			Comment(const exml::Comment& _obj);
+			Text(const exml::Text& _obj);
 			/**
 			 * @brief Constructor
-			 * @param[in] _value comment value
+			 * @param[in] _data String data of the current Text
 			 */
-			Comment(const std::string& _value="");
+			Text(const std::string& _data="");
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
-			 * @return A reference on the local Object
+			 * @return A reference on this object
 			 */
-			exml::Comment& operator= (const exml::Comment& _obj);
+			exml::Text& operator= (const exml::Text& _obj);
 	};
 }
 

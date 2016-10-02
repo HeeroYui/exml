@@ -5,8 +5,8 @@
  */
 
 #include <gtest/gtest.h>
-#include <exml/exml.h>
-#include <exml/Comment.h>
+#include <exml/exml.hpp>
+#include <exml/Comment.hpp>
 
 TEST(TestComment, create) {
 	exml::Comment myComment("my Comment");

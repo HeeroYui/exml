@@ -52,26 +52,26 @@ def create(target, module_name):
 		'exml/internal/Text.cpp'
 		])
 	my_module.add_header_file([
-		'exml/FilePos.h',
-		'exml/nodeType.h',
-		'exml/exml.h',
-		'exml/iterator.h',
-		'exml/Attribute.h',
-		'exml/AttributeList.h',
-		'exml/Comment.h',
-		'exml/Declaration.h',
-		'exml/Document.h',
-		'exml/Element.h',
-		'exml/Node.h',
-		'exml/Text.h',
-		'exml/internal/Attribute.h',
-		'exml/internal/AttributeList.h',
-		'exml/internal/Comment.h',
-		'exml/internal/Declaration.h',
-		'exml/internal/Document.h',
-		'exml/internal/Element.h',
-		'exml/internal/Node.h',
-		'exml/internal/Text.h'
+		'exml/FilePos.hpp',
+		'exml/nodeType.hpp',
+		'exml/exml.hpp',
+		'exml/iterator.hpp',
+		'exml/Attribute.hpp',
+		'exml/AttributeList.hpp',
+		'exml/Comment.hpp',
+		'exml/Declaration.hpp',
+		'exml/Document.hpp',
+		'exml/Element.hpp',
+		'exml/Node.hpp',
+		'exml/Text.hpp',
+		'exml/internal/Attribute.hpp',
+		'exml/internal/AttributeList.hpp',
+		'exml/internal/Comment.hpp',
+		'exml/internal/Declaration.hpp',
+		'exml/internal/Document.hpp',
+		'exml/internal/Element.hpp',
+		'exml/internal/Node.hpp',
+		'exml/internal/Text.hpp'
 		])
 	my_module.add_path(tools.get_current_path(__file__))
 	return my_module

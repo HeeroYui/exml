@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/Comment.h>
-#include <exml/debug.h>
-#include <exml/internal/Comment.h>
+#include <exml/Comment.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Comment.hpp>
 
 exml::Comment::Comment(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::Node(_internalNode) {

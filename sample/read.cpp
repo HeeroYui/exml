@@ -4,11 +4,12 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <test-debug/debug.h>
+//! [exml_sample_read_all]
+#include <test-debug/debug.hpp>
 //! [exml_sample_include]
-#include <exml/exml.h>
+#include <exml/exml.hpp>
 //! [exml_sample_include]
-#include "read.h"
+#include "read.hpp"
 
 
 static void readFromFile() {

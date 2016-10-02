@@ -4,15 +4,15 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/Node.h>
-#include <exml/internal/Node.h>
-#include <exml/debug.h>
-#include <exml/Attribute.h>
-#include <exml/Comment.h>
-#include <exml/Declaration.h>
-#include <exml/Document.h>
-#include <exml/Element.h>
-#include <exml/Text.h>
+#include <exml/Node.hpp>
+#include <exml/internal/Node.hpp>
+#include <exml/debug.hpp>
+#include <exml/Attribute.hpp>
+#include <exml/Comment.hpp>
+#include <exml/Declaration.hpp>
+#include <exml/Document.hpp>
+#include <exml/Element.hpp>
+#include <exml/Text.hpp>
 
 std::ostream& exml::operator <<(std::ostream& _os, const exml::Node& _obj) {
 	_os << "{";

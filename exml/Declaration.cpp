@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/Declaration.h>
-#include <exml/debug.h>
-#include <exml/internal/Declaration.h>
+#include <exml/Declaration.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Declaration.hpp>
 
 exml::Declaration::Declaration(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::AttributeList(_internalNode) {

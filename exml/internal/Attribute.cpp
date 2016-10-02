@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/internal/Attribute.h>
-#include <exml/debug.h>
-#include <exml/internal/Document.h>
+#include <exml/internal/Attribute.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Document.hpp>
 
 ememory::SharedPtr<exml::internal::Attribute> exml::internal::Attribute::create(const std::string& _name, const std::string& _value) {
 	return ememory::SharedPtr<exml::internal::Attribute>(new exml::internal::Attribute(_name, _value));

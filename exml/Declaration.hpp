@@ -5,8 +5,8 @@
  */
 #pragma once
 
-#include <exml/Node.h>
-#include <exml/AttributeList.h>
+#include <exml/Node.hpp>
+#include <exml/AttributeList.hpp>
 
 namespace exml {
 	/**

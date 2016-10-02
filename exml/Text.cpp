@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/Text.h>
-#include <exml/internal/Text.h>
-#include <exml/debug.h>
+#include <exml/Text.hpp>
+#include <exml/internal/Text.hpp>
+#include <exml/debug.hpp>
 #include <regex>
 
 exml::Text::Text(ememory::SharedPtr<exml::internal::Node> _internalNode) :

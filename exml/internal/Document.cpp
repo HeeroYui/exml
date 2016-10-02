@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/internal/Document.h>
-#include <exml/debug.h>
-#include <etk/os/FSNode.h>
+#include <exml/internal/Document.hpp>
+#include <exml/debug.hpp>
+#include <etk/os/FSNode.hpp>
 
 ememory::SharedPtr<exml::internal::Document> exml::internal::Document::create() {
 	return ememory::SharedPtr<exml::internal::Document>(new exml::internal::Document());

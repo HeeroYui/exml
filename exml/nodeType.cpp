@@ -4,8 +4,8 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/nodeType.h>
-#include <exml/debug.h>
+#include <exml/nodeType.hpp>
+#include <exml/debug.hpp>
 
 
 

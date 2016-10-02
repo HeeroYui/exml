@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/internal/Text.h>
-#include <exml/debug.h>
-#include <exml/internal/Document.h>
+#include <exml/internal/Text.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Document.hpp>
 #include <regex>
 
 // transform the Text with :

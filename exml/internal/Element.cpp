@@ -4,13 +4,13 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/internal/Element.h>
-#include <exml/debug.h>
-#include <exml/internal/Text.h>
-#include <exml/internal/Comment.h>
-#include <exml/internal/Attribute.h>
-#include <exml/internal/Declaration.h>
-#include <exml/internal/Document.h>
+#include <exml/internal/Element.hpp>
+#include <exml/debug.hpp>
+#include <exml/internal/Text.hpp>
+#include <exml/internal/Comment.hpp>
+#include <exml/internal/Attribute.hpp>
+#include <exml/internal/Declaration.hpp>
+#include <exml/internal/Document.hpp>
 
 static bool isWhiteChar(char32_t _val) {
 	if(    _val == ' '

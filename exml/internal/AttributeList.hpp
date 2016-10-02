@@ -5,9 +5,9 @@
  */
 #pragma once
 
-#include <exml/internal/Node.h>
+#include <exml/internal/Node.hpp>
 #include <vector>
-#include <exml/internal/Attribute.h>
+#include <exml/internal/Attribute.hpp>
 #include <utility>
 
 namespace exml {

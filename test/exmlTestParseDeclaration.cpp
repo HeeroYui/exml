@@ -4,7 +4,7 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include "exmlTestCommon.h"
+#include "exmlTestCommon.hpp"
 #include <gtest/gtest.h>
 
 

@@ -5,12 +5,12 @@
  */
 #pragma once
 
-#include <ememory/memory.h>
-#include <etk/types.h>
-#include <etk/math/Vector2D.h>
-#include <exml/FilePos.h>
-#include <exml/internal/Node.h>
-#include <exml/nodeType.h>
+#include <ememory/memory.hpp>
+#include <etk/types.hpp>
+#include <etk/math/Vector2D.hpp>
+#include <exml/FilePos.hpp>
+#include <exml/internal/Node.hpp>
+#include <exml/nodeType.hpp>
 
 /**
  * @brief exml namespace containing all function for XML interpretor

@@ -4,8 +4,8 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <exml/internal/AttributeList.h>
-#include <exml/debug.h>
+#include <exml/internal/AttributeList.hpp>
+#include <exml/debug.hpp>
 
 ememory::SharedPtr<exml::internal::Attribute> exml::internal::AttributeList::getAttr(int32_t _id) {
 	if (    _id < 0

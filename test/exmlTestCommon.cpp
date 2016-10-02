@@ -4,9 +4,9 @@
  * @license APACHE v2.0 (see license file)
  */
 
-#include <etk/types.h>
-#include <test-debug/debug.h>
-#include <exml/exml.h>
+#include <etk/types.hpp>
+#include <test-debug/debug.hpp>
+#include <exml/exml.hpp>
 #include <gtest/gtest.h>
 
 // _errorPos : -1 : no error , 1 : parsing error, 2 generation error, 3 comparaison error ????
