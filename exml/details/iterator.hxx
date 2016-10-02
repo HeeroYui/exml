@@ -5,7 +5,7 @@
  * 
  * @license APACHE v2.0 (see license file)
  */
-#include <exml/iterator.h>
+#include <exml/iterator.hpp>
 
 template<class EXML_BASE_T, class EXML_RETURN_T>
 exml::iterator<EXML_BASE_T,EXML_RETURN_T>::iterator(EXML_BASE_T& _obj, size_t _pos) :
