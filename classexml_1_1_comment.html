@@ -1,0 +1,352 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>exml: Ewol XML parser: exml::Comment Class Reference</title>
+        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">exml: Ewol XML parser 0.7.0</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Main&nbsp;Page</a></li>
+                        <li><a href="pages.html">Related&nbsp;Pages</a></li>
+                        <li><a href="namespaces.html">Namespaces</a></li>
+                        <li><a href="annotated.html">Classes</a></li>
+                        <li><a href="files.html">Files</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Link-libs<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://HeeroYui.github.io/lutin">lutin</a></li>
+                                <li><a href="http://atria-soft.github.io/ewol">ewol</a></li>
+                                <li><a href="http://atria-soft.github.io/etk">etk</a></li>
+                                <li><a href="http://atria-soft.github.io/ejson">ejson</a></li>
+                                <li><a href="http://atria-soft.github.io/exml">exml</a></li>
+                                <li><a href="http://atria-soft.github.io/esvg">esvg</a></li>
+                                <li><a href="http://atria-soft.github.io/egami">egami</a></li>
+                                <li><a href="http://atria-soft.github.io/gale">gale</a></li>
+                                <li><a href="http://atria-soft.github.io/ege">ege</a></li>
+                                <li><a href="http://atria-soft.github.io/elog">elog</a></li>
+                                <li><a href="http://atria-soft.github.io/ememory">ememory</a></li>
+                                <li><a href="http://atria-soft.github.io/enet">enet</a></li>
+                                <li><a href="http://atria-soft.github.io/eproperty">eproperty</a></li>
+                                <li><a href="http://atria-soft.github.io/esignal">esignal</a></li>
+                                <li><a href="http://atria-soft.github.io/zeus">zeus</a></li>
+                                <li><a href="http://atria-soft.github.io/audio-ess">audio-ess</a></li>
+                                <li><a href="http://musicdsp.github.io/audio">audio</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-drain">audio-drain</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-orchestra">audio-orchestra</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-river">audio-river</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="search-box" class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Classes</a></li>
+                                <li><a href="#">Namespaces</a></li>
+                                <li><a href="#">Files</a></li>
+                                <li><a href="#">Functions</a></li>
+                                <li><a href="#">Variables</a></li>
+                                <li><a href="#">Typedefs</a></li>
+                                <li><a href="#">Enumerations</a></li>
+                                <li><a href="#">Enumerator</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Macros</a></li>
+                                <li><a href="#">Pages</a></li>
+                            </ul>
+                        </div>
+                        <button id="search-close" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input id="search-field" class="form-control" accesskey="S" onkeydown="searchBox.OnSearchFieldChange(event);" placeholder="Search ..." type="text">
+                    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel panel-default" style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceexml.html">exml</a></li><li class="navelem"><a class="el" href="classexml_1_1_comment.html">Comment</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classexml_1_1_comment-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">exml::Comment Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_comment_8hpp_source.html">Comment.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for exml::Comment:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classexml_1_1_comment.png" usemap="#exml::Comment_map" alt=""/>
+  <map id="exml::Comment_map" name="exml::Comment_map">
+<area href="classexml_1_1_node.html" title="Basic main object of all xml elements. " alt="exml::Node" shape="rect" coords="0,0,94,24"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a149db494629d4a837ec8a1c4ab3000e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_comment.html#a149db494629d4a837ec8a1c4ab3000e5">Comment</a> (<a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_node.html">exml::internal::Node</a> &gt; _internalNode)</td></tr>
+<tr class="separator:a149db494629d4a837ec8a1c4ab3000e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d90e1edb5dd62a51b25b6fe4b5ce033"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_comment.html#a4d90e1edb5dd62a51b25b6fe4b5ce033">Comment</a> (const <a class="el" href="classexml_1_1_comment.html">exml::Comment</a> &amp;_obj)</td></tr>
+<tr class="separator:a4d90e1edb5dd62a51b25b6fe4b5ce033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6709fb670c7db9b295dd959a7b3aa6d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_comment.html#a6709fb670c7db9b295dd959a7b3aa6d9">Comment</a> (const std::string &amp;_value=&quot;&quot;)</td></tr>
+<tr class="separator:a6709fb670c7db9b295dd959a7b3aa6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9957a4016c936730ae9730e5cd1a81a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_comment.html">exml::Comment</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_comment.html#a9957a4016c936730ae9730e5cd1a81a4">operator=</a> (const <a class="el" href="classexml_1_1_comment.html">exml::Comment</a> &amp;_obj)</td></tr>
+<tr class="separator:a9957a4016c936730ae9730e5cd1a81a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classexml_1_1_node"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classexml_1_1_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classexml_1_1_node.html">exml::Node</a></td></tr>
+<tr class="memitem:a092b881b982d94688c071d578a95c830 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a092b881b982d94688c071d578a95c830">Node</a> (const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_node.html">exml::internal::Node</a> &gt; &amp;_internalNode)</td></tr>
+<tr class="separator:a092b881b982d94688c071d578a95c830 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2516c52e7cb36c63b9ab141220bd2997 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a2516c52e7cb36c63b9ab141220bd2997">Node</a> ()</td></tr>
+<tr class="separator:a2516c52e7cb36c63b9ab141220bd2997 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90cf2cd5ef588c4b817fc69fc4756a5b inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a90cf2cd5ef588c4b817fc69fc4756a5b">~Node</a> ()=default</td></tr>
+<tr class="separator:a90cf2cd5ef588c4b817fc69fc4756a5b inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2be1ded472149113f3ea70710f57b39 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#ae2be1ded472149113f3ea70710f57b39">exist</a> () const</td></tr>
+<tr class="separator:ae2be1ded472149113f3ea70710f57b39 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d14b2b0d56d68d451b97b60e05c0cb inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a54d14b2b0d56d68d451b97b60e05c0cb">getPos</a> () const</td></tr>
+<tr class="separator:a54d14b2b0d56d68d451b97b60e05c0cb inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb042954d3f7e14f8c717dd09123b416 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#abb042954d3f7e14f8c717dd09123b416">setValue</a> (std::string _value)</td></tr>
+<tr class="separator:abb042954d3f7e14f8c717dd09123b416 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b9a9d4befc43fce6cf11076b4d11aca inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a8b9a9d4befc43fce6cf11076b4d11aca">getValue</a> () const</td></tr>
+<tr class="separator:a8b9a9d4befc43fce6cf11076b4d11aca inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f3e55116cd7c7c4243496f032d84ab inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a76f3e55116cd7c7c4243496f032d84ab">getType</a> () const</td></tr>
+<tr class="separator:a76f3e55116cd7c7c4243496f032d84ab inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb8c60f6a9a9c1b055755337cd877b12 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_document.html">exml::Document</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#afb8c60f6a9a9c1b055755337cd877b12">toDocument</a> ()</td></tr>
+<tr class="separator:afb8c60f6a9a9c1b055755337cd877b12 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad22d95b63c6a5bbf5aa231b73611deb3 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_document.html">exml::Document</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#ad22d95b63c6a5bbf5aa231b73611deb3">toDocument</a> () const</td></tr>
+<tr class="separator:ad22d95b63c6a5bbf5aa231b73611deb3 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ffb3a79990b4b8e85f0638b1c6024c inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_attribute.html">exml::Attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a28ffb3a79990b4b8e85f0638b1c6024c">toAttribute</a> ()</td></tr>
+<tr class="separator:a28ffb3a79990b4b8e85f0638b1c6024c inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9e697023a86b514fa1bd92eddbbd01 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_attribute.html">exml::Attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a9a9e697023a86b514fa1bd92eddbbd01">toAttribute</a> () const</td></tr>
+<tr class="separator:a9a9e697023a86b514fa1bd92eddbbd01 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2973418a68af05a814fcf463c678e603 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_comment.html">exml::Comment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a2973418a68af05a814fcf463c678e603">toComment</a> ()</td></tr>
+<tr class="separator:a2973418a68af05a814fcf463c678e603 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df46897ec6a7887c1091f1ed073ae8e inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_comment.html">exml::Comment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a2df46897ec6a7887c1091f1ed073ae8e">toComment</a> () const</td></tr>
+<tr class="separator:a2df46897ec6a7887c1091f1ed073ae8e inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb2c0185ed2e18bf3742925adfc1e6a inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_declaration.html">exml::Declaration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a6cb2c0185ed2e18bf3742925adfc1e6a">toDeclaration</a> ()</td></tr>
+<tr class="separator:a6cb2c0185ed2e18bf3742925adfc1e6a inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addf04f01b3451d6e206b64ef6b957697 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_declaration.html">exml::Declaration</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#addf04f01b3451d6e206b64ef6b957697">toDeclaration</a> () const</td></tr>
+<tr class="separator:addf04f01b3451d6e206b64ef6b957697 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767481c377a99616b66b953a02f64dbe inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_element.html">exml::Element</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a767481c377a99616b66b953a02f64dbe">toElement</a> ()</td></tr>
+<tr class="separator:a767481c377a99616b66b953a02f64dbe inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ec66e5c99bb66879d22df9eb017105f inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_element.html">exml::Element</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a8ec66e5c99bb66879d22df9eb017105f">toElement</a> () const</td></tr>
+<tr class="separator:a8ec66e5c99bb66879d22df9eb017105f inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8abab1c25a8f948cdf3d1ad82e9219 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_text.html">exml::Text</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a4f8abab1c25a8f948cdf3d1ad82e9219">toText</a> ()</td></tr>
+<tr class="separator:a4f8abab1c25a8f948cdf3d1ad82e9219 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3649c79bfff883276edf43260e5adb25 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_text.html">exml::Text</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a3649c79bfff883276edf43260e5adb25">toText</a> () const</td></tr>
+<tr class="separator:a3649c79bfff883276edf43260e5adb25 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d737c69879615f52989389f3a38051 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#ae4d737c69879615f52989389f3a38051">isDocument</a> () const</td></tr>
+<tr class="separator:ae4d737c69879615f52989389f3a38051 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507e9c645182210cd5b2d7c79df2830e inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a507e9c645182210cd5b2d7c79df2830e">isAttribute</a> () const</td></tr>
+<tr class="separator:a507e9c645182210cd5b2d7c79df2830e inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ac0d44a04a9306d106a3a9528d6bc1 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a78ac0d44a04a9306d106a3a9528d6bc1">isComment</a> () const</td></tr>
+<tr class="separator:a78ac0d44a04a9306d106a3a9528d6bc1 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448ec01b749b7ed8dd15f5919936e132 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a448ec01b749b7ed8dd15f5919936e132">isDeclaration</a> () const</td></tr>
+<tr class="separator:a448ec01b749b7ed8dd15f5919936e132 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc2ab327f4add7030ff8d95d7f03d1b inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a6fc2ab327f4add7030ff8d95d7f03d1b">isElement</a> () const</td></tr>
+<tr class="separator:a6fc2ab327f4add7030ff8d95d7f03d1b inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3f9c47de4b8152d2f5510ca0a8d448 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#abb3f9c47de4b8152d2f5510ca0a8d448">isText</a> () const</td></tr>
+<tr class="separator:abb3f9c47de4b8152d2f5510ca0a8d448 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3926b5227f9ca2c83b8d421f86afadb3 inherit pub_methods_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a3926b5227f9ca2c83b8d421f86afadb3">clear</a> ()</td></tr>
+<tr class="separator:a3926b5227f9ca2c83b8d421f86afadb3 inherit pub_methods_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_attribs_classexml_1_1_node"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classexml_1_1_node')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classexml_1_1_node.html">exml::Node</a></td></tr>
+<tr class="memitem:a37781fb340da72020fe008b2633991dd inherit pro_attribs_classexml_1_1_node"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_node.html">exml::internal::Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_node.html#a37781fb340da72020fe008b2633991dd">m_data</a></td></tr>
+<tr class="separator:a37781fb340da72020fe008b2633991dd inherit pro_attribs_classexml_1_1_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classexml_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. ">Comment</a> node: &lt;!&ndash; ... &ndash;&gt;. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a149db494629d4a837ec8a1c4ab3000e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149db494629d4a837ec8a1c4ab3000e5">&sect;&nbsp;</a></span>Comment() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">exml::Comment::Comment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_node.html">exml::internal::Node</a> &gt;&#160;</td>
+          <td class="paramname"><em>_internalNode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_internalNode</td><td>Internal <a class="el" href="classexml_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> to set data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4d90e1edb5dd62a51b25b6fe4b5ce033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d90e1edb5dd62a51b25b6fe4b5ce033">&sect;&nbsp;</a></span>Comment() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">exml::Comment::Comment </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classexml_1_1_comment.html">exml::Comment</a> &amp;&#160;</td>
+          <td class="paramname"><em>_obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_obj</td><td>Object to copy </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6709fb670c7db9b295dd959a7b3aa6d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6709fb670c7db9b295dd959a7b3aa6d9">&sect;&nbsp;</a></span>Comment() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">exml::Comment::Comment </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_value</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_value</td><td>comment value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9957a4016c936730ae9730e5cd1a81a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9957a4016c936730ae9730e5cd1a81a4">&sect;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexml_1_1_comment.html">exml::Comment</a>&amp; exml::Comment::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classexml_1_1_comment.html">exml::Comment</a> &amp;&#160;</td>
+          <td class="paramname"><em>_obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_obj</td><td>Object to copy </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference on the local Object </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>framework/atria-soft/exml/exml/<a class="el" href="_comment_8hpp_source.html">Comment.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Mon Oct 24 2016 14:06:01 for exml: Ewol XML parser by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.12
+</small></address>
+</body>
+</html>

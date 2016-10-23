@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
         <meta name="generator" content="Doxygen 1.8.12"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <title>exml: Ewol XML parser: EXML library</title>
+        <title>exml: Ewol XML parser: Class Members</title>
         <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
         <script type="text/javascript" src="dynsections.js"></script>
         <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -127,57 +127,50 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title">EXML library </div>  </div>
-</div><!--header-->
 <div class="contents">
-<div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#exml_mainpage_what">What is EXML:                               </a><ul><li class="level2"><a href="#exml_mainpage_what_it_does">What it does:                               </a></li>
-<li class="level2"><a href="#exml_mainpage_what_it_not_does">What it doesn&#39;t do:                          </a></li>
-</ul>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
+
+<h3><a id="index_s"></a>- s -</h3><ul>
+<li>set()
+: <a class="el" href="classexml_1_1_attribute_list_data.html#a5e585c31979c0d042bcfc46a4972cfe8">exml::AttributeListData</a>
+, <a class="el" href="classexml_1_1_file_pos.html#a46f80c60dbdc4674c57b5a116ead18a5">exml::FilePos</a>
 </li>
-<li class="level1"><a href="#exml_mainpage_language">What languages are supported?                    </a></li>
-<li class="level1"><a href="#exml_mainpage_license_restriction">Are there any licensing restrictions?            </a></li>
-<li class="level1"><a href="#exml_mainpage_license">License (APACHE-2.0)                             </a></li>
-<li class="level1"><a href="#exml_mainpage_sub_page">Other pages                              </a></li>
+<li>setAttribute()
+: <a class="el" href="classexml_1_1internal_1_1_attribute_list.html#a1beee0bb605474fd256b6ad82c96de89">exml::internal::AttributeList</a>
+</li>
+<li>setCaseSensitive()
+: <a class="el" href="classexml_1_1_document.html#a13d2e3ba7f1aab70ba34429c7d1df35e">exml::Document</a>
+, <a class="el" href="classexml_1_1internal_1_1_document.html#ae8d1cd51bc7393ea5749f152cb9cdd89">exml::internal::Document</a>
+</li>
+<li>setDisplayError()
+: <a class="el" href="classexml_1_1_document.html#a3eec99892f1a6a5b85a1de17803eeb39">exml::Document</a>
+, <a class="el" href="classexml_1_1internal_1_1_document.html#a56958af3e9a4fa06a6ff4bea4e03bb9d">exml::internal::Document</a>
+</li>
+<li>setName()
+: <a class="el" href="classexml_1_1_attribute.html#a2519a0ea5ecee0190a3cde2f4a5774dd">exml::Attribute</a>
+, <a class="el" href="classexml_1_1internal_1_1_attribute.html#a9bf71b2c5406e90c3413b8c75260a098">exml::internal::Attribute</a>
+</li>
+<li>setValue()
+: <a class="el" href="classexml_1_1internal_1_1_node.html#a8fd06290a36e1798d3dd969512fb2ee8">exml::internal::Node</a>
+, <a class="el" href="classexml_1_1_node.html#abb042954d3f7e14f8c717dd09123b416">exml::Node</a>
+</li>
+<li>size()
+: <a class="el" href="classexml_1_1_attribute_list_data.html#a734f248937ebea5278ef7ff4d278c729">exml::AttributeListData</a>
+, <a class="el" href="classexml_1_1_element_data.html#a5716dadf951f90a0bd52204983c36e3b">exml::ElementData</a>
+, <a class="el" href="classexml_1_1internal_1_1_element.html#a69df0be8d645abccba60ee2def43b851">exml::internal::Element</a>
+</li>
+<li>sizeAttribute()
+: <a class="el" href="classexml_1_1internal_1_1_attribute_list.html#a776243f201aa2e7464507936c366cbba">exml::internal::AttributeList</a>
+</li>
+<li>store()
+: <a class="el" href="classexml_1_1_document.html#a58f6fdea9c7a2c462fa2610eca06c244">exml::Document</a>
+, <a class="el" href="classexml_1_1internal_1_1_document.html#a39efe27efe912824e2b5230c8e6fa8fb">exml::internal::Document</a>
+</li>
+<li>subParse()
+: <a class="el" href="classexml_1_1internal_1_1_element.html#aaf4fe190c58dcfc2ac62a1ad12494235">exml::internal::Element</a>
+</li>
 </ul>
-</div>
-<div class="textblock"><h1><a class="anchor" id="exml_mainpage_what"></a>
-What is EXML:                               </h1>
-<p>EXML, or Ewol XML interface is a simple, small, efficient, C++ XML parser/generator that can be easily integrating into other programs.</p>
-<h2><a class="anchor" id="exml_mainpage_what_it_does"></a>
-What it does:                               </h2>
-<p>EXML parses an XML document, and builds from that a Document Object Model (DOM) that can be read, modified, and saved.</p>
-<p>XML stands for "eXtensible Markup Language." It is a general purpose human and machine readable markup language to describe arbitrary data. All those random file formats created to store application data can all be replaced with XML. One parser for everything.</p>
-<p><a href="http://wikipedia.org/wiki/XML">http://wikipedia.org/wiki/XML</a></p>
-<p>There are different ways to access and interact with XML data. EXML uses a Document Object Model (DOM), meaning the XML data is parsed into a C++ objects that can be browsed and manipulated, and then written to disk. You can also construct an XML document from scratch with C++ objects and write this to disk.</p>
-<p>EXML is designed to be easy and fast to learn.</p>
-<p>EXML is dependent of the STL (compatible with MacOs stl (CXX))</p>
-<h2><a class="anchor" id="exml_mainpage_what_it_not_does"></a>
-What it doesn't do:                          </h2>
-<p>EXML doesn't parse or use DTDs (Document Type Definitions) or XSLs (eXtensible Stylesheet Language).</p>
-<h1><a class="anchor" id="exml_mainpage_language"></a>
-What languages are supported?                    </h1>
-<p>EXML is written in C++.</p>
-<h1><a class="anchor" id="exml_mainpage_license_restriction"></a>
-Are there any licensing restrictions?            </h1>
-<p>EXML is <b>FREE software</b> and <em>all sub-library are FREE and staticly linkable !!!</em></p>
-<h1><a class="anchor" id="exml_mainpage_license"></a>
-License (APACHE-2.0)                             </h1>
-<p>Copyright EXML Edouard DUPIN</p>
-<p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</p>
-<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<h1><a class="anchor" id="exml_mainpage_sub_page"></a>
-Other pages                              </h1>
-<ul>
-<li><a class="el" href="exml_build.html">Build lib &amp; build sample</a></li>
-<li><a class="el" href="exml_tutorial_read.html">Read an XML content</a></li>
-<li><a class="el" href="exml_tutorial_write.html">Write an XML content</a></li>
-<li><a href="http://atria-soft.github.io/ewol/ewol_coding_style.html"><b>ewol coding style</b></a> </li>
-</ul>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
 </div>

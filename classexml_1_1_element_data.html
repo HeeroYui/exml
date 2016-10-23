@@ -1,0 +1,534 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>exml: Ewol XML parser: exml::ElementData Class Reference</title>
+        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">exml: Ewol XML parser 0.7.0</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Main&nbsp;Page</a></li>
+                        <li><a href="pages.html">Related&nbsp;Pages</a></li>
+                        <li><a href="namespaces.html">Namespaces</a></li>
+                        <li><a href="annotated.html">Classes</a></li>
+                        <li><a href="files.html">Files</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Link-libs<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://HeeroYui.github.io/lutin">lutin</a></li>
+                                <li><a href="http://atria-soft.github.io/ewol">ewol</a></li>
+                                <li><a href="http://atria-soft.github.io/etk">etk</a></li>
+                                <li><a href="http://atria-soft.github.io/ejson">ejson</a></li>
+                                <li><a href="http://atria-soft.github.io/exml">exml</a></li>
+                                <li><a href="http://atria-soft.github.io/esvg">esvg</a></li>
+                                <li><a href="http://atria-soft.github.io/egami">egami</a></li>
+                                <li><a href="http://atria-soft.github.io/gale">gale</a></li>
+                                <li><a href="http://atria-soft.github.io/ege">ege</a></li>
+                                <li><a href="http://atria-soft.github.io/elog">elog</a></li>
+                                <li><a href="http://atria-soft.github.io/ememory">ememory</a></li>
+                                <li><a href="http://atria-soft.github.io/enet">enet</a></li>
+                                <li><a href="http://atria-soft.github.io/eproperty">eproperty</a></li>
+                                <li><a href="http://atria-soft.github.io/esignal">esignal</a></li>
+                                <li><a href="http://atria-soft.github.io/zeus">zeus</a></li>
+                                <li><a href="http://atria-soft.github.io/audio-ess">audio-ess</a></li>
+                                <li><a href="http://musicdsp.github.io/audio">audio</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-drain">audio-drain</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-orchestra">audio-orchestra</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-river">audio-river</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="search-box" class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Classes</a></li>
+                                <li><a href="#">Namespaces</a></li>
+                                <li><a href="#">Files</a></li>
+                                <li><a href="#">Functions</a></li>
+                                <li><a href="#">Variables</a></li>
+                                <li><a href="#">Typedefs</a></li>
+                                <li><a href="#">Enumerations</a></li>
+                                <li><a href="#">Enumerator</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Macros</a></li>
+                                <li><a href="#">Pages</a></li>
+                            </ul>
+                        </div>
+                        <button id="search-close" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input id="search-field" class="form-control" accesskey="S" onkeydown="searchBox.OnSearchFieldChange(event);" placeholder="Search ..." type="text">
+                    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel panel-default" style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceexml.html">exml</a></li><li class="navelem"><a class="el" href="classexml_1_1_element_data.html">ElementData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classexml_1_1_element_data-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">exml::ElementData Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_element_8hpp_source.html">Element.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a55fff4e7a14eeb5adf55270117ccedf9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a> = <a class="el" href="classexml_1_1iterator.html">exml::iterator</a>&lt; <a class="el" href="classexml_1_1_element_data.html">exml::ElementData</a>, <a class="el" href="classexml_1_1_node.html">exml::Node</a> &gt;</td></tr>
+<tr class="separator:a55fff4e7a14eeb5adf55270117ccedf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ad07fd074cf1a0dd9e4dcc512c7f6799e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#ad07fd074cf1a0dd9e4dcc512c7f6799e">ElementData</a> (<a class="el" href="classexml_1_1_element.html">exml::Element</a> *_list)</td></tr>
+<tr class="separator:ad07fd074cf1a0dd9e4dcc512c7f6799e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5716dadf951f90a0bd52204983c36e3b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a5716dadf951f90a0bd52204983c36e3b">size</a> () const</td></tr>
+<tr class="separator:a5716dadf951f90a0bd52204983c36e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa70c78eeee7d8bc271afe62a273ee264"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#aa70c78eeee7d8bc271afe62a273ee264">add</a> (const <a class="el" href="classexml_1_1_node.html">exml::Node</a> &amp;_node)</td></tr>
+<tr class="separator:aa70c78eeee7d8bc271afe62a273ee264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358814eb35fe9025565185055b8b3782"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a358814eb35fe9025565185055b8b3782">remove</a> (const std::string &amp;_nodeName)</td></tr>
+<tr class="separator:a358814eb35fe9025565185055b8b3782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12a26ad91e1c195461bc923055a5c501"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a12a26ad91e1c195461bc923055a5c501">getType</a> (int32_t _id) const</td></tr>
+<tr class="separator:a12a26ad91e1c195461bc923055a5c501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a486183c52aaeed1e16df9afee3366f83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_node.html">exml::Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a486183c52aaeed1e16df9afee3366f83">operator[]</a> (int32_t _id)</td></tr>
+<tr class="separator:a486183c52aaeed1e16df9afee3366f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d9243d2eb93a27344926ebcc3887b4f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_node.html">exml::Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a2d9243d2eb93a27344926ebcc3887b4f">operator[]</a> (int32_t _id) const</td></tr>
+<tr class="separator:a2d9243d2eb93a27344926ebcc3887b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a530492631e31b02a5674afc50bcce005"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_element.html">exml::Element</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a530492631e31b02a5674afc50bcce005">operator[]</a> (const std::string &amp;_name)</td></tr>
+<tr class="separator:a530492631e31b02a5674afc50bcce005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9857fd5e36acd703943305df0b73059"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_element.html">exml::Element</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#ad9857fd5e36acd703943305df0b73059">operator[]</a> (const std::string &amp;_name) const</td></tr>
+<tr class="separator:ad9857fd5e36acd703943305df0b73059"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914496eb85268156e48899bcf20e7c51"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a914496eb85268156e48899bcf20e7c51">begin</a> ()</td></tr>
+<tr class="separator:a914496eb85268156e48899bcf20e7c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59790d45b981b0c7baaec7ed4f7dc12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#af59790d45b981b0c7baaec7ed4f7dc12">end</a> ()</td></tr>
+<tr class="separator:af59790d45b981b0c7baaec7ed4f7dc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a679f35ae05516d778d7938586da660fc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a679f35ae05516d778d7938586da660fc">begin</a> () const</td></tr>
+<tr class="separator:a679f35ae05516d778d7938586da660fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373d38dc02060f1a2a601c5b0ced7337"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1_element_data.html#a373d38dc02060f1a2a601c5b0ced7337">end</a> () const</td></tr>
+<tr class="separator:a373d38dc02060f1a2a601c5b0ced7337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Basic element <a class="el" href="classexml_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> of an XML document &lt;YYYYY&gt;. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd><p class="startdd">Remove node with a specisic ID/Iterator (erase) </p>
+<p class="enddd">Remove an <a class="el" href="classexml_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> with his <a class="el" href="classexml_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::Element</a> link </p>
+</dd></dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a55fff4e7a14eeb5adf55270117ccedf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55fff4e7a14eeb5adf55270117ccedf9">&sect;&nbsp;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">exml::ElementData::iterator</a> =  <a class="el" href="classexml_1_1iterator.html">exml::iterator</a>&lt;<a class="el" href="classexml_1_1_element_data.html">exml::ElementData</a>, <a class="el" href="classexml_1_1_node.html">exml::Node</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Specify iterator of the element methode. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad07fd074cf1a0dd9e4dcc512c7f6799e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad07fd074cf1a0dd9e4dcc512c7f6799e">&sect;&nbsp;</a></span>ElementData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">exml::ElementData::ElementData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classexml_1_1_element.html">exml::Element</a> *&#160;</td>
+          <td class="paramname"><em>_list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructor on the <a class="el" href="classexml_1_1_element_data.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">ElementData</a> class </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_list</td><td>Get pointer on the <a class="el" href="classexml_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::Element</a> class (must not be nullptr) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa70c78eeee7d8bc271afe62a273ee264"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa70c78eeee7d8bc271afe62a273ee264">&sect;&nbsp;</a></span>add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exml::ElementData::add </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classexml_1_1_node.html">exml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>_node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>add a node at the element (not <a class="el" href="classexml_1_1_attribute.html" title="Single attribute element. ">exml::Attribute</a> (move in the attribute automaticly). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_node</td><td><a class="el" href="classexml_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a914496eb85268156e48899bcf20e7c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a914496eb85268156e48899bcf20e7c51">&sect;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a> exml::ElementData::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get iterator of the first sub nodes. </p>
+<dl class="section return"><dt>Returns</dt><dd>iterator on the begin position of the nodes </dd></dl>
+
+</div>
+</div>
+<a id="a679f35ae05516d778d7938586da660fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a679f35ae05516d778d7938586da660fc">&sect;&nbsp;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a> exml::ElementData::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get const iterator of the first sub nodes. </p>
+<dl class="section return"><dt>Returns</dt><dd>const iterator on the begin position of the nodes </dd></dl>
+
+</div>
+</div>
+<a id="af59790d45b981b0c7baaec7ed4f7dc12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af59790d45b981b0c7baaec7ed4f7dc12">&sect;&nbsp;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a> exml::ElementData::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get iterator of the next of the last sub nodes. </p>
+<dl class="section return"><dt>Returns</dt><dd>iterator on the next of the last position of the nodes </dd></dl>
+
+</div>
+</div>
+<a id="a373d38dc02060f1a2a601c5b0ced7337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373d38dc02060f1a2a601c5b0ced7337">&sect;&nbsp;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classexml_1_1_element_data.html#a55fff4e7a14eeb5adf55270117ccedf9">iterator</a> exml::ElementData::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get const iterator of the next of the last sub nodes. </p>
+<dl class="section return"><dt>Returns</dt><dd>const iterator on the next of the last position of the nodes </dd></dl>
+
+</div>
+</div>
+<a id="a12a26ad91e1c195461bc923055a5c501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12a26ad91e1c195461bc923055a5c501">&sect;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a> exml::ElementData::getType </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the type of the element id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the Current type of the element or exml::typeUnknow. </dd></dl>
+
+</div>
+</div>
+<a id="a486183c52aaeed1e16df9afee3366f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a486183c52aaeed1e16df9afee3366f83">&sect;&nbsp;</a></span>operator[]() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexml_1_1_node.html">exml::Node</a> exml::ElementData::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the <a class="el" href="classexml_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> pointer of the element id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer on node. </dd></dl>
+
+</div>
+</div>
+<a id="a2d9243d2eb93a27344926ebcc3887b4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d9243d2eb93a27344926ebcc3887b4f">&sect;&nbsp;</a></span>operator[]() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classexml_1_1_node.html">exml::Node</a> exml::ElementData::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the <a class="el" href="classexml_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> pointer of the element id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_id</td><td>Id of the element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer on node. </dd></dl>
+
+</div>
+</div>
+<a id="a530492631e31b02a5674afc50bcce005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a530492631e31b02a5674afc50bcce005">&sect;&nbsp;</a></span>operator[]() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexml_1_1_element.html">exml::Element</a> exml::ElementData::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get an element with his name (work only with <a class="el" href="classexml_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::Element</a>) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_name</td><td>Name of the element that is requested </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer on the element or NULL. </dd></dl>
+
+</div>
+</div>
+<a id="ad9857fd5e36acd703943305df0b73059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9857fd5e36acd703943305df0b73059">&sect;&nbsp;</a></span>operator[]() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classexml_1_1_element.html">exml::Element</a> exml::ElementData::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get an element with his name (work only with <a class="el" href="classexml_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::Element</a>) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_name</td><td>Name of the element that is requested </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer on the element or NULL. </dd></dl>
+
+</div>
+</div>
+<a id="a358814eb35fe9025565185055b8b3782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358814eb35fe9025565185055b8b3782">&sect;&nbsp;</a></span>remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exml::ElementData::remove </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_nodeName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove a node with his name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_nodeName</td><td>Name of the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5716dadf951f90a0bd52204983c36e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5716dadf951f90a0bd52204983c36e3b">&sect;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t exml::ElementData::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the number of sub element in the node (can be <a class="el" href="classexml_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. ">exml::Comment</a> ; <a class="el" href="classexml_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::Element</a> ; <a class="el" href="classexml_1_1_text.html" title="Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;. ">exml::Text</a> :<a class="el" href="classexml_1_1_declaration.html" title="Declaration node: &lt;?XXXXXX ... &gt;. ">exml::Declaration</a>). </p>
+<dl class="section return"><dt>Returns</dt><dd>a number &gt;=0. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>framework/atria-soft/exml/exml/<a class="el" href="_element_8hpp_source.html">Element.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Mon Oct 24 2016 14:06:01 for exml: Ewol XML parser by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.12
+</small></address>
+</body>
+</html>

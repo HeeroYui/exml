@@ -1,0 +1,179 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>exml: Ewol XML parser: framework/atria-soft/exml/exml/internal/Element.hpp Source File</title>
+        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">exml: Ewol XML parser 0.7.0</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Main&nbsp;Page</a></li>
+                        <li><a href="pages.html">Related&nbsp;Pages</a></li>
+                        <li><a href="namespaces.html">Namespaces</a></li>
+                        <li><a href="annotated.html">Classes</a></li>
+                        <li><a href="files.html">Files</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Link-libs<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://HeeroYui.github.io/lutin">lutin</a></li>
+                                <li><a href="http://atria-soft.github.io/ewol">ewol</a></li>
+                                <li><a href="http://atria-soft.github.io/etk">etk</a></li>
+                                <li><a href="http://atria-soft.github.io/ejson">ejson</a></li>
+                                <li><a href="http://atria-soft.github.io/exml">exml</a></li>
+                                <li><a href="http://atria-soft.github.io/esvg">esvg</a></li>
+                                <li><a href="http://atria-soft.github.io/egami">egami</a></li>
+                                <li><a href="http://atria-soft.github.io/gale">gale</a></li>
+                                <li><a href="http://atria-soft.github.io/ege">ege</a></li>
+                                <li><a href="http://atria-soft.github.io/elog">elog</a></li>
+                                <li><a href="http://atria-soft.github.io/ememory">ememory</a></li>
+                                <li><a href="http://atria-soft.github.io/enet">enet</a></li>
+                                <li><a href="http://atria-soft.github.io/eproperty">eproperty</a></li>
+                                <li><a href="http://atria-soft.github.io/esignal">esignal</a></li>
+                                <li><a href="http://atria-soft.github.io/zeus">zeus</a></li>
+                                <li><a href="http://atria-soft.github.io/audio-ess">audio-ess</a></li>
+                                <li><a href="http://musicdsp.github.io/audio">audio</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-drain">audio-drain</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-orchestra">audio-orchestra</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-river">audio-river</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="search-box" class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Classes</a></li>
+                                <li><a href="#">Namespaces</a></li>
+                                <li><a href="#">Files</a></li>
+                                <li><a href="#">Functions</a></li>
+                                <li><a href="#">Variables</a></li>
+                                <li><a href="#">Typedefs</a></li>
+                                <li><a href="#">Enumerations</a></li>
+                                <li><a href="#">Enumerator</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Macros</a></li>
+                                <li><a href="#">Pages</a></li>
+                            </ul>
+                        </div>
+                        <button id="search-close" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input id="search-field" class="form-control" accesskey="S" onkeydown="searchBox.OnSearchFieldChange(event);" placeholder="Search ..." type="text">
+                    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel panel-default" style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_644e041c3a6521da7b27eba0e4eb2b95.html">framework</a></li><li class="navelem"><a class="el" href="dir_a094892b17be858f66bf3446bbb755c7.html">atria-soft</a></li><li class="navelem"><a class="el" href="dir_ae358d914b1fb7d675ed883237a889f5.html">exml</a></li><li class="navelem"><a class="el" href="dir_e0e5ae444ddef5927e74f7409f56d38c.html">exml</a></li><li class="navelem"><a class="el" href="dir_aa537408b4b3694bd6c43d048d5a57b8.html">internal</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Element.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="internal_2_element_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="internal_2_node_8hpp.html">exml/internal/Node.hpp</a>&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="internal_2_attribute_list_8hpp.html">exml/internal/AttributeList.hpp</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceexml.html">exml</a> {</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">namespace </span>internal {</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classexml_1_1internal_1_1_element.html">   17</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classexml_1_1internal_1_1_element.html">Element</a> : <span class="keyword">public</span> <a class="code" href="classexml_1_1internal_1_1_attribute_list.html">exml::internal::AttributeList</a> {</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keyword">protected</span>:</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classexml_1_1internal_1_1_element.html#a872fd60a24b73ca9203370da5a116c5b">   22</a></span>&#160;                <a class="code" href="classexml_1_1internal_1_1_element.html#a872fd60a24b73ca9203370da5a116c5b">Element</a>() { };</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classexml_1_1internal_1_1_element.html#a64087f53ecaceb5be1fa3c7a654a4a20">   27</a></span>&#160;                <a class="code" href="classexml_1_1internal_1_1_element.html#a64087f53ecaceb5be1fa3c7a654a4a20">Element</a>(<span class="keyword">const</span> std::string&amp; _value) :</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                  <a class="code" href="namespaceexml.html">exml</a>::internal::<a class="code" href="classexml_1_1internal_1_1_attribute_list.html">AttributeList</a>(_value) {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    </div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                };</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">public</span>:</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keyword">static</span> <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#a3c541e5339698ae994e9658277a16e95">create</a>(<span class="keyword">const</span> std::string&amp; _value=<span class="stringliteral">&quot;&quot;</span>);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keyword">protected</span>:</div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classexml_1_1internal_1_1_element.html#a9bba2f225808ab9a11355b5022262ece">   39</a></span>&#160;                std::vector&lt;ememory::SharedPtr&lt;exml::internal::Node&gt;&gt; <a class="code" href="classexml_1_1internal_1_1_element.html#a9bba2f225808ab9a11355b5022262ece">m_listSub</a>; </div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keyword">public</span>:</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classexml_1_1internal_1_1_element.html#a69df0be8d645abccba60ee2def43b851">   45</a></span>&#160;                <span class="keywordtype">size_t</span> <a class="code" href="classexml_1_1internal_1_1_element.html#a69df0be8d645abccba60ee2def43b851">size</a>()<span class="keyword"> const </span>{</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <span class="keywordflow">return</span> m_listSub.size();</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                };</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classexml_1_1internal_1_1_element.html#a58a79564016151b0c5d5881ddba12e23">append</a>(<span class="keyword">const</span> <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;exml::internal::Node&gt;</a>&amp; _node);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordtype">void</span> <span class="keyword">remove</span>(<span class="keyword">const</span> std::string&amp; _nodeName);</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <span class="keyword">enum</span> <a class="code" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a> <a class="code" href="classexml_1_1internal_1_1_element.html#a12bebe0ded5f6d0314ca60628c384791">getType</a>(int32_t _id) <span class="keyword">const</span>;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Node&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#ac7f692cf423f1f69d72ae0d7576da007">getNode</a>(int32_t _id);</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="keyword">const</span> <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Node&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#ac7f692cf423f1f69d72ae0d7576da007">getNode</a>(int32_t _id) <span class="keyword">const</span>;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#a6b92a20b89b4655f11c320125d0aba2b">getElement</a>(int32_t _id); <span class="comment">// TODO : DEPRECATED ... not use anymore ...</span></div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span>                <span class="keyword">const</span> <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#a6b92a20b89b4655f11c320125d0aba2b">getElement</a>(int32_t _id) <span class="keyword">const</span>;<span class="comment">// TODO : DEPRECATED ... not use anymore ...</span></div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment"></span>                <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#ab4b7d905466ca31640b63d0303bcd301">getNamed</a>(<span class="keyword">const</span> std::string&amp; _name);</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keyword">const</span> <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#ab4b7d905466ca31640b63d0303bcd301">getNamed</a>(<span class="keyword">const</span> std::string&amp; _name) <span class="keyword">const</span>;</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                std::string <a class="code" href="classexml_1_1internal_1_1_element.html#a2ec272362beb52d76e214d720fa49d0b">getText</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keyword">protected</span>:</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classexml_1_1internal_1_1_element.html#aaf4fe190c58dcfc2ac62a1ad12494235">subParse</a>(<span class="keyword">const</span> std::string&amp; _data,</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                              int32_t&amp; _pos,</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                              <span class="keywordtype">bool</span> _caseSensitive,</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                              <a class="code" href="classexml_1_1_file_pos.html">exml::FilePos</a>&amp; _filePos,</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                              <a class="code" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a>&amp; _doc,</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                              <span class="keywordtype">bool</span> _mainNode=<span class="keyword">false</span>);</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <span class="keyword">public</span>:</div><div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classexml_1_1internal_1_1_element.html#a12bebe0ded5f6d0314ca60628c384791">  124</a></span>&#160;                <span class="keyword">enum</span> <a class="code" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a> <a class="code" href="classexml_1_1internal_1_1_element.html#a12bebe0ded5f6d0314ca60628c384791">getType</a>()<span class="keyword"> const override </span>{</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    <span class="keywordflow">return</span> <a class="code" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55a8e2dcfd7e7e24b1ca76c1193f645902b">nodeType::element</a>;</div><div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                }</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classexml_1_1internal_1_1_element.html#a639187deeb9dd6bf5f857b46bbfcf2c3">iParse</a>(<span class="keyword">const</span> std::string&amp; _data, int32_t&amp; _pos, <span class="keywordtype">bool</span> _caseSensitive, <a class="code" href="classexml_1_1_file_pos.html">exml::FilePos</a>&amp; _filePos, <a class="code" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a>&amp; _doc) <span class="keyword">override</span>;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="keywordtype">bool</span> <a class="code" href="classexml_1_1internal_1_1_element.html#a36ecc1948e2aebf7ec53e7c345624bfd">iGenerate</a>(std::string&amp; _data, int32_t _indent) <span class="keyword">const override</span>;</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;exml::internal::Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#ad2414477c28c41083bb2c021ee3b1d5d">toElement</a>() <span class="keyword">override</span>;</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                <span class="keyword">const</span> <a class="codeRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr&lt;exml::internal::Element&gt;</a> <a class="code" href="classexml_1_1internal_1_1_element.html#ad2414477c28c41083bb2c021ee3b1d5d">toElement</a>() <span class="keyword">const override</span>;</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="classexml_1_1internal_1_1_element.html#acd7e92b683aa3dc1a8b3f13925ba1888">clear</a>() <span class="keyword">override</span>;</div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        };</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    }</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div><div class="ttc" id="classexml_1_1internal_1_1_element_html_acd7e92b683aa3dc1a8b3f13925ba1888"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#acd7e92b683aa3dc1a8b3f13925ba1888">exml::internal::Element::clear</a></div><div class="ttdeci">void clear() override</div><div class="ttdoc">clear the Node </div></div>
+<div class="ttc" id="internal_2_node_8hpp_html"><div class="ttname"><a href="internal_2_node_8hpp.html">Node.hpp</a></div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a9bba2f225808ab9a11355b5022262ece"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a9bba2f225808ab9a11355b5022262ece">exml::internal::Element::m_listSub</a></div><div class="ttdeci">std::vector&lt; ememory::SharedPtr&lt; exml::internal::Node &gt; &gt; m_listSub</div><div class="ttdoc">List of subNodes. </div><div class="ttdef"><b>Definition:</b> Element.hpp:39</div></div>
+<div class="ttc" id="namespaceexml_html_a49be10c1d94fea7f1fe579e5ec041e55a8e2dcfd7e7e24b1ca76c1193f645902b"><div class="ttname"><a href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55a8e2dcfd7e7e24b1ca76c1193f645902b">exml::nodeType::element</a></div><div class="ttdoc">the &lt;XXX&gt; ... &lt;/XXX&gt; </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a36ecc1948e2aebf7ec53e7c345624bfd"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a36ecc1948e2aebf7ec53e7c345624bfd">exml::internal::Element::iGenerate</a></div><div class="ttdeci">bool iGenerate(std::string &amp;_data, int32_t _indent) const override</div><div class="ttdoc">generate a string with the tree of the xml </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a69df0be8d645abccba60ee2def43b851"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a69df0be8d645abccba60ee2def43b851">exml::internal::Element::size</a></div><div class="ttdeci">size_t size() const</div><div class="ttdoc">get the number of sub element in the node (can be exml::internal::Comment ; exml::internal::Element ;...</div><div class="ttdef"><b>Definition:</b> Element.hpp:45</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a2ec272362beb52d76e214d720fa49d0b"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a2ec272362beb52d76e214d720fa49d0b">exml::internal::Element::getText</a></div><div class="ttdeci">std::string getText() const</div><div class="ttdoc">get the internal data of the element (if the element has some sub node thay are converted in xml stri...</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_ad2414477c28c41083bb2c021ee3b1d5d"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#ad2414477c28c41083bb2c021ee3b1d5d">exml::internal::Element::toElement</a></div><div class="ttdeci">ememory::SharedPtr&lt; exml::internal::Element &gt; toElement() override</div><div class="ttdoc">Cast the element in a Element if it is possible. </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a639187deeb9dd6bf5f857b46bbfcf2c3"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a639187deeb9dd6bf5f857b46bbfcf2c3">exml::internal::Element::iParse</a></div><div class="ttdeci">bool iParse(const std::string &amp;_data, int32_t &amp;_pos, bool _caseSensitive, exml::FilePos &amp;_filePos, exml::internal::Document &amp;_doc) override</div><div class="ttdoc">parse the Current node [pure VIRUAL] </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a64087f53ecaceb5be1fa3c7a654a4a20"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a64087f53ecaceb5be1fa3c7a654a4a20">exml::internal::Element::Element</a></div><div class="ttdeci">Element(const std::string &amp;_value)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Element.hpp:27</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_ac7f692cf423f1f69d72ae0d7576da007"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#ac7f692cf423f1f69d72ae0d7576da007">exml::internal::Element::getNode</a></div><div class="ttdeci">ememory::SharedPtr&lt; Node &gt; getNode(int32_t _id)</div><div class="ttdoc">get the Node pointer of the element id. </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_attribute_list_html"><div class="ttname"><a href="classexml_1_1internal_1_1_attribute_list.html">exml::internal::AttributeList</a></div><div class="ttdoc">List of all attribute element in a node. </div><div class="ttdef"><b>Definition:</b> AttributeList.hpp:18</div></div>
+<div class="ttc" id="namespaceexml_html"><div class="ttname"><a href="namespaceexml.html">exml</a></div><div class="ttdoc">exml namespace containing all function for XML interpretor </div><div class="ttdef"><b>Definition:</b> Attribute.hpp:11</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_ab4b7d905466ca31640b63d0303bcd301"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#ab4b7d905466ca31640b63d0303bcd301">exml::internal::Element::getNamed</a></div><div class="ttdeci">ememory::SharedPtr&lt; Element &gt; getNamed(const std::string &amp;_name)</div><div class="ttdoc">get an element with his name (work only with exml::internal::Element) </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_document_html"><div class="ttname"><a href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a></div><div class="ttdoc">Basic document element of a document. </div><div class="ttdef"><b>Definition:</b> Document.hpp:16</div></div>
+<div class="ttc" id="classexml_1_1_file_pos_html"><div class="ttname"><a href="classexml_1_1_file_pos.html">exml::FilePos</a></div><div class="ttdoc">Position in the file of the original data. </div><div class="ttdef"><b>Definition:</b> FilePos.hpp:14</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a12bebe0ded5f6d0314ca60628c384791"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a12bebe0ded5f6d0314ca60628c384791">exml::internal::Element::getType</a></div><div class="ttdeci">enum nodeType getType() const override</div><div class="ttdoc">get the node type. </div><div class="ttdef"><b>Definition:</b> Element.hpp:124</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a872fd60a24b73ca9203370da5a116c5b"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a872fd60a24b73ca9203370da5a116c5b">exml::internal::Element::Element</a></div><div class="ttdeci">Element()</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Element.hpp:22</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a6b92a20b89b4655f11c320125d0aba2b"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a6b92a20b89b4655f11c320125d0aba2b">exml::internal::Element::getElement</a></div><div class="ttdeci">ememory::SharedPtr&lt; Element &gt; getElement(int32_t _id)</div><div class="ttdoc">get the element casted in Element (if the node is not an element return NULL). </div></div>
+<div class="ttc" id="classememory_1_1_shared_ptr_html"><div class="ttname"><a href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a></div></div>
+<div class="ttc" id="internal_2_attribute_list_8hpp_html"><div class="ttname"><a href="internal_2_attribute_list_8hpp.html">AttributeList.hpp</a></div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_aaf4fe190c58dcfc2ac62a1ad12494235"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#aaf4fe190c58dcfc2ac62a1ad12494235">exml::internal::Element::subParse</a></div><div class="ttdeci">bool subParse(const std::string &amp;_data, int32_t &amp;_pos, bool _caseSensitive, exml::FilePos &amp;_filePos, exml::internal::Document &amp;_doc, bool _mainNode=false)</div><div class="ttdoc">Parse sub node string. </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a58a79564016151b0c5d5881ddba12e23"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a58a79564016151b0c5d5881ddba12e23">exml::internal::Element::append</a></div><div class="ttdeci">void append(const ememory::SharedPtr&lt; exml::internal::Node &gt; &amp;_node)</div><div class="ttdoc">add a node at the element (not exml::internal::Attribute (move in the attribute automaticly). </div></div>
+<div class="ttc" id="namespaceexml_html_a49be10c1d94fea7f1fe579e5ec041e55"><div class="ttname"><a href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">exml::nodeType</a></div><div class="ttdeci">nodeType</div><div class="ttdoc">Type of the XML elements. </div><div class="ttdef"><b>Definition:</b> nodeType.hpp:17</div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html_a3c541e5339698ae994e9658277a16e95"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html#a3c541e5339698ae994e9658277a16e95">exml::internal::Element::create</a></div><div class="ttdeci">static ememory::SharedPtr&lt; Element &gt; create(const std::string &amp;_value=&quot;&quot;)</div><div class="ttdoc">factory of an exml::internal::Element </div></div>
+<div class="ttc" id="classexml_1_1internal_1_1_element_html"><div class="ttname"><a href="classexml_1_1internal_1_1_element.html">exml::internal::Element</a></div><div class="ttdoc">Basic element Node of an XML document &lt;YYYYY&gt;. </div><div class="ttdef"><b>Definition:</b> Element.hpp:17</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Mon Oct 24 2016 14:06:01 for exml: Ewol XML parser by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.12
+</small></address>
+</body>
+</html>

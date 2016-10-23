@@ -1,0 +1,1343 @@
+<!-- HTML header for doxygen 1.8.8-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- For Mobile Devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+        <meta name="generator" content="Doxygen 1.8.12"/>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <title>exml: Ewol XML parser: exml::internal::Node Class Reference</title>
+        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <script type="text/javascript" src="dynsections.js"></script>
+        <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link href="customdoxygen.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="doxy-boot.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand">exml: Ewol XML parser 0.7.0</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Main&nbsp;Page</a></li>
+                        <li><a href="pages.html">Related&nbsp;Pages</a></li>
+                        <li><a href="namespaces.html">Namespaces</a></li>
+                        <li><a href="annotated.html">Classes</a></li>
+                        <li><a href="files.html">Files</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Link-libs<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://HeeroYui.github.io/lutin">lutin</a></li>
+                                <li><a href="http://atria-soft.github.io/ewol">ewol</a></li>
+                                <li><a href="http://atria-soft.github.io/etk">etk</a></li>
+                                <li><a href="http://atria-soft.github.io/ejson">ejson</a></li>
+                                <li><a href="http://atria-soft.github.io/exml">exml</a></li>
+                                <li><a href="http://atria-soft.github.io/esvg">esvg</a></li>
+                                <li><a href="http://atria-soft.github.io/egami">egami</a></li>
+                                <li><a href="http://atria-soft.github.io/gale">gale</a></li>
+                                <li><a href="http://atria-soft.github.io/ege">ege</a></li>
+                                <li><a href="http://atria-soft.github.io/elog">elog</a></li>
+                                <li><a href="http://atria-soft.github.io/ememory">ememory</a></li>
+                                <li><a href="http://atria-soft.github.io/enet">enet</a></li>
+                                <li><a href="http://atria-soft.github.io/eproperty">eproperty</a></li>
+                                <li><a href="http://atria-soft.github.io/esignal">esignal</a></li>
+                                <li><a href="http://atria-soft.github.io/zeus">zeus</a></li>
+                                <li><a href="http://atria-soft.github.io/audio-ess">audio-ess</a></li>
+                                <li><a href="http://musicdsp.github.io/audio">audio</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-drain">audio-drain</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-orchestra">audio-orchestra</a></li>
+                                <li><a href="http://musicdsp.github.io/audio-river">audio-river</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div id="search-box" class="input-group">
+                        <div class="input-group-btn">
+                            <button aria-expanded="false" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">All</a></li>
+                                <li><a href="#">Classes</a></li>
+                                <li><a href="#">Namespaces</a></li>
+                                <li><a href="#">Files</a></li>
+                                <li><a href="#">Functions</a></li>
+                                <li><a href="#">Variables</a></li>
+                                <li><a href="#">Typedefs</a></li>
+                                <li><a href="#">Enumerations</a></li>
+                                <li><a href="#">Enumerator</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Macros</a></li>
+                                <li><a href="#">Pages</a></li>
+                            </ul>
+                        </div>
+                        <button id="search-close" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                        <input id="search-field" class="form-control" accesskey="S" onkeydown="searchBox.OnSearchFieldChange(event);" placeholder="Search ..." type="text">
+                    </div>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+            <div class="content" id="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 panel panel-default" style="padding-bottom: 15px;">
+                            <div style="margin-bottom: 15px;">
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceexml.html">exml</a></li><li class="navelem"><b>internal</b></li><li class="navelem"><a class="el" href="classexml_1_1internal_1_1_node.html">Node</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="classexml_1_1internal_1_1_node-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">exml::internal::Node Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="internal_2_node_8hpp_source.html">Node.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for exml::internal::Node:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classexml_1_1internal_1_1_node.png" usemap="#exml::internal::Node_map" alt=""/>
+  <map id="exml::internal::Node_map" name="exml::internal::Node_map">
+<area doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this.html" alt="ememory::EnableSharedFromThis&lt; Node &gt;" shape="rect" coords="397,56,652,80"/>
+<area doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this_base.html" alt="ememory::EnableSharedFromThisBase" shape="rect" coords="397,0,652,24"/>
+<area href="classexml_1_1internal_1_1_attribute.html" title="Single attribute element. " alt="exml::internal::Attribute" shape="rect" coords="0,168,255,192"/>
+<area href="classexml_1_1internal_1_1_attribute_list.html" title="List of all attribute element in a node. " alt="exml::internal::AttributeList" shape="rect" coords="265,168,520,192"/>
+<area href="classexml_1_1internal_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. " alt="exml::internal::Comment" shape="rect" coords="530,168,785,192"/>
+<area href="classexml_1_1internal_1_1_text.html" title="Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;. " alt="exml::internal::Text" shape="rect" coords="795,168,1050,192"/>
+<area href="classexml_1_1internal_1_1_declaration.html" title="Declaration node: &lt;?XXXXXX ... &gt;. " alt="exml::internal::Declaration" shape="rect" coords="132,224,387,248"/>
+<area href="classexml_1_1internal_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. " alt="exml::internal::Element" shape="rect" coords="397,224,652,248"/>
+<area href="classexml_1_1internal_1_1_text_c_d_a_t_a.html" title="Text node interface for balise CDATA &lt;![CDATA[*******]]&gt;. " alt="exml::internal::TextCDATA" shape="rect" coords="795,224,1050,248"/>
+<area href="classexml_1_1internal_1_1_declaration_x_m_l.html" title="Declaration node: &lt;?XML ... &gt;. " alt="exml::internal::DeclarationXML" shape="rect" coords="132,280,387,304"/>
+<area href="classexml_1_1internal_1_1_document.html" title="Basic document element of a document. " alt="exml::internal::Document" shape="rect" coords="397,280,652,304"/>
+</map>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6a305f22e495245e88f092ddeedfbbd3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a6a305f22e495245e88f092ddeedfbbd3">~Node</a> ()=default</td></tr>
+<tr class="separator:a6a305f22e495245e88f092ddeedfbbd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac767feed551e8543279652865fcb7371"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#ac767feed551e8543279652865fcb7371">iParse</a> (const std::string &amp;_data, int32_t &amp;_pos, bool _caseSensitive, <a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;_filePos, <a class="el" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a> &amp;_doc)=0</td></tr>
+<tr class="separator:ac767feed551e8543279652865fcb7371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a8e61ba97925d0af11cd968d9cee97d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a2a8e61ba97925d0af11cd968d9cee97d">iGenerate</a> (std::string &amp;_data, int32_t _indent) const</td></tr>
+<tr class="separator:a2a8e61ba97925d0af11cd968d9cee97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add2df6a9be11b5d1697c7b3caf05e37c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#add2df6a9be11b5d1697c7b3caf05e37c">getPos</a> () const</td></tr>
+<tr class="separator:add2df6a9be11b5d1697c7b3caf05e37c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fd06290a36e1798d3dd969512fb2ee8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a8fd06290a36e1798d3dd969512fb2ee8">setValue</a> (std::string _value)</td></tr>
+<tr class="separator:a8fd06290a36e1798d3dd969512fb2ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae0e54963e780ba5f478194ae1e3a2b"><td class="memItemLeft" align="right" valign="top">virtual const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a1ae0e54963e780ba5f478194ae1e3a2b">getValue</a> () const</td></tr>
+<tr class="separator:a1ae0e54963e780ba5f478194ae1e3a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30ff036da7e29dc862bae2d1ae7c441"><td class="memItemLeft" align="right" valign="top">virtual enum <a class="el" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#ac30ff036da7e29dc862bae2d1ae7c441">getType</a> () const</td></tr>
+<tr class="separator:ac30ff036da7e29dc862bae2d1ae7c441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e44dc0bd6febbcde144b4a2481389a"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a64e44dc0bd6febbcde144b4a2481389a">toDocument</a> ()</td></tr>
+<tr class="separator:a64e44dc0bd6febbcde144b4a2481389a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3a4c08d732ab2ad44e611131092d03"><td class="memItemLeft" align="right" valign="top">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a7d3a4c08d732ab2ad44e611131092d03">toDocument</a> () const</td></tr>
+<tr class="separator:a7d3a4c08d732ab2ad44e611131092d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a445a08afd2353d9486e2c3beafbc83cc"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_attribute.html">exml::internal::Attribute</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a445a08afd2353d9486e2c3beafbc83cc">toAttribute</a> ()</td></tr>
+<tr class="separator:a445a08afd2353d9486e2c3beafbc83cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4aaa87fe8ec644bf1319cb40b49545f"><td class="memItemLeft" align="right" valign="top">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_attribute.html">exml::internal::Attribute</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#ad4aaa87fe8ec644bf1319cb40b49545f">toAttribute</a> () const</td></tr>
+<tr class="separator:ad4aaa87fe8ec644bf1319cb40b49545f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2b2c9ff93a1f0a0a58088636c8b6549"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_comment.html">exml::internal::Comment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#af2b2c9ff93a1f0a0a58088636c8b6549">toComment</a> ()</td></tr>
+<tr class="separator:af2b2c9ff93a1f0a0a58088636c8b6549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a454bc374e5ece3c04ebffdda2c6dcc2d"><td class="memItemLeft" align="right" valign="top">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_comment.html">exml::internal::Comment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a454bc374e5ece3c04ebffdda2c6dcc2d">toComment</a> () const</td></tr>
+<tr class="separator:a454bc374e5ece3c04ebffdda2c6dcc2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6170cc3fdab1527305792b22e59a13c9"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_declaration.html">exml::internal::Declaration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a6170cc3fdab1527305792b22e59a13c9">toDeclaration</a> ()</td></tr>
+<tr class="separator:a6170cc3fdab1527305792b22e59a13c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ea18d378c22b64b8113d77527ad08fd"><td class="memItemLeft" align="right" valign="top">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_declaration.html">exml::internal::Declaration</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a4ea18d378c22b64b8113d77527ad08fd">toDeclaration</a> () const</td></tr>
+<tr class="separator:a4ea18d378c22b64b8113d77527ad08fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad6cd619259363f3f60fb36753c504a"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_element.html">exml::internal::Element</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#afad6cd619259363f3f60fb36753c504a">toElement</a> ()</td></tr>
+<tr class="separator:afad6cd619259363f3f60fb36753c504a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf1cf53dca2a1ce62eeb265cf136e42"><td class="memItemLeft" align="right" valign="top">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_element.html">exml::internal::Element</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#abcf1cf53dca2a1ce62eeb265cf136e42">toElement</a> () const</td></tr>
+<tr class="separator:abcf1cf53dca2a1ce62eeb265cf136e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5489504a07661cdf86ca754cf6ccfa46"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_text.html">exml::internal::Text</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a5489504a07661cdf86ca754cf6ccfa46">toText</a> ()</td></tr>
+<tr class="separator:a5489504a07661cdf86ca754cf6ccfa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493b3b3f8c9ad205a65d1a0cc19fe92b"><td class="memItemLeft" align="right" valign="top">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; <a class="el" href="classexml_1_1internal_1_1_text.html">exml::internal::Text</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a493b3b3f8c9ad205a65d1a0cc19fe92b">toText</a> () const</td></tr>
+<tr class="separator:a493b3b3f8c9ad205a65d1a0cc19fe92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a785e97b8b4ed169486cfaaad9f6e4cdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a785e97b8b4ed169486cfaaad9f6e4cdb">isDocument</a> () const</td></tr>
+<tr class="separator:a785e97b8b4ed169486cfaaad9f6e4cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79a6a4f90a4e848f58be568acdeaf4f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a79a6a4f90a4e848f58be568acdeaf4f9">isAttribute</a> () const</td></tr>
+<tr class="separator:a79a6a4f90a4e848f58be568acdeaf4f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af83b4078765454c8dc88cada81a592c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#af83b4078765454c8dc88cada81a592c7">isComment</a> () const</td></tr>
+<tr class="separator:af83b4078765454c8dc88cada81a592c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaa9bdd0a14d1fd69bb37b18932ceecd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#aaaa9bdd0a14d1fd69bb37b18932ceecd">isDeclaration</a> () const</td></tr>
+<tr class="separator:aaaa9bdd0a14d1fd69bb37b18932ceecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ca69f3db29e6f92c139583fd629804d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a5ca69f3db29e6f92c139583fd629804d">isElement</a> () const</td></tr>
+<tr class="separator:a5ca69f3db29e6f92c139583fd629804d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ab1958d2487777e45150ce9fae91e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a05ab1958d2487777e45150ce9fae91e2">isText</a> () const</td></tr>
+<tr class="separator:a05ab1958d2487777e45150ce9fae91e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70cd10854610d69cec5d35cf43443fc6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a70cd10854610d69cec5d35cf43443fc6">clear</a> ()</td></tr>
+<tr class="separator:a70cd10854610d69cec5d35cf43443fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classememory_1_1_enable_shared_from_this"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classememory_1_1_enable_shared_from_this')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this.html">ememory::EnableSharedFromThis&lt; Node &gt;</a></td></tr>
+<tr class="memitem:ab9c576f893c44cbf8163b1ddf6f86b38 inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memItemLeft" align="right" valign="top"><a id="ab9c576f893c44cbf8163b1ddf6f86b38"></a>
+<a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; EMEMORY_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this.html#ab9c576f893c44cbf8163b1ddf6f86b38">sharedFromThis</a> ()</td></tr>
+<tr class="separator:ab9c576f893c44cbf8163b1ddf6f86b38 inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad16c98c2383b23adffa8db309bc1ca11 inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memItemLeft" align="right" valign="top"><a id="ad16c98c2383b23adffa8db309bc1ca11"></a>
+const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt; EMEMORY_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this.html#ad16c98c2383b23adffa8db309bc1ca11">sharedFromThis</a> () const</td></tr>
+<tr class="separator:ad16c98c2383b23adffa8db309bc1ca11 inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2ce5703d70b211bae31fd40a5514c19 inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memItemLeft" align="right" valign="top"><a id="aa2ce5703d70b211bae31fd40a5514c19"></a>
+<a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_weak_ptr.html">ememory::WeakPtr</a>&lt; EMEMORY_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this.html#aa2ce5703d70b211bae31fd40a5514c19">weakFromThis</a> ()</td></tr>
+<tr class="separator:aa2ce5703d70b211bae31fd40a5514c19 inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be22e13e06d0f679ff03c6ee817386f inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memItemLeft" align="right" valign="top"><a id="a6be22e13e06d0f679ff03c6ee817386f"></a>
+const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_weak_ptr.html">ememory::WeakPtr</a>&lt; EMEMORY_TYPE &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_enable_shared_from_this.html#a6be22e13e06d0f679ff03c6ee817386f">weakFromThis</a> () const</td></tr>
+<tr class="separator:a6be22e13e06d0f679ff03c6ee817386f inherit pub_methods_classememory_1_1_enable_shared_from_this"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a09354ad634c68aa620d08a88f4e20f98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a09354ad634c68aa620d08a88f4e20f98">Node</a> ()</td></tr>
+<tr class="separator:a09354ad634c68aa620d08a88f4e20f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79828d255b9a84c2ed188596517c68ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a79828d255b9a84c2ed188596517c68ec">Node</a> (const std::string &amp;_value)</td></tr>
+<tr class="separator:a79828d255b9a84c2ed188596517c68ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a753a9c172b9a498fb8abceeac81d6a8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a753a9c172b9a498fb8abceeac81d6a8e">addIndent</a> (std::string &amp;_data, int32_t _indent) const</td></tr>
+<tr class="separator:a753a9c172b9a498fb8abceeac81d6a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f35cba4f6c01fa544315139032fb39a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a8f35cba4f6c01fa544315139032fb39a">drawElementParsed</a> (char32_t _val, const <a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;_filePos) const</td></tr>
+<tr class="separator:a8f35cba4f6c01fa544315139032fb39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0e26e310c7451cfcb225cff88cacb1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#abe0e26e310c7451cfcb225cff88cacb1">checkAvaillable</a> (char32_t _val, bool _firstChar) const</td></tr>
+<tr class="separator:abe0e26e310c7451cfcb225cff88cacb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe664dd6d896dddc12edc7026aa24c24"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#abe664dd6d896dddc12edc7026aa24c24">countWhiteChar</a> (const std::string &amp;_data, int32_t _pos, <a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;_filePos) const</td></tr>
+<tr class="separator:abe664dd6d896dddc12edc7026aa24c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:aff4c22828c5e24f6890fdb7e646a3046"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#aff4c22828c5e24f6890fdb7e646a3046">m_pos</a></td></tr>
+<tr class="separator:aff4c22828c5e24f6890fdb7e646a3046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4665d683223dd60ed293471627b8659b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexml_1_1internal_1_1_node.html#a4665d683223dd60ed293471627b8659b">m_value</a></td></tr>
+<tr class="separator:a4665d683223dd60ed293471627b8659b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Basic main object of all xml elements. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a09354ad634c68aa620d08a88f4e20f98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09354ad634c68aa620d08a88f4e20f98">&sect;&nbsp;</a></span>Node() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">exml::internal::Node::Node </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>basic element of a xml structure </p>
+
+</div>
+</div>
+<a id="a79828d255b9a84c2ed188596517c68ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79828d255b9a84c2ed188596517c68ec">&sect;&nbsp;</a></span>Node() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">exml::internal::Node::Node </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>basic element of a xml structure </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_value</td><td>value of the node </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a305f22e495245e88f092ddeedfbbd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a305f22e495245e88f092ddeedfbbd3">&sect;&nbsp;</a></span>~Node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual exml::internal::Node::~Node </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Virtualize destructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a753a9c172b9a498fb8abceeac81d6a8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753a9c172b9a498fb8abceeac81d6a8e">&sect;&nbsp;</a></span>addIndent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exml::internal::Node::addIndent </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_indent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>add indentation of the string input. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_data</td><td>String where the indentation is done. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_indent</td><td>Number of tab to add at the string. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abe0e26e310c7451cfcb225cff88cacb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0e26e310c7451cfcb225cff88cacb1">&sect;&nbsp;</a></span>checkAvaillable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::checkAvaillable </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_firstChar</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>check if an element or attribute is availlable (not : !"#$%&amp;'()*+,/;&lt;=&gt;?@[]^`{|}~ \n\t\r and for first char : not -.0123456789). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_val</td><td>Value to check the conformity. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_firstChar</td><td>True if the element check is the first char. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true The value can be a part of attribute name </dd>
+<dd>
+false The value can NOT be a part of attribute name </dd></dl>
+
+</div>
+</div>
+<a id="a70cd10854610d69cec5d35cf43443fc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70cd10854610d69cec5d35cf43443fc6">&sect;&nbsp;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void exml::internal::Node::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>clear the <a class="el" href="classexml_1_1internal_1_1_node.html" title="Basic main object of all xml elements. ">Node</a> </p>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_element.html#acd7e92b683aa3dc1a8b3f13925ba1888">exml::internal::Element</a>, <a class="el" href="classexml_1_1internal_1_1_attribute_list.html#a50dc99af90e2073677285d3755505fa3">exml::internal::AttributeList</a>, and <a class="el" href="classexml_1_1internal_1_1_attribute.html#a4b06e5c650508717746534ca715b5aa2">exml::internal::Attribute</a>.</p>
+
+</div>
+</div>
+<a id="abe664dd6d896dddc12edc7026aa24c24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe664dd6d896dddc12edc7026aa24c24">&sect;&nbsp;</a></span>countWhiteChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t exml::internal::Node::countWhiteChar </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;&#160;</td>
+          <td class="paramname"><em>_filePos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>count the number of white char in the string from the specify position (stop at the first element that is not a white char) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_data</td><td>Data to parse. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_pos</td><td>Start position in the string. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_filePos</td><td>new poistion of te file to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of white element. </dd></dl>
+
+</div>
+</div>
+<a id="a8f35cba4f6c01fa544315139032fb39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f35cba4f6c01fa544315139032fb39a">&sect;&nbsp;</a></span>drawElementParsed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exml::internal::Node::drawElementParsed </td>
+          <td>(</td>
+          <td class="paramtype">char32_t&#160;</td>
+          <td class="paramname"><em>_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;&#160;</td>
+          <td class="paramname"><em>_filePos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Display the cuurent element that is curently parse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_val</td><td>Char that is parsed. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_filePos</td><td>Position of the char in the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="add2df6a9be11b5d1697c7b3caf05e37c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add2df6a9be11b5d1697c7b3caf05e37c">&sect;&nbsp;</a></span>getPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a>&amp; exml::internal::Node::getPos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get the current position where the element is in the file </p>
+<dl class="section return"><dt>Returns</dt><dd>The file position reference </dd></dl>
+
+</div>
+</div>
+<a id="ac30ff036da7e29dc862bae2d1ae7c441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30ff036da7e29dc862bae2d1ae7c441">&sect;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual enum <a class="el" href="namespaceexml.html#a49be10c1d94fea7f1fe579e5ec041e55">nodeType</a> exml::internal::Node::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get the node type. </p>
+<dl class="section return"><dt>Returns</dt><dd>the type of the <a class="el" href="classexml_1_1internal_1_1_node.html" title="Basic main object of all xml elements. ">Node</a>. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_element.html#a12bebe0ded5f6d0314ca60628c384791">exml::internal::Element</a>, <a class="el" href="classexml_1_1internal_1_1_document.html#ad83d193c319f18204d483899328cb093">exml::internal::Document</a>, <a class="el" href="classexml_1_1internal_1_1_attribute.html#a21ca186d0f01c556080636e949556703">exml::internal::Attribute</a>, <a class="el" href="classexml_1_1internal_1_1_text.html#a6ff50f6dc0d326a3986ee55304096535">exml::internal::Text</a>, <a class="el" href="classexml_1_1internal_1_1_declaration.html#aa26a97ec712023a18e07471339ad8cae">exml::internal::Declaration</a>, and <a class="el" href="classexml_1_1internal_1_1_comment.html#a3c3de1b1577bb9dbc50940589b21b780">exml::internal::Comment</a>.</p>
+
+</div>
+</div>
+<a id="a1ae0e54963e780ba5f478194ae1e3a2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae0e54963e780ba5f478194ae1e3a2b">&sect;&nbsp;</a></span>getValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const std::string&amp; exml::internal::Node::getValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get the current element Value. </p>
+<dl class="section return"><dt>Returns</dt><dd>the reference of the string value. </dd></dl>
+
+</div>
+</div>
+<a id="a2a8e61ba97925d0af11cd968d9cee97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a8e61ba97925d0af11cd968d9cee97d">&sect;&nbsp;</a></span>iGenerate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool exml::internal::Node::iGenerate </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>_indent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>generate a string with the tree of the xml </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_data</td><td>string where to add the elements </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_indent</td><td>current indentation of the file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>false if an error occured. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_element.html#a36ecc1948e2aebf7ec53e7c345624bfd">exml::internal::Element</a>, <a class="el" href="classexml_1_1internal_1_1_document.html#a65ac46a33bbd11738f110ffda15a2f47">exml::internal::Document</a>, <a class="el" href="classexml_1_1internal_1_1_attribute_list.html#a898f49694401827b9938ce18436a74a1">exml::internal::AttributeList</a>, <a class="el" href="classexml_1_1internal_1_1_text_c_d_a_t_a.html#a02526464ed216df8cd242c4d9f833bac">exml::internal::TextCDATA</a>, <a class="el" href="classexml_1_1internal_1_1_attribute.html#a706268c410d8843ef57d7c498228f994">exml::internal::Attribute</a>, <a class="el" href="classexml_1_1internal_1_1_text.html#a2388f57738aabe5867eba34708cf7405">exml::internal::Text</a>, <a class="el" href="classexml_1_1internal_1_1_comment.html#a1ec817987fa13ae9862b7096176bb1e6">exml::internal::Comment</a>, and <a class="el" href="classexml_1_1internal_1_1_declaration.html#a1d4f666c1dfbabed20b9c5f9bb1fd25d">exml::internal::Declaration</a>.</p>
+
+</div>
+</div>
+<a id="ac767feed551e8543279652865fcb7371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac767feed551e8543279652865fcb7371">&sect;&nbsp;</a></span>iParse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool exml::internal::Node::iParse </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t &amp;&#160;</td>
+          <td class="paramname"><em>_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>_caseSensitive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> &amp;&#160;</td>
+          <td class="paramname"><em>_filePos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a> &amp;&#160;</td>
+          <td class="paramname"><em>_doc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>parse the Current node [pure VIRUAL] </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_data</td><td>data string to parse. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_pos</td><td>position in the string to start parse, return the position end of parsing. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_caseSensitive</td><td>Request a parsion of element that is not case sensitive (all element is in low case) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_filePos</td><td>file parsing position (line x col x) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">_doc</td><td>Base document reference </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>false if an error occured. </dd></dl>
+
+<p>Implemented in <a class="el" href="classexml_1_1internal_1_1_element.html#a639187deeb9dd6bf5f857b46bbfcf2c3">exml::internal::Element</a>, <a class="el" href="classexml_1_1internal_1_1_text_c_d_a_t_a.html#a585001c6c55fa8b7f63e8e2e2b8a3825">exml::internal::TextCDATA</a>, <a class="el" href="classexml_1_1internal_1_1_attribute.html#a864c79f26aa4455fcf8b65993bb7bc70">exml::internal::Attribute</a>, <a class="el" href="classexml_1_1internal_1_1_text.html#a48b9cb0bd62e4b742c02798aa97d784c">exml::internal::Text</a>, <a class="el" href="classexml_1_1internal_1_1_declaration.html#a320a7730c1cf543dc888108bc82f12ad">exml::internal::Declaration</a>, and <a class="el" href="classexml_1_1internal_1_1_comment.html#aa606a5e28625fac957e78f71940c2391">exml::internal::Comment</a>.</p>
+
+</div>
+</div>
+<a id="a79a6a4f90a4e848f58be568acdeaf4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a6a4f90a4e848f58be568acdeaf4f9">&sect;&nbsp;</a></span>isAttribute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::isAttribute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if the node is a <a class="el" href="classexml_1_1internal_1_1_attribute.html" title="Single attribute element. ">exml::internal::Attribute</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the node is a <a class="el" href="classexml_1_1internal_1_1_attribute.html" title="Single attribute element. ">exml::internal::Attribute</a> </dd></dl>
+
+</div>
+</div>
+<a id="af83b4078765454c8dc88cada81a592c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af83b4078765454c8dc88cada81a592c7">&sect;&nbsp;</a></span>isComment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::isComment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if the node is a <a class="el" href="classexml_1_1internal_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. ">exml::internal::Comment</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the node is a <a class="el" href="classexml_1_1internal_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. ">exml::internal::Comment</a> </dd></dl>
+
+</div>
+</div>
+<a id="aaaa9bdd0a14d1fd69bb37b18932ceecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaa9bdd0a14d1fd69bb37b18932ceecd">&sect;&nbsp;</a></span>isDeclaration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::isDeclaration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if the node is a <a class="el" href="classexml_1_1internal_1_1_declaration.html" title="Declaration node: &lt;?XXXXXX ... &gt;. ">exml::internal::Declaration</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the node is a <a class="el" href="classexml_1_1internal_1_1_declaration.html" title="Declaration node: &lt;?XXXXXX ... &gt;. ">exml::internal::Declaration</a> </dd></dl>
+
+</div>
+</div>
+<a id="a785e97b8b4ed169486cfaaad9f6e4cdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a785e97b8b4ed169486cfaaad9f6e4cdb">&sect;&nbsp;</a></span>isDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::isDocument </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if the node is a <a class="el" href="classexml_1_1internal_1_1_document.html" title="Basic document element of a document. ">exml::internal::Document</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the node is a <a class="el" href="classexml_1_1internal_1_1_document.html" title="Basic document element of a document. ">exml::internal::Document</a> </dd></dl>
+
+</div>
+</div>
+<a id="a5ca69f3db29e6f92c139583fd629804d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca69f3db29e6f92c139583fd629804d">&sect;&nbsp;</a></span>isElement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::isElement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if the node is a <a class="el" href="classexml_1_1internal_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::internal::Element</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the node is a <a class="el" href="classexml_1_1internal_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">exml::internal::Element</a> </dd></dl>
+
+</div>
+</div>
+<a id="a05ab1958d2487777e45150ce9fae91e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ab1958d2487777e45150ce9fae91e2">&sect;&nbsp;</a></span>isText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool exml::internal::Node::isText </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>check if the node is a <a class="el" href="classexml_1_1internal_1_1_text.html" title="Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;. ">exml::internal::Text</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the node is a <a class="el" href="classexml_1_1internal_1_1_text.html" title="Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;. ">exml::internal::Text</a> </dd></dl>
+
+</div>
+</div>
+<a id="a8fd06290a36e1798d3dd969512fb2ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fd06290a36e1798d3dd969512fb2ee8">&sect;&nbsp;</a></span>setValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void exml::internal::Node::setValue </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>_value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>set the value of the node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_value</td><td>New value of the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a445a08afd2353d9486e2c3beafbc83cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a445a08afd2353d9486e2c3beafbc83cc">&sect;&nbsp;</a></span>toAttribute() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_attribute.html">exml::internal::Attribute</a>&gt; exml::internal::Node::toAttribute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_attribute.html" title="Single attribute element. ">Attribute</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_attribute.html#a4fa946d1052bdd2b35a5b2e137775f72">exml::internal::Attribute</a>.</p>
+
+</div>
+</div>
+<a id="ad4aaa87fe8ec644bf1319cb40b49545f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4aaa87fe8ec644bf1319cb40b49545f">&sect;&nbsp;</a></span>toAttribute() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_attribute.html">exml::internal::Attribute</a>&gt; exml::internal::Node::toAttribute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_attribute.html" title="Single attribute element. ">Attribute</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>CONST pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_attribute.html#a602c4440947ec5aa417d5bf4a2974205">exml::internal::Attribute</a>.</p>
+
+</div>
+</div>
+<a id="af2b2c9ff93a1f0a0a58088636c8b6549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2b2c9ff93a1f0a0a58088636c8b6549">&sect;&nbsp;</a></span>toComment() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_comment.html">exml::internal::Comment</a>&gt; exml::internal::Node::toComment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. ">Comment</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_comment.html#a6279c3670d1e7b338b929b14fc10f0dd">exml::internal::Comment</a>.</p>
+
+</div>
+</div>
+<a id="a454bc374e5ece3c04ebffdda2c6dcc2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454bc374e5ece3c04ebffdda2c6dcc2d">&sect;&nbsp;</a></span>toComment() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_comment.html">exml::internal::Comment</a>&gt; exml::internal::Node::toComment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_comment.html" title="Comment node: &lt;!– ... –&gt;. ">Comment</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>CONST pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_comment.html#ade5a7c40fda74c5c86972ba8c0186dd7">exml::internal::Comment</a>.</p>
+
+</div>
+</div>
+<a id="a6170cc3fdab1527305792b22e59a13c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6170cc3fdab1527305792b22e59a13c9">&sect;&nbsp;</a></span>toDeclaration() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_declaration.html">exml::internal::Declaration</a>&gt; exml::internal::Node::toDeclaration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_declaration.html" title="Declaration node: &lt;?XXXXXX ... &gt;. ">Declaration</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_declaration.html#a6866a8c1d0d95740c4a59f083e1c2b8a">exml::internal::Declaration</a>.</p>
+
+</div>
+</div>
+<a id="a4ea18d378c22b64b8113d77527ad08fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ea18d378c22b64b8113d77527ad08fd">&sect;&nbsp;</a></span>toDeclaration() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_declaration.html">exml::internal::Declaration</a>&gt; exml::internal::Node::toDeclaration </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_declaration.html" title="Declaration node: &lt;?XXXXXX ... &gt;. ">Declaration</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>CONST pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_declaration.html#a39a457d9e98b5131d32fede749b92a40">exml::internal::Declaration</a>.</p>
+
+</div>
+</div>
+<a id="a64e44dc0bd6febbcde144b4a2481389a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e44dc0bd6febbcde144b4a2481389a">&sect;&nbsp;</a></span>toDocument() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a>&gt; exml::internal::Node::toDocument </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_document.html" title="Basic document element of a document. ">Document</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_document.html#af93e2aa7e08135b73a1afc92b7b81bbc">exml::internal::Document</a>.</p>
+
+</div>
+</div>
+<a id="a7d3a4c08d732ab2ad44e611131092d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d3a4c08d732ab2ad44e611131092d03">&sect;&nbsp;</a></span>toDocument() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_document.html">exml::internal::Document</a>&gt; exml::internal::Node::toDocument </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_document.html" title="Basic document element of a document. ">Document</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>CONST pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_document.html#a154729663bd2e8aa56611f43395c8a32">exml::internal::Document</a>.</p>
+
+</div>
+</div>
+<a id="afad6cd619259363f3f60fb36753c504a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad6cd619259363f3f60fb36753c504a">&sect;&nbsp;</a></span>toElement() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_element.html">exml::internal::Element</a>&gt; exml::internal::Node::toElement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">Element</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_element.html#ad2414477c28c41083bb2c021ee3b1d5d">exml::internal::Element</a>.</p>
+
+</div>
+</div>
+<a id="abcf1cf53dca2a1ce62eeb265cf136e42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcf1cf53dca2a1ce62eeb265cf136e42">&sect;&nbsp;</a></span>toElement() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_element.html">exml::internal::Element</a>&gt; exml::internal::Node::toElement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_element.html" title="Basic element Node of an XML document &lt;YYYYY&gt;. ">Element</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>CONST pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_element.html#a68145f30e85de215c69b2e1c0892386a">exml::internal::Element</a>.</p>
+
+</div>
+</div>
+<a id="a5489504a07661cdf86ca754cf6ccfa46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5489504a07661cdf86ca754cf6ccfa46">&sect;&nbsp;</a></span>toText() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_text.html">exml::internal::Text</a>&gt; exml::internal::Node::toText </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_text.html" title="Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;. ">Text</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_text.html#a631ca715e7d8ee1338ac33c2e6ce6eb9">exml::internal::Text</a>.</p>
+
+</div>
+</div>
+<a id="a493b3b3f8c9ad205a65d1a0cc19fe92b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493b3b3f8c9ad205a65d1a0cc19fe92b">&sect;&nbsp;</a></span>toText() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="elRef" doxygen="/home/heero/dev/perso/out/doc/release/ememory.tag:http://atria-soft.github.io/ememory/" href="http://atria-soft.github.io/ememory/classememory_1_1_shared_ptr.html">ememory::SharedPtr</a>&lt;<a class="el" href="classexml_1_1internal_1_1_text.html">exml::internal::Text</a>&gt; exml::internal::Node::toText </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast the element in a <a class="el" href="classexml_1_1internal_1_1_text.html" title="Text node interface (internal data between two balise : &lt;XXX&gt; ALL here &lt;/XXX&gt;. ">Text</a> if it is possible. </p>
+<dl class="section return"><dt>Returns</dt><dd>CONST pointer on the class or nullptr. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classexml_1_1internal_1_1_text.html#afd7dedb4c3f8db5008de5f6563b3f24b">exml::internal::Text</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aff4c22828c5e24f6890fdb7e646a3046"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff4c22828c5e24f6890fdb7e646a3046">&sect;&nbsp;</a></span>m_pos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classexml_1_1_file_pos.html">exml::FilePos</a> exml::internal::Node::m_pos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>position in the readed file == &gt; not correct when the file is generated </p>
+
+</div>
+</div>
+<a id="a4665d683223dd60ed293471627b8659b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4665d683223dd60ed293471627b8659b">&sect;&nbsp;</a></span>m_value</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string exml::internal::Node::m_value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>value of the node (for element this is the name, for text it is the inside text ...) </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>framework/atria-soft/exml/exml/internal/<a class="el" href="internal_2_node_8hpp_source.html">Node.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.8-->
+<!-- start footer part -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>
+Generated on Mon Oct 24 2016 14:06:01 for exml: Ewol XML parser by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.12
+</small></address>
+</body>
+</html>
