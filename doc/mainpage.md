@@ -26,7 +26,7 @@ EXML is designed to be easy and fast to learn.
 
 EXML is dependent of the STL (compatible with MacOs stl (CXX))
 
-What it doesn't do:                          {#exml_mainpage_what_it_not_does}
+What it doesn't do:                              {#exml_mainpage_what_it_not_does}
 -------------------
 
 EXML doesn't parse or use DTDs (Document Type Definitions) or XSLs (eXtensible Stylesheet Language).
@@ -43,16 +43,16 @@ Are there any licensing restrictions?            {#exml_mainpage_license_restric
 EXML is **FREE software** and _all sub-library are FREE and staticly linkable !!!_
 
 
-License (APACHE-2.0)                             {#exml_mainpage_license}
-====================
+License (MPL v2.0)                               {#exml_mainpage_license}
+==================
 
 Copyright EXML Edouard DUPIN
 
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the Mozilla Public License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-<http://www.apache.org/licenses/LICENSE-2.0>
+<https://www.mozilla.org/MPL/2.0>
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
