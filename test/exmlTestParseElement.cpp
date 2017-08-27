@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 
 
-static std::string refOutputElement("<exemple/>\n");
+static etk::String refOutputElement("<exemple/>\n");
 
 TEST(TestParseElement, testBase) {
 	exmlLocalTest(refOutputElement, "<exemple/>\n", -1);

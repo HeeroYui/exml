@@ -23,14 +23,14 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-exml::internal::Node::Node(const std::string& _value) :
+exml::internal::Node::Node(const etk::String& _value) :
     m_pos(0,0),
     m_value(_value) {
 	// nothing to do.
 }
 
 
-void exml::internal::Node::addIndent(std::string& _data, int32_t _indent) const {
+void exml::internal::Node::addIndent(etk::String& _data, int32_t _indent) const {
 	for (int32_t iii=0; iii<_indent; iii++) {
 		_data += "\t";
 	}
@@ -93,7 +93,7 @@ bool exml::internal::Node::checkAvaillable(char32_t _val, bool _firstChar) const
 }
 
 
-int32_t exml::internal::Node::countWhiteChar(const std::string& _data, int32_t _pos, exml::FilePos& _filePos) const {
+int32_t exml::internal::Node::countWhiteChar(const etk::String& _data, int32_t _pos, exml::FilePos& _filePos) const {
 	_filePos.clear();
 	int32_t white=0;
 	for (size_t iii=_pos; iii<_data.size(); iii++) {
@@ -108,7 +108,7 @@ int32_t exml::internal::Node::countWhiteChar(const std::string& _data, int32_t _
 	return white;
 }
 
-bool exml::internal::Node::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Node::iGenerate(etk::String& _data, int32_t _indent) const {
 	return true;
 }
 
@@ -121,11 +121,11 @@ void exml::internal::Node::clear() {
 	m_pos.clear();
 }
 
-void exml::internal::Node::setValue(std::string _value) {
+void exml::internal::Node::setValue(etk::String _value) {
 	m_value = _value;
 }
 
-const std::string& exml::internal::Node::getValue() const {
+const etk::String& exml::internal::Node::getValue() const {
 	return m_value;
 }
 

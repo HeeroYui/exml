@@ -15,15 +15,15 @@
 	<?xml version="1.0" encoding="UTF-8" ?>
 */
 
-ememory::SharedPtr<exml::internal::Declaration> exml::internal::Declaration::create(const std::string& _name) {
+ememory::SharedPtr<exml::internal::Declaration> exml::internal::Declaration::create(const etk::String& _name) {
 	return ememory::SharedPtr<exml::internal::Declaration>(new exml::internal::Declaration(_name));
 }
 
-ememory::SharedPtr<exml::internal::DeclarationXML> exml::internal::DeclarationXML::create(const std::string& _version, const std::string& _format, bool _standalone) {
+ememory::SharedPtr<exml::internal::DeclarationXML> exml::internal::DeclarationXML::create(const etk::String& _version, const etk::String& _format, bool _standalone) {
 	return ememory::SharedPtr<exml::internal::DeclarationXML>(new exml::internal::DeclarationXML(_version, _format, _standalone));
 }
 
-exml::internal::DeclarationXML::DeclarationXML(const std::string& _version, const std::string& _format, bool _standalone) :
+exml::internal::DeclarationXML::DeclarationXML(const etk::String& _version, const etk::String& _format, bool _standalone) :
   exml::internal::Declaration("xml") {
 	if (_version.size()!=0) {
 		setAttribute("version", _version);
@@ -41,7 +41,7 @@ exml::internal::DeclarationXML::DeclarationXML(const std::string& _version, cons
 	}
 }
 
-bool exml::internal::Declaration::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Declaration::iGenerate(etk::String& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
 	_data += "<?";
 	_data += m_value;
@@ -50,7 +50,7 @@ bool exml::internal::Declaration::iGenerate(std::string& _data, int32_t _indent)
 	return true;
 }
 
-bool exml::internal::Declaration::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {
+bool exml::internal::Declaration::iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {
 	EXML_VERBOSE("start parse : 'declaration' : '" << m_value << "'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -86,7 +86,7 @@ bool exml::internal::Declaration::iParse(const std::string& _data, int32_t& _pos
 				return false;
 			}
 			iii = _pos;
-			m_listAttribute.push_back(attribute);
+			m_listAttribute.pushBack(attribute);
 			continue;
 		}
 	}

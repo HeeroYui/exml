@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <ostream>
+#include <etk/Stream.hpp>
 
 /**
  * @brief exml namespace containing all function for XML interpretor
@@ -25,6 +25,6 @@ namespace exml {
 		text, //!< &lt;XXX&gt; InsideText &lt;/XXX&gt;
 	};
 	//! @not_in_doc
-	std::ostream& operator <<(std::ostream& _os, enum nodeType _obj);
+	etk::Stream& operator <<(etk::Stream& _os, enum nodeType _obj);
 }
 

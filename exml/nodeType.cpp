@@ -9,7 +9,7 @@
 
 
 
-std::ostream& exml::operator <<(std::ostream& _os, enum exml::nodeType _obj) {
+etk::Stream& exml::operator <<(etk::Stream& _os, enum exml::nodeType _obj) {
 	switch (_obj) {
 		case nodeType::unknow:
 			_os << "exml::nodeType::unknow";

@@ -53,7 +53,7 @@ namespace exml {
 				 * @brief basic element of a xml structure
 				 * @param[in] _value value of the node
 				 */
-				Node(const std::string& _value);
+				Node(const etk::String& _value);
 			public:
 				/**
 				 * @brief Virtualize destructor
@@ -69,14 +69,14 @@ namespace exml {
 				 * @param[in,out] _doc Base document reference
 				 * @return false if an error occured.
 				 */
-				virtual bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) = 0;
+				virtual bool iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) = 0;
 				/**
 				 * @brief generate a string with the tree of the xml
 				 * @param[in,out] _data string where to add the elements
 				 * @param[in] _indent current indentation of the file
 				 * @return false if an error occured.
 				 */
-				virtual bool iGenerate(std::string& _data, int32_t _indent) const;
+				virtual bool iGenerate(etk::String& _data, int32_t _indent) const;
 			protected:
 				exml::FilePos m_pos; //!< position in the readed file  == > not correct when the file is generated
 			public:
@@ -86,18 +86,18 @@ namespace exml {
 				 */
 				const exml::FilePos& getPos() const;
 			protected:
-				std::string m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
+				etk::String m_value; //!< value of the node (for element this is the name, for text it is the inside text ...)
 			public:
 				/**
 				 * @brief set the value of the node.
 				 * @param[in] _value New value of the node.
 				 */
-				virtual void setValue(std::string _value);
+				virtual void setValue(etk::String _value);
 				/**
 				 * @brief get the current element Value.
 				 * @return the reference of the string value.
 				 */
-				virtual const std::string& getValue() const;
+				virtual const etk::String& getValue() const;
 			public:
 				/**
 				 * @brief get the node type.
@@ -110,7 +110,7 @@ namespace exml {
 				 * @param[in,out] _data String where the indentation is done.
 				 * @param[in] _indent Number of tab to add at the string.
 				 */
-				void addIndent(std::string& _data, int32_t _indent) const;
+				void addIndent(etk::String& _data, int32_t _indent) const;
 				/**
 				 * @brief Display the cuurent element that is curently parse.
 				 * @param[in] _val Char that is parsed.
@@ -132,7 +132,7 @@ namespace exml {
 				 * @param[out] _filePos new poistion of te file to add.
 				 * @return number of white element.
 				 */
-				int32_t countWhiteChar(const std::string& _data, int32_t _pos, exml::FilePos& _filePos) const;
+				int32_t countWhiteChar(const etk::String& _data, int32_t _pos, exml::FilePos& _filePos) const;
 			public:
 				/**
 				 * @brief Cast the element in a Document if it is possible.

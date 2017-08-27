@@ -28,7 +28,7 @@ static void readFromString1() {
 	exml::Document doc;
 	TEST_INFO("parse");
 	//! [exml_sample_read_stream1]
-	std::string stream = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"true\"?>"
+	etk::String stream = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"true\"?>"
 	                     "<!-- my comment -->"
 	                     "<exml attributeExample=\"my data attribute\">coucou</exml>";
 	bool retParse = doc.parse(stream);
@@ -42,7 +42,7 @@ static void readFromString2() {
 	exml::Document doc;
 	TEST_INFO("parse");
 	//! [exml_sample_read_stream2]
-	std::string stream = "<?xml version='1.0' encoding='UTF-8' standalone='true'?>"
+	etk::String stream = "<?xml version='1.0' encoding='UTF-8' standalone='true'?>"
 	                     "<!-- my comment -->"
 	                     "<exml attributeExample='my data attribute'>coucou</exml>";
 	bool retParse = doc.parse(stream);
@@ -90,7 +90,7 @@ static void readFull() {
 	TEST_INFO("		list of attribute:");
 	//! [exml_sample_read_folow_attributes]
 	for (const auto itElem: element.attributes) {
-		std::string value = itElem.getValue();
+		etk::String value = itElem.getValue();
 		TEST_INFO("			'" << value << "'");
 	}
 	TEST_INFO("		list of attribute in C:");
@@ -98,12 +98,12 @@ static void readFull() {
 	//! [exml_sample_read_folow_attributes_c]
 	for (size_t iii=0; iii<element.attributes.size(); ++iii) {
 		const exml::Attribute attr = element.attributes[iii];
-		std::string value = attr.getValue();
+		etk::String value = attr.getValue();
 		TEST_INFO("			'" << value << "'");
 	}
 	//! [exml_sample_read_folow_attributes_c]
 	//! [exml_sample_read_get_direct_attribute]
-	std::string attributeValue = element.attributes["attributeExample"];
+	etk::String attributeValue = element.attributes["attributeExample"];
 	TEST_INFO("		direct get: '" << attributeValue << "'");
 	//! [exml_sample_read_get_direct_attribute]
 	TEST_INFO("		list of sub-node:");
@@ -111,7 +111,7 @@ static void readFull() {
 	for (const auto itElem: element.nodes) {
 		if (itElem.isElement() == true) {
 			// get the <XXXX ... name
-			std::string value = itElem.toElement().getValue();
+			etk::String value = itElem.toElement().getValue();
 			TEST_INFO("			'" << value << "'");
 		} else {
 			// simple debug for other type:
@@ -125,7 +125,7 @@ static void readFull() {
 		const exml::Node node = element.nodes[iii];
 		if (node.isElement() == true) {
 			// get the <XXXX ... name
-			std::string value = node.toElement().getValue();
+			etk::String value = node.toElement().getValue();
 			TEST_INFO("			'" << value << "'");
 		} else {
 			// simple debug for other type:
@@ -134,7 +134,7 @@ static void readFull() {
 	}
 	//! [exml_sample_read_folow_nodes_c]
 	//! [exml_sample_read_get_all_under_string]
-	std::string internalData = element.getText();
+	etk::String internalData = element.getText();
 	//! [exml_sample_read_get_all_under_string]
 	
 }

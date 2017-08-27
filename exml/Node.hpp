@@ -64,12 +64,12 @@ namespace exml {
 			 * @brief set the value of the node.
 			 * @param[in] _value New value of the node.
 			 */
-			virtual void setValue(std::string _value);
+			virtual void setValue(etk::String _value);
 			/**
 			 * @brief get the current element Value.
 			 * @return the reference of the string value.
 			 */
-			const std::string& getValue() const;
+			const etk::String& getValue() const;
 			/**
 			 * @brief get the node type.
 			 * @return the type of the Node.
@@ -171,5 +171,5 @@ namespace exml {
 			virtual void clear();
 	};
 	//! @not_in_doc
-	std::ostream& operator <<(std::ostream& _os, const exml::Node& _obj);
+	etk::Stream& operator <<(etk::Stream& _os, const exml::Node& _obj);
 }

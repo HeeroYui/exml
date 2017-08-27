@@ -28,7 +28,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 			 */
-			Declaration(const std::string& _name="");
+			Declaration(const etk::String& _name="");
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
@@ -57,7 +57,7 @@ namespace exml {
 			 * @param[in] _format charset of the XML
 			 * @param[in] _standalone this document is standalone
 			 */
-			DeclarationXML(const std::string& _version="0.0", const std::string& _format = "UTF-8", bool _standalone = true);
+			DeclarationXML(const etk::String& _version="0.0", const etk::String& _format = "UTF-8", bool _standalone = true);
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy

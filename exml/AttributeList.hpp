@@ -40,7 +40,7 @@ namespace exml {
 			 * @return true The attribute has been removed
 			 * @return false An error occured.
 			 */
-			bool remove(const std::string& _name);
+			bool remove(const etk::String& _name);
 			/**
 			 * @brief get attribute whith his ID
 			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
@@ -58,25 +58,25 @@ namespace exml {
 			 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
 			 * @return Name and value of the attribute
 			 */
-			std::pair<std::string, std::string> getPair(int32_t _id) const;
+			etk::Pair<etk::String, etk::String> getPair(int32_t _id) const;
 			/**
 			 * @brief get the attribute value with searching in the List with his name
 			 * @param[in] _name Attribute Name.
 			 * @return Value of the attribute or no data in the string
 			 */
-			const std::string& operator[](const std::string& _name) const;
+			const etk::String& operator[](const etk::String& _name) const;
 			/**
 			 * @brief check if an attribute exist or not with his name.
 			 * @param[in] _name Attribute Name.
 			 * @return true if the attribute exist or False
 			 */
-			bool exist(const std::string& _name) const;
+			bool exist(const etk::String& _name) const;
 			/**
 			 * @brief Set A new attribute or replace data of the previous one
 			 * @param[in] _name Name of the attribute
 			 * @param[in] _value Value of the attribute
 			 */
-			void set(const std::string& _name, const std::string& _value);
+			void set(const etk::String& _name, const etk::String& _value);
 		public:
 			using iterator = exml::iterator<exml::AttributeListData, exml::Attribute>; //!< Specify iterator of the element methode
 			/**

@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/internal/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 
 namespace exml {
 	namespace internal {
@@ -23,14 +23,14 @@ namespace exml {
 				 * @brief Constructor
 				 * @param[in] _data String data of the current Text
 				 */
-				Text(const std::string& _data) : exml::internal::Node(_data) { };
+				Text(const etk::String& _data) : exml::internal::Node(_data) { };
 			public:
 				/**
 				 * @brief defined factory
 				 * @param[in] _data Data in the Text area
 				 * @return Shared pointer on the Text element
 				 */
-				static ememory::SharedPtr<exml::internal::Text> create(const std::string& _data="");
+				static ememory::SharedPtr<exml::internal::Text> create(const etk::String& _data="");
 				/**
 				 * @brief count the number of line in the current text
 				 * @return The number of lines
@@ -40,12 +40,12 @@ namespace exml {
 				enum nodeType getType() const override{
 					return nodeType::text;
 				};
-				bool iParse(const std::string& _data,
+				bool iParse(const etk::String& _data,
 				            int32_t& _pos,
 				            bool _caseSensitive,
 				            exml::FilePos& _filePos,
 				            exml::internal::Document& _doc) override;
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Text> toText() override {
 					return ememory::staticPointerCast<exml::internal::Text>(sharedFromThis());
 				};
@@ -69,12 +69,12 @@ namespace exml {
 				 */
 				static ememory::SharedPtr<TextCDATA> create();
 			public:
-				bool iParse(const std::string& _data,
+				bool iParse(const etk::String& _data,
 				            int32_t& _pos,
 				            bool _caseSensitive,
 				            exml::FilePos& _filePos,
 				            exml::internal::Document& _doc) override;
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
 		};
 	}
 }

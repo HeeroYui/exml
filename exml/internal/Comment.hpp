@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/internal/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 
 namespace exml {
 	namespace internal {
@@ -20,12 +20,12 @@ namespace exml {
 				 * @return Shared pointer on the Comment element
 				 * @param[in] _value comment value
 				 */
-				static ememory::SharedPtr<exml::internal::Comment> create(const std::string& _value="");
+				static ememory::SharedPtr<exml::internal::Comment> create(const etk::String& _value="");
 				/**
 				 * @brief Constructor
 				 * @param[in] _value comment value
 				 */
-				Comment(const std::string& _value) :
+				Comment(const etk::String& _value) :
 				  exml::internal::Node(_value) {
 					
 				}
@@ -33,8 +33,8 @@ namespace exml {
 				enum nodeType getType() const override {
 					return nodeType::comment;
 				}
-				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
+				bool iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Comment> toComment() override {
 					return ememory::staticPointerCast<exml::internal::Comment>(sharedFromThis());
 				}

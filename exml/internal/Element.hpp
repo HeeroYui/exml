@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/internal/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 #include <exml/internal/AttributeList.hpp>
 
 namespace exml {
@@ -24,7 +24,7 @@ namespace exml {
 				 * @brief Constructor
 				 * @param[in] _value Element name;
 				 */
-				Element(const std::string& _value) :
+				Element(const etk::String& _value) :
 				  exml::internal::AttributeList(_value) {
 					
 				};
@@ -34,9 +34,9 @@ namespace exml {
 				 * @param[in] _value Name of the node.
 				 * @return Shared pointer on the Element
 				 */
-				static ememory::SharedPtr<Element> create(const std::string& _value="");
+				static ememory::SharedPtr<Element> create(const etk::String& _value="");
 			protected:
-				std::vector<ememory::SharedPtr<exml::internal::Node>> m_listSub; //!< List of subNodes
+				etk::Vector<ememory::SharedPtr<exml::internal::Node>> m_listSub; //!< List of subNodes
 			public:
 				/**
 				 * @brief get the number of sub element in the node (can be exml::internal::Comment ; exml::internal::Element ; exml::internal::Text :exml::internal::Declaration).
@@ -54,7 +54,7 @@ namespace exml {
 				 * @brief Remove all element with this name
 				 * @param[in] _nodeName Name of nodes to remove.
 				 */
-				void remove(const std::string& _nodeName);
+				void remove(const etk::String& _nodeName);
 				/**
 				 * @brief get the type of the element id.
 				 * @param[in] _id Id of the element.
@@ -90,18 +90,18 @@ namespace exml {
 				 * @param[in] _name Name of the element that is requested
 				 * @return Pointer on the element or NULL.
 				 */
-				ememory::SharedPtr<Element> getNamed(const std::string& _name);
+				ememory::SharedPtr<Element> getNamed(const etk::String& _name);
 				/**
 				 * @brief get an element with his name (work only with exml::internal::Element)
 				 * @param[in] _name Name of the element that is requested
 				 * @return Pointer on the element or NULL.
 				 */
-				const ememory::SharedPtr<Element> getNamed(const std::string& _name) const;
+				const ememory::SharedPtr<Element> getNamed(const etk::String& _name) const;
 				/**
 				 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 				 * @return the curent data string. if Only one text node, then we get the parssed data (no &amp; ...) if more than one node, then we transform &,",',<,> in xml normal text...
 				 */
-				std::string getText() const;
+				etk::String getText() const;
 			protected:
 				/**
 				 * @brief Parse sub node string
@@ -114,7 +114,7 @@ namespace exml {
 				 * @return true parsing is done OK
 				 * @return false An error appear in the parsing
 				 */
-				bool subParse(const std::string& _data,
+				bool subParse(const etk::String& _data,
 				              int32_t& _pos,
 				              bool _caseSensitive,
 				              exml::FilePos& _filePos,
@@ -124,8 +124,8 @@ namespace exml {
 				enum nodeType getType() const override {
 					return nodeType::element;
 				}
-				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
+				bool iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Element> toElement() override;
 				const ememory::SharedPtr<exml::internal::Element> toElement() const override;
 				void clear() override;

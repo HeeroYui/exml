@@ -24,7 +24,7 @@ exml::Declaration::Declaration(const exml::Declaration& _obj) :
 	
 }
 
-exml::Declaration::Declaration(const std::string& _name) :
+exml::Declaration::Declaration(const etk::String& _name) :
   exml::AttributeList() {
 	m_data = exml::internal::Declaration::create();
 }
@@ -54,7 +54,7 @@ exml::DeclarationXML::DeclarationXML(const exml::DeclarationXML& _obj) :
 	
 }
 
-exml::DeclarationXML::DeclarationXML(const std::string& _version, const std::string& _format, bool _standalone) :
+exml::DeclarationXML::DeclarationXML(const etk::String& _version, const etk::String& _format, bool _standalone) :
   exml::Declaration() {
 	m_data = exml::internal::DeclarationXML::create(_version, _format, _standalone);
 }

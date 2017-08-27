@@ -34,7 +34,7 @@ exml::Document& exml::Document::operator= (const exml::Document& _obj) {
 	return *this;
 }
 
-bool exml::Document::parse(const std::string& _data) {
+bool exml::Document::parse(const etk::String& _data) {
 	if (m_data == nullptr) {
 		EXML_DEBUG("Can not parse (nullptr) ...");
 		return false;
@@ -42,7 +42,7 @@ bool exml::Document::parse(const std::string& _data) {
 	return static_cast<exml::internal::Document*>(m_data.get())->parse(_data);
 }
 
-bool exml::Document::generate(std::string& _data) {
+bool exml::Document::generate(etk::String& _data) {
 	if (m_data == nullptr) {
 		EXML_DEBUG("Can not generate (nullptr) ...");
 		return false;
@@ -50,7 +50,7 @@ bool exml::Document::generate(std::string& _data) {
 	return static_cast<exml::internal::Document*>(m_data.get())->generate(_data);
 }
 
-bool exml::Document::load(const std::string& _file) {
+bool exml::Document::load(const etk::String& _file) {
 	if (m_data == nullptr) {
 		EXML_DEBUG("Can not load (nullptr) ...");
 		return false;
@@ -58,7 +58,7 @@ bool exml::Document::load(const std::string& _file) {
 	return static_cast<exml::internal::Document*>(m_data.get())->load(_file);
 }
 
-bool exml::Document::store(const std::string& _file) {
+bool exml::Document::store(const etk::String& _file) {
 	if (m_data == nullptr) {
 		EXML_DEBUG("Can not store (nullptr) ...");
 		return false;

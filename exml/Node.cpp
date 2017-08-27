@@ -14,7 +14,7 @@
 #include <exml/Element.hpp>
 #include <exml/Text.hpp>
 
-std::ostream& exml::operator <<(std::ostream& _os, const exml::Node& _obj) {
+etk::Stream& exml::operator <<(etk::Stream& _os, const exml::Node& _obj) {
 	_os << "{";
 	_os << "Node XML: " << _obj.getType();
 	if (_obj.isElement() == true) {
@@ -49,7 +49,7 @@ exml::FilePos exml::Node::getPos() const {
 	return m_data->getPos();
 }
 
-void exml::Node::setValue(std::string _value) {
+void exml::Node::setValue(etk::String _value) {
 	if (m_data == nullptr) {
 		EXML_ERROR(" can not set value: '" << _value << "'");
 		return;
@@ -57,9 +57,9 @@ void exml::Node::setValue(std::string _value) {
 	m_data->setValue(_value);
 }
 
-const std::string& exml::Node::getValue() const {
+const etk::String& exml::Node::getValue() const {
 	if (m_data == nullptr) {
-		static std::string errorString = "";
+		static etk::String errorString = "";
 		EXML_DEBUG(" can not get value ...");
 		return errorString;
 	}

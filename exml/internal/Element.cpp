@@ -22,7 +22,7 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-ememory::SharedPtr<exml::internal::Element> exml::internal::Element::create(const std::string& _value) {
+ememory::SharedPtr<exml::internal::Element> exml::internal::Element::create(const etk::String& _value) {
 	return ememory::SharedPtr<exml::internal::Element>(new exml::internal::Element(_value));
 }
 
@@ -67,7 +67,7 @@ const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getEl
 	return tmpp->toElement();
 }
 
-ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const std::string& _name) {
+ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const etk::String& _name) {
 	if (_name.size() == 0) {
 		return nullptr;
 	}
@@ -84,7 +84,7 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(co
 	return nullptr;
 }
 
-const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const std::string& _name) const {
+const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const etk::String& _name) const {
 	if (_name.size() == 0) {
 		return nullptr;
 	}
@@ -116,10 +116,10 @@ void exml::internal::Element::append(const ememory::SharedPtr<exml::internal::No
 			return;
 		}
 	}
-	m_listSub.push_back(_node);
+	m_listSub.pushBack(_node);
 }
 
-void exml::internal::Element::remove(const std::string& _nodeName) {
+void exml::internal::Element::remove(const etk::String& _nodeName) {
 	if (_nodeName == "") {
 		return;
 	}
@@ -135,8 +135,8 @@ void exml::internal::Element::remove(const std::string& _nodeName) {
 	}
 }
 
-std::string exml::internal::Element::getText() const {
-	std::string res;
+etk::String exml::internal::Element::getText() const {
+	etk::String res;
 	if (m_listSub.size() == 1) {
 		if (m_listSub[0]->getType() == nodeType::text) {
 			res = m_listSub[0]->getValue();
@@ -153,7 +153,7 @@ std::string exml::internal::Element::getText() const {
 	return res;
 }
 
-bool exml::internal::Element::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Element::iGenerate(etk::String& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
 	_data += "<";
 	_data += m_value;
@@ -187,7 +187,7 @@ bool exml::internal::Element::iGenerate(std::string& _data, int32_t _indent) con
 }
 
 
-bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc, bool _mainNode) {
+bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc, bool _mainNode) {
 	EXML_PARSE_ELEMENT(" start subParse ... " << _pos << " " << _filePos);
 	for (size_t iii=_pos; iii<_data.size(); iii++) {
 		_filePos.check(_data[iii]);
@@ -230,7 +230,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					}
 					tmpPos.check(_data[jjj]);
 				}
-				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
+				etk::String tmpname = etk::String(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (_caseSensitive == true) {
 					tmpname = etk::tolower(tmpname);
 				}
@@ -246,7 +246,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					return false;
 				}
 				iii = _pos;
-				m_listSub.push_back(declaration);
+				m_listSub.pushBack(declaration);
 				continue;
 			}
 			if(_data[iii+white+1] == '!') {
@@ -263,7 +263,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 						return false;
 					}
 					if(_data[iii+white+3] != '-') {
-						CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("Element parse with '<!-") + _data[iii+3] + "' chars  == > invalide XML");
+						CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("Element parse with '<!-") + _data[iii+3] + "' chars  == > invalide XML");
 						return false;
 					}
 					++tmpPos;
@@ -279,7 +279,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 						return false;
 					}
 					iii = _pos;
-					m_listSub.push_back(comment);
+					m_listSub.pushBack(comment);
 				} else if (_data[iii+white+2] == '[') {
 					++tmpPos;
 					if (iii+white+8>=_data.size()) {
@@ -292,7 +292,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					    || _data[iii+white+6] != 'T'
 					    || _data[iii+white+7] != 'A'
 					    || _data[iii+white+8] != '[') {
-						CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("Element parse with '<![") + _data[iii+white+3] + _data[iii+white+4] + _data[iii+white+5] + _data[iii+white+6] + _data[iii+white+7] + _data[iii+white+8] + "' chars  == > invalide XML");
+						CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("Element parse with '<![") + _data[iii+white+3] + _data[iii+white+4] + _data[iii+white+5] + _data[iii+white+6] + _data[iii+white+7] + _data[iii+white+8] + "' chars  == > invalide XML");
 						return false;
 					}
 					tmpPos+=6;
@@ -308,9 +308,9 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 						return false;
 					}
 					iii = _pos;
-					m_listSub.push_back(text);
+					m_listSub.pushBack(text);
 				} else {
-					CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("End file with '<!") + _data[iii+white+2] + "' chars  == > invalide XML");
+					CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("End file with '<!") + _data[iii+white+2] + "' chars  == > invalide XML");
 					return false;
 				}
 				continue;
@@ -329,7 +329,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					}
 					tmpPos.check(_data[jjj]);
 				}
-				std::string tmpname = std::string(_data, iii+white+2, endPosName+1-(iii+white+2));
+				etk::String tmpname = etk::String(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (_caseSensitive == true) {
 					tmpname = etk::tolower(tmpname);
 				}
@@ -351,12 +351,12 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 						           && _data[jjj] != ' '
 						           && _data[jjj] != '\t') {
 							_filePos += tmpPos;
-							CREATE_ERROR(_doc, _data, jjj, _filePos, std::string("End node error : have data inside end node other than [ \\n\\t\\r] ") + m_value + "'");
+							CREATE_ERROR(_doc, _data, jjj, _filePos, etk::String("End node error : have data inside end node other than [ \\n\\t\\r] ") + m_value + "'");
 							return false;
 						}
 					}
 				} else {
-					CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("End node error : '") + tmpname + "' != '" + m_value + "'");
+					CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("End node error : '") + tmpname + "' != '" + m_value + "'");
 					return false;
 				}
 			}
@@ -380,7 +380,7 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					}
 					tmpPos.check(_data[jjj]);
 				}
-				std::string tmpname = std::string(_data, iii+white+1, endPosName+1-(iii+white+1));
+				etk::String tmpname = etk::String(_data, iii+white+1, endPosName+1-(iii+white+1));
 				if (_caseSensitive == true) {
 					etk::tolower(tmpname);
 				}
@@ -397,12 +397,12 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					return false;
 				}
 				iii = _pos;
-				m_listSub.push_back(element);
+				m_listSub.pushBack(element);
 				continue;
 			}
 			_filePos+=tmpPos;
 			// here we have an error : 
-			CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("Find an ununderstanding element : '") + _data[iii+white+1] + "'");
+			CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("Find an ununderstanding element : '") + _data[iii+white+1] + "'");
 			return false;
 		} else {
 			if (_data[iii] == '>') {
@@ -428,18 +428,18 @@ bool exml::internal::Element::subParse(const std::string& _data, int32_t& _pos, 
 					return false;
 				}
 				iii = _pos;
-				m_listSub.push_back(text);
+				m_listSub.pushBack(text);
 			}
 		}
 	}
 	if (_mainNode == true) {
 		return true;
 	}
-	CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("Did not find end of the exml::internal::Element : '") + m_value + "'");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("Did not find end of the exml::internal::Element : '") + m_value + "'");
 	return false;
 }
 
-bool exml::internal::Element::iParse(const std::string& _data,
+bool exml::internal::Element::iParse(const etk::String& _data,
                                      int32_t& _pos,
                                      bool _caseSensitive,
                                      exml::FilePos& _filePos,
@@ -485,15 +485,15 @@ bool exml::internal::Element::iParse(const std::string& _data,
 				return false;
 			}
 			iii = _pos;
-			m_listAttribute.push_back(attribute);
+			m_listAttribute.pushBack(attribute);
 			continue;
 		}
 		if (isWhiteChar(_data[iii]) == false) {
-			CREATE_ERROR(_doc, _data, iii, _filePos, std::string("Find an unknow element : '") + _data[iii] + "'");
+			CREATE_ERROR(_doc, _data, iii, _filePos, etk::String("Find an unknow element : '") + _data[iii] + "'");
 			return false;
 		}
 	}
-	CREATE_ERROR(_doc, _data, _pos, _filePos, std::string("Unexpecting end of parsing exml::internal::Element : '") + m_value + "'  == > check if the '/>' is set or the end of element");
+	CREATE_ERROR(_doc, _data, _pos, _filePos, etk::String("Unexpecting end of parsing exml::internal::Element : '") + m_value + "'  == > check if the '/>' is set or the end of element");
 	return false;
 }
 

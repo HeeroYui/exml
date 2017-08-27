@@ -24,7 +24,7 @@ exml::Comment::Comment(const exml::Comment& _obj) :
 	
 }
 
-exml::Comment::Comment(const std::string& _value) :
+exml::Comment::Comment(const etk::String& _value) :
   exml::Node() {
 	m_data = exml::internal::Comment::create(_value);
 }

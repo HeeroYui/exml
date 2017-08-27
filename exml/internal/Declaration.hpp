@@ -18,7 +18,7 @@ namespace exml {
 				 * @brief Constructor
 				 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 				 */
-				Declaration(const std::string& _name="") :
+				Declaration(const etk::String& _name="") :
 				  exml::internal::AttributeList(_name) {
 					
 				};
@@ -28,13 +28,13 @@ namespace exml {
 				 * @param[in] _name name of the declaration (xml, xml:xxxx ...)
 				 * @return a structure declaration
 				 */
-				static ememory::SharedPtr<Declaration> create(const std::string& _name="");
+				static ememory::SharedPtr<Declaration> create(const etk::String& _name="");
 			public:
 				enum nodeType getType() const override{
 					return nodeType::declaration;
 				};
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
-				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
+				bool iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
 				ememory::SharedPtr<exml::internal::Declaration> toDeclaration() override {
 					return ememory::staticPointerCast<exml::internal::Declaration>(sharedFromThis());
 				};
@@ -53,7 +53,7 @@ namespace exml {
 				 * @param[in] _format charset of the XML
 				 * @param[in] _standalone this document is standalone
 				 */
-				DeclarationXML(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
+				DeclarationXML(const etk::String& _version, const etk::String& _format = "UTF-8", bool _standalone = true);
 			public:
 				/**
 				 * @brief Factory to create XML declaration
@@ -62,7 +62,7 @@ namespace exml {
 				 * @param[in] _standalone this document is standalone
 				 * @return a structure declaration
 				 */
-				static ememory::SharedPtr<DeclarationXML> create(const std::string& _version, const std::string& _format = "UTF-8", bool _standalone = true);
+				static ememory::SharedPtr<DeclarationXML> create(const etk::String& _version, const etk::String& _format = "UTF-8", bool _standalone = true);
 		};
 	}
 }

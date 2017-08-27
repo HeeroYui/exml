@@ -18,11 +18,11 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-ememory::SharedPtr<exml::internal::Comment> exml::internal::Comment::create(const std::string& _value) {
+ememory::SharedPtr<exml::internal::Comment> exml::internal::Comment::create(const etk::String& _value) {
 	return ememory::SharedPtr<exml::internal::Comment>(new exml::internal::Comment(_value));
 }
 
-bool exml::internal::Comment::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {
+bool exml::internal::Comment::iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {
 	EXML_VERBOSE("start parse : 'comment'");
 	m_pos = _filePos;
 	exml::FilePos tmpPos;
@@ -50,7 +50,7 @@ bool exml::internal::Comment::iParse(const std::string& _data, int32_t& _pos, bo
 				}
 			}
 			// find end of value:
-			m_value = std::string(_data, _pos+white, newEnd-(_pos+white));
+			m_value = etk::String(_data, _pos+white, newEnd-(_pos+white));
 			EXML_VERBOSE(" find comment '" << m_value << "'");
 			_pos = iii+2;
 			return true;
@@ -61,7 +61,7 @@ bool exml::internal::Comment::iParse(const std::string& _data, int32_t& _pos, bo
 	return false;
 }
 
-bool exml::internal::Comment::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Comment::iGenerate(etk::String& _data, int32_t _indent) const {
 	addIndent(_data, _indent);
 	_data += "<!--";
 	_data += m_value;

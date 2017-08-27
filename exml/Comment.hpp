@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 
 namespace exml {
 	/**
@@ -28,7 +28,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value comment value
 			 */
-			Comment(const std::string& _value="");
+			Comment(const etk::String& _value="");
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy

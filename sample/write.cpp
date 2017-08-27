@@ -33,7 +33,7 @@ static void writeToString() {
 	doc.nodes.add(exml::Comment("basic comment"));
 	TEST_INFO("generate");
 	//! [exml_sample_write_stream]
-	std::string streamOut;
+	etk::String streamOut;
 	bool retGenerate = doc.generate(streamOut);
 	//! [exml_sample_write_stream]
 	TEST_INFO("parse ret = " << retGenerate);

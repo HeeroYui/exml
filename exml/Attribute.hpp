@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 
 namespace exml {
 	namespace internal {
@@ -38,7 +38,7 @@ namespace exml {
 			 * @param[in] _name Name of the attribute.
 			 * @param[in] _value Value of the attribute.
 			 */
-			Attribute(const std::string& _name="", const std::string& _value="");
+			Attribute(const etk::String& _name="", const etk::String& _value="");
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
@@ -50,17 +50,17 @@ namespace exml {
 			 * @brief set the name of the attribute
 			 * @param[in] _name New name of the attribute
 			 */
-			virtual void setName(const std::string& _name);
+			virtual void setName(const etk::String& _name);
 			/**
 			 * @brief get the current name of the Attribute
 			 * @return String of the attribute
 			 */
-			virtual const std::string& getName() const;
+			virtual const etk::String& getName() const;
 			/**
 			 * @brief get attribute name and value
 			 * @return Name and value of the attribute
 			 */
-			std::pair<std::string, std::string> getPair() const;
+			etk::Pair<etk::String, etk::String> getPair() const;
 		public:
 			void clear() override;
 		friend class exml::AttributeListData;

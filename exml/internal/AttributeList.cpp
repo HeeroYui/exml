@@ -23,12 +23,12 @@ ememory::SharedPtr<const exml::internal::Attribute> exml::internal::AttributeLis
 	return m_listAttribute[_id];
 }
 
-std::pair<std::string, std::string> exml::internal::AttributeList::getAttrPair(int32_t _id) const {
+etk::Pair<etk::String, etk::String> exml::internal::AttributeList::getAttrPair(int32_t _id) const {
 	ememory::SharedPtr<const exml::internal::Attribute> att = getAttr(_id);
 	if (att == nullptr) {
-		return std::make_pair<std::string, std::string>("","");
+		return etk::makePair<etk::String, etk::String>("","");
 	}
-	return std::make_pair(att->getName(),att->getValue());
+	return etk::makePair(att->getName(),att->getValue());
 }
 
 
@@ -43,11 +43,11 @@ void exml::internal::AttributeList::appendAttribute(const ememory::SharedPtr<exm
 			return;
 		}
 	}
-	m_listAttribute.push_back(_attr);
+	m_listAttribute.pushBack(_attr);
 }
 
-const std::string& exml::internal::AttributeList::getAttribute(const std::string& _name) const {
-	static const std::string errorReturn("");
+const etk::String& exml::internal::AttributeList::getAttribute(const etk::String& _name) const {
+	static const etk::String errorReturn("");
 	if (_name.size() == 0) {
 		return errorReturn;
 	}
@@ -61,7 +61,7 @@ const std::string& exml::internal::AttributeList::getAttribute(const std::string
 }
 
 
-bool exml::internal::AttributeList::existAttribute(const std::string& _name) const {
+bool exml::internal::AttributeList::existAttribute(const etk::String& _name) const {
 	if (_name.size() == 0) {
 		return false;
 	}
@@ -74,7 +74,7 @@ bool exml::internal::AttributeList::existAttribute(const std::string& _name) con
 	return false;
 }
 
-bool exml::internal::AttributeList::removeAttribute(const std::string& _name) {
+bool exml::internal::AttributeList::removeAttribute(const etk::String& _name) {
 	if (_name.size() == 0) {
 		return false;
 	}
@@ -93,7 +93,7 @@ bool exml::internal::AttributeList::removeAttribute(const std::string& _name) {
 	return false;
 }
 
-void exml::internal::AttributeList::setAttribute(const std::string& _name, const std::string& _value) {
+void exml::internal::AttributeList::setAttribute(const etk::String& _name, const etk::String& _value) {
 	// check if attribute already det :
 	for (size_t iii=0; iii<m_listAttribute.size(); ++iii) {
 		if(    m_listAttribute[iii] != nullptr
@@ -107,10 +107,10 @@ void exml::internal::AttributeList::setAttribute(const std::string& _name, const
 	if (attr == nullptr) {
 		EXML_ERROR("memory allocation error...");
 	}
-	m_listAttribute.push_back(attr);
+	m_listAttribute.pushBack(attr);
 }
 
-bool exml::internal::AttributeList::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::AttributeList::iGenerate(etk::String& _data, int32_t _indent) const {
 	for (size_t iii=0; iii<m_listAttribute.size(); iii++) {
 		if (m_listAttribute[iii] != nullptr) {
 			m_listAttribute[iii]->iGenerate(_data, _indent);

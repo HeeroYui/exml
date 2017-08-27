@@ -22,7 +22,7 @@ exml::internal::Document::Document() :
 }
 
 
-bool exml::internal::Document::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Document::iGenerate(etk::String& _data, int32_t _indent) const {
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
 		if (m_listSub[iii] != nullptr) {
 			m_listSub[iii]->iGenerate(_data, _indent);
@@ -31,7 +31,7 @@ bool exml::internal::Document::iGenerate(std::string& _data, int32_t _indent) co
 	return true;
 }
 
-bool exml::internal::Document::parse(const std::string& _data) {
+bool exml::internal::Document::parse(const etk::String& _data) {
 	EXML_VERBOSE("Start parsing document (type: string) size=" << _data.size());
 	clear();
 	// came from char  == > force in utf8 ...
@@ -41,12 +41,12 @@ bool exml::internal::Document::parse(const std::string& _data) {
 	return subParse(_data, parsePos, m_caseSensitive, filePos, *this, true);
 }
 
-bool exml::internal::Document::generate(std::string& _data) {
+bool exml::internal::Document::generate(etk::String& _data) {
 	_data = "";
 	return iGenerate(_data,0);
 }
 
-bool exml::internal::Document::load(const std::string& _file) {
+bool exml::internal::Document::load(const etk::String& _file) {
 	// Start loading the XML : 
 	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
 	clear();
@@ -65,7 +65,7 @@ bool exml::internal::Document::load(const std::string& _file) {
 		return false;
 	}
 	// allocate data
-	std::vector<char> fileBuffer;
+	etk::Vector<char> fileBuffer;
 	fileBuffer.resize(fileSize+5, 0);
 	// load data from the file :
 	tmpFile.fileRead(&fileBuffer[0], 1, fileSize);
@@ -73,15 +73,15 @@ bool exml::internal::Document::load(const std::string& _file) {
 	tmpFile.fileClose();
 	
 	// convert in UTF8 :
-	std::string tmpDataUnicode(&fileBuffer[0]);
+	etk::String tmpDataUnicode(&fileBuffer[0]);
 	// parse the data :
 	bool ret = parse(tmpDataUnicode);
 	//Display();
 	return ret;
 }
 
-bool exml::internal::Document::store(const std::string& _file) {
-	std::string createData;
+bool exml::internal::Document::store(const etk::String& _file) {
+	etk::String createData;
 	if (generate(createData) == false) {
 		EXML_ERROR("Error while creating the XML : " << _file);
 		return false;
@@ -101,13 +101,13 @@ bool exml::internal::Document::store(const std::string& _file) {
 }
 
 void exml::internal::Document::display() {
-	std::string tmpp;
+	etk::String tmpp;
 	iGenerate(tmpp, 0);
 	EXML_INFO("Generated XML : \n" << tmpp);
 }
 
-std::string createPosPointer(const std::string& _line, int32_t _pos) {
-	std::string out;
+etk::String createPosPointer(const etk::String& _line, int32_t _pos) {
+	etk::String out;
 	size_t iii;
 	for (iii=0; (int64_t)iii<_pos && iii<_line.size(); iii++) {
 		if (_line[iii] == '\t') {
@@ -144,7 +144,7 @@ void exml::internal::Document::displayError() {
 	#endif
 }
 
-void exml::internal::Document::createError(const std::string& _data, int32_t _pos, const exml::FilePos& _filePos, const std::string& _comment) {
+void exml::internal::Document::createError(const etk::String& _data, int32_t _pos, const exml::FilePos& _filePos, const etk::String& _comment) {
 	m_comment = _comment;
 	m_Line = etk::extract_line(_data, _pos);
 	m_filePos = _filePos;

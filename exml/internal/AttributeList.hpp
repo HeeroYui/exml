@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/internal/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 #include <exml/internal/Attribute.hpp>
 #include <utility>
 
@@ -21,12 +21,12 @@ namespace exml {
 				 * @brief Constructor
 				 * @param[in] _value Node value;
 				 */
-				AttributeList(const std::string& _value="") :
+				AttributeList(const etk::String& _value="") :
 				  exml::internal::Node(_value) {
 					
 				};
 			protected:
-				std::vector<ememory::SharedPtr<exml::internal::Attribute>> m_listAttribute; //!< list of all attribute
+				etk::Vector<ememory::SharedPtr<exml::internal::Attribute>> m_listAttribute; //!< list of all attribute
 			public:
 				/**
 				 * @brief get the number of attribute in the Node
@@ -57,34 +57,34 @@ namespace exml {
 				 * @param[in] _id Identifier of the attribute 0<= _id < sizeAttribute()
 				 * @return Name and value of the attribute
 				 */
-				std::pair<std::string, std::string> getAttrPair(int32_t _id) const;
+				etk::Pair<etk::String, etk::String> getAttrPair(int32_t _id) const;
 				/**
 				 * @brief get the attribute value with searching in the List with his name
 				 * @param[in] _name Attribute Name.
 				 * @return Value of the attribute or no data in the string
 				 */
-				const std::string& getAttribute(const std::string& _name) const;
+				const etk::String& getAttribute(const etk::String& _name) const;
 				/**
 				 * @brief check if an attribute exist or not with his name.
 				 * @param[in] _name Attribute Name.
 				 * @return true if the attribute exist or False
 				 */
-				bool existAttribute(const std::string& _name) const;
+				bool existAttribute(const etk::String& _name) const;
 				/**
 				 * @brief Set A new attribute or replace data of the previous one
 				 * @param[in] _name Name of the attribute
 				 * @param[in] _value Value of the attribute
 				 */
-				void setAttribute(const std::string& _name, const std::string& _value);
+				void setAttribute(const etk::String& _name, const etk::String& _value);
 				/**
 				 * @brief Remove an attribute form the list
 				 * @param[in] _name Name of the attribute
 				 * @return true The attribute has been removed
 				 * @return false An error occured.
 				 */
-				bool removeAttribute(const std::string& _name);
+				bool removeAttribute(const etk::String& _name);
 			public:
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
 				void clear() override;
 		};
 	}

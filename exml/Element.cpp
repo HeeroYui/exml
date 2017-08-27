@@ -28,7 +28,7 @@ exml::Element::Element(const exml::Element& _obj) :
 	
 }
 
-exml::Element::Element(const std::string& _data) :
+exml::Element::Element(const etk::String& _data) :
   exml::AttributeList(),
   nodes(this) {
 	m_data = exml::internal::Element::create(_data);
@@ -92,7 +92,7 @@ const exml::Node exml::ElementData::operator[](int32_t _id) const {
 	return exml::Node(static_cast<const exml::internal::Element*>(m_data->m_data.get())->getNode(_id));
 }
 
-exml::Element exml::ElementData::operator[](const std::string& _name) {
+exml::Element exml::ElementData::operator[](const etk::String& _name) {
 	if (m_data->m_data == nullptr) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::Element();
@@ -100,7 +100,7 @@ exml::Element exml::ElementData::operator[](const std::string& _name) {
 	return exml::Element(static_cast<exml::internal::Element*>(m_data->m_data.get())->getNamed(_name));
 }
 
-const exml::Element exml::ElementData::operator[] (const std::string& _name) const {
+const exml::Element exml::ElementData::operator[] (const etk::String& _name) const {
 	if (m_data->m_data == nullptr) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::Element();
@@ -116,7 +116,7 @@ void exml::ElementData::add(const exml::Node& _node) {
 	static_cast<exml::internal::Element*>(m_data->m_data.get())->append(_node.m_data);
 }
 
-void exml::ElementData::remove(const std::string& _nodeName) {
+void exml::ElementData::remove(const etk::String& _nodeName) {
 	if (m_data->m_data == nullptr) {
 		EXML_DEBUG(" can not APPEND on null element ...");
 		return;
@@ -124,7 +124,7 @@ void exml::ElementData::remove(const std::string& _nodeName) {
 	static_cast<exml::internal::Element*>(m_data->m_data.get())->remove(_nodeName);
 }
 
-std::string exml::Element::getText() const {
+etk::String exml::Element::getText() const {
 	if (m_data == nullptr) {
 		EXML_DEBUG(" can not APPEND on null element ...");
 		return "";

@@ -8,17 +8,17 @@
 #include <exml/debug.hpp>
 #include <exml/internal/Document.hpp>
 
-ememory::SharedPtr<exml::internal::Attribute> exml::internal::Attribute::create(const std::string& _name, const std::string& _value) {
+ememory::SharedPtr<exml::internal::Attribute> exml::internal::Attribute::create(const etk::String& _name, const etk::String& _value) {
 	return ememory::SharedPtr<exml::internal::Attribute>(new exml::internal::Attribute(_name, _value));
 }
 
-exml::internal::Attribute::Attribute(const std::string& _name, const std::string& _value) :
+exml::internal::Attribute::Attribute(const etk::String& _name, const etk::String& _value) :
   exml::internal::Node(_value),
   m_name(_name) {
 	
 }
 
-bool exml::internal::Attribute::iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {
+bool exml::internal::Attribute::iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {
 	EXML_VERBOSE("start parse : 'attribute'");
 	m_pos = _filePos;
 	// search end of the comment :
@@ -34,7 +34,7 @@ bool exml::internal::Attribute::iParse(const std::string& _data, int32_t& _pos, 
 			break;
 		}
 	}
-	m_name = std::string(_data, _pos, lastElementName+1-(_pos));
+	m_name = etk::String(_data, _pos, lastElementName+1-(_pos));
 	if (_caseSensitive == true) {
 		m_name = etk::tolower(m_name);
 	}
@@ -83,7 +83,7 @@ bool exml::internal::Attribute::iParse(const std::string& _data, int32_t& _pos, 
 				break;
 			}
 		}
-		m_value = std::string(_data, lastElementName+white+2, lastAttributePos-(lastElementName+white+2));
+		m_value = etk::String(_data, lastElementName+white+2, lastAttributePos-(lastElementName+white+2));
 		
 		EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 		
@@ -103,7 +103,7 @@ bool exml::internal::Attribute::iParse(const std::string& _data, int32_t& _pos, 
 			break;
 		}
 	}
-	m_value = std::string(_data, lastElementName+white+3, lastAttributePos-(lastElementName+white+3));
+	m_value = etk::String(_data, lastElementName+white+3, lastAttributePos-(lastElementName+white+3));
 	
 	EXML_PARSE_ATTRIBUTE(m_pos << " attribute : " << m_name << "=\"" << m_value << "\"");
 	
@@ -111,7 +111,7 @@ bool exml::internal::Attribute::iParse(const std::string& _data, int32_t& _pos, 
 	return true;
 }
 
-bool exml::internal::Attribute::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Attribute::iGenerate(etk::String& _data, int32_t _indent) const {
 	_data += " ";
 	_data += m_name;
 	_data += "=\"";

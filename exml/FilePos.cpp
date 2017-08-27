@@ -82,7 +82,7 @@ size_t exml::FilePos::getLine() const {
 	return m_line;
 }
 
-std::ostream& exml::operator <<(std::ostream& _os, const exml::FilePos& _obj) {
+etk::Stream& exml::operator <<(etk::Stream& _os, const exml::FilePos& _obj) {
 	_os << "(l=";
 	_os << _obj.getLine();
 	_os << ",c=";

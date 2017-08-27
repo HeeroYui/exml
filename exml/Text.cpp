@@ -25,7 +25,7 @@ exml::Text::Text(const exml::Text& _obj) :
 	
 }
 
-exml::Text::Text(const std::string& _data) :
+exml::Text::Text(const etk::String& _data) :
   exml::Node() {
 	m_data = exml::internal::Text::create(_data);
 }

@@ -7,7 +7,6 @@
 #include <exml/internal/Text.hpp>
 #include <exml/debug.hpp>
 #include <exml/internal/Document.hpp>
-#include <regex>
 
 // transform the Text with :
 //     "&lt;"   == "<"
@@ -15,35 +14,23 @@
 //     "&amp;"  == "&"
 //     "&apos;" == "'"
 //     "&quot;" == """
-static std::string replaceSpecialChar(const std::string& _inval) {
-	std::string out;
-	static std::regex regexLT("&lt;");
-	static std::regex regexGT("&gt;");
-	static std::regex regexAPOS("&apos;");
-	static std::regex regexQUOT("&quot;");
-	static std::regex regexAMP("&amp;");
-	
-	out = std::regex_replace(_inval, regexLT, std::string("<"));
-	out = std::regex_replace(out, regexGT, std::string(">"));
-	out = std::regex_replace(out, regexAPOS, std::string("'"));
-	out = std::regex_replace(out, regexQUOT, std::string("\""));
-	out = std::regex_replace(out, regexAMP, std::string("&"));
+static etk::String replaceSpecialChar(const etk::String& _inval) {
+	etk::String out = _inval;
+	out.replace("&lt;", "<");
+	out.replace("&gt;", ">");
+	out.replace("&apos;", "'");
+	out.replace("&quot;", "\"");
+	out.replace("&amp;", "&");
 	//EXML_ERROR("INNN '"<< _inval << "' => '" << out << "'");
 	return out;
 }
-static std::string replaceSpecialCharOut(const std::string& _inval) {
-	std::string out;
-	static std::regex regexLT("<");
-	static std::regex regexGT(">;");
-	static std::regex regexAMP("&");
-	static std::regex regexAPOS("'");
-	static std::regex regexQUOT("\"");
-	
-	out = std::regex_replace(_inval, regexAMP, std::string("&amp;"));
-	out = std::regex_replace(out, regexQUOT, std::string("&quot;"));
-	out = std::regex_replace(out, regexAPOS, std::string("&apos;"));
-	out = std::regex_replace(out, regexGT, std::string("&gt;"));
-	out = std::regex_replace(out, regexLT, std::string("&lt;"));
+static etk::String replaceSpecialCharOut(const etk::String& _inval) {
+	etk::String out = _inval;
+	out.replace("<", "&lt;");
+	out.replace(">", "&gt;");
+	out.replace("'", "&apos;");
+	out.replace("\"", "&quot;");
+	out.replace("&", "&amp;");
 	//EXML_ERROR("OUTTT '"<< _inval << "' => '" << out << "'");
 	return out;
 }
@@ -58,11 +45,11 @@ static bool isWhiteChar(char32_t _val) {
 	return false;
 }
 
-ememory::SharedPtr<exml::internal::Text> exml::internal::Text::create(const std::string& _data) {
+ememory::SharedPtr<exml::internal::Text> exml::internal::Text::create(const etk::String& _data) {
 	return ememory::SharedPtr<exml::internal::Text>(new exml::internal::Text(_data));
 }
 
-bool exml::internal::Text::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::Text::iGenerate(etk::String& _data, int32_t _indent) const {
 	_data += replaceSpecialCharOut(m_value);
 	return true;
 }
@@ -77,7 +64,7 @@ int32_t exml::internal::Text::countLines() const {
 	return count;
 }
 
-bool exml::internal::Text::iParse(const std::string& _data,
+bool exml::internal::Text::iParse(const etk::String& _data,
                                   int32_t& _pos,
                                   bool _caseSensitive,
                                   exml::FilePos& _filePos,
@@ -104,7 +91,7 @@ bool exml::internal::Text::iParse(const std::string& _data,
 				}
 			}
 			// find end of value:
-			m_value = std::string(_data, _pos, newEnd-(_pos));
+			m_value = etk::String(_data, _pos, newEnd-(_pos));
 			EXML_VERBOSE(" find text '" << m_value << "'");
 			_pos = iii-1;
 			m_value = replaceSpecialChar(m_value);
@@ -121,12 +108,12 @@ ememory::SharedPtr<exml::internal::TextCDATA> exml::internal::TextCDATA::create(
 	return ememory::SharedPtr<exml::internal::TextCDATA>(new exml::internal::TextCDATA());
 }
 
-bool exml::internal::TextCDATA::iGenerate(std::string& _data, int32_t _indent) const {
+bool exml::internal::TextCDATA::iGenerate(etk::String& _data, int32_t _indent) const {
 	_data += "<![CDATA[" + m_value +"]]>";
 	return true;
 }
 
-bool exml::internal::TextCDATA::iParse(const std::string& _data,
+bool exml::internal::TextCDATA::iParse(const etk::String& _data,
                                        int32_t& _pos,
                                        bool _caseSensitive,
                                        exml::FilePos& _filePos,
@@ -146,7 +133,7 @@ bool exml::internal::TextCDATA::iParse(const std::string& _data,
 		    && _data[iii+2] == '>') {
 			// find end of value:
 			_filePos += 2;
-			m_value = std::string(_data, _pos, iii-(_pos));
+			m_value = etk::String(_data, _pos, iii-(_pos));
 			EXML_VERBOSE(" find text CDATA '" << m_value << "'");
 			_pos = iii+2;
 			return true;

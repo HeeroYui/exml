@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 #include <exml/AttributeList.hpp>
 #include <exml/iterator.hpp>
 
@@ -41,7 +41,7 @@ namespace exml {
 			 * @brief Remove a node with his name.
 			 * @param[in] _nodeName Name of the node.
 			 */
-			void remove(const std::string& _nodeName);
+			void remove(const etk::String& _nodeName);
 			/**
 			 * @brief get the type of the element id.
 			 * @param[in] _id Id of the element.
@@ -65,13 +65,13 @@ namespace exml {
 			 * @param[in] _name Name of the element that is requested
 			 * @return Pointer on the element or NULL.
 			 */
-			exml::Element operator[] (const std::string& _name);
+			exml::Element operator[] (const etk::String& _name);
 			/**
 			 * @brief get an element with his name (work only with exml::Element)
 			 * @param[in] _name Name of the element that is requested
 			 * @return Pointer on the element or NULL.
 			 */
-			const exml::Element operator[] (const std::string& _name) const;
+			const exml::Element operator[] (const etk::String& _name) const;
 		public:
 			using iterator = exml::iterator<exml::ElementData, exml::Node>; //!< Specify iterator of the element methode
 			/**
@@ -116,7 +116,7 @@ namespace exml {
 			 * @brief Constructor
 			 * @param[in] _value Element name;
 			 */
-			Element(const std::string& _value="");
+			Element(const etk::String& _value="");
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
@@ -127,7 +127,7 @@ namespace exml {
 			 * @brief get the internal data of the element (if the element has some sub node thay are converted in xml string  == > like this it is not needed to use <![CDATA[...]]>
 			 * @return the curent data string. if Only one text node, then we get the parssed data (no &amp; ...) if more than one node, then we transform &,",',<,> in xml normal text...
 			 */
-			std::string getText() const;
+			etk::String getText() const;
 		public:
 			void clear() override;
 	};

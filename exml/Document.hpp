@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/Element.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 
 namespace exml {
 	/**
@@ -51,28 +51,28 @@ namespace exml {
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool parse(const std::string& _data);
+			bool parse(const etk::String& _data);
 			/**
 			 * @brief generate a string that contain the created XML
 			 * @param[out] _data Data where the xml is stored
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool generate(std::string& _data);
+			bool generate(etk::String& _data);
 			/**
 			 * @brief Load the file that might contain the xml
 			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool load(const std::string& _file);
+			bool load(const etk::String& _file);
 			/**
 			 * @brief Store the Xml in the file
 			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool store(const std::string& _file);
+			bool store(const etk::String& _file);
 			/**
 			 * @brief Display the Document on console
 			 */

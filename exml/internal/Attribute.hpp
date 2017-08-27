@@ -6,7 +6,7 @@
 #pragma once
 
 #include <exml/internal/Node.hpp>
-#include <vector>
+#include <etk/Vector.hpp>
 
 namespace exml {
 	namespace internal {
@@ -20,7 +20,7 @@ namespace exml {
 				 * @param[in] _name Name of the attribute.
 				 * @param[in] _value Value of the attribute.
 				 */
-				Attribute(const std::string& _name="", const std::string& _value="");
+				Attribute(const etk::String& _name="", const etk::String& _value="");
 			public:
 				/**
 				 * @brief defined factory
@@ -28,30 +28,30 @@ namespace exml {
 				 * @param[in] _value Value of the attribute
 				 * @return Shared pointer on the Attribute element
 				 */
-				static ememory::SharedPtr<Attribute> create(const std::string& _name="", const std::string& _value="");
+				static ememory::SharedPtr<Attribute> create(const etk::String& _name="", const etk::String& _value="");
 			protected:
-				std::string m_name; //!< Name of the attribute
+				etk::String m_name; //!< Name of the attribute
 			public:
 				/**
 				 * @brief set the name of the attribute
 				 * @param[in] _name New name of the attribute
 				 */
-				virtual void setName(const std::string& _name) {
+				virtual void setName(const etk::String& _name) {
 					m_name = _name;
 				};
 				/**
 				 * @brief get the current name of the Attribute
 				 * @return String of the attribute
 				 */
-				virtual const std::string& getName() const {
+				virtual const etk::String& getName() const {
 					return m_name;
 				};
 			public:
 				enum nodeType getType() const override {
 					return exml::nodeType::attribute;
 				};
-				bool iParse(const std::string& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
-				bool iGenerate(std::string& _data, int32_t _indent) const override;
+				bool iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) override;
+				bool iGenerate(etk::String& _data, int32_t _indent) const override;
 				ememory::SharedPtr<exml::internal::Attribute> toAttribute() override {
 					return ememory::staticPointerCast<exml::internal::Attribute>(sharedFromThis());
 				};
