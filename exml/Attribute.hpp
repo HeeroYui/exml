@@ -7,6 +7,7 @@
 
 #include <exml/Node.hpp>
 #include <etk/Vector.hpp>
+#include <etk/Pair.hpp>
 
 namespace exml {
 	namespace internal {
