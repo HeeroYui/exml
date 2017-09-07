@@ -44,7 +44,7 @@ def configure(target, my_module):
 	    ])
 	my_module.add_depend([
 	    'exml',
-	    'gtest',
+	    'etest',
 	    'test-debug'
 	    ])
 	return True

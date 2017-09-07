@@ -5,7 +5,7 @@
  */
 
 #include "exmlTestCommon.hpp"
-#include <gtest/gtest.h>
+#include <etest/etest.hpp>
 
 
 static etk::String refOutputElement("<exemple/>\n");

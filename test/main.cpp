@@ -5,7 +5,7 @@
  */
 
 #include <test-debug/debug.hpp>
-#include <gtest/gtest.h>
+#include <etest/etest.hpp>
 #include <etk/os/FSNode.hpp>
 #include <etk/etk.hpp>
 

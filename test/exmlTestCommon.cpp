@@ -7,7 +7,7 @@
 #include <etk/types.hpp>
 #include <test-debug/debug.hpp>
 #include <exml/exml.hpp>
-#include <gtest/gtest.h>
+#include <etest/etest.hpp>
 
 // _errorPos : -1 : no error , 1 : parsing error, 2 generation error, 3 comparaison error ????
 void exmlLocalTest(const etk::String& _ref,
