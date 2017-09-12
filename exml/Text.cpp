@@ -7,7 +7,6 @@
 #include <exml/Text.hpp>
 #include <exml/internal/Text.hpp>
 #include <exml/debug.hpp>
-#include <regex>
 
 exml::Text::Text(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::Node(_internalNode) {
