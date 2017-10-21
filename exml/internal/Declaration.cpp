@@ -16,11 +16,11 @@
 */
 
 ememory::SharedPtr<exml::internal::Declaration> exml::internal::Declaration::create(const etk::String& _name) {
-	return ememory::SharedPtr<exml::internal::Declaration>(new exml::internal::Declaration(_name));
+	return ememory::SharedPtr<exml::internal::Declaration>(ETK_NEW(exml::internal::Declaration, _name));
 }
 
 ememory::SharedPtr<exml::internal::DeclarationXML> exml::internal::DeclarationXML::create(const etk::String& _version, const etk::String& _format, bool _standalone) {
-	return ememory::SharedPtr<exml::internal::DeclarationXML>(new exml::internal::DeclarationXML(_version, _format, _standalone));
+	return ememory::SharedPtr<exml::internal::DeclarationXML>(ETK_NEW(exml::internal::DeclarationXML, _version, _format, _standalone));
 }
 
 exml::internal::DeclarationXML::DeclarationXML(const etk::String& _version, const etk::String& _format, bool _standalone) :
@@ -75,7 +75,7 @@ bool exml::internal::Declaration::iParse(const etk::String& _data, int32_t& _pos
 			return true;
 		}
 		if (checkAvaillable(_data[iii], true) == true) {
-			// we find an attibute  == > create a new and parse it :
+			// we find an attibute  == > create an element and parse it:
 			ememory::SharedPtr<exml::internal::Attribute> attribute = exml::internal::Attribute::create();
 			if (attribute == nullptr) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");

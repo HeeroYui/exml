@@ -9,7 +9,7 @@
 #include <etk/os/FSNode.hpp>
 
 ememory::SharedPtr<exml::internal::Document> exml::internal::Document::create() {
-	return ememory::SharedPtr<exml::internal::Document>(new exml::internal::Document());
+	return ememory::SharedPtr<exml::internal::Document>(ETK_NEW(exml::internal::Document));
 }
 
 exml::internal::Document::Document() :

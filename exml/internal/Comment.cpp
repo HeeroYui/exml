@@ -19,7 +19,7 @@ static bool isWhiteChar(char32_t _val) {
 }
 
 ememory::SharedPtr<exml::internal::Comment> exml::internal::Comment::create(const etk::String& _value) {
-	return ememory::SharedPtr<exml::internal::Comment>(new exml::internal::Comment(_value));
+	return ememory::SharedPtr<exml::internal::Comment>(ETK_NEW(exml::internal::Comment, _value));
 }
 
 bool exml::internal::Comment::iParse(const etk::String& _data, int32_t& _pos, bool _caseSensitive, exml::FilePos& _filePos, exml::internal::Document& _doc) {

@@ -46,7 +46,7 @@ static bool isWhiteChar(char32_t _val) {
 }
 
 ememory::SharedPtr<exml::internal::Text> exml::internal::Text::create(const etk::String& _data) {
-	return ememory::SharedPtr<exml::internal::Text>(new exml::internal::Text(_data));
+	return ememory::SharedPtr<exml::internal::Text>(ETK_NEW(exml::internal::Text, _data));
 }
 
 bool exml::internal::Text::iGenerate(etk::String& _data, int32_t _indent) const {
@@ -105,7 +105,7 @@ bool exml::internal::Text::iParse(const etk::String& _data,
 
 
 ememory::SharedPtr<exml::internal::TextCDATA> exml::internal::TextCDATA::create() {
-	return ememory::SharedPtr<exml::internal::TextCDATA>(new exml::internal::TextCDATA());
+	return ememory::SharedPtr<exml::internal::TextCDATA>(ETK_NEW(exml::internal::TextCDATA));
 }
 
 bool exml::internal::TextCDATA::iGenerate(etk::String& _data, int32_t _indent) const {

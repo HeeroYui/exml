@@ -9,7 +9,7 @@
 #include <exml/internal/Document.hpp>
 
 ememory::SharedPtr<exml::internal::Attribute> exml::internal::Attribute::create(const etk::String& _name, const etk::String& _value) {
-	return ememory::SharedPtr<exml::internal::Attribute>(new exml::internal::Attribute(_name, _value));
+	return ememory::SharedPtr<exml::internal::Attribute>(ETK_NEW(exml::internal::Attribute, _name, _value));
 }
 
 exml::internal::Attribute::Attribute(const etk::String& _name, const etk::String& _value) :

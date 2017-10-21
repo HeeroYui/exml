@@ -23,7 +23,7 @@ static bool isWhiteChar(char32_t _val) {
 }
 
 ememory::SharedPtr<exml::internal::Element> exml::internal::Element::create(const etk::String& _value) {
-	return ememory::SharedPtr<exml::internal::Element>(new exml::internal::Element(_value));
+	return ememory::SharedPtr<exml::internal::Element>(ETK_NEW(exml::internal::Element, _value));
 }
 
 enum exml::nodeType exml::internal::Element::getType(int32_t _id) const {
@@ -474,7 +474,7 @@ bool exml::internal::Element::iParse(const etk::String& _data,
 			return false;
 		}
 		if (checkAvaillable(_data[iii], true) == true) {
-			// we find an attibute  == > create a new and parse it :
+			// we find an attibute  == > create an element and parse it:
 			ememory::SharedPtr<exml::internal::Attribute> attribute = exml::internal::Attribute::create();
 			if (attribute == nullptr) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
