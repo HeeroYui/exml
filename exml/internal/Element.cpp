@@ -232,7 +232,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 				}
 				etk::String tmpname = etk::String(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (_caseSensitive == true) {
-					tmpname = etk::tolower(tmpname);
+					tmpname = etk::toLower(tmpname);
 				}
 				// Find declaration balise
 				ememory::SharedPtr<exml::internal::Declaration> declaration = exml::internal::Declaration::create(tmpname);
@@ -331,7 +331,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 				}
 				etk::String tmpname = etk::String(_data, iii+white+2, endPosName+1-(iii+white+2));
 				if (_caseSensitive == true) {
-					tmpname = etk::tolower(tmpname);
+					tmpname = etk::toLower(tmpname);
 				}
 				if( tmpname == m_value) {
 					// find end of node :
@@ -382,7 +382,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 				}
 				etk::String tmpname = etk::String(_data, iii+white+1, endPosName+1-(iii+white+1));
 				if (_caseSensitive == true) {
-					etk::tolower(tmpname);
+					etk::toLower(tmpname);
 				}
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:

@@ -36,7 +36,7 @@ bool exml::internal::Attribute::iParse(const etk::String& _data, int32_t& _pos, 
 	}
 	m_name = etk::String(_data, _pos, lastElementName+1-(_pos));
 	if (_caseSensitive == true) {
-		m_name = etk::tolower(m_name);
+		m_name = etk::toLower(m_name);
 	}
 	// count white space :
 	exml::FilePos tmpPos;
