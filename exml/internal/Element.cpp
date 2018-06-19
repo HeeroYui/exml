@@ -28,7 +28,7 @@ ememory::SharedPtr<exml::internal::Element> exml::internal::Element::create(cons
 
 enum exml::nodeType exml::internal::Element::getType(int32_t _id) const {
 	ememory::SharedPtr<const exml::internal::Node> tmpp = getNode(_id);
-	if (tmpp == nullptr) {
+	if (tmpp == null) {
 		return exml::nodeType::unknow;
 	}
 	return tmpp->getType();
@@ -37,7 +37,7 @@ enum exml::nodeType exml::internal::Element::getType(int32_t _id) const {
 ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(int32_t _id) {
 	if (    _id <0
 	     || (size_t)_id>=m_listSub.size()) {
-		return nullptr;
+		return null;
 	}
 	return m_listSub[_id];
 }
@@ -45,7 +45,7 @@ ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(int32_
 const ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(int32_t _id) const {
 	if (    _id <0
 	     || (size_t)_id>=m_listSub.size()) {
-		return nullptr;
+		return null;
 	}
 	return m_listSub[_id];
 }
@@ -53,56 +53,56 @@ const ememory::SharedPtr<exml::internal::Node> exml::internal::Element::getNode(
 
 ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getElement(int32_t _id) {
 	ememory::SharedPtr<exml::internal::Node> tmpp = getNode(_id);
-	if (tmpp == nullptr) {
-		return nullptr;
+	if (tmpp == null) {
+		return null;
 	}
 	return tmpp->toElement();
 }
 
 const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getElement(int32_t _id) const {
 	const ememory::SharedPtr<exml::internal::Node> tmpp = getNode(_id);
-	if (tmpp == nullptr) {
-		return nullptr;
+	if (tmpp == null) {
+		return null;
 	}
 	return tmpp->toElement();
 }
 
 ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const etk::String& _name) {
 	if (_name.size() == 0) {
-		return nullptr;
+		return null;
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if(    m_listSub[iii] != nullptr
+		if(    m_listSub[iii] != null
 		    && m_listSub[iii]->getType() == exml::nodeType::element
 		    && m_listSub[iii]->getValue() == _name) {
-			if (m_listSub[iii] == nullptr) {
-				return nullptr;
+			if (m_listSub[iii] == null) {
+				return null;
 			}
 			return m_listSub[iii]->toElement();
 		}
 	}
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Element> exml::internal::Element::getNamed(const etk::String& _name) const {
 	if (_name.size() == 0) {
-		return nullptr;
+		return null;
 	}
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if(    m_listSub[iii] != nullptr
+		if(    m_listSub[iii] != null
 		    && m_listSub[iii]->getType() == exml::nodeType::element
 		    && m_listSub[iii]->getValue() == _name) {
-			if (m_listSub[iii] == nullptr) {
-				return nullptr;
+			if (m_listSub[iii] == null) {
+				return null;
 			}
 			return m_listSub[iii]->toElement();
 		}
 	}
-	return nullptr;
+	return null;
 }
 
 void exml::internal::Element::append(const ememory::SharedPtr<exml::internal::Node>& _node) {
-	if (_node == nullptr) {
+	if (_node == null) {
 		EXML_ERROR("Try to set an empty node");
 		return;
 	}
@@ -125,7 +125,7 @@ void exml::internal::Element::remove(const etk::String& _nodeName) {
 	}
 	auto it = m_listSub.begin();
 	while (it != m_listSub.end()) {
-		if (*it == nullptr) {
+		if (*it == null) {
 			it = m_listSub.erase(it);
 		} else if ((*it)->getValue() == _nodeName) {
 			it = m_listSub.erase(it);
@@ -145,7 +145,7 @@ etk::String exml::internal::Element::getText() const {
 		}
 	} else {
 		for (size_t iii=0; iii<m_listSub.size(); iii++) {
-			if (m_listSub[iii] != nullptr) {
+			if (m_listSub[iii] != null) {
 				m_listSub[iii]->iGenerate(res, 0);
 			}
 		}
@@ -161,7 +161,7 @@ bool exml::internal::Element::iGenerate(etk::String& _data, int32_t _indent) con
 	
 	if (m_listSub.size()>0) {
 		if(    m_listSub.size() == 1
-		    && m_listSub[0] != nullptr
+		    && m_listSub[0] != null
 		    && m_listSub[0]->getType() == exml::nodeType::text
 		    && ememory::dynamicPointerCast<exml::internal::Text>(m_listSub[0])->countLines() == 1) {
 			_data += ">";
@@ -171,7 +171,7 @@ bool exml::internal::Element::iGenerate(etk::String& _data, int32_t _indent) con
 			_data += ">\n";
 			
 			for (size_t iii=0; iii<m_listSub.size(); iii++) {
-				if (m_listSub[iii] != nullptr) {
+				if (m_listSub[iii] != null) {
 					m_listSub[iii]->iGenerate(_data, _indent+1);
 				}
 			}
@@ -236,7 +236,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 				}
 				// Find declaration balise
 				ememory::SharedPtr<exml::internal::Declaration> declaration = exml::internal::Declaration::create(tmpname);
-				if (declaration == nullptr) {
+				if (declaration == null) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation Error...");
 					return false;
 				}
@@ -269,7 +269,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 					++tmpPos;
 					// find comment:
 					ememory::SharedPtr<exml::internal::Comment> comment = exml::internal::Comment::create();
-					if (comment == nullptr) {
+					if (comment == null) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
 					}
@@ -298,7 +298,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 					tmpPos+=6;
 					// find text:
 					ememory::SharedPtr<exml::internal::TextCDATA> text = exml::internal::TextCDATA::create();
-					if (text == nullptr) {
+					if (text == null) {
 						CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 						return false;
 					}
@@ -387,7 +387,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 				//EXML_INFO("find node named : '" << tmpname << "'");
 				// find text:
 				ememory::SharedPtr<exml::internal::Element> element = exml::internal::Element::create(tmpname);
-				if (element == nullptr) {
+				if (element == null) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
 				}
@@ -418,7 +418,7 @@ bool exml::internal::Element::subParse(const etk::String& _data, int32_t& _pos, 
 			} else {
 				// find data  == > parse it...
 				ememory::SharedPtr<exml::internal::Text> text = exml::internal::Text::create();
-				if (text == nullptr) {
+				if (text == null) {
 					CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 					return false;
 				}
@@ -476,7 +476,7 @@ bool exml::internal::Element::iParse(const etk::String& _data,
 		if (checkAvaillable(_data[iii], true) == true) {
 			// we find an attibute  == > create an element and parse it:
 			ememory::SharedPtr<exml::internal::Attribute> attribute = exml::internal::Attribute::create();
-			if (attribute == nullptr) {
+			if (attribute == null) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, "Allocation error ...");
 				return false;
 			}

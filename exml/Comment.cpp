@@ -10,12 +10,12 @@
 
 exml::Comment::Comment(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::Node(_internalNode) {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return;
 	}
 	if (m_data->isComment() == false) {
 		// try to set wrong type inside ... ==> remove it ...
-		m_data = nullptr;
+		m_data = null;
 	}
 }
 

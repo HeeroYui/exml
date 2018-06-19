@@ -28,7 +28,7 @@ namespace exml {
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy
 			 */
-			// TODO : Attribute(nullptr);
+			// TODO : Attribute(null);
 			/**
 			 * @brief Copy constructor
 			 * @param[in] _obj Object to copy

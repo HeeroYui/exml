@@ -134,51 +134,51 @@ enum exml::nodeType exml::internal::Node::getType() const {
 }
 
 ememory::SharedPtr<exml::internal::Document> exml::internal::Node::toDocument() {
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Document> exml::internal::Node::toDocument() const {
-	return nullptr;
+	return null;
 }
 
 ememory::SharedPtr<exml::internal::Attribute> exml::internal::Node::toAttribute() {
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Attribute> exml::internal::Node::toAttribute() const {
-	return nullptr;
+	return null;
 }
 
 ememory::SharedPtr<exml::internal::Comment> exml::internal::Node::toComment() {
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Comment> exml::internal::Node::toComment() const {
-	return nullptr;
+	return null;
 }
 
 ememory::SharedPtr<exml::internal::Declaration> exml::internal::Node::toDeclaration() {
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Declaration> exml::internal::Node::toDeclaration() const {
-	return nullptr;
+	return null;
 }
 
 ememory::SharedPtr<exml::internal::Element> exml::internal::Node::toElement() {
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Element> exml::internal::Node::toElement() const {
-	return nullptr;
+	return null;
 }
 
 ememory::SharedPtr<exml::internal::Text> exml::internal::Node::toText() {
-	return nullptr;
+	return null;
 }
 
 const ememory::SharedPtr<exml::internal::Text> exml::internal::Node::toText() const{
-	return nullptr;
+	return null;
 }
 
 bool exml::internal::Node::isDocument() const {

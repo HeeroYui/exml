@@ -12,13 +12,13 @@
 exml::Element::Element(const ememory::SharedPtr<exml::internal::Node>& _internalNode) :
   exml::AttributeList(_internalNode),
   nodes(this) {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return;
 	}
 	if (    m_data->isElement() == false
 	     && m_data->isDocument() == false) {
 		// try to set wrong type inside ... ==> remove it ...
-		m_data = nullptr;
+		m_data = null;
 	}
 }
 
@@ -61,7 +61,7 @@ exml::ElementData::ElementData(exml::Element* _elem) :
 }
 
 size_t exml::ElementData::size() const {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not get type ...");
 		return 0;
 	}
@@ -69,7 +69,7 @@ size_t exml::ElementData::size() const {
 }
 
 enum exml::nodeType exml::ElementData::getType(int32_t _id) const {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::nodeType::unknow;
 	}
@@ -77,7 +77,7 @@ enum exml::nodeType exml::ElementData::getType(int32_t _id) const {
 }
 
 exml::Node exml::ElementData::operator[](int32_t _id) {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::Node();
 	}
@@ -85,7 +85,7 @@ exml::Node exml::ElementData::operator[](int32_t _id) {
 }
 
 const exml::Node exml::ElementData::operator[](int32_t _id) const {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::Node();
 	}
@@ -93,7 +93,7 @@ const exml::Node exml::ElementData::operator[](int32_t _id) const {
 }
 
 exml::Element exml::ElementData::operator[](const etk::String& _name) {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::Element();
 	}
@@ -101,7 +101,7 @@ exml::Element exml::ElementData::operator[](const etk::String& _name) {
 }
 
 const exml::Element exml::ElementData::operator[] (const etk::String& _name) const {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not get type ...");
 		return exml::Element();
 	}
@@ -109,7 +109,7 @@ const exml::Element exml::ElementData::operator[] (const etk::String& _name) con
 }
 
 void exml::ElementData::add(const exml::Node& _node) {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not APPEND on null element ...");
 		return;
 	}
@@ -117,7 +117,7 @@ void exml::ElementData::add(const exml::Node& _node) {
 }
 
 void exml::ElementData::remove(const etk::String& _nodeName) {
-	if (m_data->m_data == nullptr) {
+	if (m_data->m_data == null) {
 		EXML_DEBUG(" can not APPEND on null element ...");
 		return;
 	}
@@ -125,7 +125,7 @@ void exml::ElementData::remove(const etk::String& _nodeName) {
 }
 
 etk::String exml::Element::getText() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		EXML_DEBUG(" can not APPEND on null element ...");
 		return "";
 	}
@@ -133,7 +133,7 @@ etk::String exml::Element::getText() const {
 }
 
 void exml::Element::clear() {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		EXML_DEBUG(" can not CLEAR on null element ...");
 		return;
 	}

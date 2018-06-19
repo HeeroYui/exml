@@ -10,12 +10,12 @@
 
 exml::Declaration::Declaration(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::AttributeList(_internalNode) {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return;
 	}
 	if (m_data->isDeclaration() == false) {
 		// try to set wrong type inside ... ==> remove it ...
-		m_data = nullptr;
+		m_data = null;
 	}
 }
 
@@ -39,13 +39,13 @@ exml::Declaration& exml::Declaration::operator= (const exml::Declaration& _obj) 
 
 exml::DeclarationXML::DeclarationXML(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::Declaration(_internalNode) {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return;
 	}
 	// TODO: Do it better
 	if (m_data->isDeclaration() == false) {
 		// try to set wrong type inside ... ==> remove it ...
-		m_data = nullptr;
+		m_data = null;
 	}
 }
 

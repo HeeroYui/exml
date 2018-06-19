@@ -16,11 +16,11 @@ namespace exml {
 	 */
 	class AttributeListData {
 		private:
-			exml::AttributeList* m_data; //!< Pointer on the Attribute list class (must not be nullptr)
+			exml::AttributeList* m_data; //!< Pointer on the Attribute list class (must not be null)
 		public:
 			/**
 			 * @brief Constructor on the AttributeListData class
-			 * @param[in] _list Point on the parrent class (must not be nullptr)
+			 * @param[in] _list Point on the parrent class (must not be null)
 			 */
 			AttributeListData(exml::AttributeList* _list);
 		public:

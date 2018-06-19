@@ -31,26 +31,26 @@ exml::Node::Node(const ememory::SharedPtr<exml::internal::Node>& _internalNode) 
 }
 
 exml::Node::Node() :
-  m_data(nullptr) {
+  m_data(null) {
 	
 }
 
 bool exml::Node::exist() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return true;
 }
 
 exml::FilePos exml::Node::getPos() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return exml::FilePos(0,0);
 	}
 	return m_data->getPos();
 }
 
 void exml::Node::setValue(etk::String _value) {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		EXML_ERROR(" can not set value: '" << _value << "'");
 		return;
 	}
@@ -58,7 +58,7 @@ void exml::Node::setValue(etk::String _value) {
 }
 
 const etk::String& exml::Node::getValue() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		static etk::String errorString = "";
 		EXML_DEBUG(" can not get value ...");
 		return errorString;
@@ -67,7 +67,7 @@ const etk::String& exml::Node::getValue() const {
 }
 
 enum exml::nodeType exml::Node::getType() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		EXML_DEBUG("Can not get type ...");
 		return exml::nodeType::unknow;
 	}
@@ -123,49 +123,49 @@ const exml::Text exml::Node::toText() const {
 }
 
 bool exml::Node::isDocument() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return m_data->isDocument();
 }
 
 bool exml::Node::isAttribute() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return m_data->isAttribute();
 }
 
 bool exml::Node::isComment() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return m_data->isComment();
 }
 
 bool exml::Node::isDeclaration() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return m_data->isDeclaration();
 }
 
 bool exml::Node::isElement() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return m_data->isElement() || m_data->isDocument();
 }
 
 bool exml::Node::isText() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return false;
 	}
 	return m_data->isText();
 }
 
 void exml::Node::clear() {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return;
 	}
 	return m_data->clear();

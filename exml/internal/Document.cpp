@@ -24,7 +24,7 @@ exml::internal::Document::Document() :
 
 bool exml::internal::Document::iGenerate(etk::String& _data, int32_t _indent) const {
 	for (size_t iii=0; iii<m_listSub.size(); iii++) {
-		if (m_listSub[iii] != nullptr) {
+		if (m_listSub[iii] != null) {
 			m_listSub[iii]->iGenerate(_data, _indent);
 		}
 	}

@@ -10,12 +10,12 @@
 
 exml::Attribute::Attribute(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::Node(_internalNode) {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		return;
 	}
 	if (m_data->isAttribute() == false) {
 		// try to set wrong type inside ... ==> remove it ...
-		m_data = nullptr;
+		m_data = null;
 	}
 }
 
@@ -24,8 +24,8 @@ exml::Attribute::Attribute(const exml::Attribute& _obj) :
 	
 }
 /*
-exml::Attribute::Attribute(nullptr) :
-  exml::Node(nullptr) {
+exml::Attribute::Attribute(null) :
+  exml::Node(null) {
 	
 }
 */
@@ -40,33 +40,33 @@ exml::Attribute& exml::Attribute::operator= (const exml::Attribute& _obj) {
 }
 
 void exml::Attribute::setName(const etk::String& _name){
-	if (m_data == nullptr) {
-		EXML_DEBUG(" can not setName (nullptr) ...");
+	if (m_data == null) {
+		EXML_DEBUG(" can not setName (null) ...");
 		return;
 	}
 	static_cast<exml::internal::Attribute*>(m_data.get())->setName(_name);
 }
 
 const etk::String& exml::Attribute::getName() const {
-	if (m_data == nullptr) {
+	if (m_data == null) {
 		static etk::String errorValue = "";
-		EXML_DEBUG(" can not setName (nullptr) ...");
+		EXML_DEBUG(" can not setName (null) ...");
 		return errorValue;
 	}
 	return static_cast<const exml::internal::Attribute*>(m_data.get())->getName();
 }
 
 void exml::Attribute::clear() {
-	if (m_data == nullptr) {
-		EXML_DEBUG(" can not setName (nullptr) ...");
+	if (m_data == null) {
+		EXML_DEBUG(" can not setName (null) ...");
 		return;
 	}
 	static_cast<exml::internal::Attribute*>(m_data.get())->clear();
 }
 
 etk::Pair<etk::String, etk::String> exml::Attribute::getPair() const {
-	if (m_data == nullptr) {
-		EXML_DEBUG(" can not setName (nullptr) ...");
+	if (m_data == null) {
+		EXML_DEBUG(" can not setName (null) ...");
 		return etk::Pair<etk::String, etk::String>("","");
 	}
 	return etk::Pair<etk::String, etk::String>(static_cast<const exml::internal::Attribute*>(m_data.get())->getName(),

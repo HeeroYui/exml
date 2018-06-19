@@ -77,62 +77,62 @@ namespace exml {
 			enum nodeType getType() const;
 			/**
 			 * @brief Cast the element in a Document if it is possible.
-			 * @return pointer on the class or nullptr.
+			 * @return pointer on the class or null.
 			 */
 			exml::Document toDocument();
 			/**
 			 * @brief Cast the element in a Document if it is possible.
-			 * @return CONST pointer on the class or nullptr.
+			 * @return CONST pointer on the class or null.
 			 */
 			const exml::Document toDocument() const;
 			/**
 			 * @brief Cast the element in a Attribute if it is possible.
-			 * @return pointer on the class or nullptr.
+			 * @return pointer on the class or null.
 			 */
 			exml::Attribute toAttribute();
 			/**
 			 * @brief Cast the element in a Attribute if it is possible.
-			 * @return CONST pointer on the class or nullptr.
+			 * @return CONST pointer on the class or null.
 			 */
 			const exml::Attribute toAttribute() const;
 			/**
 			 * @brief Cast the element in a Comment if it is possible.
-			 * @return pointer on the class or nullptr.
+			 * @return pointer on the class or null.
 			 */
 			exml::Comment toComment();
 			/**
 			 * @brief Cast the element in a Comment if it is possible.
-			 * @return CONST pointer on the class or nullptr.
+			 * @return CONST pointer on the class or null.
 			 */
 			const exml::Comment toComment() const;
 			/**
 			 * @brief Cast the element in a Declaration if it is possible.
-			 * @return pointer on the class or nullptr.
+			 * @return pointer on the class or null.
 			 */
 			exml::Declaration toDeclaration();
 			/**
 			 * @brief Cast the element in a Declaration if it is possible.
-			 * @return CONST pointer on the class or nullptr.
+			 * @return CONST pointer on the class or null.
 			 */
 			const exml::Declaration toDeclaration() const;
 			/**
 			 * @brief Cast the element in a Element if it is possible.
-			 * @return pointer on the class or nullptr.
+			 * @return pointer on the class or null.
 			 */
 			exml::Element toElement();
 			/**
 			 * @brief Cast the element in a Element if it is possible.
-			 * @return CONST pointer on the class or nullptr.
+			 * @return CONST pointer on the class or null.
 			 */
 			const exml::Element toElement() const;
 			/**
 			 * @brief Cast the element in a Text if it is possible.
-			 * @return pointer on the class or nullptr.
+			 * @return pointer on the class or null.
 			 */
 			exml::Text toText();
 			/**
 			 * @brief Cast the element in a Text if it is possible.
-			 * @return CONST pointer on the class or nullptr.
+			 * @return CONST pointer on the class or null.
 			 */
 			const exml::Text toText() const;
 			/**

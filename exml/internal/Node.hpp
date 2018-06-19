@@ -136,62 +136,62 @@ namespace exml {
 			public:
 				/**
 				 * @brief Cast the element in a Document if it is possible.
-				 * @return pointer on the class or nullptr.
+				 * @return pointer on the class or null.
 				 */
 				virtual ememory::SharedPtr<exml::internal::Document> toDocument();
 				/**
 				 * @brief Cast the element in a Document if it is possible.
-				 * @return CONST pointer on the class or nullptr.
+				 * @return CONST pointer on the class or null.
 				 */
 				virtual const ememory::SharedPtr<exml::internal::Document> toDocument() const;
 				/**
 				 * @brief Cast the element in a Attribute if it is possible.
-				 * @return pointer on the class or nullptr.
+				 * @return pointer on the class or null.
 				 */
 				virtual ememory::SharedPtr<exml::internal::Attribute> toAttribute();
 				/**
 				 * @brief Cast the element in a Attribute if it is possible.
-				 * @return CONST pointer on the class or nullptr.
+				 * @return CONST pointer on the class or null.
 				 */
 				virtual const ememory::SharedPtr<exml::internal::Attribute> toAttribute() const;
 				/**
 				 * @brief Cast the element in a Comment if it is possible.
-				 * @return pointer on the class or nullptr.
+				 * @return pointer on the class or null.
 				 */
 				virtual ememory::SharedPtr<exml::internal::Comment> toComment();
 				/**
 				 * @brief Cast the element in a Comment if it is possible.
-				 * @return CONST pointer on the class or nullptr.
+				 * @return CONST pointer on the class or null.
 				 */
 				virtual const ememory::SharedPtr<exml::internal::Comment> toComment() const;
 				/**
 				 * @brief Cast the element in a Declaration if it is possible.
-				 * @return pointer on the class or nullptr.
+				 * @return pointer on the class or null.
 				 */
 				virtual ememory::SharedPtr<exml::internal::Declaration> toDeclaration();
 				/**
 				 * @brief Cast the element in a Declaration if it is possible.
-				 * @return CONST pointer on the class or nullptr.
+				 * @return CONST pointer on the class or null.
 				 */
 				virtual const ememory::SharedPtr<exml::internal::Declaration> toDeclaration() const;
 				/**
 				 * @brief Cast the element in a Element if it is possible.
-				 * @return pointer on the class or nullptr.
+				 * @return pointer on the class or null.
 				 */
 				virtual ememory::SharedPtr<exml::internal::Element> toElement();
 				/**
 				 * @brief Cast the element in a Element if it is possible.
-				 * @return CONST pointer on the class or nullptr.
+				 * @return CONST pointer on the class or null.
 				 */
 				virtual const ememory::SharedPtr<exml::internal::Element> toElement() const;
 				/**
 				 * @brief Cast the element in a Text if it is possible.
-				 * @return pointer on the class or nullptr.
+				 * @return pointer on the class or null.
 				 */
 				virtual ememory::SharedPtr<exml::internal::Text> toText();
 				/**
 				 * @brief Cast the element in a Text if it is possible.
-				 * @return CONST pointer on the class or nullptr.
+				 * @return CONST pointer on the class or null.
 				 */
 				virtual const ememory::SharedPtr<exml::internal::Text> toText() const;
 				

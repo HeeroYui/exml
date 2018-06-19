@@ -77,7 +77,7 @@ bool exml::internal::Declaration::iParse(const etk::String& _data, int32_t& _pos
 		if (checkAvaillable(_data[iii], true) == true) {
 			// we find an attibute  == > create an element and parse it:
 			ememory::SharedPtr<exml::internal::Attribute> attribute = exml::internal::Attribute::create();
-			if (attribute == nullptr) {
+			if (attribute == null) {
 				CREATE_ERROR(_doc, _data, _pos, _filePos, " Allocation error ...");
 				return false;
 			}

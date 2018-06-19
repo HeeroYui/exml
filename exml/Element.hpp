@@ -19,11 +19,11 @@ namespace exml {
 	 */
 	class ElementData {
 		private:
-			exml::Element* m_data; //!< Pointer on the exml::Element class (must not be nullptr)
+			exml::Element* m_data; //!< Pointer on the exml::Element class (must not be null)
 		public:
 			/**
 			 * @brief constructor on the ElementData class
-			 * @param[in] _list Get pointer on the exml::Element class (must not be nullptr)
+			 * @param[in] _list Get pointer on the exml::Element class (must not be null)
 			 */
 			ElementData(exml::Element* _list);
 		public:
