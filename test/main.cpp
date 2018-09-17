@@ -6,7 +6,6 @@
 
 #include <test-debug/debug.hpp>
 #include <etest/etest.hpp>
-#include <etk/os/FSNode.hpp>
 #include <etk/etk.hpp>
 
 int main(int argc, const char *argv[]) {
@@ -22,6 +21,5 @@ int main(int argc, const char *argv[]) {
 			exit(0);
 		}
 	}
-	etk::initDefaultFolder("exml_test");
 	return RUN_ALL_TESTS();
 }

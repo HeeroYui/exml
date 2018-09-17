@@ -6,7 +6,7 @@
 
 #include <exml/internal/Document.hpp>
 #include <exml/debug.hpp>
-#include <etk/os/FSNode.hpp>
+#include <etk/uri/provider/provider.hpp>
 
 ememory::SharedPtr<exml::internal::Document> exml::internal::Document::create() {
 	return ememory::SharedPtr<exml::internal::Document>(ETK_NEW(exml::internal::Document));
@@ -46,57 +46,46 @@ bool exml::internal::Document::generate(etk::String& _data) {
 	return iGenerate(_data,0);
 }
 
-bool exml::internal::Document::load(const etk::String& _file) {
+bool exml::internal::Document::load(const etk::Uri& _uri) {
 	// Start loading the XML : 
-	EXML_VERBOSE("open file (xml) \"" << _file << "\"");
+	EXML_VERBOSE("open file (xml) " << _uri);
 	clear();
-	etk::FSNode tmpFile(_file);
-	if (tmpFile.exist() == false) {
-		EXML_ERROR("File Does not exist : " << _file);
+	auto fileIo = etk::uri::get(_uri);
+	if (fileIo == null) {
+		EXML_ERROR("File Does not exist : " << _uri);
 		return false;
 	}
-	int64_t fileSize = tmpFile.fileSize();
-	if (fileSize == 0) {
-		EXML_ERROR("This file is empty : " << _file);
+	if (fileIo->open(etk::io::OpenMode::Read) == false) {
+		EXML_ERROR("Can not open (r) the file : " << _uri);
 		return false;
 	}
-	if (tmpFile.fileOpenRead() == false) {
-		EXML_ERROR("Can not open (r) the file : " << _file);
-		return false;
-	}
-	// allocate data
-	etk::Vector<char> fileBuffer;
-	fileBuffer.resize(fileSize+5, 0);
-	// load data from the file :
-	tmpFile.fileRead(&fileBuffer[0], 1, fileSize);
+	// load data from the file:
+	etk::String tmpDataUnicode = fileIo->readAllString();
 	// close the file:
-	tmpFile.fileClose();
-	
-	// convert in UTF8 :
-	etk::String tmpDataUnicode(&fileBuffer[0]);
-	// parse the data :
+	fileIo->close();
+	// parse the data:
 	bool ret = parse(tmpDataUnicode);
 	//Display();
 	return ret;
 }
 
-bool exml::internal::Document::store(const etk::String& _file) {
+bool exml::internal::Document::store(const etk::Uri& _uri) {
 	etk::String createData;
 	if (generate(createData) == false) {
-		EXML_ERROR("Error while creating the XML : " << _file);
+		EXML_ERROR("Error while creating the XML: " << _uri);
 		return false;
 	}
-	etk::FSNode tmpFile(_file);
-	if (tmpFile.fileOpenWrite() == false) {
-		EXML_ERROR("Can not open (w) the file : " << _file);
+	auto fileIo = etk::uri::get(_uri);
+	if (fileIo == null) {
+		EXML_ERROR("Can not create the uri: " << _uri);
 		return false;
 	}
-	if (tmpFile.fileWrite((char*)createData.c_str(), sizeof(char), createData.size()) != (int64_t)createData.size()) {
-		EXML_ERROR("Error while writing output XML file : " << _file);
-		tmpFile.fileClose();
+	if (fileIo->open(etk::io::OpenMode::Write) == false) {
+		EXML_ERROR("Can not open (r) the file : " << _uri);
 		return false;
 	}
-	tmpFile.fileClose();
+	fileIo->fileWriteAll(createData);
+	fileIo->close();
 	return true;
 }
 

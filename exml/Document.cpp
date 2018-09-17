@@ -50,20 +50,36 @@ bool exml::Document::generate(etk::String& _data) {
 	return static_cast<exml::internal::Document*>(m_data.get())->generate(_data);
 }
 
-bool exml::Document::load(const etk::String& _file) {
+bool exml::Document::load(const etk::Path& _path) {
 	if (m_data == null) {
 		EXML_DEBUG("Can not load (null) ...");
 		return false;
 	}
-	return static_cast<exml::internal::Document*>(m_data.get())->load(_file);
+	return static_cast<exml::internal::Document*>(m_data.get())->load(_path);
 }
 
-bool exml::Document::store(const etk::String& _file) {
+bool exml::Document::load(const etk::Uri& _uri) {
+	if (m_data == null) {
+		EXML_DEBUG("Can not load (null) ...");
+		return false;
+	}
+	return static_cast<exml::internal::Document*>(m_data.get())->load(_uri);
+}
+
+bool exml::Document::store(const etk::Path& _path) {
 	if (m_data == null) {
 		EXML_DEBUG("Can not store (null) ...");
 		return false;
 	}
-	return static_cast<exml::internal::Document*>(m_data.get())->store(_file);
+	return static_cast<exml::internal::Document*>(m_data.get())->store(_path);
+}
+
+bool exml::Document::store(const etk::Uri& _uri) {
+	if (m_data == null) {
+		EXML_DEBUG("Can not store (null) ...");
+		return false;
+	}
+	return static_cast<exml::internal::Document*>(m_data.get())->store(_uri);
 }
 
 void exml::Document::display() {

@@ -7,6 +7,7 @@
 
 #include <exml/Element.hpp>
 #include <etk/Vector.hpp>
+#include <etk/uri/uri.hpp>
 
 namespace exml {
 	/**
@@ -61,18 +62,22 @@ namespace exml {
 			bool generate(etk::String& _data);
 			/**
 			 * @brief Load the file that might contain the xml
-			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
+			 * @param[in] _path/_uri Path/URI of the xml
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool load(const etk::String& _file);
+			bool load(const etk::Path& _path);
+			/// @previous
+			bool load(const etk::Uri& _uri);
 			/**
 			 * @brief Store the Xml in the file
-			 * @param[in] _file Filename of the xml (compatible with etk FSNode naming)
+			 * @param[in] _path/_uri Path/URI of the xml
 			 * @return false : An error occured
 			 * @return true : Parsing is OK
 			 */
-			bool store(const etk::String& _file);
+			bool store(const etk::Path& _path);
+			/// @previous
+			bool store(const etk::Uri& _uri);
 			/**
 			 * @brief Display the Document on console
 			 */
