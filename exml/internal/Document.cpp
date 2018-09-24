@@ -84,7 +84,7 @@ bool exml::internal::Document::store(const etk::Uri& _uri) {
 		EXML_ERROR("Can not open (r) the file : " << _uri);
 		return false;
 	}
-	fileIo->fileWriteAll(createData);
+	fileIo->writeAll(createData);
 	fileIo->close();
 	return true;
 }
