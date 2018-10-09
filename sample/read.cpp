@@ -17,7 +17,7 @@ static void readFromFile() {
 	exml::Document doc;
 	//! [exml_sample_declare_doc]
 	//! [exml_sample_read_file]
-	bool retParse = doc.load("DATA:read.xml");
+	bool retParse = doc.load("DATA:///read.xml");
 	//! [exml_sample_read_file]
 	TEST_INFO("parse ret = " << retParse);
 	TEST_INFO("Debug display of the tree:");
@@ -56,7 +56,7 @@ static void readFromString2() {
 static void readFull() {
 	exml::Document doc;
 	TEST_INFO("parse");
-	bool retParse = doc.load("DATA:read.xml");
+	bool retParse = doc.load("DATA:///read.xml");
 	TEST_INFO("parse ret = " << retParse);
 	TEST_INFO("Debug display of the tree:");
 	doc.display();

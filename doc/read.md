@@ -21,7 +21,7 @@ File to read: "read.xml"
 Reading a file is done like this:
 @snippet read.cpp exml_sample_read_file
 
-The file naming is manage by @ref etk::FSNode that provide "DATA:" start string for internal application asset. You can use external path like "./plop/file.xml" too.
+The file naming is manage by @ref etk::FSNode that provide "DATA:///" start string for internal application asset. You can use external path like "./plop/file.xml" too.
 
 
 Read an XML Stream                              {#exml_tutorial_read_stream}
