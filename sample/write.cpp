@@ -18,7 +18,7 @@ static void writeToFile() {
 	doc.nodes.add(exml::Comment("basic comment"));
 	TEST_INFO("store");
 	//! [exml_sample_write_file]
-	bool retGenerate = doc.store("generate.xml");
+	bool retGenerate = doc.store(etk::Path("generate.xml"));
 	//! [exml_sample_write_file]
 	TEST_INFO("parse ret = " << retGenerate);
 	TEST_INFO("Debug display of the tree:");
