@@ -7,6 +7,8 @@
 #include <exml/Document.hpp>
 #include <exml/debug.hpp>
 #include <exml/internal/Document.hpp>
+#include <etk/path/fileSystem.hpp>
+#include <etk/uri/uri.hpp>
 
 exml::Document::Document(ememory::SharedPtr<exml::internal::Node> _internalNode) :
   exml::Element(_internalNode) {
@@ -80,6 +82,35 @@ bool exml::Document::store(const etk::Uri& _uri) {
 		return false;
 	}
 	return static_cast<exml::internal::Document*>(m_data.get())->store(_uri);
+}
+
+bool exml::Document::storeSafe(const etk::Path& _path) {
+	if (m_data == null) {
+		EXML_DEBUG("Can not store (null) ...");
+		return false;
+	}
+	bool done = static_cast<exml::internal::Document*>(m_data.get())->store(_path+".tmp");
+	if (done == false) {
+		return false;
+	}
+	return etk::path::move(_path+".tmp", _path);
+}
+
+bool exml::Document::storeSafe(const etk::Uri& _uri) {
+	if (m_data == null) {
+		EXML_DEBUG("Can not store (null) ...");
+		return false;
+	}
+	if (etk::uri::canMove(_uri) == false) {
+		return static_cast<exml::internal::Document*>(m_data.get())->store(_uri);
+	}
+	etk::Uri uriTmp = _uri;
+	uriTmp.setPath(uriTmp.getPath() + ".tmp");
+	bool done = static_cast<exml::internal::Document*>(m_data.get())->store(uriTmp);
+	if (done == false) {
+		return false;
+	}
+	return etk::uri::move(uriTmp, _uri);
 }
 
 void exml::Document::display() {

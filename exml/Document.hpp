@@ -79,6 +79,15 @@ namespace exml {
 			/// @previous
 			bool store(const etk::Uri& _uri);
 			/**
+			 * @brief Store the Json in the file (safe mode mean that the file is store in a second file xxx.tmp and moved in the file xxx (only one mode to be really safe with filesystem ...)
+			 * @param[in] _path/_uri Path/URI of the json
+			 * @return false : An error occured
+			 * @return true : Parsing is OK
+			 */
+			bool storeSafe(const etk::Path& _path);
+			/// @previous
+			bool storeSafe(const etk::Uri& _uri);
+			/**
 			 * @brief Display the Document on console
 			 */
 			void display();
